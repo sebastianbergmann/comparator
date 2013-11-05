@@ -43,16 +43,6 @@
 
 namespace SebastianBergmann\Comparator;
 
-class TestClass {}
-class TestClassComparator extends ObjectComparator {}
-class ClassWithToString
-{
-    public function __toString()
-    {
-        return 'string representation';
-    }
-}
-
 /**
  *
  *
@@ -64,9 +54,6 @@ class ClassWithToString
  */
 class ComparatorTest extends \PHPUnit_Framework_TestCase
 {
-    // Don't use other test methods than ->fail() here, because the testers tested
-    // here are the foundation for the other test methods
-
     public function instanceProvider()
     {
         $tmpfile = tmpfile();
