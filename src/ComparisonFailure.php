@@ -56,7 +56,7 @@ use SebastianBergmann\Diff\Differ;
  * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  * @link       http://www.github.com/sebastianbergmann/comparator
  */
-class ComparisonFailure extends Exception
+class ComparisonFailure extends \Exception
 {
     /**
      * Expected value of the retrieval which does not match $actual.
