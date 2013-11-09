@@ -52,7 +52,7 @@ namespace SebastianBergmann\Comparator;
  * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  * @link       http://www.github.com/sebastianbergmann/comparator
  */
-class ComparatorTest extends \PHPUnit_Framework_TestCase
+class FactoryTest extends \PHPUnit_Framework_TestCase
 {
     public function instanceProvider()
     {
@@ -103,14 +103,18 @@ class ComparatorTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider instanceProvider
+     * @covers       SebastianBergmann\Comparator\Factory::getComparatorFor
      */
-    public function testGetInstance($a, $b, $expected)
+    public function testGetComparatorFor($a, $b, $expected)
     {
         $factory = new Factory;
         $actual = $factory->getComparatorFor($a, $b);
         $this->assertInstanceOf($expected, $actual);
     }
 
+    /**
+     * @covers SebastianBergmann\Comparator\Factory::register
+     */
     public function testRegister()
     {
         $comparator = new TestClassComparator;
@@ -127,6 +131,9 @@ class ComparatorTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf($expected, $actual);
     }
 
+    /**
+     * @covers SebastianBergmann\Comparator\Factory::unregister
+     */
     public function testUnregister()
     {
         $comparator = new TestClassComparator;
