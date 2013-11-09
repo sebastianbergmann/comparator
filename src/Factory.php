@@ -83,20 +83,6 @@ class Factory
     }
 
     /**
-     * Returns the default instance.
-     *
-     * @return SebastianBergmann\Comparator\Factory
-     */
-    public static function getDefaultInstance()
-    {
-        if (self::$defaultInstance === NULL) {
-            self::$defaultInstance = new Factory;
-        }
-
-        return self::$defaultInstance;
-    }
-
-    /**
      * Returns the correct comparator for comparing two values.
      *
      * @param  mixed $expected The first value to compare
