@@ -28,7 +28,6 @@ spl_autoload_register(
                 'sebastianbergmann\\comparator\\domdocumentcomparator' => '/DOMDocumentComparator.php',
                 'sebastianbergmann\\comparator\\datetimecomparator' => '/DateTimeComparator.php',
                 'sebastianbergmann\\comparator\\doublecomparator' => '/DoubleComparator.php',
-                'sebastianbergmann\\comparator\\exception' => '/Exception.php',
                 'sebastianbergmann\\comparator\\exceptioncomparator' => '/ExceptionComparator.php',
                 'sebastianbergmann\\comparator\\factory' => '/Factory.php',
                 'sebastianbergmann\\comparator\\numericcomparator' => '/NumericComparator.php',

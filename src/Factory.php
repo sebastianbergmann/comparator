@@ -102,7 +102,6 @@ class Factory
      * @param  mixed $expected The first value to compare
      * @param  mixed $actual The second value to compare
      * @return SebastianBergmann\Comparator\Comparator
-     * @throws SebastianBergmann\Comparator\Exception
      */
     public function getComparatorFor($expected, $actual)
     {
@@ -111,13 +110,6 @@ class Factory
                 return $comparator;
             }
         }
-
-        throw new Exception(
-          sprintf(
-            'No comparator is registered for comparing the types "%s" and "%s"',
-            gettype($expected), gettype($actual)
-          )
-        );
     }
 
     /**
