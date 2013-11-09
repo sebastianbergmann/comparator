@@ -44,7 +44,7 @@
 namespace SebastianBergmann\Comparator;
 
 /**
- *
+ * @coversDefaultClass SebastianBergmann\Comparator\Factory
  *
  * @package    Comparator
  * @author     Bernhard Schussek <bschussek@2bepublished.at>
@@ -103,7 +103,8 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider instanceProvider
-     * @covers       SebastianBergmann\Comparator\Factory::getComparatorFor
+     * @covers       ::getComparatorFor
+     * @covers       ::__construct
      */
     public function testGetComparatorFor($a, $b, $expected)
     {
@@ -113,7 +114,7 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers SebastianBergmann\Comparator\Factory::register
+     * @covers ::register
      */
     public function testRegister()
     {
@@ -132,7 +133,7 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers SebastianBergmann\Comparator\Factory::unregister
+     * @covers ::unregister
      */
     public function testUnregister()
     {
