@@ -2,7 +2,7 @@
 /**
  * Comparator
  *
- * Copyright (c) 2001-2013, Sebastian Bergmann <sebastian@phpunit.de>.
+ * Copyright (c) 2001-2014, Sebastian Bergmann <sebastian@phpunit.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -36,7 +36,7 @@
  *
  * @package    Comparator
  * @author     Bernhard Schussek <bschussek@2bepublished.at>
- * @copyright  2001-2013 Sebastian Bergmann <sebastian@phpunit.de>
+ * @copyright  2001-2014 Sebastian Bergmann <sebastian@phpunit.de>
  * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  * @link       http://www.github.com/sebastianbergmann/comparator
  */
@@ -48,21 +48,16 @@ namespace SebastianBergmann\Comparator;
  *
  * @package    Comparator
  * @author     Bernhard Schussek <bschussek@2bepublished.at>
- * @copyright  2001-2013 Sebastian Bergmann <sebastian@phpunit.de>
+ * @copyright  2001-2014 Sebastian Bergmann <sebastian@phpunit.de>
  * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  * @link       http://www.github.com/sebastianbergmann/comparator
  */
 class Factory
 {
     /**
-     * @var array
+     * @var Comparator[]
      */
-    protected $comparators = array();
-
-    /**
-     * @var SebastianBergmann\Comparator\Factory
-     */
-    private static $defaultInstance = NULL;
+    private $comparators = array();
 
     /**
      * Constructs a new factory.
@@ -87,7 +82,7 @@ class Factory
      *
      * @param  mixed $expected The first value to compare
      * @param  mixed $actual The second value to compare
-     * @return SebastianBergmann\Comparator\Comparator
+     * @return Comparator
      */
     public function getComparatorFor($expected, $actual)
     {
@@ -106,11 +101,12 @@ class Factory
      * existing comparators, meaning that its accept() method will be tested
      * before those of the other comparators.
      *
-     * @param  SebastianBergmann\Comparator\Comparator $comparator The registered comparator
+     * @param Comparator $comparator The registered comparator
      */
     public function register(Comparator $comparator)
     {
         array_unshift($this->comparators, $comparator);
+
         $comparator->setFactory($this);
     }
 
@@ -119,7 +115,7 @@ class Factory
      *
      * This comparator will no longer be returned by getInstance().
      *
-     * @param  SebastianBergmann\Comparator\Comparator $comparator The unregistered comparator
+     * @param Comparator $comparator The unregistered comparator
      */
     public function unregister(Comparator $comparator)
     {

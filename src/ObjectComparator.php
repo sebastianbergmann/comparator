@@ -2,7 +2,7 @@
 /**
  * Comparator
  *
- * Copyright (c) 2001-2013, Sebastian Bergmann <sebastian@phpunit.de>.
+ * Copyright (c) 2001-2014, Sebastian Bergmann <sebastian@phpunit.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -36,7 +36,7 @@
  *
  * @package    Comparator
  * @author     Bernhard Schussek <bschussek@2bepublished.at>
- * @copyright  2001-2013 Sebastian Bergmann <sebastian@phpunit.de>
+ * @copyright  2001-2014 Sebastian Bergmann <sebastian@phpunit.de>
  * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  * @link       http://www.github.com/sebastianbergmann/comparator
  */
@@ -48,7 +48,7 @@ namespace SebastianBergmann\Comparator;
  *
  * @package    Comparator
  * @author     Bernhard Schussek <bschussek@2bepublished.at>
- * @copyright  2001-2013 Sebastian Bergmann <sebastian@phpunit.de>
+ * @copyright  2001-2014 Sebastian Bergmann <sebastian@phpunit.de>
  * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  * @link       http://www.github.com/sebastianbergmann/comparator
  */
@@ -77,31 +77,31 @@ class ObjectComparator extends ArrayComparator
      *                             comparison
      * @param  bool  $ignoreCase If set to TRUE, upper- and lowercasing is
      *                           ignored when comparing string values
-     * @throws SebastianBergmann\Comparator\ComparisonFailure Thrown when the comparison
+     * @param  array $processed
+     * @throws ComparisonFailure Thrown when the comparison
      *                           fails. Contains information about the
      *                           specific errors that lead to the failure.
      */
-    public function assertEquals($expected, $actual, $delta = 0, $canonicalize = FALSE, $ignoreCase = FALSE, array &$processed = array())
+    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = array())
     {
         if (get_class($actual) !== get_class($expected)) {
             throw new ComparisonFailure(
-              $expected,
-              $actual,
-              $this->exporter->export($expected),
-              $this->exporter->export($actual),
-              FALSE,
-              sprintf(
-                '%s is not instance of expected class "%s".',
-
+                $expected,
+                $actual,
+                $this->exporter->export($expected),
                 $this->exporter->export($actual),
-                get_class($expected)
-              )
+                false,
+                sprintf(
+                    '%s is not instance of expected class "%s".',
+                    $this->exporter->export($actual),
+                    get_class($expected)
+                )
             );
         }
 
         // don't compare twice to allow for cyclic dependencies
-        if (in_array(array($actual, $expected), $processed, TRUE) ||
-            in_array(array($expected, $actual), $processed, TRUE)) {
+        if (in_array(array($actual, $expected), $processed, true) ||
+            in_array(array($expected, $actual), $processed, true)) {
             return;
         }
 
@@ -113,24 +113,22 @@ class ObjectComparator extends ArrayComparator
         if ($actual !== $expected) {
             try {
                 parent::assertEquals(
-                  $this->toArray($expected),
-                  $this->toArray($actual),
-                  $delta,
-                  $canonicalize,
-                  $ignoreCase,
-                  $processed
+                    $this->toArray($expected),
+                    $this->toArray($actual),
+                    $delta,
+                    $canonicalize,
+                    $ignoreCase,
+                    $processed
                 );
-            }
-
-            catch (ComparisonFailure $e) {
+            } catch (ComparisonFailure $e) {
                 throw new ComparisonFailure(
-                  $expected,
-                  $actual,
-                  // replace "Array" with "MyClass object"
-                  substr_replace($e->getExpectedAsString(), get_class($expected) . ' Object', 0, 5),
-                  substr_replace($e->getActualAsString(), get_class($actual) . ' Object', 0, 5),
-                  FALSE,
-                  'Failed asserting that two objects are equal.'
+                    $expected,
+                    $actual,
+                    // replace "Array" with "MyClass object"
+                    substr_replace($e->getExpectedAsString(), get_class($expected) . ' Object', 0, 5),
+                    substr_replace($e->getActualAsString(), get_class($actual) . ' Object', 0, 5),
+                    false,
+                    'Failed asserting that two objects are equal.'
                 );
             }
         }

@@ -2,7 +2,7 @@
 /**
  * Comparator
  *
- * Copyright (c) 2001-2013, Sebastian Bergmann <sebastian@phpunit.de>.
+ * Copyright (c) 2001-2014, Sebastian Bergmann <sebastian@phpunit.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -36,7 +36,7 @@
  *
  * @package    Comparator
  * @author     Bernhard Schussek <bschussek@2bepublished.at>
- * @copyright  2001-2013 Sebastian Bergmann <sebastian@phpunit.de>
+ * @copyright  2001-2014 Sebastian Bergmann <sebastian@phpunit.de>
  * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  * @link       http://www.github.com/sebastianbergmann/comparator
  */
@@ -48,7 +48,7 @@ namespace SebastianBergmann\Comparator;
  *
  * @package    Comparator
  * @author     Bernhard Schussek <bschussek@2bepublished.at>
- * @copyright  2001-2013 Sebastian Bergmann <sebastian@phpunit.de>
+ * @copyright  2001-2014 Sebastian Bergmann <sebastian@phpunit.de>
  * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  * @link       http://www.github.com/sebastianbergmann/comparator
  */
@@ -77,11 +77,12 @@ class ArrayComparator extends Comparator
      *                             comparison
      * @param  bool  $ignoreCase If set to TRUE, upper- and lowercasing is
      *                           ignored when comparing string values
-     * @throws SebastianBergmann\Comparator\ComparisonFailure Thrown when the comparison
+     * @param  array $processed
+     * @throws ComparisonFailure Thrown when the comparison
      *                           fails. Contains information about the
      *                           specific errors that lead to the failure.
      */
-    public function assertEquals($expected, $actual, $delta = 0, $canonicalize = FALSE, $ignoreCase = FALSE, array &$processed = array())
+    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = array())
     {
         if ($canonicalize) {
             sort($expected);
@@ -90,67 +91,66 @@ class ArrayComparator extends Comparator
 
         $remaining = $actual;
         $expString = $actString = "Array (\n";
-        $equal = TRUE;
+        $equal     = true;
 
         foreach ($expected as $key => $value) {
             unset($remaining[$key]);
 
             if (!array_key_exists($key, $actual)) {
                 $expString .= sprintf(
-                  "    %s => %s\n",
-
-                  $this->exporter->export($key),
-                  $this->exporter->shortenedExport($value)
+                    "    %s => %s\n",
+                    $this->exporter->export($key),
+                    $this->exporter->shortenedExport($value)
                 );
-                $equal = FALSE;
+
+                $equal = false;
+
                 continue;
             }
 
             try {
-                $this->factory->getComparatorFor($value, $actual[$key])->assertEquals($value, $actual[$key], $delta, $canonicalize, $ignoreCase, $processed);
-                $expString .= sprintf(
-                  "    %s => %s\n",
+                $comparator = $this->factory->getComparatorFor($value, $actual[$key]);
+                $comparator->assertEquals($value, $actual[$key], $delta, $canonicalize, $ignoreCase, $processed);
 
-                  $this->exporter->export($key),
-                  $this->exporter->shortenedExport($value)
+                $expString .= sprintf(
+                    "    %s => %s\n",
+                    $this->exporter->export($key),
+                    $this->exporter->shortenedExport($value)
                 );
                 $actString .= sprintf(
-                  "    %s => %s\n",
-
-                  $this->exporter->export($key),
-                  $this->exporter->shortenedExport($actual[$key])
+                    "    %s => %s\n",
+                    $this->exporter->export($key),
+                    $this->exporter->shortenedExport($actual[$key])
                 );
-            }
-
-            catch (ComparisonFailure $e) {
+            } catch (ComparisonFailure $e) {
                 $expString .= sprintf(
-                  "    %s => %s\n",
-
-                  $this->exporter->export($key),
-                  $e->getExpectedAsString()
+                    "    %s => %s\n",
+                    $this->exporter->export($key),
+                    $e->getExpectedAsString()
                     ? $this->indent($e->getExpectedAsString())
                     : $this->exporter->shortenedExport($e->getExpected())
                 );
-                $actString .= sprintf(
-                  "    %s => %s\n",
 
-                  $this->exporter->export($key),
-                  $e->getActualAsString()
+                $actString .= sprintf(
+                    "    %s => %s\n",
+                    $this->exporter->export($key),
+                    $e->getActualAsString()
                     ? $this->indent($e->getActualAsString())
                     : $this->exporter->shortenedExport($e->getActual())
                 );
-                $equal = FALSE;
+
+                $equal = false;
             }
         }
 
         foreach ($remaining as $key => $value) {
             $actString .= sprintf(
-              "    %s => %s\n",
-
-              $this->exporter->export($key),
-              $this->exporter->shortenedExport($value)
+                "    %s => %s\n",
+                $this->exporter->export($key),
+                $this->exporter->shortenedExport($value)
             );
-            $equal = FALSE;
+
+            $equal = false;
         }
 
         $expString .= ')';
@@ -158,12 +158,12 @@ class ArrayComparator extends Comparator
 
         if (!$equal) {
             throw new ComparisonFailure(
-              $expected,
-              $actual,
-              $expString,
-              $actString,
-              FALSE,
-             'Failed asserting that two arrays are equal.'
+                $expected,
+                $actual,
+                $expString,
+                $actString,
+                false,
+                'Failed asserting that two arrays are equal.'
             );
         }
     }

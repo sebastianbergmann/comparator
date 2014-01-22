@@ -2,7 +2,7 @@
 /**
  * Comparator
  *
- * Copyright (c) 2001-2013, Sebastian Bergmann <sebastian@phpunit.de>.
+ * Copyright (c) 2001-2014, Sebastian Bergmann <sebastian@phpunit.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -37,7 +37,7 @@
  * @package    Comparator
  * @author     Sebastian Bergmann <sebastian@phpunit.de>
  * @author     Bernhard Schussek <bschussek@2bepublished.at>
- * @copyright  2001-2013 Sebastian Bergmann <sebastian@phpunit.de>
+ * @copyright  2001-2014 Sebastian Bergmann <sebastian@phpunit.de>
  * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  * @link       http://www.github.com/sebastianbergmann/comparator
  */
@@ -52,7 +52,7 @@ use SebastianBergmann\Diff\Differ;
  * @package    Comparator
  * @author     Sebastian Bergmann <sebastian@phpunit.de>
  * @author     Bernhard Schussek <bschussek@2bepublished.at>
- * @copyright  2001-2013 Sebastian Bergmann <sebastian@phpunit.de>
+ * @copyright  2001-2014 Sebastian Bergmann <sebastian@phpunit.de>
  * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  * @link       http://www.github.com/sebastianbergmann/comparator
  */
@@ -105,7 +105,7 @@ class ComparisonFailure extends \RuntimeException
      * @param string $message A string which is prefixed on all returned lines
      *                        in the difference output.
      */
-    public function __construct($expected, $actual, $expectedAsString, $actualAsString, $identical = FALSE, $message = '')
+    public function __construct($expected, $actual, $expectedAsString, $actualAsString, $identical = false, $message = '')
     {
         $this->expected         = $expected;
         $this->actual           = $actual;

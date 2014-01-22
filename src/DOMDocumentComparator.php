@@ -2,7 +2,7 @@
 /**
  * Comparator
  *
- * Copyright (c) 2001-2013, Sebastian Bergmann <sebastian@phpunit.de>.
+ * Copyright (c) 2001-2014, Sebastian Bergmann <sebastian@phpunit.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -36,7 +36,7 @@
  *
  * @package    Comparator
  * @author     Bernhard Schussek <bschussek@2bepublished.at>
- * @copyright  2001-2013 Sebastian Bergmann <sebastian@phpunit.de>
+ * @copyright  2001-2014 Sebastian Bergmann <sebastian@phpunit.de>
  * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  * @link       http://www.github.com/sebastianbergmann/comparator
  */
@@ -48,7 +48,7 @@ namespace SebastianBergmann\Comparator;
  *
  * @package    Comparator
  * @author     Bernhard Schussek <bschussek@2bepublished.at>
- * @copyright  2001-2013 Sebastian Bergmann <sebastian@phpunit.de>
+ * @copyright  2001-2014 Sebastian Bergmann <sebastian@phpunit.de>
  * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  * @link       http://www.github.com/sebastianbergmann/comparator
  */
@@ -77,20 +77,20 @@ class DOMDocumentComparator extends ObjectComparator
      *                             comparison
      * @param  bool  $ignoreCase If set to TRUE, upper- and lowercasing is
      *                           ignored when comparing string values
-     * @throws SebastianBergmann\Comparator\ComparisonFailure Thrown when the comparison
+     * @throws ComparisonFailure Thrown when the comparison
      *                           fails. Contains information about the
      *                           specific errors that lead to the failure.
      */
-    public function assertEquals($expected, $actual, $delta = 0, $canonicalize = FALSE, $ignoreCase = FALSE)
+    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false)
     {
         if ($expected->C14N() !== $actual->C14N()) {
             throw new ComparisonFailure(
-              $expected,
-              $actual,
-              $this->domToText($expected),
-              $this->domToText($actual),
-              FALSE,
-              'Failed asserting that two DOM documents are equal.'
+                $expected,
+                $actual,
+                $this->domToText($expected),
+                $this->domToText($actual),
+                false,
+                'Failed asserting that two DOM documents are equal.'
             );
         }
     }
@@ -104,7 +104,7 @@ class DOMDocumentComparator extends ObjectComparator
      */
     protected function domToText(\DOMDocument $document)
     {
-        $document->formatOutput = TRUE;
+        $document->formatOutput = true;
         $document->normalizeDocument();
 
         return $document->saveXML();

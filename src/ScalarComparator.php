@@ -2,7 +2,7 @@
 /**
  * Comparator
  *
- * Copyright (c) 2001-2013, Sebastian Bergmann <sebastian@phpunit.de>.
+ * Copyright (c) 2001-2014, Sebastian Bergmann <sebastian@phpunit.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -36,7 +36,7 @@
  *
  * @package    Comparator
  * @author     Bernhard Schussek <bschussek@2bepublished.at>
- * @copyright  2001-2013 Sebastian Bergmann <sebastian@phpunit.de>
+ * @copyright  2001-2014 Sebastian Bergmann <sebastian@phpunit.de>
  * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  * @link       http://www.github.com/sebastianbergmann/comparator
  */
@@ -48,7 +48,7 @@ namespace SebastianBergmann\Comparator;
  *
  * @package    Comparator
  * @author     Bernhard Schussek <bschussek@2bepublished.at>
- * @copyright  2001-2013 Sebastian Bergmann <sebastian@phpunit.de>
+ * @copyright  2001-2014 Sebastian Bergmann <sebastian@phpunit.de>
  * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  * @link       http://www.github.com/sebastianbergmann/comparator
  */
@@ -64,11 +64,11 @@ class ScalarComparator extends Comparator
      */
     public function accepts($expected, $actual)
     {
-        return ((is_scalar($expected) XOR NULL === $expected) &&
-                 (is_scalar($actual) XOR NULL === $actual))
-          // allow comparison between strings and objects featuring __toString()
-          || (is_string($expected) && is_object($actual) && method_exists($actual, '__toString'))
-          || (is_object($expected) && method_exists($expected, '__toString') && is_string($actual));
+        return ((is_scalar($expected) xor null === $expected) &&
+               (is_scalar($actual) xor null === $actual))
+               // allow comparison between strings and objects featuring __toString()
+               || (is_string($expected) && is_object($actual) && method_exists($actual, '__toString'))
+               || (is_object($expected) && method_exists($expected, '__toString') && is_string($actual));
     }
 
     /**
@@ -82,11 +82,11 @@ class ScalarComparator extends Comparator
      *                             comparison
      * @param  bool  $ignoreCase If set to TRUE, upper- and lowercasing is
      *                           ignored when comparing string values
-     * @throws SebastianBergmann\Comparator\ComparisonFailure Thrown when the comparison
+     * @throws ComparisonFailure Thrown when the comparison
      *                           fails. Contains information about the
      *                           specific errors that lead to the failure.
      */
-    public function assertEquals($expected, $actual, $delta = 0, $canonicalize = FALSE, $ignoreCase = FALSE)
+    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false)
     {
         $expectedToCompare = $expected;
         $actualToCompare = $actual;
@@ -106,28 +106,27 @@ class ScalarComparator extends Comparator
         if ($expectedToCompare != $actualToCompare) {
             if (is_string($expected) && is_string($actual)) {
                 throw new ComparisonFailure(
-                  $expected,
-                  $actual,
-                  $this->exporter->export($expected),
-                  $this->exporter->export($actual),
-                  FALSE,
-                  'Failed asserting that two strings are equal.'
+                    $expected,
+                    $actual,
+                    $this->exporter->export($expected),
+                    $this->exporter->export($actual),
+                    false,
+                    'Failed asserting that two strings are equal.'
                 );
             }
 
             throw new ComparisonFailure(
-              $expected,
-              $actual,
-              // no diff is required
-              '',
-              '',
-              FALSE,
-              sprintf(
-                'Failed asserting that %s matches expected %s.',
-
-                $this->exporter->export($actual),
-                $this->exporter->export($expected)
-              )
+                $expected,
+                $actual,
+                // no diff is required
+                '',
+                '',
+                false,
+                sprintf(
+                    'Failed asserting that %s matches expected %s.',
+                    $this->exporter->export($actual),
+                    $this->exporter->export($expected)
+                )
             );
         }
     }

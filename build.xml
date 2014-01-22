@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="comparator">
+ <target name="clean" description="Cleanup build artifacts">
+  <delete dir="${basedir}/vendor"/>
+  <delete file="${basedir}/composer.lock"/>
+  <delete file="${basedir}/composer.phar"/>
+ </target>
+
+ <target name="composer" depends="clean" description="Install dependencies with Composer">
+  <get src="https://getcomposer.org/composer.phar" dest="${basedir}/composer.phar"/>
+
+  <exec executable="php">
+   <arg value="composer.phar"/>
+   <arg value="install"/>
+  </exec>
+ </target>
+
+ <target name="phpab" description="Generate autoloader script">
+  <exec executable="phpab">
+   <arg value="--output" />
+   <arg path="tests/autoload.php" />
+   <arg path="tests" />
+  </exec>
+ </target>
+</project>

@@ -2,7 +2,7 @@
 /**
  * Comparator
  *
- * Copyright (c) 2001-2013, Sebastian Bergmann <sebastian@phpunit.de>.
+ * Copyright (c) 2001-2014, Sebastian Bergmann <sebastian@phpunit.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -37,7 +37,7 @@
  * @package    Comparator
  * @author     Bernhard Schussek <bschussek@2bepublished.at>
  * @author     Alexander <iam.asm89@gmail.com>
- * @copyright  2001-2013 Sebastian Bergmann <sebastian@phpunit.de>
+ * @copyright  2001-2014 Sebastian Bergmann <sebastian@phpunit.de>
  * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  * @link       http://www.github.com/sebastianbergmann/comparator
  */
@@ -50,7 +50,7 @@ namespace SebastianBergmann\Comparator;
  * @package    Comparator
  * @author     Bernhard Schussek <bschussek@2bepublished.at>
  * @author     Alexander <iam.asm89@gmail.com>
- * @copyright  2001-2013 Sebastian Bergmann <sebastian@phpunit.de>
+ * @copyright  2001-2014 Sebastian Bergmann <sebastian@phpunit.de>
  * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  * @link       http://www.github.com/sebastianbergmann/comparator
  */
@@ -68,8 +68,8 @@ class NumericComparator extends ScalarComparator
         // all numerical values, but not if one of them is a double
         // or both of them are strings
         return is_numeric($expected) && is_numeric($actual) &&
-            !(is_double($expected) || is_double($actual)) &&
-            !(is_string($expected) && is_string($actual));
+               !(is_double($expected) || is_double($actual)) &&
+               !(is_string($expected) && is_string($actual));
     }
 
     /**
@@ -83,31 +83,30 @@ class NumericComparator extends ScalarComparator
      *                             comparison
      * @param  bool  $ignoreCase If set to TRUE, upper- and lowercasing is
      *                           ignored when comparing string values
-     * @throws SebastianBergmann\Comparator\ComparisonFailure Thrown when the comparison
+     * @throws ComparisonFailure Thrown when the comparison
      *                           fails. Contains information about the
      *                           specific errors that lead to the failure.
      */
-    public function assertEquals($expected, $actual, $delta = 0, $canonicalize = FALSE, $ignoreCase = FALSE)
+    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false)
     {
         if (is_infinite($actual) && is_infinite($expected)) {
             return;
         }
 
-        if ((is_infinite($actual) XOR is_infinite($expected)) ||
-            (is_nan($actual) OR is_nan($expected)) ||
+        if ((is_infinite($actual) xor is_infinite($expected)) ||
+            (is_nan($actual) or is_nan($expected)) ||
             abs($actual - $expected) > $delta) {
             throw new ComparisonFailure(
-              $expected,
-              $actual,
-              '',
-              '',
-              FALSE,
-              sprintf(
-                'Failed asserting that %s matches expected %s.',
-
-                $this->exporter->export($actual),
-                $this->exporter->export($expected)
-              )
+                $expected,
+                $actual,
+                '',
+                '',
+                false,
+                sprintf(
+                    'Failed asserting that %s matches expected %s.',
+                    $this->exporter->export($actual),
+                    $this->exporter->export($expected)
+                )
             );
         }
     }

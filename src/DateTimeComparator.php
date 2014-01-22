@@ -2,7 +2,7 @@
 /**
  * Comparator
  *
- * Copyright (c) 2001-2013, Sebastian Bergmann <sebastian@phpunit.de>.
+ * Copyright (c) 2001-2014, Sebastian Bergmann <sebastian@phpunit.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -36,7 +36,7 @@
  *
  * @package    Comparator
  * @author     Jeff Welch <whatthejeff@gmail.com>
- * @copyright  2001-2013 Sebastian Bergmann <sebastian@phpunit.de>
+ * @copyright  2001-2014 Sebastian Bergmann <sebastian@phpunit.de>
  * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  * @link       http://www.github.com/sebastianbergmann/comparator
  */
@@ -48,7 +48,7 @@ namespace SebastianBergmann\Comparator;
  *
  * @package    Comparator
  * @author     Jeff Welch <whatthejeff@gmail.com>
- * @copyright  2001-2013 Sebastian Bergmann <sebastian@phpunit.de>
+ * @copyright  2001-2014 Sebastian Bergmann <sebastian@phpunit.de>
  * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  * @link       http://www.github.com/sebastianbergmann/comparator
  */
@@ -77,11 +77,11 @@ class DateTimeComparator extends ObjectComparator
      *                             comparison
      * @param  bool  $ignoreCase If set to TRUE, upper- and lowercasing is
      *                           ignored when comparing string values
-     * @throws SebastianBergmann\Comparator\ComparisonFailure Thrown when the comparison
+     * @throws ComparisonFailure Thrown when the comparison
      *                           fails. Contains information about the
      *                           specific errors that lead to the failure.
      */
-    public function assertEquals($expected, $actual, $delta = 0, $canonicalize = FALSE, $ignoreCase = FALSE)
+    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false)
     {
         $delta = new \DateInterval(sprintf('PT%sS', abs($delta)));
 
@@ -91,12 +91,12 @@ class DateTimeComparator extends ObjectComparator
         if ($actual < $expectedLower->sub($delta) ||
             $actual > $expectedUpper->add($delta)) {
             throw new ComparisonFailure(
-              $expected,
-              $actual,
-              $this->dateTimeToString($expected),
-              $this->dateTimeToString($actual),
-              FALSE,
-              'Failed asserting that two DateTime objects are equal.'
+                $expected,
+                $actual,
+                $this->dateTimeToString($expected),
+                $this->dateTimeToString($actual),
+                false,
+                'Failed asserting that two DateTime objects are equal.'
             );
         }
     }

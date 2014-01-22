@@ -1,5 +1,4 @@
-Comparator
-==========
+# Comparator
 
 This component provides the functionality to compare PHP values for equality.
 

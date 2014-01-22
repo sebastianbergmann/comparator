@@ -8,8 +8,9 @@ spl_autoload_register(
         if ($classes === null) {
             $classes = array(
                 'sebastianbergmann\\comparator\\classwithtostring' => '/_files/ClassWithToString.php',
+                'sebastianbergmann\\comparator\\factorytest' => '/FactoryTest.php',
                 'sebastianbergmann\\comparator\\testclass' => '/_files/TestClass.php',
-                'sebastianbergmann\\comparator\\testclasscomparator' => '/_files/TestClassComparator.php',
+                'sebastianbergmann\\comparator\\testclasscomparator' => '/_files/TestClassComparator.php'
             );
         }
         $cn = strtolower($class);
