@@ -10,4 +10,5 @@ php:
 
 notifications:
   email: false
+  irc: "irc.freenode.org#phpunit"
 
