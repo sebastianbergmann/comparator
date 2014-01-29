@@ -23,7 +23,7 @@
         }
     ],
     "require": {
-        "php": ">=5.3.3",
+        "php": ">=5.4.7",
         "sebastian/diff": ">=1.1.0",
         "sebastian/exporter": ">=1.0.0"
     },
@@ -45,3 +45,4 @@
         }
     }
 }
+
