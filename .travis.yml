@@ -1,7 +1,8 @@
 language: php
 
 before_script:
-    - composer install --prefer-source
+  - composer self-update
+  - composer install --no-interaction --prefer-source --dev
 
 php:
   - 5.3.3
@@ -14,4 +15,3 @@ php:
 notifications:
   email: false
   irc: "irc.freenode.org#phpunit"
-
