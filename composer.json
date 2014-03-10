@@ -35,9 +35,9 @@
         "phpunit/phpunit": "4.0.*@dev"
     },
     "autoload": {
-        "classmap": [
-            "src/"
-        ]
+        "psr-4": {
+            "SebastianBergmann\\Comparator\\": "src/"
+        }
     },
     "extra": {
         "branch-alias": {
