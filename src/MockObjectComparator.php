@@ -44,7 +44,7 @@
 namespace SebastianBergmann\Comparator;
 
 /**
- * Factory for comparators which compare values for equality.
+ * Compares PHPUnit_Framework_MockObject_MockObject instances for equality.
  *
  * @package    Comparator
  * @author     Bernhard Schussek <bschussek@2bepublished.at>
@@ -52,78 +52,33 @@ namespace SebastianBergmann\Comparator;
  * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  * @link       http://www.github.com/sebastianbergmann/comparator
  */
-class Factory
+class MockObjectComparator extends ObjectComparator
 {
     /**
-     * @var Comparator[]
+     * Returns whether the comparator can compare two values.
+     *
+     * @param  mixed   $expected The first value to compare
+     * @param  mixed   $actual   The second value to compare
+     * @return boolean
      */
-    private $comparators = array();
-
-    /**
-     * Constructs a new factory.
-     */
-    public function __construct()
+    public function accepts($expected, $actual)
     {
-        $this->register(new TypeComparator);
-        $this->register(new ScalarComparator);
-        $this->register(new NumericComparator);
-        $this->register(new DoubleComparator);
-        $this->register(new ArrayComparator);
-        $this->register(new ResourceComparator);
-        $this->register(new ObjectComparator);
-        $this->register(new ExceptionComparator);
-        $this->register(new SplObjectStorageComparator);
-        $this->register(new DOMDocumentComparator);
-        $this->register(new MockObjectComparator);
-        $this->register(new DateTimeComparator);
+        return $expected instanceof \PHPUnit_Framework_MockObject_MockObject && $actual instanceof \PHPUnit_Framework_MockObject_MockObject;
     }
 
     /**
-     * Returns the correct comparator for comparing two values.
+     * Converts an object to an array containing all of its private, protected
+     * and public properties.
      *
-     * @param  mixed $expected The first value to compare
-     * @param  mixed $actual The second value to compare
-     * @return Comparator
+     * @param  object $object
+     * @return array
      */
-    public function getComparatorFor($expected, $actual)
+    protected function toArray($object)
     {
-        foreach ($this->comparators as $comparator) {
-            if ($comparator->accepts($expected, $actual)) {
-                return $comparator;
-            }
-        }
-    }
+        $array = parent::toArray($object);
 
-    /**
-     * Registers a new comparator.
-     *
-     * This comparator will be returned by getInstance() if its accept() method
-     * returns TRUE for the compared values. It has higher priority than the
-     * existing comparators, meaning that its accept() method will be tested
-     * before those of the other comparators.
-     *
-     * @param Comparator $comparator The registered comparator
-     */
-    public function register(Comparator $comparator)
-    {
-        array_unshift($this->comparators, $comparator);
+        unset($array['__phpunit_invocationMocker']);
 
-        $comparator->setFactory($this);
-    }
-
-    /**
-     * Unregisters a comparator.
-     *
-     * This comparator will no longer be returned by getInstance().
-     *
-     * @param Comparator $comparator The unregistered comparator
-     */
-    public function unregister(Comparator $comparator)
-    {
-        foreach ($this->comparators as $key => $_comparator) {
-            if ($comparator === $_comparator) {
-                unset($this->comparators[$key]);
-            }
-        }
+        return $array;
     }
 }
