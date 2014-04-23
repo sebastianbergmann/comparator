@@ -80,7 +80,7 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
             array(new \DateTime, new \DateTime, 'SebastianBergmann\\Comparator\\DateTimeComparator'),
             array(new \SplObjectStorage, new \SplObjectStorage, 'SebastianBergmann\\Comparator\\SplObjectStorageComparator'),
             array(new \Exception, new \Exception, 'SebastianBergmann\\Comparator\\ExceptionComparator'),
-            array(new \DOMDocument, new \DOMDocument, 'SebastianBergmann\\Comparator\\DOMDocumentComparator'),
+            array(new \DOMDocument, new \DOMDocument, 'SebastianBergmann\\Comparator\\DOMNodeComparator'),
             // mixed types
             array($tmpfile, array(1), 'SebastianBergmann\\Comparator\\TypeComparator'),
             array(array(1), $tmpfile, 'SebastianBergmann\\Comparator\\TypeComparator'),

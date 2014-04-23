@@ -73,7 +73,7 @@ class Factory
         $this->register(new ObjectComparator);
         $this->register(new ExceptionComparator);
         $this->register(new SplObjectStorageComparator);
-        $this->register(new DOMDocumentComparator);
+        $this->register(new DOMNodeComparator);
         $this->register(new MockObjectComparator);
         $this->register(new DateTimeComparator);
     }

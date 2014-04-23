@@ -43,8 +43,11 @@
 
 namespace SebastianBergmann\Comparator;
 
+use DOMDocument;
+use DOMNode;
+
 /**
- * Compares DOMDocument instances for equality.
+ * Compares DOMNode instances for equality.
  *
  * @package    Comparator
  * @author     Bernhard Schussek <bschussek@2bepublished.at>
@@ -52,7 +55,7 @@ namespace SebastianBergmann\Comparator;
  * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  * @link       http://www.github.com/sebastianbergmann/comparator
  */
-class DOMDocumentComparator extends ObjectComparator
+class DOMNodeComparator extends ObjectComparator
 {
     /**
      * Returns whether the comparator can compare two values.
@@ -63,7 +66,7 @@ class DOMDocumentComparator extends ObjectComparator
      */
     public function accepts($expected, $actual)
     {
-        return $expected instanceof \DOMDocument && $actual instanceof \DOMDocument;
+        return $expected instanceof DOMNode && $actual instanceof DOMNode;
     }
 
     /**
@@ -83,30 +86,54 @@ class DOMDocumentComparator extends ObjectComparator
      */
     public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false)
     {
-        if ($expected->C14N() !== $actual->C14N()) {
+        $expectedAsString = $this->domToText($expected);
+        $actualAsString   = $this->domToText($actual);
+
+        if ($ignoreCase === true) {
+            $expectedAsString = strtolower($expectedAsString);
+            $actualAsString   = strtolower($actualAsString);
+        }
+
+        if ($expectedAsString !== $actualAsString) {
+            if ($expected instanceof DOMDocument) {
+                $type = 'documents';
+            } else {
+                $type = 'nodes';
+            }
+
             throw new ComparisonFailure(
                 $expected,
                 $actual,
-                $this->domToText($expected),
-                $this->domToText($actual),
+                $expectedAsString,
+                $actualAsString,
                 false,
-                'Failed asserting that two DOM documents are equal.'
+                sprintf('Failed asserting that two DOM %s are equal.', $type)
             );
         }
     }
 
     /**
      * Returns the normalized, whitespace-cleaned, and indented textual
-     * representation of a DOMDocument.
+     * representation of a DOMNode.
      *
-     * @param \DOMDocument $document
+     * @param DOMNode $node
      * @return string
      */
-    protected function domToText(\DOMDocument $document)
+    protected function domToText(DOMNode $node)
     {
+        if ($node instanceof DOMDocument) {
+            $document = $node;
+        } else {
+            $document = $node->ownerDocument;
+        }
+
         $document->formatOutput = true;
         $document->normalizeDocument();
 
-        return $document->saveXML();
+        if ($node instanceof DOMDocument) {
+            return $node->saveXML();
+        }
+
+        return $document->saveXML($node);
     }
 }
