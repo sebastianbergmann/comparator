@@ -86,13 +86,8 @@ class DOMNodeComparator extends ObjectComparator
      */
     public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false)
     {
-        $expectedAsString = $this->domToText($expected);
-        $actualAsString   = $this->domToText($actual);
-
-        if ($ignoreCase === true) {
-            $expectedAsString = strtolower($expectedAsString);
-            $actualAsString   = strtolower($actualAsString);
-        }
+        $expectedAsString = $this->nodeToText($expected, true, $ignoreCase);
+        $actualAsString   = $this->nodeToText($actual, true, $ignoreCase);
 
         if ($expectedAsString !== $actualAsString) {
             if ($expected instanceof DOMDocument) {
@@ -107,7 +102,7 @@ class DOMNodeComparator extends ObjectComparator
                 $expectedAsString,
                 $actualAsString,
                 false,
-                sprintf('Failed asserting that two DOM %s are equal.', $type)
+                sprintf("Failed asserting that two DOM %s are equal.\n", $type)
             );
         }
     }
@@ -116,11 +111,20 @@ class DOMNodeComparator extends ObjectComparator
      * Returns the normalized, whitespace-cleaned, and indented textual
      * representation of a DOMNode.
      *
-     * @param DOMNode $node
+     * @param  DOMNode $node
+     * @param  boolean $canonicalize
+     * @param  boolean $ignoreCase
      * @return string
      */
-    protected function domToText(DOMNode $node)
+    private function nodeToText(DOMNode $node, $canonicalize, $ignoreCase)
     {
+        if ($canonicalize) {
+            $document = new DOMDocument;
+            $document->loadXML($node->C14N());
+
+            $node = $document;
+        }
+
         if ($node instanceof DOMDocument) {
             $document = $node;
         } else {
@@ -131,9 +135,15 @@ class DOMNodeComparator extends ObjectComparator
         $document->normalizeDocument();
 
         if ($node instanceof DOMDocument) {
-            return $node->saveXML();
+            $text = $node->saveXML();
+        } else {
+            $text = $document->saveXML($node);
         }
 
-        return $document->saveXML($node);
+        if ($ignoreCase) {
+            $text = strtolower($text);
+        }
+
+        return $text;
     }
 }
