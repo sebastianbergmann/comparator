@@ -58,7 +58,7 @@ class ResourceComparatorTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->comparator = new ResourceComparator();
+        $this->comparator = new ResourceComparator;
     }
 
     public function acceptsSucceedsProvider()

@@ -43,6 +43,8 @@
 
 namespace SebastianBergmann\Comparator;
 
+use stdClass;
+
 /**
  * @coversDefaultClass SebastianBergmann\Comparator\TypeComparator
  *
@@ -58,7 +60,7 @@ class TypeComparatorTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->comparator = new TypeComparator();
+        $this->comparator = new TypeComparator;
     }
 
     public function acceptsSucceedsProvider()
@@ -66,7 +68,7 @@ class TypeComparatorTest extends \PHPUnit_Framework_TestCase
         return array(
           array(true, 1),
           array(false, array(1)),
-          array(null, new \stdClass),
+          array(null, new stdClass),
           array(1.0, 5),
           array("", "")
         );
@@ -79,7 +81,7 @@ class TypeComparatorTest extends \PHPUnit_Framework_TestCase
           array(true, false),
           array(false, false),
           array(null, null),
-          array(new \stdClass, new \stdClass),
+          array(new stdClass, new stdClass),
           array(0, 0),
           array(1.0, 2.0),
           array("hello", "world"),
@@ -94,7 +96,7 @@ class TypeComparatorTest extends \PHPUnit_Framework_TestCase
           array(true, null),
           array(null, false),
           array(1.0, 0),
-          array(new \stdClass, array()),
+          array(new stdClass, array()),
           array("1", 1)
         );
     }
