@@ -223,7 +223,7 @@ class DateTimeComparatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testAssertEqualsFails($expected, $actual, $delta = 0.0)
     {
-        $this->setExpectedException('SebastianBergmann\\Comparator\\ComparisonFailure');
+        $this->setExpectedException('SebastianBergmann\\Comparator\\ComparisonFailure', 'Failed asserting that two DateTime objects are equal.');
         $this->comparator->assertEquals($expected, $actual, $delta);
     }
 }
