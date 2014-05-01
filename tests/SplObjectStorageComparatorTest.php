@@ -54,6 +54,8 @@ namespace SebastianBergmann\Comparator;
  */
 class SplObjectStorageComparatorTest extends \PHPUnit_Framework_TestCase
 {
+    private $comparator;
+
     protected function setUp()
     {
         $this->comparator = new SplObjectStorageComparator();
