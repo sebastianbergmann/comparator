@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/sebastianbergmann/comparator.svg?branch=master)](https://travis-ci.org/sebastianbergmann/comparator)
+
 # Comparator
 
 This component provides the functionality to compare PHP values for equality.
