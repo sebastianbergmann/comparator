@@ -67,7 +67,7 @@ class NumericComparatorTest extends \PHPUnit_Framework_TestCase
           array(5, 10),
           array(8, '0'),
           array('10', 0),
-          array(0xf4c3b00c, 0b10100111001),
+          array(0xf4c3b00c, 42),
           array(0755, 0777)
         );
     }
@@ -90,10 +90,8 @@ class NumericComparatorTest extends \PHPUnit_Framework_TestCase
           array('1337', 1337),
           array(0x539, 1337),
           array(02471, 1337),
-          array(0b10100111001, 1337),
           array(1337, 1338, 1),
           array('1337', 1340, 5),
-          array(0b10100111001, 1340, 5)
         );
     }
 
@@ -105,7 +103,6 @@ class NumericComparatorTest extends \PHPUnit_Framework_TestCase
           array(0x539, 1338),
           array(1337, 1339, 1),
           array('1337', 1340, 2),
-          array(0b10100111001, 1340, 2)
         );
     }
 
