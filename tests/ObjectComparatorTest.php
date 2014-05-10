@@ -99,7 +99,8 @@ class ObjectComparatorTest extends \PHPUnit_Framework_TestCase
           array($object1, $object1),
           array($object1, $object2),
           array($book1, $book1),
-          array($book1, $book2)
+          array($book1, $book2),
+          array(new Struct(2.3), new Struct(2.5), 0.5)
         );
     }
 
@@ -128,7 +129,8 @@ class ObjectComparatorTest extends \PHPUnit_Framework_TestCase
           array(new SampleClass(4, 8, 15), new SampleClass(16, 23, 42), $equalMessage),
           array($object1, $object2, $equalMessage),
           array($book1, $book2, $equalMessage),
-          array($book3, $book4, $typeMessage)
+          array($book3, $book4, $typeMessage),
+          array(new Struct(2.3), new Struct(4.2), $equalMessage, 0.5)
         );
     }
 
@@ -158,12 +160,12 @@ class ObjectComparatorTest extends \PHPUnit_Framework_TestCase
      * @covers       ::assertEquals
      * @dataProvider assertEqualsSucceedsProvider
      */
-    public function testAssertEqualsSucceeds($expected, $actual)
+    public function testAssertEqualsSucceeds($expected, $actual, $delta = 0.0)
     {
         $exception = null;
 
         try {
-            $this->comparator->assertEquals($expected, $actual);
+            $this->comparator->assertEquals($expected, $actual, $delta);
         }
 
         catch (ComparisonFailure $exception) {
@@ -176,11 +178,11 @@ class ObjectComparatorTest extends \PHPUnit_Framework_TestCase
      * @covers       ::assertEquals
      * @dataProvider assertEqualsFailsProvider
      */
-    public function testAssertEqualsFails($expected, $actual, $message)
+    public function testAssertEqualsFails($expected, $actual, $message, $delta = 0.0)
     {
         $this->setExpectedException(
           'SebastianBergmann\\Comparator\\ComparisonFailure', $message
         );
-        $this->comparator->assertEquals($expected, $actual);
+        $this->comparator->assertEquals($expected, $actual, $delta);
     }
 }

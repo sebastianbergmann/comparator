@@ -22,6 +22,7 @@ spl_autoload_register(
                 'sebastianbergmann\\comparator\\sampleclass' => '/_files/SampleClass.php',
                 'sebastianbergmann\\comparator\\scalarcomparatortest' => '/ScalarComparatorTest.php',
                 'sebastianbergmann\\comparator\\splobjectstoragecomparatortest' => '/SplObjectStorageComparatorTest.php',
+                'sebastianbergmann\\comparator\\struct' => '/_files/Struct.php',
                 'sebastianbergmann\\comparator\\testclass' => '/_files/TestClass.php',
                 'sebastianbergmann\\comparator\\testclasscomparator' => '/_files/TestClassComparator.php',
                 'sebastianbergmann\\comparator\\typecomparatortest' => '/TypeComparatorTest.php'

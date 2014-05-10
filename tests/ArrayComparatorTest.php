@@ -97,7 +97,12 @@ class ArrayComparatorTest extends \PHPUnit_Framework_TestCase
             array(array(2.3)),
             array(array(2.5)),
             0.5
-          )
+          ),
+          array(
+            array(new Struct(2.3)),
+            array(new Struct(2.5)),
+            0.5
+          ),
         );
     }
 
@@ -132,6 +137,11 @@ class ArrayComparatorTest extends \PHPUnit_Framework_TestCase
           array(
             array(array(2.3)),
             array(array(4.2)),
+            0.5
+          ),
+          array(
+            array(new Struct(2.3)),
+            array(new Struct(4.2)),
             0.5
           )
         );
