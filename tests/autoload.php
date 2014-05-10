@@ -12,6 +12,7 @@ spl_autoload_register(
                 'sebastianbergmann\\comparator\\classwithtostring' => '/_files/ClassWithToString.php',
                 'sebastianbergmann\\comparator\\datetimecomparatortest' => '/DateTimeComparatorTest.php',
                 'sebastianbergmann\\comparator\\domnodecomparatortest' => '/DOMNodeComparatorTest.php',
+                'sebastianbergmann\\comparator\\doublecomparatortest' => '/DoubleComparatorTest.php',
                 'sebastianbergmann\\comparator\\exceptioncomparatortest' => '/ExceptionComparatorTest.php',
                 'sebastianbergmann\\comparator\\factorytest' => '/FactoryTest.php',
                 'sebastianbergmann\\comparator\\numericcomparatortest' => '/NumericComparatorTest.php',
