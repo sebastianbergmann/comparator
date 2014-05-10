@@ -67,7 +67,10 @@ class DoubleComparatorTest extends \PHPUnit_Framework_TestCase
           array(0, 5.0),
           array(5.0, 0),
           array('5', 4.5),
-          array(1.2e3, 7E-10)
+          array(1.2e3, 7E-10),
+          array(3, acos(8)),
+          array(acos(8), 3),
+          array(acos(8), acos(8))
         );
     }
 
@@ -108,7 +111,10 @@ class DoubleComparatorTest extends \PHPUnit_Framework_TestCase
           array(5.0, 6),
           array(1.2e3, 1201),
           array(2.3, 2.5, 0.2),
-          array(3, 3.05, 0.04)
+          array(3, 3.05, 0.04),
+          array(3, acos(8)),
+          array(acos(8), 3),
+          array(acos(8), acos(8))
         );
     }
 
