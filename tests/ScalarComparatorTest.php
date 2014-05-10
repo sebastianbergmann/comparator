@@ -77,7 +77,9 @@ class ScalarComparatorTest extends \PHPUnit_Framework_TestCase
           array("1", true),
           array(1, true),
           array(0, false),
-          array(0.1, "0.1")
+          array(0.1, "0.1"),
+          array(3, acos(8)),
+          array(acos(8), 3)
         );
     }
 
@@ -130,13 +132,17 @@ class ScalarComparatorTest extends \PHPUnit_Framework_TestCase
           array('9E6666666','9E7777777', $stringException),
           array(new ClassWithToString, "does not match", $otherException),
           array("does not match", new ClassWithToString, $otherException),
+          array(0, 'Foobar', $otherException),
+          array('Foobar', 0, $otherException),
           array("10", 25, $otherException),
           array("1", false, $otherException),
           array("", true, $otherException),
           array(false, true, $otherException),
           array(true, false, $otherException),
           array(null, true, $otherException),
-          array(0, true, $otherException)
+          array(0, true, $otherException),
+          array(3, acos(8), $otherException),
+          array(acos(8), 3, $otherException)
         );
     }
 
