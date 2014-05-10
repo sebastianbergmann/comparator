@@ -86,12 +86,16 @@ class DoubleComparatorTest extends \PHPUnit_Framework_TestCase
     {
         return array(
           array(2.3, 2.3),
+          array('2.3', 2.3),
           array(5.0, 5),
           array(5, 5.0),
+          array(5.0, '5'),
           array(1.2e3, 1200),
           array(2.3, 2.5, 0.5),
           array(3, 3.05, 0.05),
           array(1.2e3, 1201, 1),
+          array((string)(1/3), 1 - 2/3),
+          array(1/3, (string)(1 - 2/3))
         );
     }
 
@@ -99,6 +103,8 @@ class DoubleComparatorTest extends \PHPUnit_Framework_TestCase
     {
         return array(
           array(2.3, 4.2),
+          array('2.3', 4.2),
+          array(5.0, '4'),
           array(5.0, 6),
           array(1.2e3, 1201),
           array(2.3, 2.5, 0.2),
