@@ -16,6 +16,7 @@ spl_autoload_register(
                 'sebastianbergmann\\comparator\\doublecomparatortest' => '/DoubleComparatorTest.php',
                 'sebastianbergmann\\comparator\\exceptioncomparatortest' => '/ExceptionComparatorTest.php',
                 'sebastianbergmann\\comparator\\factorytest' => '/FactoryTest.php',
+                'sebastianbergmann\\comparator\\mockobjectcomparatortest' => '/MockObjectComparatorTest.php',
                 'sebastianbergmann\\comparator\\numericcomparatortest' => '/NumericComparatorTest.php',
                 'sebastianbergmann\\comparator\\objectcomparatortest' => '/ObjectComparatorTest.php',
                 'sebastianbergmann\\comparator\\resourcecomparatortest' => '/ResourceComparatorTest.php',
