@@ -55,10 +55,10 @@ use SebastianBergmann\Exporter\Exporter;
  * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  * @link       http://www.github.com/sebastianbergmann/comparator
  */
-abstract class Comparator
+abstract class Comparator implements ComparatorInterface
 {
     /**
-     * @var Factory
+     * @var FactoryInterface
      */
     protected $factory;
 
@@ -73,9 +73,9 @@ abstract class Comparator
     }
 
     /**
-     * @param Factory $factory
+     * @param FactoryInterface $factory
      */
-    public function setFactory(Factory $factory)
+    public function setFactory(FactoryInterface $factory)
     {
         $this->factory = $factory;
     }
