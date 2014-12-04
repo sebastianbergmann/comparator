@@ -67,7 +67,7 @@ class NumericComparatorTest extends \PHPUnit_Framework_TestCase
           array(5, 10),
           array(8, '0'),
           array('10', 0),
-          array(0xf4c3b00c, 42),
+          array(0x74c3b00c, 42),
           array(0755, 0777)
         );
     }
