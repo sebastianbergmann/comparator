@@ -119,7 +119,7 @@ class DOMNodeComparator extends ObjectComparator
     private function nodeToText(DOMNode $node, $canonicalize, $ignoreCase)
     {
         if ($canonicalize) {
-            $canonicalizedNode = $node->C14N();
+            $canonicalizedNode = (string) $node->C14N();
             if ($canonicalizedNode !== "") {
                 $document = new DOMDocument;
                 $document->loadXML($canonicalizedNode);
