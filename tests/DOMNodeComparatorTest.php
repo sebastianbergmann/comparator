@@ -123,6 +123,9 @@ class DOMNodeComparatorTest extends \PHPUnit_Framework_TestCase
 
     public function assertEqualsFailsProvider()
     {
+        $emptyDocument = new DOMDocument;
+        $emptyTextNode = $emptyDocument->createTextNode('');
+
         return array(
           array(
             $this->createDOMDocument('<root></root>'),
@@ -143,6 +146,18 @@ class DOMNodeComparatorTest extends \PHPUnit_Framework_TestCase
           array(
             $this->createDOMDocument('<foo> bar </foo>'),
             $this->createDOMDocument('<foo> bir </foo>')
+          ),
+          array(
+            $this->createDOMDocument('<root></root>'),
+            $emptyDocument
+          ),
+          array(
+            $this->createDOMDocument('<root></root>'),
+            $emptyTextNode
+          ),
+          array(
+            $emptyDocument,
+            $emptyTextNode
           )
         );
     }
