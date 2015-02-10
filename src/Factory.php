@@ -19,7 +19,7 @@ namespace SebastianBergmann\Comparator;
  * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  * @link       http://www.github.com/sebastianbergmann/comparator
  */
-class Factory
+class Factory implements FactoryInterface
 {
     /**
      * @var Comparator[]
@@ -67,7 +67,7 @@ class Factory
      *
      * @param  mixed $expected The first value to compare
      * @param  mixed $actual The second value to compare
-     * @return Comparator
+     * @return ComparatorInterface
      */
     public function getComparatorFor($expected, $actual)
     {
@@ -86,9 +86,9 @@ class Factory
      * existing comparators, meaning that its accept() method will be tested
      * before those of the other comparators.
      *
-     * @param Comparator $comparator The registered comparator
+     * @param ComparatorInterface $comparator The registered comparator
      */
-    public function register(Comparator $comparator)
+    public function register(ComparatorInterface $comparator)
     {
         array_unshift($this->comparators, $comparator);
 
@@ -100,9 +100,9 @@ class Factory
      *
      * This comparator will no longer be returned by getInstance().
      *
-     * @param Comparator $comparator The unregistered comparator
+     * @param ComparatorInterface $comparator The unregistered comparator
      */
-    public function unregister(Comparator $comparator)
+    public function unregister(ComparatorInterface $comparator)
     {
         foreach ($this->comparators as $key => $_comparator) {
             if ($comparator === $_comparator) {
