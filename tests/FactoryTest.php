@@ -13,11 +13,6 @@ namespace SebastianBergmann\Comparator;
 /**
  * @coversDefaultClass SebastianBergmann\Comparator\Factory
  *
- * @package    Comparator
- * @author     Bernhard Schussek <bschussek@2bepublished.at>
- * @copyright  Sebastian Bergmann <sebastian@phpunit.de>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @link       http://www.github.com/sebastianbergmann/comparator
  */
 class FactoryTest extends \PHPUnit_Framework_TestCase
 {

@@ -16,11 +16,6 @@ use DOMDocument;
 /**
  * @coversDefaultClass SebastianBergmann\Comparator\DOMNodeComparator
  *
- * @package    Comparator
- * @author     Jeff Welch <whatthejeff@gmail.com>
- * @copyright  Sebastian Bergmann <sebastian@phpunit.de>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @link       http://www.github.com/sebastianbergmann/comparator
  */
 class DOMNodeComparatorTest extends \PHPUnit_Framework_TestCase
 {
