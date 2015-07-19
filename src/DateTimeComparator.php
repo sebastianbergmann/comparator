@@ -11,7 +11,7 @@
 namespace SebastianBergmann\Comparator;
 
 /**
- * Compares DateTime instances for equality.
+ * Compares DateTimeInterface instances for equality.
  */
 class DateTimeComparator extends ObjectComparator
 {
@@ -24,7 +24,8 @@ class DateTimeComparator extends ObjectComparator
      */
     public function accepts($expected, $actual)
     {
-        return $expected instanceof \DateTime && $actual instanceof \DateTime;
+        return ($expected instanceof \DateTime || $expected instanceof \DateTimeInterface) &&
+            ($actual instanceof \DateTime || $actual instanceof \DateTimeInterface);
     }
 
     /**
@@ -64,16 +65,16 @@ class DateTimeComparator extends ObjectComparator
 
     /**
      * Returns an ISO 8601 formatted string representation of a datetime or
-     * 'Invalid DateTime object' if the provided DateTime was not properly
+     * 'Invalid DateTimeInterface object' if the provided DateTimeInterface was not properly
      * initialized.
      *
-     * @param  \DateTime $datetime
+     * @param  \DateTimeInterface $datetime
      * @return string
      */
-    protected function dateTimeToString(\DateTime $datetime)
+    protected function dateTimeToString($datetime)
     {
         $string = $datetime->format(\DateTime::ISO8601);
 
-        return $string ? $string : 'Invalid DateTime object';
+        return $string ? $string : 'Invalid DateTimeInterface object';
     }
 }
