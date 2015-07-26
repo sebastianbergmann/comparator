@@ -4,6 +4,18 @@
 
 This component provides the functionality to compare PHP values for equality.
 
+## Installation
+
+To add Comparator as a local, per-project dependency to your project, simply add a dependency on `sebastian/comparator` to your project's `composer.json` file. Here is a minimal example of a `composer.json` file that just defines a dependency on Comparator 1.2:
+
+```JSON
+{
+    "require": {
+        "sebastian/comparator": "~1.2"
+    }
+}
+```
+
 ## Usage
 
 ```php
@@ -27,12 +39,3 @@ catch (ComparisonFailure $failure) {
 }
 ```
 
-## Installation
-
-To add Comparator as a local, per-project dependency to your project, simply add a dependency on `sebastian/comparator` to your project's `composer.json` file. Here is a minimal example of a `composer.json` file that just defines a dependency on Comparator 1.0:
-
-    {
-        "require": {
-            "sebastian/comparator": "1.0.*"
-        }
-    }
