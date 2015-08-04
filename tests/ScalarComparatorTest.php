@@ -100,7 +100,9 @@ class ScalarComparatorTest extends \PHPUnit_Framework_TestCase
           array(false, true, $otherException),
           array(true, false, $otherException),
           array(null, true, $otherException),
-          array(0, true, $otherException)
+          array(0, true, $otherException), 
+          array(null, 0, $otherException),
+          array(0, null, $otherException),
         );
     }
 
