@@ -81,7 +81,7 @@ class DOMNodeComparator extends ObjectComparator
     {
         if ($canonicalize) {
             $document = new DOMDocument;
-            $document->loadXML($node->C14N());
+            @$document->loadXML($node->C14N());
 
             $node = $document;
         }
