@@ -194,6 +194,18 @@ class DateTimeComparatorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @requires PHP 7.1
+     */
+    public function testAssertEqualsFailsForNow()
+    {
+        $this->setExpectedException(
+          'SebastianBergmann\\Comparator\\ComparisonFailure',
+          'Failed asserting that two DateTime objects are equal.'
+        );
+        $this->comparator->assertEquals(new DateTime('now'), new DateTime('now'));
+    }
+
+    /**
      * @requires PHP 5.5
      * @covers   ::accepts
      */
