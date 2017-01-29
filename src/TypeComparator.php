@@ -42,7 +42,7 @@ class TypeComparator extends Comparator
      *                                        fails. Contains information about the
      *                                        specific errors that lead to the failure.
      */
-    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false)
+    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = array())
     {
         if (gettype($expected) != gettype($actual)) {
             throw new ComparisonFailure(

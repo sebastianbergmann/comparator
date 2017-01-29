@@ -47,7 +47,7 @@ class ScalarComparator extends Comparator
      *                                        fails. Contains information about the
      *                                        specific errors that lead to the failure.
      */
-    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false)
+    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = array())
     {
         $expectedToCompare = $expected;
         $actualToCompare   = $actual;

@@ -49,7 +49,7 @@ class DoubleComparator extends NumericComparator
      *                                        fails. Contains information about the
      *                                        specific errors that lead to the failure.
      */
-    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false)
+    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = array())
     {
         if ($delta == 0) {
             $delta = self::EPSILON;
