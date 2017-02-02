@@ -59,6 +59,12 @@ class ScalarComparator extends Comparator
                 $actualToCompare   = strtolower($actualToCompare);
             }
         }
+        
+        if (is_null($expectedToCompare) && !is_bool($actual) || is_null($actual) && !is_bool($expectedToCompare)) {
+            if ($expected !== $actual) {
+                $this->throwComparisonFailureException($expected, $actual);
+            }
+        }
 
         if ($expectedToCompare != $actualToCompare) {
             if (is_string($expected) && is_string($actual)) {
@@ -72,19 +78,27 @@ class ScalarComparator extends Comparator
                 );
             }
 
-            throw new ComparisonFailure(
-                $expected,
-                $actual,
-                // no diff is required
-                '',
-                '',
-                false,
-                sprintf(
-                    'Failed asserting that %s matches expected %s.',
-                    $this->exporter->export($actual),
-                    $this->exporter->export($expected)
-                )
-            );
+            $this->throwComparisonFailureException($expected, $actual);
         }
+    }
+
+    /**
+     * @param $expected
+     * @param $actual
+     */
+    private function throwComparisonFailureException($expected, $actual)
+    {
+        throw new ComparisonFailure(
+            $expected,
+            $actual,
+            $this->exporter->export($expected),
+            $this->exporter->export($actual),
+            false,
+            sprintf(
+                'Failed asserting that %s matches expected %s.',
+                $this->exporter->export($actual),
+                $this->exporter->export($expected)
+            )
+        );
     }
 }
