@@ -22,13 +22,14 @@
             "email": "bschussek@2bepublished.at"
         }
     ],
+    "minimum-stability": "dev",
     "require": {
-        "php": "^5.3.3 || ^7.0",
+        "php": "^7.0",
         "sebastian/diff": "^1.2",
-        "sebastian/exporter": "^1.2 || ^2.0"
+        "sebastian/exporter": "^2.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^4.8"
+        "phpunit/phpunit": "^6.0"
     },
     "autoload": {
         "classmap": [
@@ -42,7 +43,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.2.x-dev"
+            "dev-master": "2.0.x-dev"
         }
     }
 }
