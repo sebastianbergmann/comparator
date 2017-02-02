@@ -38,7 +38,7 @@ class TypeComparator extends Comparator
      *
      * @throws ComparisonFailure
      */
-    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false)
+    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = array())
     {
         if (gettype($expected) != gettype($actual)) {
             throw new ComparisonFailure(

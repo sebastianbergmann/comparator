@@ -60,5 +60,5 @@ abstract class Comparator
      *
      * @throws ComparisonFailure
      */
-    abstract public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false);
+    abstract public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = array());
 }

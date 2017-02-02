@@ -43,7 +43,7 @@ class ScalarComparator extends Comparator
      *
      * @throws ComparisonFailure
      */
-    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false)
+    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = array())
     {
         $expectedToCompare = $expected;
         $actualToCompare   = $actual;

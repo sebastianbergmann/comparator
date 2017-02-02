@@ -45,7 +45,7 @@ class DoubleComparator extends NumericComparator
      *
      * @throws ComparisonFailure
      */
-    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false)
+    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = array())
     {
         if ($delta == 0) {
             $delta = self::EPSILON;
