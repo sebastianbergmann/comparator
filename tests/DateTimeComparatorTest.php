@@ -213,4 +213,14 @@ class DateTimeComparatorTest extends \PHPUnit_Framework_TestCase
           new DateTimeImmutable('2013-03-29 04:13:35', new DateTimeZone('America/New_York'))
         );
     }
+    
+    /**
+     * @requires PHP 7.1
+     * @covers   ::assertEquals
+     */
+    public function testSerializedDataTimeNow()
+    {
+        $date = new DateTime();
+        $this->comparator->assertEquals($date, unserialize(serialize($date)));
+    }
 }
