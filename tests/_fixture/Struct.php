@@ -12,7 +12,6 @@ namespace SebastianBergmann\Comparator;
 
 /**
  * A struct.
- *
  */
 class Struct
 {

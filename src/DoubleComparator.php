@@ -25,13 +25,14 @@ class DoubleComparator extends NumericComparator
     /**
      * Returns whether the comparator can compare two values.
      *
-     * @param  mixed $expected The first value to compare
-     * @param  mixed $actual   The second value to compare
+     * @param mixed $expected The first value to compare
+     * @param mixed $actual   The second value to compare
+     *
      * @return bool
      */
     public function accepts($expected, $actual)
     {
-        return (is_double($expected) || is_double($actual)) && is_numeric($expected) && is_numeric($actual);
+        return (is_float($expected) || is_float($actual)) && is_numeric($expected) && is_numeric($actual);
     }
 
     /**

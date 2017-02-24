@@ -18,8 +18,9 @@ class ExceptionComparator extends ObjectComparator
     /**
      * Returns whether the comparator can compare two values.
      *
-     * @param  mixed $expected The first value to compare
-     * @param  mixed $actual   The second value to compare
+     * @param mixed $expected The first value to compare
+     * @param mixed $actual   The second value to compare
+     *
      * @return bool
      */
     public function accepts($expected, $actual)
@@ -31,7 +32,8 @@ class ExceptionComparator extends ObjectComparator
      * Converts an object to an array containing all of its private, protected
      * and public properties.
      *
-     * @param  object $object
+     * @param object $object
+     *
      * @return array
      */
     protected function toArray($object)
