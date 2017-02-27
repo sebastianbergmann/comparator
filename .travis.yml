@@ -8,7 +8,6 @@ install:
 script: ./vendor/bin/phpunit --configuration ./build/travis-ci.xml
 
 php:
-  - 5.3.3
   - 5.3
   - 5.4
   - 5.5
