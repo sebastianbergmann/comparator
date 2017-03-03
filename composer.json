@@ -22,11 +22,10 @@
             "email": "bschussek@2bepublished.at"
         }
     ],
-    "minimum-stability": "dev",
     "require": {
         "php": "^7.0",
         "sebastian/diff": "^1.2",
-        "sebastian/exporter": "^2.0 || ^3.0"
+        "sebastian/exporter": "^3.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^6.0"
