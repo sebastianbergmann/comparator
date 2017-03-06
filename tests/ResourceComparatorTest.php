@@ -14,6 +14,9 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass SebastianBergmann\Comparator\ResourceComparator
+ * @uses SebastianBergmann\Comparator\Comparator
+ * @uses SebastianBergmann\Comparator\Factory
+ * @uses SebastianBergmann\Comparator\ComparisonFailure
  */
 class ResourceComparatorTest extends TestCase
 {

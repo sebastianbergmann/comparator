@@ -15,6 +15,9 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass SebastianBergmann\Comparator\TypeComparator
+ * @uses SebastianBergmann\Comparator\Comparator
+ * @uses SebastianBergmann\Comparator\Factory
+ * @uses SebastianBergmann\Comparator\ComparisonFailure
  */
 class TypeComparatorTest extends TestCase
 {

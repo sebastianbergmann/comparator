@@ -15,6 +15,9 @@ use stdClass;
 
 /**
  * @coversDefaultClass SebastianBergmann\Comparator\MockObjectComparator
+ * @uses SebastianBergmann\Comparator\Comparator
+ * @uses SebastianBergmann\Comparator\Factory
+ * @uses SebastianBergmann\Comparator\ComparisonFailure
  */
 class MockObjectComparatorTest extends TestCase
 {
