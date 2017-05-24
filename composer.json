@@ -31,9 +31,9 @@
         "phpunit/phpunit": "^6.0"
     },
     "autoload": {
-        "classmap": [
-            "src/"
-        ]
+        "psr-4": {
+            "SebastianBergmann\\Comparator\\": "src/"
+        }
     },
     "autoload-dev": {
         "classmap": [
