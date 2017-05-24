@@ -30,18 +30,18 @@ class Factory
      */
     public function __construct()
     {
-        $this->register(new TypeComparator);
-        $this->register(new ScalarComparator);
-        $this->register(new NumericComparator);
-        $this->register(new DoubleComparator);
-        $this->register(new ArrayComparator);
-        $this->register(new ResourceComparator);
-        $this->register(new ObjectComparator);
-        $this->register(new ExceptionComparator);
-        $this->register(new SplObjectStorageComparator);
-        $this->register(new DOMNodeComparator);
-        $this->register(new MockObjectComparator);
         $this->register(new DateTimeComparator);
+        $this->register(new MockObjectComparator);
+        $this->register(new DOMNodeComparator);
+        $this->register(new SplObjectStorageComparator);
+        $this->register(new ExceptionComparator);
+        $this->register(new ObjectComparator);
+        $this->register(new ResourceComparator);
+        $this->register(new ArrayComparator);
+        $this->register(new DoubleComparator);
+        $this->register(new NumericComparator);
+        $this->register(new ScalarComparator);
+        $this->register(new TypeComparator);
     }
 
     /**
@@ -66,7 +66,9 @@ class Factory
      */
     public function getComparatorFor($expected, $actual)
     {
-        foreach ($this->comparators as $comparator) {
+        for ($i = count($this->comparators) - 1; $i >= 0; --$i)
+        {
+            $comparator = $this->comparators[$i];
             if ($comparator->accepts($expected, $actual)) {
                 return $comparator;
             }
@@ -85,8 +87,7 @@ class Factory
      */
     public function register(Comparator $comparator)
     {
-        array_unshift($this->comparators, $comparator);
-
+        $this->comparators[] = $comparator;
         $comparator->setFactory($this);
     }
 
