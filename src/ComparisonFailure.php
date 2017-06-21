@@ -11,6 +11,7 @@
 namespace SebastianBergmann\Comparator;
 
 use SebastianBergmann\Diff\Differ;
+use SebastianBergmann\Diff\Output\DiffOnlyOutputBuilder;
 
 /**
  * Thrown when an assertion for string equality failed.
@@ -119,7 +120,8 @@ class ComparisonFailure extends \RuntimeException
             return '';
         }
 
-        $differ = new Differ("\n--- Expected\n+++ Actual\n");
+        $builder = new DiffOnlyOutputBuilder("\n--- Expected\n+++ Actual\n");
+        $differ = new Differ($builder);
 
         return $differ->diff($this->expectedAsString, $this->actualAsString);
     }
