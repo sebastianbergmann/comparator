@@ -6,6 +6,7 @@ php:
   - 7.1
   - 7.1snapshot
   - master
+  - nightly
 
 env:
   matrix:
