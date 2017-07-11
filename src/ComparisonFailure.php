@@ -121,7 +121,7 @@ class ComparisonFailure extends \RuntimeException
         }
 
         $builder = new DiffOnlyOutputBuilder("\n--- Expected\n+++ Actual\n");
-        $differ = new Differ($builder);
+        $differ  = new Differ($builder);
 
         return $differ->diff($this->expectedAsString, $this->actualAsString);
     }
