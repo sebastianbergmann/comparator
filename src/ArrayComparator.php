@@ -85,16 +85,16 @@ class ArrayComparator extends Comparator
                     "    %s => %s\n",
                     $this->exporter->export($key),
                     $e->getExpectedAsString()
-                    ? $this->indent($e->getExpectedAsString())
-                    : $this->exporter->shortenedExport($e->getExpected())
+                        ? $this->indent($e->getExpectedAsString())
+                        : $this->exporter->shortenedExport($e->getExpected())
                 );
 
                 $actString .= sprintf(
                     "    %s => %s\n",
                     $this->exporter->export($key),
                     $e->getActualAsString()
-                    ? $this->indent($e->getActualAsString())
-                    : $this->exporter->shortenedExport($e->getActual())
+                        ? $this->indent($e->getActualAsString())
+                        : $this->exporter->shortenedExport($e->getActual())
                 );
 
                 $equal = false;

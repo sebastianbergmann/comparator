@@ -116,4 +116,10 @@ class FactoryTest extends TestCase
 
         $this->assertInstanceOf($expected, $actual);
     }
+
+    public function testIsSingleton()
+    {
+        $f = Factory::getInstance();
+        $this->assertSame($f, Factory::getInstance());
+    }
 }
