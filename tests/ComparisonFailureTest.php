@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers SebastianBergmann\Comparator\ComparisonFailure
  */
-class ComparisonFailureTest extends TestCase
+final class ComparisonFailureTest extends TestCase
 {
     public function testComparisonFailure()
     {
