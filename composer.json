@@ -24,7 +24,7 @@
     ],
     "require": {
         "php": "^7.0",
-        "sebastian/diff": "^1.2 || ^2.0",
+        "sebastian/diff": "^1.2",
         "sebastian/exporter": "^3.0"
     },
     "require-dev": {
