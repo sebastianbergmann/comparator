@@ -20,6 +20,9 @@ use PHPUnit\Framework\TestCase;
  */
 class ArrayComparatorTest extends TestCase
 {
+    /**
+     * @var ArrayComparator
+     */
     private $comparator;
 
     protected function setUp()
