@@ -65,15 +65,11 @@ class DateTimeComparator extends ObjectComparator
      * Returns an ISO 8601 formatted string representation of a datetime or
      * 'Invalid DateTimeInterface object' if the provided DateTimeInterface was not properly
      * initialized.
-     *
-     * @param \DateTimeInterface $datetime
-     *
-     * @return string
      */
-    private function dateTimeToString($datetime)
+    private function dateTimeToString(\DateTimeInterface $datetime): string
     {
         $string = $datetime->format('Y-m-d\TH:i:s.uO');
 
-        return $string ? $string : 'Invalid DateTimeInterface object';
+        return $string ?: 'Invalid DateTimeInterface object';
     }
 }
