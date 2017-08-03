@@ -49,10 +49,7 @@ class DOMNodeComparator extends ObjectComparator
         $actualAsString   = $this->nodeToText($actual, true, $ignoreCase);
 
         if ($expectedAsString !== $actualAsString) {
-            $type = $expected instanceof DOMDocument
-                ? 'documents'
-                : 'nodes'
-            ;
+            $type = $expected instanceof DOMDocument ? 'documents' : 'nodes';
 
             throw new ComparisonFailure(
                 $expected,
@@ -78,18 +75,12 @@ class DOMNodeComparator extends ObjectComparator
             $node = $document;
         }
 
-        $document = $node instanceof DOMDocument
-            ? $node
-            : $node->ownerDocument
-        ;
+        $document = $node instanceof DOMDocument ? $node : $node->ownerDocument;
 
         $document->formatOutput = true;
         $document->normalizeDocument();
 
-        $text = $node instanceof DOMDocument
-            ? $node->saveXML()
-            : $document->saveXML($node)
-        ;
+        $text = $node instanceof DOMDocument ? $node->saveXML() : $document->saveXML($node);
 
         return $ignoreCase ? $text : strtolower($text);
     }
