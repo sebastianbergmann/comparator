@@ -26,14 +26,6 @@ class Factory
     private static $instance;
 
     /**
-     * Constructs a new factory.
-     */
-    public function __construct()
-    {
-        $this->registerDefaultComparators();
-    }
-
-    /**
      * @return Factory
      */
     public static function getInstance()
@@ -43,6 +35,14 @@ class Factory
         }
 
         return self::$instance;
+    }
+
+    /**
+     * Constructs a new factory.
+     */
+    public function __construct()
+    {
+        $this->registerDefaultComparators();
     }
 
     /**
