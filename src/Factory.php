@@ -18,7 +18,12 @@ class Factory
     /**
      * @var Comparator[]
      */
-    private $comparators = [];
+    private $customComparators = [];
+
+    /**
+     * @var Comparator[]
+     */
+    private $defaultComparators = [];
 
     /**
      * @var Factory
@@ -55,7 +60,13 @@ class Factory
      */
     public function getComparatorFor($expected, $actual)
     {
-        foreach ($this->comparators as $comparator) {
+        foreach ($this->customComparators as $comparator) {
+            if ($comparator->accepts($expected, $actual)) {
+                return $comparator;
+            }
+        }
+
+        foreach ($this->defaultComparators as $comparator) {
             if ($comparator->accepts($expected, $actual)) {
                 return $comparator;
             }
@@ -74,7 +85,7 @@ class Factory
      */
     public function register(Comparator $comparator)
     {
-        array_unshift($this->comparators, $comparator);
+        array_unshift($this->customComparators, $comparator);
 
         $comparator->setFactory($this);
     }
@@ -88,37 +99,41 @@ class Factory
      */
     public function unregister(Comparator $comparator)
     {
-        foreach ($this->comparators as $key => $_comparator) {
+        foreach ($this->customComparators as $key => $_comparator) {
             if ($comparator === $_comparator) {
-                unset($this->comparators[$key]);
+                unset($this->customComparators[$key]);
             }
         }
     }
 
     /**
-     * Unregisters all previously registered comparators and then
-     * registers the default comparators again.
+     * Unregisters all non-default comparators.
      */
     public function reset()
     {
-        $this->comparators = [];
-
-        $this->registerDefaultComparators();
+        $this->customComparators = [];
     }
 
     private function registerDefaultComparators()
     {
-        $this->register(new TypeComparator);
-        $this->register(new ScalarComparator);
-        $this->register(new NumericComparator);
-        $this->register(new DoubleComparator);
-        $this->register(new ArrayComparator);
-        $this->register(new ResourceComparator);
-        $this->register(new ObjectComparator);
-        $this->register(new ExceptionComparator);
-        $this->register(new SplObjectStorageComparator);
-        $this->register(new DOMNodeComparator);
-        $this->register(new MockObjectComparator);
-        $this->register(new DateTimeComparator);
+        $this->registerDefaultComparator(new TypeComparator);
+        $this->registerDefaultComparator(new ScalarComparator);
+        $this->registerDefaultComparator(new NumericComparator);
+        $this->registerDefaultComparator(new DoubleComparator);
+        $this->registerDefaultComparator(new ArrayComparator);
+        $this->registerDefaultComparator(new ResourceComparator);
+        $this->registerDefaultComparator(new ObjectComparator);
+        $this->registerDefaultComparator(new ExceptionComparator);
+        $this->registerDefaultComparator(new SplObjectStorageComparator);
+        $this->registerDefaultComparator(new DOMNodeComparator);
+        $this->registerDefaultComparator(new MockObjectComparator);
+        $this->registerDefaultComparator(new DateTimeComparator);
+    }
+
+    private function registerDefaultComparator(Comparator $comparator)
+    {
+        array_unshift($this->defaultComparators, $comparator);
+
+        $comparator->setFactory($this);
     }
 }
