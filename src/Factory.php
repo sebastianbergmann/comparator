@@ -30,18 +30,7 @@ class Factory
      */
     public function __construct()
     {
-        $this->register(new TypeComparator);
-        $this->register(new ScalarComparator);
-        $this->register(new NumericComparator);
-        $this->register(new DoubleComparator);
-        $this->register(new ArrayComparator);
-        $this->register(new ResourceComparator);
-        $this->register(new ObjectComparator);
-        $this->register(new ExceptionComparator);
-        $this->register(new SplObjectStorageComparator);
-        $this->register(new DOMNodeComparator);
-        $this->register(new MockObjectComparator);
-        $this->register(new DateTimeComparator);
+        $this->registerDefaultComparators();
     }
 
     /**
@@ -104,5 +93,21 @@ class Factory
                 unset($this->comparators[$key]);
             }
         }
+    }
+
+    private function registerDefaultComparators(): void
+    {
+        $this->register(new TypeComparator);
+        $this->register(new ScalarComparator);
+        $this->register(new NumericComparator);
+        $this->register(new DoubleComparator);
+        $this->register(new ArrayComparator);
+        $this->register(new ResourceComparator);
+        $this->register(new ObjectComparator);
+        $this->register(new ExceptionComparator);
+        $this->register(new SplObjectStorageComparator);
+        $this->register(new DOMNodeComparator);
+        $this->register(new MockObjectComparator);
+        $this->register(new DateTimeComparator);
     }
 }
