@@ -95,6 +95,17 @@ class Factory
         }
     }
 
+    /**
+     * Unregisters all previously registered comparators and then
+     * registers the default comparators again.
+     */
+    public function reset()
+    {
+        $this->comparators = [];
+
+        $this->registerDefaultComparators();
+    }
+
     private function registerDefaultComparators()
     {
         $this->register(new TypeComparator);
