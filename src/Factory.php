@@ -65,12 +65,12 @@ class Factory
     /**
      * Registers a new comparator.
      *
-     * This comparator will be returned by getInstance() if its accept() method
+     * This comparator will be returned by getComparatorFor() if its accept() method
      * returns TRUE for the compared values. It has higher priority than the
-     * existing comparators, meaning that its accept() method will be tested
+     * existing comparators, meaning that its accept() method will be invoked
      * before those of the other comparators.
      *
-     * @param Comparator $comparator The registered comparator
+     * @param Comparator $comparator The comparator to be registered
      */
     public function register(Comparator $comparator)
     {
@@ -82,9 +82,9 @@ class Factory
     /**
      * Unregisters a comparator.
      *
-     * This comparator will no longer be returned by getInstance().
+     * This comparator will no longer be considered by getComparatorFor().
      *
-     * @param Comparator $comparator The unregistered comparator
+     * @param Comparator $comparator The comparator to be unregistered
      */
     public function unregister(Comparator $comparator)
     {
