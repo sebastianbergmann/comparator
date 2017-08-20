@@ -95,7 +95,7 @@ class Factory
         }
     }
 
-    private function registerDefaultComparators(): void
+    private function registerDefaultComparators()
     {
         $this->register(new TypeComparator);
         $this->register(new ScalarComparator);
