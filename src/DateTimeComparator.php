@@ -49,10 +49,12 @@ class DateTimeComparator extends ObjectComparator
         $delta = new \DateInterval(sprintf('PT%sS', abs($delta)));
 
         $expectedLower = clone $expected;
-        $expectedUpper = clone $expected;
+        $expectedLower->sub($delta);
 
-        if ($actual < $expectedLower->sub($delta) ||
-            $actual > $expectedUpper->add($delta)) {
+        $expectedUpper = clone $expected;
+        $expectedUpper->add($delta);
+
+        if ($actual < $expectedLower || $actual > $expectedUpper) {
             throw new ComparisonFailure(
                 $expected,
                 $actual,
