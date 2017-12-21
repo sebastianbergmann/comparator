@@ -16,7 +16,7 @@ use SebastianBergmann\Diff\Output\UnifiedDiffOutputBuilder;
 /**
  * Thrown when an assertion for string equality failed.
  */
-class ComparisonFailure extends \RuntimeException
+class ComparisonFailure extends \PHPUnit_Framework_Exception
 {
     /**
      * Expected value of the retrieval which does not match $actual.
@@ -77,6 +77,8 @@ class ComparisonFailure extends \RuntimeException
         $this->expectedAsString = $expectedAsString;
         $this->actualAsString   = $actualAsString;
         $this->message          = $message;
+
+        parent::__construct($this->toString());
     }
 
     /**
