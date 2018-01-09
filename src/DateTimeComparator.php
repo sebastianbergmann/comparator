@@ -48,18 +48,18 @@ class DateTimeComparator extends ObjectComparator
 
         $delta = new \DateInterval(sprintf('PT%dS', abs($delta)));
 
-        $actualClone = clone $actual;
-        $actualClone->setTimezone(new \DateTimeZone('UTC'));
+        $actualClone = (clone $actual)
+            ->setTimezone(new \DateTimeZone('UTC'));
 
-        $expectedLower = clone $expected;
-        $expectedLower->setTimezone(new \DateTimeZone('UTC'));
-        $expectedLower->sub($delta);
+        $expectedLower = (clone $expected)
+            ->setTimezone(new \DateTimeZone('UTC'))
+            ->sub($delta);
 
-        $expectedUpper = clone $expected;
-        $expectedUpper->setTimezone(new \DateTimeZone('UTC'));
-        $expectedUpper->add($delta);
+        $expectedUpper = (clone $expected)
+            ->setTimezone(new \DateTimeZone('UTC'))
+            ->add($delta);
 
-        if ($actual < $expectedLower || $actual > $expectedUpper) {
+        if ($actualClone < $expectedLower || $actualClone > $expectedUpper) {
             throw new ComparisonFailure(
                 $expected,
                 $actual,
