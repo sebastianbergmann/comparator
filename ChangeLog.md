@@ -2,6 +2,12 @@
 
 All notable changes are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [2.1.2] - 2018-01-12
+
+### Fixed
+
+* Fix comparison of DateTimeImmutable objects
+
 ## [2.1.1] - 2017-12-22
 
 ### Fixed
