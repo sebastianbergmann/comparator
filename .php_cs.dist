@@ -1,6 +1,6 @@
 <?php
 $header = <<<'EOF'
-This file is part of the Comparator package.
+This file is part of sebastian/comparator.
 
 (c) Sebastian Bergmann <sebastian@phpunit.de>
 
@@ -18,7 +18,15 @@ return PhpCsFixer\Config::create()
                 'align_equals' => true
             ],
             'blank_line_after_namespace' => true,
-            'blank_line_before_return' => true,
+            'blank_line_before_statement' => [
+                'statements' => [
+                    'break',
+                    'continue',
+                    'return',
+                    'throw',
+                    'try',
+                ],
+            ],
             'braces' => true,
             'cast_spaces' => true,
             'concat_space' => ['spacing' => 'one'],
@@ -32,7 +40,7 @@ return PhpCsFixer\Config::create()
             'lowercase_constants' => true,
             'lowercase_keywords' => true,
             'method_argument_space' => true,
-            //'native_function_invocation' => true,
+            'native_function_invocation' => true,
             'no_alias_functions' => true,
             'no_blank_lines_after_class_opening' => true,
             'no_blank_lines_after_phpdoc' => true,
@@ -48,13 +56,14 @@ return PhpCsFixer\Config::create()
             'no_trailing_whitespace' => true,
             'no_unused_imports' => true,
             'no_whitespace_in_blank_line' => true,
+            'ordered_imports' => true,
             'phpdoc_align' => true,
             'phpdoc_indent' => true,
             'phpdoc_no_access' => true,
             'phpdoc_no_empty_return' => true,
             'phpdoc_no_package' => true,
             'phpdoc_scalar' => true,
-            //'phpdoc_separation' => true,
+            'phpdoc_separation' => true,
             'phpdoc_to_comment' => true,
             'phpdoc_trim' => true,
             'phpdoc_types' => true,
@@ -65,7 +74,6 @@ return PhpCsFixer\Config::create()
             'single_import_per_statement' => true,
             'single_line_after_imports' => true,
             'single_quote' => true,
-            'strict_param' => true,
             'ternary_operator_spaces' => true,
             'trim_array_spaces' => true,
             'visibility_required' => true,
@@ -76,6 +84,5 @@ return PhpCsFixer\Config::create()
         ->files()
         ->in(__DIR__ . '/src')
         ->in(__DIR__ . '/tests')
-        ->exclude(__DIR__.'/tests/_fixture')
         ->name('*.php')
     );
