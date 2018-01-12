@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of the Comparator package.
+ * This file is part of sebastian/comparator.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -45,8 +45,7 @@ class DateTimeComparator extends ObjectComparator
     {
         /** @var \DateTimeInterface $expected */
         /** @var \DateTimeInterface $actual */
-
-        $delta = new \DateInterval(sprintf('PT%dS', abs($delta)));
+        $delta = new \DateInterval(\sprintf('PT%dS', \abs($delta)));
 
         $actualClone = (clone $actual)
             ->setTimezone(new \DateTimeZone('UTC'));

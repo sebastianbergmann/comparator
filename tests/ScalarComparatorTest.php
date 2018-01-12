@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of the Comparator package.
+ * This file is part of sebastian/comparator.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -14,6 +14,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass SebastianBergmann\Comparator\ScalarComparator
+ *
  * @uses SebastianBergmann\Comparator\Comparator
  * @uses SebastianBergmann\Comparator\Factory
  * @uses SebastianBergmann\Comparator\ComparisonFailure
@@ -54,7 +55,7 @@ class ScalarComparatorTest extends TestCase
           ['string', []],
           [new ClassWithToString, new ClassWithToString],
           [false, new ClassWithToString],
-          [tmpfile(), tmpfile()]
+          [\tmpfile(), \tmpfile()]
         ];
     }
 

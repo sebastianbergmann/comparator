@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of the Comparator package.
+ * This file is part of sebastian/comparator.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -85,7 +85,7 @@ class Factory
      */
     public function register(Comparator $comparator)
     {
-        array_unshift($this->customComparators, $comparator);
+        \array_unshift($this->customComparators, $comparator);
 
         $comparator->setFactory($this);
     }
@@ -132,7 +132,7 @@ class Factory
 
     private function registerDefaultComparator(Comparator $comparator)
     {
-        array_unshift($this->defaultComparators, $comparator);
+        \array_unshift($this->defaultComparators, $comparator);
 
         $comparator->setFactory($this);
     }

@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of the Comparator package.
+ * This file is part of sebastian/comparator.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -25,7 +25,7 @@ class ResourceComparator extends Comparator
      */
     public function accepts($expected, $actual)
     {
-        return is_resource($expected) && is_resource($actual);
+        return \is_resource($expected) && \is_resource($actual);
     }
 
     /**
