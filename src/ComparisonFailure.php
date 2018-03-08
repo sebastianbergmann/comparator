@@ -15,7 +15,7 @@ use SebastianBergmann\Diff\Output\UnifiedDiffOutputBuilder;
 /**
  * Thrown when an assertion for string equality failed.
  */
-class ComparisonFailure extends \RuntimeException
+class ComparisonFailure extends \RuntimeException implements \Serializable
 {
     /**
      * Expected value of the retrieval which does not match $actual.
@@ -124,5 +124,27 @@ class ComparisonFailure extends \RuntimeException
     public function toString()
     {
         return $this->message . $this->getDiff();
+    }
+
+    /**
+     * Serialises all parts of the comparison failure, apart from the stacktrace which might contain references to
+     * objects which cannot be serialised.
+     *
+     * @return string
+     */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->expected, $this->actual, $this->expectedAsString, $this->actualAsString,
+            $this->identical, $this->message, $this->file, $this->line
+        ));
+    }
+
+    public function unserialize($serialized)
+    {
+        list(
+            $this->expected, $this->actual, $this->expectedAsString, $this->actualAsString,
+            $this->identical, $this->message, $this->file, $this->line
+        ) = unserialize($serialized);
     }
 }

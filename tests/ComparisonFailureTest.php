@@ -56,4 +56,24 @@ final class ComparisonFailureTest extends TestCase
         $this->assertSame('', $failure->getDiff());
         $this->assertSame('test', $failure->toString());
     }
+
+    public function testSerializesWithoutStackTrace()
+    {
+        $instance = new NonSerializableClass;
+
+        $failure = $this->functionWithNonSerializableParam($instance);
+
+        $serialised = serialize($failure);
+        $deserialised = unserialize($serialised);
+
+        $this->assertSame($failure->getActual(), $deserialised->getActual());
+        $this->assertSame($failure->getExpected(), $deserialised->getExpected());
+        $this->assertSame($failure->getActualAsString(), $deserialised->getActualAsString());
+        $this->assertSame($failure->getExpectedAsString(), $deserialised->getExpectedAsString());
+        $this->assertSame($failure->toString(), $deserialised->toString());
+    }
+
+    private function functionWithNonSerializableParam(NonSerializableClass $instance) {
+        return new ComparisonFailure('a', 'b', 'a', 'b', false, 'test');
+    }
 }
