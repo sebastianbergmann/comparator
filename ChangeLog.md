@@ -2,6 +2,16 @@
 
 All notable changes are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [3.0.0] - 2018-MM-DD
+
+### Fixed
+
+* Fixed [#48](https://github.com/sebastianbergmann/comparator/issues/48): `DateTimeComparator` does not support fractional second deltas
+
+### Removed
+
+* Removed support for PHP 7.0
+
 ## [2.1.3] - 2018-02-01
 
 ### Changed
@@ -12,7 +22,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 ### Fixed
 
-* Fix comparison of DateTimeImmutable objects
+* Fix comparison of `DateTimeImmutable` objects
 
 ## [2.1.1] - 2017-12-22
 
@@ -27,6 +37,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 * Added `SebastianBergmann\Comparator\Factory::reset()` to unregister all non-default comparators
 * Added support for `phpunit/phpunit-mock-objects` version `^5.0`
 
+[3.0.0]: https://github.com/sebastianbergmann/comparator/compare/2.1.3...3.0.0
 [2.1.3]: https://github.com/sebastianbergmann/comparator/compare/2.1.2...2.1.3
 [2.1.2]: https://github.com/sebastianbergmann/comparator/compare/2.1.1...2.1.2
 [2.1.1]: https://github.com/sebastianbergmann/comparator/compare/2.1.0...2.1.1

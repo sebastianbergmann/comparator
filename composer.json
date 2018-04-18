@@ -23,13 +23,14 @@
         }
     ],
     "prefer-stable": true,
+    "minimum-stability": "dev",
     "require": {
-        "php": "^7.0",
-        "sebastian/diff": "^2.0 || ^3.0",
+        "php": "^7.1",
+        "sebastian/diff": "^3.0",
         "sebastian/exporter": "^3.1"
     },
     "require-dev": {
-        "phpunit/phpunit": "^6.5 || ^7.0"
+        "phpunit/phpunit": "^7.1"
     },
     "config": {
         "optimize-autoloader": true,
@@ -47,7 +48,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.1.x-dev"
+            "dev-master": "3.0-dev"
         }
     }
 }
