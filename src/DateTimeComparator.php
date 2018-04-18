@@ -47,7 +47,7 @@ class DateTimeComparator extends ObjectComparator
         /** @var \DateTimeInterface $expected */
         /** @var \DateTimeInterface $actual */
         $absDelta = \abs($delta);
-        $delta = new \DateInterval(\sprintf('PT%dS', $absDelta));
+        $delta    = new \DateInterval(\sprintf('PT%dS', $absDelta));
         $delta->f = $absDelta - \floor($absDelta);
 
         $actualClone = (clone $actual)
