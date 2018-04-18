@@ -46,7 +46,9 @@ class DateTimeComparator extends ObjectComparator
     {
         /** @var \DateTimeInterface $expected */
         /** @var \DateTimeInterface $actual */
-        $delta = new \DateInterval(\sprintf('PT%dS', \abs($delta)));
+        $absDelta = \abs($delta);
+        $delta = new \DateInterval(\sprintf('PT%dS', $absDelta));
+        $delta->f = $absDelta - \floor($absDelta);
 
         $actualClone = (clone $actual)
             ->setTimezone(new \DateTimeZone('UTC'));

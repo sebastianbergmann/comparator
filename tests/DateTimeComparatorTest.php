@@ -93,6 +93,11 @@ class DateTimeComparatorTest extends TestCase
                 new DateTimeImmutable('2013-03-29 23:01:30', new DateTimeZone('America/Chicago')),
                 100
             ],
+            [
+                new DateTimeImmutable('2013-03-30 12:00:00', new DateTimeZone('UTC')),
+                new DateTimeImmutable('2013-03-30 12:00:00.5', new DateTimeZone('UTC')),
+                0.5
+            ],
         ];
     }
 
