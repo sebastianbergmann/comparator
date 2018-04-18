@@ -62,13 +62,13 @@ class ComparisonFailure extends \RuntimeException
     /**
      * Initialises with the expected value and the actual value.
      *
-     * @param mixed  $expected         Expected value retrieved.
-     * @param mixed  $actual           Actual value retrieved.
+     * @param mixed  $expected         expected value retrieved
+     * @param mixed  $actual           actual value retrieved
      * @param string $expectedAsString
      * @param string $actualAsString
      * @param bool   $identical
-     * @param string $message          A string which is prefixed on all returned lines
-     *                                 in the difference output.
+     * @param string $message          a string which is prefixed on all returned lines
+     *                                 in the difference output
      */
     public function __construct($expected, $actual, $expectedAsString, $actualAsString, $identical = false, $message = '')
     {
