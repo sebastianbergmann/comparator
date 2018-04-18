@@ -23,7 +23,6 @@
         }
     ],
     "prefer-stable": true,
-    "minimum-stability": "dev",
     "require": {
         "php": "^7.1",
         "sebastian/diff": "^3.0",
