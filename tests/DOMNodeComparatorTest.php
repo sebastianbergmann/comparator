@@ -73,6 +73,10 @@ class DOMNodeComparatorTest extends TestCase
             $this->createDOMDocument("<root>\n  <child/>\n</root>"),
             $this->createDOMDocument('<root><child/></root>')
           ],
+          [
+            $this->createDOMDocument("<a x='' a=''/>"),
+            $this->createDOMDocument("<a a='' x=''/>"),
+          ],
         ];
     }
 
