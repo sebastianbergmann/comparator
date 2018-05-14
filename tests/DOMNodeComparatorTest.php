@@ -77,6 +77,14 @@ class DOMNodeComparatorTest extends TestCase
             $this->createDOMDocument("<a x='' a=''/>"),
             $this->createDOMDocument("<a a='' x=''/>"),
           ],
+          [
+            $this->createDOMDocument('<?xml version="1.0"?><foo>тест</foo>'),
+            $this->createDOMDocument('<?xml version="1.0"?><foo>&#x442;&#x435;&#x441;&#x442;</foo>'),
+          ],
+          [
+            $this->createDOMDocument('<?xml version="1.0"?><foo>тест</foo>'),
+            $this->createDOMDocument('<?xml version="1.0" encoding="UTF-8"?><foo>тест</foo>'),
+          ],
         ];
     }
 
@@ -102,7 +110,15 @@ class DOMNodeComparatorTest extends TestCase
           [
             $this->createDOMDocument('<foo> bar </foo>'),
             $this->createDOMDocument('<foo> bir </foo>')
-          ]
+          ],
+          [
+            $this->createDOMDocument('<?xml version="1.0" encoding="UTF-8"?><foo>test</foo>'),
+            $this->createDOMDocument('<?xml version="1.0" encoding="CP1251"?><foo>test</foo>'),
+          ],
+          [
+            $this->createDOMDocument('<?xml version="1.0"?><foo>test</foo>'),
+            $this->createDOMDocument('<?xml version="1.0" encoding="CP1251"?><foo>test</foo>'),
+          ],
         ];
     }
 
@@ -166,6 +182,17 @@ class DOMNodeComparatorTest extends TestCase
         $this->expectExceptionMessage('Failed asserting that two DOM');
 
         $this->comparator->assertEquals($expected, $actual);
+    }
+
+    /**
+     * Ensures that non-latin text is not escaped
+     */
+    public function testNodeToTextNotEscaped() {
+      $xml = "<root>тест</root>";
+      $expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<root>тест</root>\n";
+      $document = $this->createDOMDocument($xml);
+
+      $this->assertSame($expected, $this->comparator->nodeToText($document, true));
     }
 
     private function createDOMDocument($content)

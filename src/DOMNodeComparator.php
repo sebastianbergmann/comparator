@@ -37,7 +37,7 @@ class DOMNodeComparator extends ObjectComparator
      * @param mixed $expected     First value to compare
      * @param mixed $actual       Second value to compare
      * @param float $delta        Allowed numerical distance between two values to consider them equal
-     * @param bool  $canonicalize Arrays are sorted before comparison when set to true
+     * @param bool  $canonicalize The value of this argument ignored and always considered as true
      * @param bool  $ignoreCase   Case is ignored when set to true
      * @param array $processed    List of already processed elements (used to prevent infinite recursion)
      *
@@ -45,8 +45,8 @@ class DOMNodeComparator extends ObjectComparator
      */
     public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = [])
     {
-        $expectedAsString = $this->nodeToText($expected, true, $ignoreCase);
-        $actualAsString   = $this->nodeToText($actual, true, $ignoreCase);
+        $expectedAsString = $this->nodeToText($expected, $ignoreCase);
+        $actualAsString   = $this->nodeToText($actual, $ignoreCase);
 
         if ($expectedAsString !== $actualAsString) {
             $type = $expected instanceof DOMDocument ? 'documents' : 'nodes';
@@ -65,22 +65,30 @@ class DOMNodeComparator extends ObjectComparator
     /**
      * Returns the normalized, whitespace-cleaned, and indented textual
      * representation of a DOMNode.
+     *
+     * @param  DOMNode $node
+     * @param  bool $ignoreCase If false - xml text will be converted to lowercase
+     *
+     * @return string Text representation of DOMNode
      */
-    private function nodeToText(DOMNode $node, bool $canonicalize, bool $ignoreCase): string
+    public function nodeToText(DOMNode $node, bool $ignoreCase): string
     {
-        if ($canonicalize) {
-            $document = new DOMDocument;
-            @$document->loadXML($node->C14N());
+        $encoding = (isset($node->encoding)) ? $node->encoding : 'UTF-8';
+        $xmlVersion = $node->xmlVersion;
 
-            $node = $document;
+        $document = new DOMDocument($xmlVersion, $encoding);
+        
+        $nodeString = $node->C14N();
+
+        // If an empty string is passed as the source, a warning will be generated.
+        if ($nodeString !== "") {
+            $document->loadXML($nodeString);
+            // $nodeString dows not contain `<?xml` declaration after ->C14N(). So ->encoding become NULL after loadXML.
+            $document->encoding = $encoding;
         }
+        $node = $document;
 
-        $document = $node instanceof DOMDocument ? $node : $node->ownerDocument;
-
-        $document->formatOutput = true;
-        $document->normalizeDocument();
-
-        $text = $node instanceof DOMDocument ? $node->saveXML() : $document->saveXML($node);
+        $text = $node->saveXML();
 
         return $ignoreCase ? $text : \strtolower($text);
     }
