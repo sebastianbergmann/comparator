@@ -73,6 +73,11 @@ class DOMNodeComparatorTest extends TestCase
             $this->createDOMDocument("<root>\n  <child/>\n</root>"),
             $this->createDOMDocument('<root><child/></root>')
           ],
+          [
+            $this->createDOMDocument('<Root></Root>'),
+            $this->createDOMDocument('<root></root>'),
+            $ignoreCase = true
+          ]
         ];
     }
 
@@ -98,6 +103,14 @@ class DOMNodeComparatorTest extends TestCase
           [
             $this->createDOMDocument('<foo> bar </foo>'),
             $this->createDOMDocument('<foo> bir </foo>')
+          ],
+          [
+            $this->createDOMDocument('<Root></Root>'),
+            $this->createDOMDocument('<root></root>')
+          ],
+          [
+            $this->createDOMDocument('<root> bar </root>'),
+            $this->createDOMDocument('<root> BAR </root>')
           ]
         ];
     }
@@ -136,13 +149,16 @@ class DOMNodeComparatorTest extends TestCase
      *
      * @param mixed $expected
      * @param mixed $actual
+     * @param bool  $ignoreCase
      */
-    public function testAssertEqualsSucceeds($expected, $actual)
+    public function testAssertEqualsSucceeds($expected, $actual, $ignoreCase = false)
     {
         $exception = null;
 
         try {
-            $this->comparator->assertEquals($expected, $actual);
+            $delta = 0.0;
+            $canonicalize = false;
+            $this->comparator->assertEquals($expected, $actual, $delta, $canonicalize, $ignoreCase);
         } catch (ComparisonFailure $exception) {
         }
 
