@@ -82,6 +82,6 @@ class DOMNodeComparator extends ObjectComparator
 
         $text = $node instanceof DOMDocument ? $node->saveXML() : $document->saveXML($node);
 
-        return $ignoreCase ? $text : \strtolower($text);
+        return $ignoreCase ? \strtolower($text) : $text;
     }
 }
