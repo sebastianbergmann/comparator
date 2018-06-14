@@ -14,17 +14,20 @@ use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
 /**
- * @coversDefaultClass SebastianBergmann\Comparator\ExceptionComparator
+ * @covers \SebastianBergmann\Comparator\ExceptionComparator
  *
- * @uses SebastianBergmann\Comparator\Comparator
- * @uses SebastianBergmann\Comparator\Factory
- * @uses SebastianBergmann\Comparator\ComparisonFailure
+ * @uses \SebastianBergmann\Comparator\Comparator
+ * @uses \SebastianBergmann\Comparator\Factory
+ * @uses \SebastianBergmann\Comparator\ComparisonFailure
  */
-class ExceptionComparatorTest extends TestCase
+final class ExceptionComparatorTest extends TestCase
 {
+    /**
+     * @var ExceptionComparator
+     */
     private $comparator;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->comparator = new ExceptionComparator;
         $this->comparator->setFactory(new Factory);
@@ -86,10 +89,9 @@ class ExceptionComparatorTest extends TestCase
     }
 
     /**
-     * @covers       ::accepts
      * @dataProvider acceptsSucceedsProvider
      */
-    public function testAcceptsSucceeds($expected, $actual)
+    public function testAcceptsSucceeds($expected, $actual): void
     {
         $this->assertTrue(
           $this->comparator->accepts($expected, $actual)
@@ -97,10 +99,9 @@ class ExceptionComparatorTest extends TestCase
     }
 
     /**
-     * @covers       ::accepts
      * @dataProvider acceptsFailsProvider
      */
-    public function testAcceptsFails($expected, $actual)
+    public function testAcceptsFails($expected, $actual): void
     {
         $this->assertFalse(
           $this->comparator->accepts($expected, $actual)
@@ -108,10 +109,9 @@ class ExceptionComparatorTest extends TestCase
     }
 
     /**
-     * @covers       ::assertEquals
      * @dataProvider assertEqualsSucceedsProvider
      */
-    public function testAssertEqualsSucceeds($expected, $actual)
+    public function testAssertEqualsSucceeds($expected, $actual): void
     {
         $exception = null;
 
@@ -124,10 +124,9 @@ class ExceptionComparatorTest extends TestCase
     }
 
     /**
-     * @covers       ::assertEquals
      * @dataProvider assertEqualsFailsProvider
      */
-    public function testAssertEqualsFails($expected, $actual, $message)
+    public function testAssertEqualsFails($expected, $actual, $message): void
     {
         $this->expectException(ComparisonFailure::class);
         $this->expectExceptionMessage($message);

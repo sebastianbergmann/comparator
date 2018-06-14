@@ -12,17 +12,20 @@ namespace SebastianBergmann\Comparator;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @coversDefaultClass SebastianBergmann\Comparator\ResourceComparator
+ * @covers \SebastianBergmann\Comparator\ResourceComparator
  *
- * @uses SebastianBergmann\Comparator\Comparator
- * @uses SebastianBergmann\Comparator\Factory
- * @uses SebastianBergmann\Comparator\ComparisonFailure
+ * @uses \SebastianBergmann\Comparator\Comparator
+ * @uses \SebastianBergmann\Comparator\Factory
+ * @uses \SebastianBergmann\Comparator\ComparisonFailure
  */
-class ResourceComparatorTest extends TestCase
+final class ResourceComparatorTest extends TestCase
 {
+    /**
+     * @var ResourceComparator
+     */
     private $comparator;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->comparator = new ResourceComparator;
     }
@@ -73,10 +76,9 @@ class ResourceComparatorTest extends TestCase
     }
 
     /**
-     * @covers       ::accepts
      * @dataProvider acceptsSucceedsProvider
      */
-    public function testAcceptsSucceeds($expected, $actual)
+    public function testAcceptsSucceeds($expected, $actual): void
     {
         $this->assertTrue(
           $this->comparator->accepts($expected, $actual)
@@ -84,10 +86,9 @@ class ResourceComparatorTest extends TestCase
     }
 
     /**
-     * @covers       ::accepts
      * @dataProvider acceptsFailsProvider
      */
-    public function testAcceptsFails($expected, $actual)
+    public function testAcceptsFails($expected, $actual): void
     {
         $this->assertFalse(
           $this->comparator->accepts($expected, $actual)
@@ -95,10 +96,9 @@ class ResourceComparatorTest extends TestCase
     }
 
     /**
-     * @covers       ::assertEquals
      * @dataProvider assertEqualsSucceedsProvider
      */
-    public function testAssertEqualsSucceeds($expected, $actual)
+    public function testAssertEqualsSucceeds($expected, $actual): void
     {
         $exception = null;
 
@@ -111,10 +111,9 @@ class ResourceComparatorTest extends TestCase
     }
 
     /**
-     * @covers       ::assertEquals
      * @dataProvider assertEqualsFailsProvider
      */
-    public function testAssertEqualsFails($expected, $actual)
+    public function testAssertEqualsFails($expected, $actual): void
     {
         $this->expectException(ComparisonFailure::class);
 

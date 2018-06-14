@@ -13,17 +13,20 @@ use PHPUnit\Framework\TestCase;
 use stdClass;
 
 /**
- * @coversDefaultClass SebastianBergmann\Comparator\MockObjectComparator
+ * @covers \SebastianBergmann\Comparator\MockObjectComparator
  *
- * @uses SebastianBergmann\Comparator\Comparator
- * @uses SebastianBergmann\Comparator\Factory
- * @uses SebastianBergmann\Comparator\ComparisonFailure
+ * @uses \SebastianBergmann\Comparator\Comparator
+ * @uses \SebastianBergmann\Comparator\Factory
+ * @uses \SebastianBergmann\Comparator\ComparisonFailure
  */
-class MockObjectComparatorTest extends TestCase
+final class MockObjectComparatorTest extends TestCase
 {
+    /**
+     * @var MockObjectComparator
+     */
     private $comparator;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->comparator = new MockObjectComparator;
         $this->comparator->setFactory(new Factory);
@@ -118,10 +121,9 @@ class MockObjectComparatorTest extends TestCase
     }
 
     /**
-     * @covers       ::accepts
      * @dataProvider acceptsSucceedsProvider
      */
-    public function testAcceptsSucceeds($expected, $actual)
+    public function testAcceptsSucceeds($expected, $actual): void
     {
         $this->assertTrue(
           $this->comparator->accepts($expected, $actual)
@@ -129,10 +131,9 @@ class MockObjectComparatorTest extends TestCase
     }
 
     /**
-     * @covers       ::accepts
      * @dataProvider acceptsFailsProvider
      */
-    public function testAcceptsFails($expected, $actual)
+    public function testAcceptsFails($expected, $actual): void
     {
         $this->assertFalse(
           $this->comparator->accepts($expected, $actual)
@@ -140,10 +141,9 @@ class MockObjectComparatorTest extends TestCase
     }
 
     /**
-     * @covers       ::assertEquals
      * @dataProvider assertEqualsSucceedsProvider
      */
-    public function testAssertEqualsSucceeds($expected, $actual, $delta = 0.0)
+    public function testAssertEqualsSucceeds($expected, $actual, $delta = 0.0): void
     {
         $exception = null;
 
@@ -156,10 +156,9 @@ class MockObjectComparatorTest extends TestCase
     }
 
     /**
-     * @covers       ::assertEquals
      * @dataProvider assertEqualsFailsProvider
      */
-    public function testAssertEqualsFails($expected, $actual, $message, $delta = 0.0)
+    public function testAssertEqualsFails($expected, $actual, $message, $delta = 0.0): void
     {
         $this->expectException(ComparisonFailure::class);
         $this->expectExceptionMessage($message);

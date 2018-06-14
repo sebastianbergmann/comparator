@@ -13,17 +13,20 @@ use PHPUnit\Framework\TestCase;
 use stdClass;
 
 /**
- * @coversDefaultClass SebastianBergmann\Comparator\TypeComparator
+ * @covers \SebastianBergmann\Comparator\TypeComparator
  *
- * @uses SebastianBergmann\Comparator\Comparator
- * @uses SebastianBergmann\Comparator\Factory
- * @uses SebastianBergmann\Comparator\ComparisonFailure
+ * @uses \SebastianBergmann\Comparator\Comparator
+ * @uses \SebastianBergmann\Comparator\Factory
+ * @uses \SebastianBergmann\Comparator\ComparisonFailure
  */
-class TypeComparatorTest extends TestCase
+final class TypeComparatorTest extends TestCase
 {
+    /**
+     * @var TypeComparator
+     */
     private $comparator;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->comparator = new TypeComparator;
     }
@@ -67,10 +70,9 @@ class TypeComparatorTest extends TestCase
     }
 
     /**
-     * @covers       ::accepts
      * @dataProvider acceptsSucceedsProvider
      */
-    public function testAcceptsSucceeds($expected, $actual)
+    public function testAcceptsSucceeds($expected, $actual): void
     {
         $this->assertTrue(
           $this->comparator->accepts($expected, $actual)
@@ -78,10 +80,9 @@ class TypeComparatorTest extends TestCase
     }
 
     /**
-     * @covers       ::assertEquals
      * @dataProvider assertEqualsSucceedsProvider
      */
-    public function testAssertEqualsSucceeds($expected, $actual)
+    public function testAssertEqualsSucceeds($expected, $actual): void
     {
         $exception = null;
 
@@ -94,10 +95,9 @@ class TypeComparatorTest extends TestCase
     }
 
     /**
-     * @covers       ::assertEquals
      * @dataProvider assertEqualsFailsProvider
      */
-    public function testAssertEqualsFails($expected, $actual)
+    public function testAssertEqualsFails($expected, $actual): void
     {
         $this->expectException(ComparisonFailure::class);
         $this->expectExceptionMessage('does not match expected type');

@@ -12,11 +12,13 @@ namespace SebastianBergmann\Comparator;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers SebastianBergmann\Comparator\ComparisonFailure
+ * @covers \SebastianBergmann\Comparator\ComparisonFailure
+ *
+ * @uses \SebastianBergmann\Comparator\Factory
  */
 final class ComparisonFailureTest extends TestCase
 {
-    public function testComparisonFailure()
+    public function testComparisonFailure(): void
     {
         $actual   = "\nB\n";
         $expected = "\nA\n";
@@ -48,7 +50,7 @@ final class ComparisonFailureTest extends TestCase
         $this->assertSame($message . $diff, $failure->toString());
     }
 
-    public function testDiffNotPossible()
+    public function testDiffNotPossible(): void
     {
         $failure = new ComparisonFailure('a', 'b', false, false, true, 'test');
         $this->assertSame('', $failure->getDiff());

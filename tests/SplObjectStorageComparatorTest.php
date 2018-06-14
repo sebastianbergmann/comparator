@@ -14,17 +14,20 @@ use SplObjectStorage;
 use stdClass;
 
 /**
- * @coversDefaultClass SebastianBergmann\Comparator\SplObjectStorageComparator
+ * @covers \SebastianBergmann\Comparator\SplObjectStorageComparator
  *
- * @uses SebastianBergmann\Comparator\Comparator
- * @uses SebastianBergmann\Comparator\Factory
- * @uses SebastianBergmann\Comparator\ComparisonFailure
+ * @uses \SebastianBergmann\Comparator\Comparator
+ * @uses \SebastianBergmann\Comparator\Factory
+ * @uses \SebastianBergmann\Comparator\ComparisonFailure
  */
-class SplObjectStorageComparatorTest extends TestCase
+final class SplObjectStorageComparatorTest extends TestCase
 {
+    /**
+     * @var SplObjectStorageComparator
+     */
     private $comparator;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->comparator = new SplObjectStorageComparator;
     }
@@ -83,10 +86,7 @@ class SplObjectStorageComparatorTest extends TestCase
         ];
     }
 
-    /**
-     * @covers  ::accepts
-     */
-    public function testAcceptsSucceeds()
+    public function testAcceptsSucceeds(): void
     {
         $this->assertTrue(
           $this->comparator->accepts(
@@ -97,10 +97,9 @@ class SplObjectStorageComparatorTest extends TestCase
     }
 
     /**
-     * @covers       ::accepts
      * @dataProvider acceptsFailsProvider
      */
-    public function testAcceptsFails($expected, $actual)
+    public function testAcceptsFails($expected, $actual): void
     {
         $this->assertFalse(
           $this->comparator->accepts($expected, $actual)
@@ -108,10 +107,9 @@ class SplObjectStorageComparatorTest extends TestCase
     }
 
     /**
-     * @covers       ::assertEquals
      * @dataProvider assertEqualsSucceedsProvider
      */
-    public function testAssertEqualsSucceeds($expected, $actual)
+    public function testAssertEqualsSucceeds($expected, $actual): void
     {
         $exception = null;
 
@@ -124,10 +122,9 @@ class SplObjectStorageComparatorTest extends TestCase
     }
 
     /**
-     * @covers       ::assertEquals
      * @dataProvider assertEqualsFailsProvider
      */
-    public function testAssertEqualsFails($expected, $actual)
+    public function testAssertEqualsFails($expected, $actual): void
     {
         $this->expectException(ComparisonFailure::class);
         $this->expectExceptionMessage('Failed asserting that two objects are equal.');
@@ -135,7 +132,7 @@ class SplObjectStorageComparatorTest extends TestCase
         $this->comparator->assertEquals($expected, $actual);
     }
 
-    public function testAssertEqualsFails2()
+    public function testAssertEqualsFails2(): void
     {
         $this->expectException(ComparisonFailure::class);
         $this->expectExceptionMessage('Failed asserting that two objects are equal.');
