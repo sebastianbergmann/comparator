@@ -105,7 +105,12 @@ class ScalarComparatorTest extends TestCase
           [false, true, $otherException],
           [true, false, $otherException],
           [null, true, $otherException],
-          [0, true, $otherException]
+          [0, true, $otherException],
+          ['0', '0.0', $stringException],
+          ['0.', '0.0', $stringException],
+          ['0e1', '0e2', $stringException],
+          ["\n\n\n0.0", '                   0.', $stringException],
+          ['0.0', '25e-10000', $stringException],
         ];
     }
 
