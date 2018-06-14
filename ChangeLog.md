@@ -2,7 +2,7 @@
 
 All notable changes are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
-## [3.0.1] - 2018-MM-DD
+## [3.0.1] - 2018-06-14
 
 ### Fixed
 
