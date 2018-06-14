@@ -7,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace SebastianBergmann\Comparator;
 
 /**
@@ -50,7 +49,7 @@ class NumericComparator extends ScalarComparator
         }
 
         if ((\is_infinite($actual) xor \is_infinite($expected)) ||
-            (\is_nan($actual) or \is_nan($expected)) ||
+            (\is_nan($actual) || \is_nan($expected)) ||
             \abs($actual - $expected) > $delta) {
             throw new ComparisonFailure(
                 $expected,

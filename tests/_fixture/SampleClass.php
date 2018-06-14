@@ -7,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace SebastianBergmann\Comparator;
 
 /**
@@ -16,7 +15,9 @@ namespace SebastianBergmann\Comparator;
 class SampleClass
 {
     public $a;
+
     protected $b;
+
     protected $c;
 
     public function __construct($a, $b, $c)

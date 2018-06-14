@@ -7,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace SebastianBergmann\Comparator;
 
 use PHPUnit\Framework\TestCase;
@@ -33,18 +32,18 @@ class ObjectComparatorTest extends TestCase
     public function acceptsSucceedsProvider()
     {
         return [
-          [new TestClass, new TestClass],
-          [new stdClass, new stdClass],
-          [new stdClass, new TestClass]
+            [new TestClass, new TestClass],
+            [new stdClass, new stdClass],
+            [new stdClass, new TestClass]
         ];
     }
 
     public function acceptsFailsProvider()
     {
         return [
-          [new stdClass, null],
-          [null, new stdClass],
-          [null, null]
+            [new stdClass, null],
+            [null, new stdClass],
+            [null, null]
         ];
     }
 
@@ -62,11 +61,11 @@ class ObjectComparatorTest extends TestCase
         $object2 = new SampleClass(4, 8, 15);
 
         return [
-          [$object1, $object1],
-          [$object1, $object2],
-          [$book1, $book1],
-          [$book1, $book2],
-          [new Struct(2.3), new Struct(2.5), 0.5]
+            [$object1, $object1],
+            [$object1, $object2],
+            [$book1, $book1],
+            [$book1, $book2],
+            [new Struct(2.3), new Struct(2.5), 0.5]
         ];
     }
 
@@ -92,20 +91,17 @@ class ObjectComparatorTest extends TestCase
         $object2 = new SampleClass(16, 23, 42);
 
         return [
-          [new SampleClass(4, 8, 15), new SampleClass(16, 23, 42), $equalMessage],
-          [$object1, $object2, $equalMessage],
-          [$book1, $book2, $equalMessage],
-          [$book3, $book4, $typeMessage],
-          [new Struct(2.3), new Struct(4.2), $equalMessage, 0.5]
+            [new SampleClass(4, 8, 15), new SampleClass(16, 23, 42), $equalMessage],
+            [$object1, $object2, $equalMessage],
+            [$book1, $book2, $equalMessage],
+            [$book3, $book4, $typeMessage],
+            [new Struct(2.3), new Struct(4.2), $equalMessage, 0.5]
         ];
     }
 
     /**
      * @covers       ::accepts
      * @dataProvider acceptsSucceedsProvider
-     *
-     * @param mixed $expected
-     * @param mixed $actual
      */
     public function testAcceptsSucceeds($expected, $actual)
     {
@@ -117,9 +113,6 @@ class ObjectComparatorTest extends TestCase
     /**
      * @covers       ::accepts
      * @dataProvider acceptsFailsProvider
-     *
-     * @param mixed $expected
-     * @param mixed $actual
      */
     public function testAcceptsFails($expected, $actual)
     {
@@ -131,10 +124,6 @@ class ObjectComparatorTest extends TestCase
     /**
      * @covers       ::assertEquals
      * @dataProvider assertEqualsSucceedsProvider
-     *
-     * @param mixed $expected
-     * @param mixed $actual
-     * @param mixed $delta
      */
     public function testAssertEqualsSucceeds($expected, $actual, $delta = 0.0)
     {
@@ -151,11 +140,6 @@ class ObjectComparatorTest extends TestCase
     /**
      * @covers       ::assertEquals
      * @dataProvider assertEqualsFailsProvider
-     *
-     * @param mixed $expected
-     * @param mixed $actual
-     * @param mixed $message
-     * @param mixed $delta
      */
     public function testAssertEqualsFails($expected, $actual, $message, $delta = 0.0)
     {

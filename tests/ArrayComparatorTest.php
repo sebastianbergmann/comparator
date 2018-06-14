@@ -7,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace SebastianBergmann\Comparator;
 
 use PHPUnit\Framework\TestCase;
@@ -35,85 +34,85 @@ class ArrayComparatorTest extends TestCase
     public function acceptsFailsProvider()
     {
         return [
-          [[], null],
-          [null, []],
-          [null, null]
+            [[], null],
+            [null, []],
+            [null, null]
         ];
     }
 
     public function assertEqualsSucceedsProvider()
     {
         return [
-          [
-            ['a' => 1, 'b' => 2],
-            ['b' => 2, 'a' => 1]
-          ],
-          [
-            [1],
-            ['1']
-          ],
-          [
-            [3, 2, 1],
-            [2, 3, 1],
-            0,
-            true
-          ],
-          [
-            [2.3],
-            [2.5],
-            0.5
-          ],
-          [
-            [[2.3]],
-            [[2.5]],
-            0.5
-          ],
-          [
-            [new Struct(2.3)],
-            [new Struct(2.5)],
-            0.5
-          ],
+            [
+                ['a' => 1, 'b' => 2],
+                ['b' => 2, 'a' => 1]
+            ],
+            [
+                [1],
+                ['1']
+            ],
+            [
+                [3, 2, 1],
+                [2, 3, 1],
+                0,
+                true
+            ],
+            [
+                [2.3],
+                [2.5],
+                0.5
+            ],
+            [
+                [[2.3]],
+                [[2.5]],
+                0.5
+            ],
+            [
+                [new Struct(2.3)],
+                [new Struct(2.5)],
+                0.5
+            ],
         ];
     }
 
     public function assertEqualsFailsProvider()
     {
         return [
-          [
-            [],
-            [0 => 1]
-          ],
-          [
-            [0 => 1],
-            []
-          ],
-          [
-            [0 => null],
-            []
-          ],
-          [
-            [0 => 1, 1 => 2],
-            [0 => 1, 1 => 3]
-          ],
-          [
-            ['a', 'b' => [1, 2]],
-            ['a', 'b' => [2, 1]]
-          ],
-          [
-            [2.3],
-            [4.2],
-            0.5
-          ],
-          [
-            [[2.3]],
-            [[4.2]],
-            0.5
-          ],
-          [
-            [new Struct(2.3)],
-            [new Struct(4.2)],
-            0.5
-          ]
+            [
+                [],
+                [0 => 1]
+            ],
+            [
+                [0 => 1],
+                []
+            ],
+            [
+                [0 => null],
+                []
+            ],
+            [
+                [0 => 1, 1 => 2],
+                [0 => 1, 1 => 3]
+            ],
+            [
+                ['a', 'b' => [1, 2]],
+                ['a', 'b' => [2, 1]]
+            ],
+            [
+                [2.3],
+                [4.2],
+                0.5
+            ],
+            [
+                [[2.3]],
+                [[4.2]],
+                0.5
+            ],
+            [
+                [new Struct(2.3)],
+                [new Struct(4.2)],
+                0.5
+            ]
         ];
     }
 
@@ -130,9 +129,6 @@ class ArrayComparatorTest extends TestCase
     /**
      * @covers       ::accepts
      * @dataProvider acceptsFailsProvider
-     *
-     * @param mixed $expected
-     * @param mixed $actual
      */
     public function testAcceptsFails($expected, $actual)
     {
@@ -144,11 +140,6 @@ class ArrayComparatorTest extends TestCase
     /**
      * @covers       ::assertEquals
      * @dataProvider assertEqualsSucceedsProvider
-     *
-     * @param mixed $expected
-     * @param mixed $actual
-     * @param mixed $delta
-     * @param mixed $canonicalize
      */
     public function testAssertEqualsSucceeds($expected, $actual, $delta = 0.0, $canonicalize = false)
     {
@@ -165,11 +156,6 @@ class ArrayComparatorTest extends TestCase
     /**
      * @covers       ::assertEquals
      * @dataProvider assertEqualsFailsProvider
-     *
-     * @param mixed $expected
-     * @param mixed $actual
-     * @param mixed $delta
-     * @param mixed $canonicalize
      */
     public function testAssertEqualsFails($expected, $actual, $delta = 0.0, $canonicalize = false)
     {

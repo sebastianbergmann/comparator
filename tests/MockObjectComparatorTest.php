@@ -7,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace SebastianBergmann\Comparator;
 
 use PHPUnit\Framework\TestCase;
@@ -36,9 +35,9 @@ class MockObjectComparatorTest extends TestCase
         $stdmock  = $this->createMock(stdClass::class);
 
         return [
-          [$testmock, $testmock],
-          [$stdmock, $stdmock],
-          [$stdmock, $testmock]
+            [$testmock, $testmock],
+            [$stdmock, $stdmock],
+            [$stdmock, $testmock]
         ];
     }
 
@@ -47,9 +46,9 @@ class MockObjectComparatorTest extends TestCase
         $stdmock = $this->createMock(stdClass::class);
 
         return [
-          [$stdmock, null],
-          [null, $stdmock],
-          [null, null]
+            [$stdmock, null],
+            [null, $stdmock],
+            [null, null]
         ];
     }
 
@@ -67,15 +66,15 @@ class MockObjectComparatorTest extends TestCase
         $object2 = $this->getMockBuilder(SampleClass::class)->setMethods(null)->setConstructorArgs([4, 8, 15])->getMock();
 
         return [
-          [$object1, $object1],
-          [$object1, $object2],
-          [$book1, $book1],
-          [$book1, $book2],
-          [
-            $this->getMockBuilder(Struct::class)->setMethods(null)->setConstructorArgs([2.3])->getMock(),
-            $this->getMockBuilder(Struct::class)->setMethods(null)->setConstructorArgs([2.5])->getMock(),
-            0.5
-          ]
+            [$object1, $object1],
+            [$object1, $object2],
+            [$book1, $book1],
+            [$book1, $book2],
+            [
+                $this->getMockBuilder(Struct::class)->setMethods(null)->setConstructorArgs([2.3])->getMock(),
+                $this->getMockBuilder(Struct::class)->setMethods(null)->setConstructorArgs([2.5])->getMock(),
+                0.5
+            ]
         ];
     }
 
@@ -101,29 +100,26 @@ class MockObjectComparatorTest extends TestCase
         $object2 = $this->getMockBuilder(SampleClass::class)->setMethods(null)->setConstructorArgs([16, 23, 42])->getMock();
 
         return [
-          [
-            $this->getMockBuilder(SampleClass::class)->setMethods(null)->setConstructorArgs([4, 8, 15])->getMock(),
-            $this->getMockBuilder(SampleClass::class)->setMethods(null)->setConstructorArgs([16, 23, 42])->getMock(),
-            $equalMessage
-          ],
-          [$object1, $object2, $equalMessage],
-          [$book1, $book2, $equalMessage],
-          [$book3, $book4, $typeMessage],
-          [
-            $this->getMockBuilder(Struct::class)->setMethods(null)->setConstructorArgs([2.3])->getMock(),
-            $this->getMockBuilder(Struct::class)->setMethods(null)->setConstructorArgs([4.2])->getMock(),
-            $equalMessage,
-            0.5
-          ]
+            [
+                $this->getMockBuilder(SampleClass::class)->setMethods(null)->setConstructorArgs([4, 8, 15])->getMock(),
+                $this->getMockBuilder(SampleClass::class)->setMethods(null)->setConstructorArgs([16, 23, 42])->getMock(),
+                $equalMessage
+            ],
+            [$object1, $object2, $equalMessage],
+            [$book1, $book2, $equalMessage],
+            [$book3, $book4, $typeMessage],
+            [
+                $this->getMockBuilder(Struct::class)->setMethods(null)->setConstructorArgs([2.3])->getMock(),
+                $this->getMockBuilder(Struct::class)->setMethods(null)->setConstructorArgs([4.2])->getMock(),
+                $equalMessage,
+                0.5
+            ]
         ];
     }
 
     /**
      * @covers       ::accepts
      * @dataProvider acceptsSucceedsProvider
-     *
-     * @param mixed $expected
-     * @param mixed $actual
      */
     public function testAcceptsSucceeds($expected, $actual)
     {
@@ -135,9 +131,6 @@ class MockObjectComparatorTest extends TestCase
     /**
      * @covers       ::accepts
      * @dataProvider acceptsFailsProvider
-     *
-     * @param mixed $expected
-     * @param mixed $actual
      */
     public function testAcceptsFails($expected, $actual)
     {
@@ -149,10 +142,6 @@ class MockObjectComparatorTest extends TestCase
     /**
      * @covers       ::assertEquals
      * @dataProvider assertEqualsSucceedsProvider
-     *
-     * @param mixed $expected
-     * @param mixed $actual
-     * @param mixed $delta
      */
     public function testAssertEqualsSucceeds($expected, $actual, $delta = 0.0)
     {
@@ -169,11 +158,6 @@ class MockObjectComparatorTest extends TestCase
     /**
      * @covers       ::assertEquals
      * @dataProvider assertEqualsFailsProvider
-     *
-     * @param mixed $expected
-     * @param mixed $actual
-     * @param mixed $message
-     * @param mixed $delta
      */
     public function testAssertEqualsFails($expected, $actual, $message, $delta = 0.0)
     {

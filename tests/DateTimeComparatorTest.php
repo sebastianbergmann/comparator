@@ -7,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace SebastianBergmann\Comparator;
 
 use DateTime;
@@ -39,9 +38,9 @@ class DateTimeComparatorTest extends TestCase
         $datetime = new DateTime;
 
         return [
-          [$datetime, null],
-          [null, $datetime],
-          [null, null]
+            [$datetime, null],
+            [null, $datetime],
+            [null, null]
         ];
     }
 
@@ -167,9 +166,6 @@ class DateTimeComparatorTest extends TestCase
     /**
      * @covers       ::accepts
      * @dataProvider acceptsFailsProvider
-     *
-     * @param mixed $expected
-     * @param mixed $actual
      */
     public function testAcceptsFails($expected, $actual)
     {
@@ -181,10 +177,6 @@ class DateTimeComparatorTest extends TestCase
     /**
      * @covers       ::assertEquals
      * @dataProvider assertEqualsSucceedsProvider
-     *
-     * @param mixed $expected
-     * @param mixed $actual
-     * @param mixed $delta
      */
     public function testAssertEqualsSucceeds($expected, $actual, $delta = 0.0)
     {
@@ -201,10 +193,6 @@ class DateTimeComparatorTest extends TestCase
     /**
      * @covers       ::assertEquals
      * @dataProvider assertEqualsFailsProvider
-     *
-     * @param mixed $expected
-     * @param mixed $actual
-     * @param mixed $delta
      */
     public function testAssertEqualsFails($expected, $actual, $delta = 0.0)
     {

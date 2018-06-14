@@ -7,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace SebastianBergmann\Comparator;
 
 use SebastianBergmann\Diff\Differ;
@@ -79,17 +78,11 @@ class ComparisonFailure extends \RuntimeException
         $this->message          = $message;
     }
 
-    /**
-     * @return mixed
-     */
     public function getActual()
     {
         return $this->actual;
     }
 
-    /**
-     * @return mixed
-     */
     public function getExpected()
     {
         return $this->expected;
