@@ -141,6 +141,12 @@ final class ScalarComparatorTest extends TestCase
      */
     public function testAssertEqualsSucceeds($expected, $actual, $ignoreCase = false): void
     {
+        if ($ignoreCase) {
+            $this->assertTrue(strtolower($expected) == strtolower($actual));
+        } else {
+            $this->assertTrue($expected == $actual);
+        }
+
         $exception = null;
 
         try {
@@ -156,6 +162,8 @@ final class ScalarComparatorTest extends TestCase
      */
     public function testAssertEqualsFails($expected, $actual, $message): void
     {
+        $this->assertTrue($expected != $actual);
+
         $this->expectException(ComparisonFailure::class);
         $this->expectExceptionMessage($message);
 
