@@ -2,6 +2,12 @@
 
 All notable changes are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [3.0.2] - 2018-MM-DD
+
+### Changed
+
+* By default, `MockObjectComparator` is now tried before all other (default) comparators
+
 ## [3.0.1] - 2018-06-14
 
 ### Fixed
@@ -44,6 +50,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 * Added `SebastianBergmann\Comparator\Factory::reset()` to unregister all non-default comparators
 * Added support for `phpunit/phpunit-mock-objects` version `^5.0`
 
+[3.0.2]: https://github.com/sebastianbergmann/comparator/compare/3.0.1...3.0.2
 [3.0.1]: https://github.com/sebastianbergmann/comparator/compare/3.0.0...3.0.1
 [3.0.0]: https://github.com/sebastianbergmann/comparator/compare/2.1.3...3.0.0
 [2.1.3]: https://github.com/sebastianbergmann/comparator/compare/2.1.2...2.1.3

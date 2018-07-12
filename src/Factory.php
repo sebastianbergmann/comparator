@@ -125,8 +125,10 @@ class Factory
         $this->registerDefaultComparator(new ExceptionComparator);
         $this->registerDefaultComparator(new SplObjectStorageComparator);
         $this->registerDefaultComparator(new DOMNodeComparator);
-        $this->registerDefaultComparator(new MockObjectComparator);
         $this->registerDefaultComparator(new DateTimeComparator);
+
+        // This must always be the last to be added (first to be tried) comparator
+        $this->registerDefaultComparator(new MockObjectComparator);
     }
 
     private function registerDefaultComparator(Comparator $comparator)
