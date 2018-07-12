@@ -11,6 +11,7 @@ namespace SebastianBergmann\Comparator;
 
 use DateTime;
 use DateTimeImmutable;
+use DateTimeInterface;
 use DateTimeZone;
 use PHPUnit\Framework\TestCase;
 
@@ -194,6 +195,44 @@ final class DateTimeComparatorTest extends TestCase
         $this->expectExceptionMessage('Failed asserting that two DateTime objects are equal.');
 
         $this->comparator->assertEquals($expected, $actual, $delta);
+    }
+
+    public function testSameDateTimeImmutableInstancesShouldNotTriggerAnyMethods(): void
+    {
+        $dateTimeImmutableMock = $this->createMock(DateTimeImmutable::class);
+        $methods = \get_class_methods(DateTimeImmutable::class);
+
+        foreach ($methods as $method) {
+            if ($method === '__construct') {
+                continue;
+            }
+
+            $dateTimeImmutableMock
+                ->expects($this->never())
+                ->method($method)
+            ;
+        }
+
+        $this->comparator->assertEquals($dateTimeImmutableMock, $dateTimeImmutableMock);
+    }
+
+    public function testSameDateTimeInstancesShouldNotTriggerAnyMethods(): void
+    {
+        $dateTimeMock = $this->createMock(DateTime::class);
+        $methods = \get_class_methods(DateTime::class);
+
+        foreach ($methods as $method) {
+            if ($method === '__construct') {
+                continue;
+            }
+
+            $dateTimeMock
+                ->expects($this->never())
+                ->method($method)
+            ;
+        }
+
+        $this->comparator->assertEquals($dateTimeMock, $dateTimeMock);
     }
 
     public function testAcceptsDateTimeInterface(): void

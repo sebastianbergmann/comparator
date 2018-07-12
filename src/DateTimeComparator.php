@@ -43,6 +43,10 @@ class DateTimeComparator extends ObjectComparator
      */
     public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = [])
     {
+        if (\spl_object_hash($expected) === \spl_object_hash($actual)) {
+            return;
+        }
+
         /** @var \DateTimeInterface $expected */
         /** @var \DateTimeInterface $actual */
         $absDelta = \abs($delta);
