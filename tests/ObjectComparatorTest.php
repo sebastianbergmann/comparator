@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
 use stdClass;
 
 /**
- * @covers \SebastianBergmann\Comparator\ObjectComparator
+ * @covers \SebastianBergmann\Comparator\ObjectComparator<extended>
  *
  * @uses \SebastianBergmann\Comparator\Comparator
  * @uses \SebastianBergmann\Comparator\Factory

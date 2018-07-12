@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
 /**
- * @covers \SebastianBergmann\Comparator\ExceptionComparator
+ * @covers \SebastianBergmann\Comparator\ExceptionComparator<extended>
  *
  * @uses \SebastianBergmann\Comparator\Comparator
  * @uses \SebastianBergmann\Comparator\Factory

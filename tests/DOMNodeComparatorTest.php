@@ -14,7 +14,7 @@ use DOMNode;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \SebastianBergmann\Comparator\DOMNodeComparator
+ * @covers \SebastianBergmann\Comparator\DOMNodeComparator<extended>
  *
  * @uses \SebastianBergmann\Comparator\Comparator
  * @uses \SebastianBergmann\Comparator\Factory

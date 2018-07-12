@@ -15,7 +15,7 @@ use DateTimeZone;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \SebastianBergmann\Comparator\DateTimeComparator
+ * @covers \SebastianBergmann\Comparator\DateTimeComparator<extended>
  *
  * @uses \SebastianBergmann\Comparator\Comparator
  * @uses \SebastianBergmann\Comparator\Factory
