@@ -41,6 +41,10 @@ class ObjectComparator extends Comparator
      */
     public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = [])
     {
+        if ($expected === $actual) {
+            return;
+        }
+        
         if (\get_class($actual) !== \get_class($expected)) {
             throw new ComparisonFailure(
                 $expected,
