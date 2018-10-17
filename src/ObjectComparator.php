@@ -41,6 +41,7 @@ class ObjectComparator extends Comparator
      */
     public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = [])
     {
+        // assume that identity implies equality
         if ($expected === $actual) {
             return;
         }
@@ -61,8 +62,8 @@ class ObjectComparator extends Comparator
         }
 
         // don't compare twice to allow for cyclic dependencies
-        if (\in_array([$actual, $expected], $processed, true) ||
-            \in_array([$expected, $actual], $processed, true)) {
+        if (\in_array([$actual, $expected], $processed) ||
+            \in_array([$expected, $actual], $processed)) {
             return;
         }
 
