@@ -35,11 +35,10 @@ class ObjectComparator extends Comparator
      * @param float $delta        Allowed numerical distance between two values to consider them equal
      * @param bool  $canonicalize Arrays are sorted before comparison when set to true
      * @param bool  $ignoreCase   Case is ignored when set to true
-     * @param array $processed    List of already processed elements (used to prevent infinite recursion)
      *
      * @throws ComparisonFailure
      */
-    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = [])
+    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false)
     {
         // assume that identity implies equality
         if ($expected === $actual) {
@@ -60,14 +59,6 @@ class ObjectComparator extends Comparator
                 )
             );
         }
-
-        // don't compare twice to allow for cyclic dependencies
-        if (\in_array([$actual, $expected], $processed) ||
-            \in_array([$expected, $actual], $processed)) {
-            return;
-        }
-
-        $processed[] = [$actual, $expected];
 
         if ($actual != $expected) {
             throw new ComparisonFailure(
