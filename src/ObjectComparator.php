@@ -12,7 +12,7 @@ namespace SebastianBergmann\Comparator;
 /**
  * Compares objects for equality.
  */
-class ObjectComparator
+class ObjectComparator extends Comparator
 {
     /**
      * Returns whether the comparator can compare two values.
