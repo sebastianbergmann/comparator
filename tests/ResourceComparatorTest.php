@@ -56,22 +56,71 @@ final class ResourceComparatorTest extends TestCase
     public function assertEqualsSucceedsProvider()
     {
         $tmpfile1 = \tmpfile();
+        \fwrite($tmpfile1, 'foo');
         $tmpfile2 = \tmpfile();
+        \fwrite($tmpfile2, 'foo');
+
+        $memory1 = \fopen('php://memory', 'r+');
+        \fwrite($memory1, 'foo');
+        $memory2 = \fopen('php://memory', 'w+');
+        \fwrite($memory2, 'foo');
+        $memory3 = \fopen('php://memory', 'a+');
+        \fwrite($memory3, 'foo');
+        $memory4 = \fopen('php://memory', 'x+');
+        \fwrite($memory4, 'foo');
+        $memory5 = \fopen('php://memory', 'c+');
+        \fwrite($memory5, 'foo');
+
+        $image1 = \imagecreate(100, 100);
+        $image2 = \imagecreate(100, 100);
 
         return [
             [$tmpfile1, $tmpfile1],
-            [$tmpfile2, $tmpfile2]
+            [$tmpfile2, $tmpfile2],
+            [$tmpfile1, $tmpfile2],
+            [$tmpfile2, $tmpfile1],
+            [$tmpfile1, $memory1],
+            [$memory1, $tmpfile1],
+            [$memory1, $memory1],
+            [$memory2, $memory2],
+            [$memory3, $memory3],
+            [$memory1, $memory2],
+            [$memory2, $memory1],
+            [$memory1, $memory3],
+            [$memory1, $memory4],
+            [$memory1, $memory5],
+            [$image1, $image1],
+            [$image2, $image2]
         ];
     }
 
     public function assertEqualsFailsProvider()
     {
         $tmpfile1 = \tmpfile();
+        \fwrite($tmpfile1, 'foo');
         $tmpfile2 = \tmpfile();
+
+        $memory1 = \fopen('php://memory', 'r+');
+        \fwrite($memory1, 'foo');
+        $memory2 = \fopen('php://memory', 'r+');
+        \fwrite($memory2, 'bar');
+        $memory3 = \fopen('php://memory', 'x');
+        \fwrite($memory3, 'foo');
+        $memory4 = \fopen('php://memory', 'c');
+        \fwrite($memory4, 'foo');
+
+        $image1 = \imagecreate(100, 100);
+        $image2 = \imagecreate(100, 100);
 
         return [
             [$tmpfile1, $tmpfile2],
-            [$tmpfile2, $tmpfile1]
+            [$tmpfile2, $tmpfile1],
+            [$memory1, $memory2],
+            [$memory2, $memory1],
+            [$memory1, $memory3],
+            [$memory1, $memory4],
+            [$image1, $image2],
+            [$image2, $image1]
         ];
     }
 
