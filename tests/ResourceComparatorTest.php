@@ -59,17 +59,17 @@ final class ResourceComparatorTest extends TestCase
         \fwrite($tmpfile1, 'foo');
         $tmpfile2 = \tmpfile();
         \fwrite($tmpfile2, 'foo');
+        $tmpfile3 = \fopen(\tempnam(\sys_get_temp_dir(), ''), 'a+');
+        \fwrite($tmpfile3, 'foo');
+        $tmpfile4 = \fopen(\sys_get_temp_dir().'/'.\uniqid('', true), 'x+');
+        \fwrite($tmpfile4, 'foo');
+        $tmpfile5 = \fopen(\tempnam(\sys_get_temp_dir(), ''), 'c+');
+        \fwrite($tmpfile5, 'foo');
 
         $memory1 = \fopen('php://memory', 'r+');
         \fwrite($memory1, 'foo');
         $memory2 = \fopen('php://memory', 'w+');
         \fwrite($memory2, 'foo');
-        $memory3 = \fopen('php://memory', 'a+');
-        \fwrite($memory3, 'foo');
-        $memory4 = \fopen('php://memory', 'x+');
-        \fwrite($memory4, 'foo');
-        $memory5 = \fopen('php://memory', 'c+');
-        \fwrite($memory5, 'foo');
 
         $image1 = \imagecreate(100, 100);
         $image2 = \imagecreate(100, 100);
@@ -79,16 +79,18 @@ final class ResourceComparatorTest extends TestCase
             [$tmpfile2, $tmpfile2],
             [$tmpfile1, $tmpfile2],
             [$tmpfile2, $tmpfile1],
+            [$tmpfile1, $tmpfile3],
+            [$tmpfile3, $tmpfile1],
+            [$tmpfile1, $tmpfile4],
+            [$tmpfile4, $tmpfile1],
+            [$tmpfile1, $tmpfile5],
+            [$tmpfile5, $tmpfile1],
             [$tmpfile1, $memory1],
             [$memory1, $tmpfile1],
             [$memory1, $memory1],
             [$memory2, $memory2],
-            [$memory3, $memory3],
             [$memory1, $memory2],
             [$memory2, $memory1],
-            [$memory1, $memory3],
-            [$memory1, $memory4],
-            [$memory1, $memory5],
             [$image1, $image1],
             [$image2, $image2]
         ];
@@ -99,15 +101,14 @@ final class ResourceComparatorTest extends TestCase
         $tmpfile1 = \tmpfile();
         \fwrite($tmpfile1, 'foo');
         $tmpfile2 = \tmpfile();
+        $tmpfile3 = \fopen(\tempnam(\sys_get_temp_dir(), ''), 'a');
+        $tmpfile4 = \fopen(\sys_get_temp_dir().'/'.\uniqid('', true), 'x');
+        $tmpfile5 = \fopen(\tempnam(\sys_get_temp_dir(), ''), 'c');
 
         $memory1 = \fopen('php://memory', 'r+');
         \fwrite($memory1, 'foo');
         $memory2 = \fopen('php://memory', 'r+');
         \fwrite($memory2, 'bar');
-        $memory3 = \fopen('php://memory', 'x');
-        \fwrite($memory3, 'foo');
-        $memory4 = \fopen('php://memory', 'c');
-        \fwrite($memory4, 'foo');
 
         $image1 = \imagecreate(100, 100);
         $image2 = \imagecreate(100, 100);
@@ -115,10 +116,14 @@ final class ResourceComparatorTest extends TestCase
         return [
             [$tmpfile1, $tmpfile2],
             [$tmpfile2, $tmpfile1],
+            [$tmpfile2, $tmpfile3],
+            [$tmpfile3, $tmpfile2],
+            [$tmpfile2, $tmpfile4],
+            [$tmpfile4, $tmpfile2],
+            [$tmpfile2, $tmpfile5],
+            [$tmpfile5, $tmpfile2],
             [$memory1, $memory2],
             [$memory2, $memory1],
-            [$memory1, $memory3],
-            [$memory1, $memory4],
             [$image1, $image2],
             [$image2, $image1]
         ];
