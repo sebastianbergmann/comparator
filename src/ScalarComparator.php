@@ -67,7 +67,6 @@ class ScalarComparator extends Comparator
                 $actual,
                 $this->exporter->export($expected),
                 $this->exporter->export($actual),
-                false,
                 'Failed asserting that two strings are equal.'
             );
         }
@@ -79,7 +78,6 @@ class ScalarComparator extends Comparator
                 // no diff is required
                 '',
                 '',
-                false,
                 \sprintf(
                     'Failed asserting that %s matches expected %s.',
                     $this->exporter->export($actual),
