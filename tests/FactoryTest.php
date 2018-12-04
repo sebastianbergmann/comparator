@@ -77,7 +77,7 @@ final class FactoryTest extends TestCase
         $this->assertInstanceOf($expected, $actual);
     }
 
-    public function testRegister(): void
+    public function testCustomComparatorCanBeRegistered(): void
     {
         $comparator = new TestClassComparator;
 
@@ -93,7 +93,7 @@ final class FactoryTest extends TestCase
         $this->assertInstanceOf($expected, $actual);
     }
 
-    public function testUnregister(): void
+    public function testCustomComparatorCanBeUnregistered(): void
     {
         $comparator = new TestClassComparator;
 
