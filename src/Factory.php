@@ -35,7 +35,7 @@ class Factory
     public static function getInstance()
     {
         if (self::$instance === null) {
-            self::$instance = new self;
+            self::$instance = new self; // @codeCoverageIgnore
         }
 
         return self::$instance;
