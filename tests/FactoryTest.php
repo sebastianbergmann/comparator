@@ -25,45 +25,45 @@ final class FactoryTest extends TestCase
         $tmpfile = \tmpfile();
 
         return [
-            [null, null, 'SebastianBergmann\\Comparator\\ScalarComparator'],
-            [null, true, 'SebastianBergmann\\Comparator\\ScalarComparator'],
-            [true, null, 'SebastianBergmann\\Comparator\\ScalarComparator'],
-            [true, true, 'SebastianBergmann\\Comparator\\ScalarComparator'],
-            [false, false, 'SebastianBergmann\\Comparator\\ScalarComparator'],
-            [true, false, 'SebastianBergmann\\Comparator\\ScalarComparator'],
-            [false, true, 'SebastianBergmann\\Comparator\\ScalarComparator'],
-            ['', '', 'SebastianBergmann\\Comparator\\ScalarComparator'],
-            ['0', '0', 'SebastianBergmann\\Comparator\\ScalarComparator'],
-            ['0', 0, 'SebastianBergmann\\Comparator\\NumericComparator'],
-            [0, '0', 'SebastianBergmann\\Comparator\\NumericComparator'],
-            [0, 0, 'SebastianBergmann\\Comparator\\NumericComparator'],
-            [1.0, 0, 'SebastianBergmann\\Comparator\\DoubleComparator'],
-            [0, 1.0, 'SebastianBergmann\\Comparator\\DoubleComparator'],
-            [1.0, 1.0, 'SebastianBergmann\\Comparator\\DoubleComparator'],
-            [[1], [1], 'SebastianBergmann\\Comparator\\ArrayComparator'],
-            [$tmpfile, $tmpfile, 'SebastianBergmann\\Comparator\\ResourceComparator'],
-            [new \stdClass, new \stdClass, 'SebastianBergmann\\Comparator\\ObjectComparator'],
-            [new \DateTime, new \DateTime, 'SebastianBergmann\\Comparator\\DateTimeComparator'],
-            [new \SplObjectStorage, new \SplObjectStorage, 'SebastianBergmann\\Comparator\\SplObjectStorageComparator'],
-            [new \Exception, new \Exception, 'SebastianBergmann\\Comparator\\ExceptionComparator'],
-            [new \DOMDocument, new \DOMDocument, 'SebastianBergmann\\Comparator\\DOMNodeComparator'],
+            [null, null, ScalarComparator::class],
+            [null, true, ScalarComparator::class],
+            [true, null, ScalarComparator::class],
+            [true, true, ScalarComparator::class],
+            [false, false, ScalarComparator::class],
+            [true, false, ScalarComparator::class],
+            [false, true, ScalarComparator::class],
+            ['', '', ScalarComparator::class],
+            ['0', '0', ScalarComparator::class],
+            ['0', 0, NumericComparator::class],
+            [0, '0', NumericComparator::class],
+            [0, 0, NumericComparator::class],
+            [1.0, 0, DoubleComparator::class],
+            [0, 1.0, DoubleComparator::class],
+            [1.0, 1.0, DoubleComparator::class],
+            [[1], [1], ArrayComparator::class],
+            [$tmpfile, $tmpfile, ResourceComparator::class],
+            [new \stdClass, new \stdClass, ObjectComparator::class],
+            [new \DateTime, new \DateTime, DateTimeComparator::class],
+            [new \SplObjectStorage, new \SplObjectStorage, SplObjectStorageComparator::class],
+            [new \Exception, new \Exception, ExceptionComparator::class],
+            [new \DOMDocument, new \DOMDocument, DOMNodeComparator::class],
             // mixed types
-            [$tmpfile, [1], 'SebastianBergmann\\Comparator\\TypeComparator'],
-            [[1], $tmpfile, 'SebastianBergmann\\Comparator\\TypeComparator'],
-            [$tmpfile, '1', 'SebastianBergmann\\Comparator\\TypeComparator'],
-            ['1', $tmpfile, 'SebastianBergmann\\Comparator\\TypeComparator'],
-            [$tmpfile, new \stdClass, 'SebastianBergmann\\Comparator\\TypeComparator'],
-            [new \stdClass, $tmpfile, 'SebastianBergmann\\Comparator\\TypeComparator'],
-            [new \stdClass, [1], 'SebastianBergmann\\Comparator\\TypeComparator'],
-            [[1], new \stdClass, 'SebastianBergmann\\Comparator\\TypeComparator'],
-            [new \stdClass, '1', 'SebastianBergmann\\Comparator\\TypeComparator'],
-            ['1', new \stdClass, 'SebastianBergmann\\Comparator\\TypeComparator'],
-            [new ClassWithToString, '1', 'SebastianBergmann\\Comparator\\ScalarComparator'],
-            ['1', new ClassWithToString, 'SebastianBergmann\\Comparator\\ScalarComparator'],
-            [1.0, new \stdClass, 'SebastianBergmann\\Comparator\\TypeComparator'],
-            [new \stdClass, 1.0, 'SebastianBergmann\\Comparator\\TypeComparator'],
-            [1.0, [1], 'SebastianBergmann\\Comparator\\TypeComparator'],
-            [[1], 1.0, 'SebastianBergmann\\Comparator\\TypeComparator'],
+            [$tmpfile, [1], TypeComparator::class],
+            [[1], $tmpfile, TypeComparator::class],
+            [$tmpfile, '1', TypeComparator::class],
+            ['1', $tmpfile, TypeComparator::class],
+            [$tmpfile, new \stdClass, TypeComparator::class],
+            [new \stdClass, $tmpfile, TypeComparator::class],
+            [new \stdClass, [1], TypeComparator::class],
+            [[1], new \stdClass, TypeComparator::class],
+            [new \stdClass, '1', TypeComparator::class],
+            ['1', new \stdClass, TypeComparator::class],
+            [new ClassWithToString, '1', ScalarComparator::class],
+            ['1', new ClassWithToString, ScalarComparator::class],
+            [1.0, new \stdClass, TypeComparator::class],
+            [new \stdClass, 1.0, TypeComparator::class],
+            [1.0, [1], TypeComparator::class],
+            [[1], 1.0, TypeComparator::class],
         ];
     }
 
@@ -86,7 +86,7 @@ final class FactoryTest extends TestCase
 
         $a        = new TestClass;
         $b        = new TestClass;
-        $expected = 'SebastianBergmann\\Comparator\\TestClassComparator';
+        $expected = TestClassComparator::class;
         $actual   = $factory->getComparatorFor($a, $b);
 
         $factory->unregister($comparator);
@@ -103,7 +103,7 @@ final class FactoryTest extends TestCase
 
         $a        = new TestClass;
         $b        = new TestClass;
-        $expected = 'SebastianBergmann\\Comparator\\ObjectComparator';
+        $expected = ObjectComparator::class;
         $actual   = $factory->getComparatorFor($a, $b);
 
         $this->assertInstanceOf($expected, $actual);
