@@ -109,6 +109,22 @@ final class FactoryTest extends TestCase
         $this->assertInstanceOf($expected, $actual);
     }
 
+    public function testCustomComparatorsCanBeReset(): void
+    {
+        $comparator = new TestClassComparator;
+
+        $factory = new Factory;
+        $factory->register($comparator);
+        $factory->reset();
+
+        $a        = new TestClass;
+        $b        = new TestClass;
+        $expected = ObjectComparator::class;
+        $actual   = $factory->getComparatorFor($a, $b);
+
+        $this->assertInstanceOf($expected, $actual);
+    }
+
     public function testIsSingleton(): void
     {
         $f = Factory::getInstance();
