@@ -84,6 +84,14 @@ final class DOMNodeComparatorTest extends TestCase
                 $this->createDOMDocument("<a x='' a=''/>"),
                 $this->createDOMDocument("<a a='' x=''/>"),
             ],
+            [
+                $this->createDOMDocument('<root>Тест кириллицы</root>'),
+                $this->createDOMDocument('<root>Тест кириллицы</root>'),
+            ],
+            [
+                $this->createDOMDocument('<root>Тест кириллицы</root>'),
+                $this->createDOMDocument('<root>&#x422;&#x435;&#x441;&#x442; &#x43A;&#x438;&#x440;&#x438;&#x43B;&#x43B;&#x438;&#x446;&#x44B;</root>'),
+            ],
         ];
     }
 
@@ -167,6 +175,23 @@ final class DOMNodeComparatorTest extends TestCase
         $this->expectExceptionMessage('Failed asserting that two DOM');
 
         $this->comparator->assertEquals($expected, $actual);
+    }
+
+    public function testCyrillicText(): void
+    {
+        try {
+            $this->comparator->assertEquals(
+                $this->createDOMDocument('<root>Тест кириллицы</root>'),
+                $this->createDOMDocument('<root>Тест кириллицы 1</root>'),
+            );
+        } catch (ComparisonFailure $exception) {
+            self::assertStringContainsString('Тест кириллицы', $exception->getExpectedAsString());
+            self::assertStringContainsString('Тест кириллицы', $exception->getActualAsString());
+
+            return;
+        }
+
+        self::fail('Should not happen');
     }
 
     private function createDOMDocument($content)
