@@ -61,6 +61,7 @@ final class NumericComparatorTest extends TestCase
             [02471, 1337],
             [1337, 1338, 1],
             ['1337', 1340, 5],
+            [INF, INF],
         ];
     }
 
