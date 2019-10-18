@@ -59,17 +59,25 @@ class Factory
      */
     public function getComparatorFor($expected, $actual)
     {
-        foreach ($this->customComparators as $comparator) {
-            if ($comparator->accepts($expected, $actual)) {
-                return $comparator;
+        $comparator = null;
+
+        foreach ($this->customComparators as $custom_comparator) {
+            if ($custom_comparator->accepts($expected, $actual)) {
+                $comparator = $custom_comparator;
+                break;
             }
         }
 
-        foreach ($this->defaultComparators as $comparator) {
-            if ($comparator->accepts($expected, $actual)) {
-                return $comparator;
+        if ($comparator === null) {
+            foreach ($this->defaultComparators as $default_comparator) {
+                if ($default_comparator->accepts($expected, $actual)) {
+                    $comparator = $default_comparator;
+                    break;
+                }
             }
         }
+
+        return $comparator;
     }
 
     /**
