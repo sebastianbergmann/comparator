@@ -46,6 +46,7 @@ final class ComparisonFailureTest extends TestCase
 -A
 +B
 ';
+        $diff = preg_replace('/\R/', "\n", $diff);
         $this->assertSame($diff, $failure->getDiff());
         $this->assertSame($message . $diff, $failure->toString());
     }
