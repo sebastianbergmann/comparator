@@ -127,7 +127,8 @@ final class FactoryTest extends TestCase
 
     public function testIsSingleton(): void
     {
-        $f = Factory::getInstance();
-        $this->assertSame($f, Factory::getInstance());
+        FactorySeam::unsetInstance();
+        $f = FactorySeam::getInstance();
+        $this->assertSame($f, FactorySeam::getInstance());
     }
 }
