@@ -40,7 +40,7 @@ class ResourceComparator extends Comparator
      */
     public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false)
     {
-        if ($actual != $expected) {
+        if ($this->asString($actual) !== $this->asString($expected)) {
             throw new ComparisonFailure(
                 $expected,
                 $actual,
@@ -48,5 +48,30 @@ class ResourceComparator extends Comparator
                 $this->exporter->export($actual)
             );
         }
+    }
+
+    private function asString($resource)
+    {
+        if ('stream' !== \get_resource_type($resource)) {
+            return (string) $resource;
+        }
+
+        $metaData = \stream_get_meta_data($resource);
+
+        if (!\preg_match('(a\+|c\+|r|w\+|x\+)', $metaData['mode'])) {
+            return (string) $resource;
+        }
+
+        $position = \ftell($resource);
+        \rewind($resource);
+
+        $context = \hash_init('md5');
+        \hash_update_stream($context, $resource);
+
+        if (\is_int($position)) {
+            \fseek($resource, $position);
+        }
+
+        return \hash_final($context);
     }
 }
