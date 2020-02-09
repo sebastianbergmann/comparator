@@ -42,7 +42,7 @@ class DOMNodeComparator extends ObjectComparator
      *
      * @throws ComparisonFailure
      */
-    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = [])
+    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = []): void
     {
         $expectedAsString = $this->nodeToText($expected, true, $ignoreCase);
         $actualAsString   = $this->nodeToText($actual, true, $ignoreCase);

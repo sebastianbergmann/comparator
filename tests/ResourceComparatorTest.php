@@ -38,7 +38,7 @@ final class ResourceComparatorTest extends TestCase
         return [
             [$tmpfile1, $tmpfile1],
             [$tmpfile2, $tmpfile2],
-            [$tmpfile1, $tmpfile2]
+            [$tmpfile1, $tmpfile2],
         ];
     }
 
@@ -49,7 +49,7 @@ final class ResourceComparatorTest extends TestCase
         return [
             [$tmpfile1, null],
             [null, $tmpfile1],
-            [null, null]
+            [null, null],
         ];
     }
 
@@ -60,7 +60,7 @@ final class ResourceComparatorTest extends TestCase
 
         return [
             [$tmpfile1, $tmpfile1],
-            [$tmpfile2, $tmpfile2]
+            [$tmpfile2, $tmpfile2],
         ];
     }
 
@@ -71,7 +71,7 @@ final class ResourceComparatorTest extends TestCase
 
         return [
             [$tmpfile1, $tmpfile2],
-            [$tmpfile2, $tmpfile1]
+            [$tmpfile2, $tmpfile1],
         ];
     }
 
@@ -81,7 +81,7 @@ final class ResourceComparatorTest extends TestCase
     public function testAcceptsSucceeds($expected, $actual): void
     {
         $this->assertTrue(
-          $this->comparator->accepts($expected, $actual)
+            $this->comparator->accepts($expected, $actual)
         );
     }
 
@@ -91,7 +91,7 @@ final class ResourceComparatorTest extends TestCase
     public function testAcceptsFails($expected, $actual): void
     {
         $this->assertFalse(
-          $this->comparator->accepts($expected, $actual)
+            $this->comparator->accepts($expected, $actual)
         );
     }
 

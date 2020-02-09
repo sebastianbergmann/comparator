@@ -36,7 +36,7 @@ final class ArrayComparatorTest extends TestCase
         return [
             [[], null],
             [null, []],
-            [null, null]
+            [null, null],
         ];
     }
 
@@ -45,32 +45,32 @@ final class ArrayComparatorTest extends TestCase
         return [
             [
                 ['a' => 1, 'b' => 2],
-                ['b' => 2, 'a' => 1]
+                ['b' => 2, 'a' => 1],
             ],
             [
                 [1],
-                ['1']
+                ['1'],
             ],
             [
                 [3, 2, 1],
                 [2, 3, 1],
                 0,
-                true
+                true,
             ],
             [
                 [2.3],
                 [2.5],
-                0.5
+                0.5,
             ],
             [
                 [[2.3]],
                 [[2.5]],
-                0.5
+                0.5,
             ],
             [
                 [new Struct(2.3)],
                 [new Struct(2.5)],
-                0.5
+                0.5,
             ],
         ];
     }
@@ -80,46 +80,46 @@ final class ArrayComparatorTest extends TestCase
         return [
             [
                 [],
-                [0 => 1]
+                [0 => 1],
             ],
             [
                 [0 => 1],
-                []
+                [],
             ],
             [
                 [0 => null],
-                []
+                [],
             ],
             [
                 [0 => 1, 1 => 2],
-                [0 => 1, 1 => 3]
+                [0 => 1, 1 => 3],
             ],
             [
                 ['a', 'b' => [1, 2]],
-                ['a', 'b' => [2, 1]]
+                ['a', 'b' => [2, 1]],
             ],
             [
                 [2.3],
                 [4.2],
-                0.5
+                0.5,
             ],
             [
                 [[2.3]],
                 [[4.2]],
-                0.5
+                0.5,
             ],
             [
                 [new Struct(2.3)],
                 [new Struct(4.2)],
-                0.5
-            ]
+                0.5,
+            ],
         ];
     }
 
     public function testAcceptsSucceeds(): void
     {
         $this->assertTrue(
-          $this->comparator->accepts([], [])
+            $this->comparator->accepts([], [])
         );
     }
 
@@ -129,7 +129,7 @@ final class ArrayComparatorTest extends TestCase
     public function testAcceptsFails($expected, $actual): void
     {
         $this->assertFalse(
-          $this->comparator->accepts($expected, $actual)
+            $this->comparator->accepts($expected, $actual)
         );
     }
 

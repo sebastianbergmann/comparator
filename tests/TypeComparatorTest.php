@@ -38,7 +38,7 @@ final class TypeComparatorTest extends TestCase
             [false, [1]],
             [null, new stdClass],
             [1.0, 5],
-            ['', '']
+            ['', ''],
         ];
     }
 
@@ -54,7 +54,7 @@ final class TypeComparatorTest extends TestCase
             [1.0, 2.0],
             ['hello', 'world'],
             ['', ''],
-            [[], [1, 2, 3]]
+            [[], [1, 2, 3]],
         ];
     }
 
@@ -65,7 +65,7 @@ final class TypeComparatorTest extends TestCase
             [null, false],
             [1.0, 0],
             [new stdClass, []],
-            ['1', 1]
+            ['1', 1],
         ];
     }
 
@@ -75,7 +75,7 @@ final class TypeComparatorTest extends TestCase
     public function testAcceptsSucceeds($expected, $actual): void
     {
         $this->assertTrue(
-          $this->comparator->accepts($expected, $actual)
+            $this->comparator->accepts($expected, $actual)
         );
     }
 

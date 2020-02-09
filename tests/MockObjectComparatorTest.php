@@ -40,7 +40,7 @@ final class MockObjectComparatorTest extends TestCase
         return [
             [$testmock, $testmock],
             [$stdmock, $stdmock],
-            [$stdmock, $testmock]
+            [$stdmock, $testmock],
         ];
     }
 
@@ -51,7 +51,7 @@ final class MockObjectComparatorTest extends TestCase
         return [
             [$stdmock, null],
             [null, $stdmock],
-            [null, null]
+            [null, null],
         ];
     }
 
@@ -76,8 +76,8 @@ final class MockObjectComparatorTest extends TestCase
             [
                 $this->getMockBuilder(Struct::class)->setMethods(null)->setConstructorArgs([2.3])->getMock(),
                 $this->getMockBuilder(Struct::class)->setMethods(null)->setConstructorArgs([2.5])->getMock(),
-                0.5
-            ]
+                0.5,
+            ],
         ];
     }
 
@@ -106,7 +106,7 @@ final class MockObjectComparatorTest extends TestCase
             [
                 $this->getMockBuilder(SampleClass::class)->setMethods(null)->setConstructorArgs([4, 8, 15])->getMock(),
                 $this->getMockBuilder(SampleClass::class)->setMethods(null)->setConstructorArgs([16, 23, 42])->getMock(),
-                $equalMessage
+                $equalMessage,
             ],
             [$object1, $object2, $equalMessage],
             [$book1, $book2, $equalMessage],
@@ -115,8 +115,8 @@ final class MockObjectComparatorTest extends TestCase
                 $this->getMockBuilder(Struct::class)->setMethods(null)->setConstructorArgs([2.3])->getMock(),
                 $this->getMockBuilder(Struct::class)->setMethods(null)->setConstructorArgs([4.2])->getMock(),
                 $equalMessage,
-                0.5
-            ]
+                0.5,
+            ],
         ];
     }
 
@@ -126,7 +126,7 @@ final class MockObjectComparatorTest extends TestCase
     public function testAcceptsSucceeds($expected, $actual): void
     {
         $this->assertTrue(
-          $this->comparator->accepts($expected, $actual)
+            $this->comparator->accepts($expected, $actual)
         );
     }
 
@@ -136,7 +136,7 @@ final class MockObjectComparatorTest extends TestCase
     public function testAcceptsFails($expected, $actual): void
     {
         $this->assertFalse(
-          $this->comparator->accepts($expected, $actual)
+            $this->comparator->accepts($expected, $actual)
         );
     }
 

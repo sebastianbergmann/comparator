@@ -31,7 +31,7 @@ abstract class Comparator
         $this->exporter = new Exporter;
     }
 
-    public function setFactory(Factory $factory)
+    public function setFactory(Factory $factory): void
     {
         $this->factory = $factory;
     }

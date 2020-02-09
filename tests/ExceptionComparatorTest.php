@@ -38,7 +38,7 @@ final class ExceptionComparatorTest extends TestCase
         return [
             [new Exception, new Exception],
             [new RuntimeException, new RuntimeException],
-            [new Exception, new RuntimeException]
+            [new Exception, new RuntimeException],
         ];
     }
 
@@ -47,7 +47,7 @@ final class ExceptionComparatorTest extends TestCase
         return [
             [new Exception, null],
             [null, new Exception],
-            [null, null]
+            [null, null],
         ];
     }
 
@@ -63,7 +63,7 @@ final class ExceptionComparatorTest extends TestCase
             [$exception1, $exception1],
             [$exception1, $exception2],
             [$exception3, $exception3],
-            [$exception3, $exception4]
+            [$exception3, $exception4],
         ];
     }
 
@@ -84,7 +84,7 @@ final class ExceptionComparatorTest extends TestCase
             [$exception1, $exception3, $equalMessage],
             [$exception1, $exception4, $typeMessage],
             [$exception2, $exception3, $equalMessage],
-            [$exception4, $exception5, $equalMessage]
+            [$exception4, $exception5, $equalMessage],
         ];
     }
 
@@ -94,7 +94,7 @@ final class ExceptionComparatorTest extends TestCase
     public function testAcceptsSucceeds($expected, $actual): void
     {
         $this->assertTrue(
-          $this->comparator->accepts($expected, $actual)
+            $this->comparator->accepts($expected, $actual)
         );
     }
 
@@ -104,7 +104,7 @@ final class ExceptionComparatorTest extends TestCase
     public function testAcceptsFails($expected, $actual): void
     {
         $this->assertFalse(
-          $this->comparator->accepts($expected, $actual)
+            $this->comparator->accepts($expected, $actual)
         );
     }
 
