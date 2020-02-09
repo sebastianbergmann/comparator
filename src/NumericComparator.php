@@ -44,12 +44,12 @@ class NumericComparator extends ScalarComparator
      */
     public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false): void
     {
-        if (\is_infinite($actual) && \is_infinite($expected)) {
+        if ($this->isInfinite($actual) && $this->isInfinite($expected)) {
             return;
         }
 
-        if ((\is_infinite($actual) xor \is_infinite($expected)) ||
-            (\is_nan($actual) || \is_nan($expected)) ||
+        if (($this->isInfinite($actual) xor $this->isInfinite($expected)) ||
+            ($this->isNan($actual) || $this->isNan($expected)) ||
             \abs($actual - $expected) > $delta) {
             throw new ComparisonFailure(
                 $expected,
@@ -64,5 +64,15 @@ class NumericComparator extends ScalarComparator
                 )
             );
         }
+    }
+
+    private function isInfinite($value): bool
+    {
+        return \is_float($value) && \is_infinite($value);
+    }
+
+    private function isNan($value): bool
+    {
+        return \is_float($value) && \is_nan($value);
     }
 }
