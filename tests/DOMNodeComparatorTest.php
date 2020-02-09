@@ -41,7 +41,7 @@ final class DOMNodeComparatorTest extends TestCase
             [$document, $document],
             [$node, $node],
             [$document, $node],
-            [$node, $document]
+            [$node, $document],
         ];
     }
 
@@ -52,7 +52,7 @@ final class DOMNodeComparatorTest extends TestCase
         return [
             [$document, null],
             [null, $document],
-            [null, null]
+            [null, null],
         ];
     }
 
@@ -61,24 +61,24 @@ final class DOMNodeComparatorTest extends TestCase
         return [
             [
                 $this->createDOMDocument('<root></root>'),
-                $this->createDOMDocument('<root/>')
+                $this->createDOMDocument('<root/>'),
             ],
             [
                 $this->createDOMDocument('<root attr="bar"></root>'),
-                $this->createDOMDocument('<root attr="bar"/>')
+                $this->createDOMDocument('<root attr="bar"/>'),
             ],
             [
                 $this->createDOMDocument('<root><foo attr="bar"></foo></root>'),
-                $this->createDOMDocument('<root><foo attr="bar"/></root>')
+                $this->createDOMDocument('<root><foo attr="bar"/></root>'),
             ],
             [
                 $this->createDOMDocument("<root>\n  <child/>\n</root>"),
-                $this->createDOMDocument('<root><child/></root>')
+                $this->createDOMDocument('<root><child/></root>'),
             ],
             [
                 $this->createDOMDocument('<Root></Root>'),
                 $this->createDOMDocument('<root></root>'),
-                $ignoreCase = true
+                $ignoreCase = true,
             ],
             [
                 $this->createDOMDocument("<a x='' a=''/>"),
@@ -92,32 +92,32 @@ final class DOMNodeComparatorTest extends TestCase
         return [
             [
                 $this->createDOMDocument('<root></root>'),
-                $this->createDOMDocument('<bar/>')
+                $this->createDOMDocument('<bar/>'),
             ],
             [
                 $this->createDOMDocument('<foo attr1="bar"/>'),
-                $this->createDOMDocument('<foo attr1="foobar"/>')
+                $this->createDOMDocument('<foo attr1="foobar"/>'),
             ],
             [
                 $this->createDOMDocument('<foo> bar </foo>'),
-                $this->createDOMDocument('<foo />')
+                $this->createDOMDocument('<foo />'),
             ],
             [
                 $this->createDOMDocument('<foo xmlns="urn:myns:bar"/>'),
-                $this->createDOMDocument('<foo xmlns="urn:notmyns:bar"/>')
+                $this->createDOMDocument('<foo xmlns="urn:notmyns:bar"/>'),
             ],
             [
                 $this->createDOMDocument('<foo> bar </foo>'),
-                $this->createDOMDocument('<foo> bir </foo>')
+                $this->createDOMDocument('<foo> bir </foo>'),
             ],
             [
                 $this->createDOMDocument('<Root></Root>'),
-                $this->createDOMDocument('<root></root>')
+                $this->createDOMDocument('<root></root>'),
             ],
             [
                 $this->createDOMDocument('<root> bar </root>'),
-                $this->createDOMDocument('<root> BAR </root>')
-            ]
+                $this->createDOMDocument('<root> BAR </root>'),
+            ],
         ];
     }
 
@@ -127,7 +127,7 @@ final class DOMNodeComparatorTest extends TestCase
     public function testAcceptsSucceeds($expected, $actual): void
     {
         $this->assertTrue(
-          $this->comparator->accepts($expected, $actual)
+            $this->comparator->accepts($expected, $actual)
         );
     }
 
@@ -137,7 +137,7 @@ final class DOMNodeComparatorTest extends TestCase
     public function testAcceptsFails($expected, $actual): void
     {
         $this->assertFalse(
-          $this->comparator->accepts($expected, $actual)
+            $this->comparator->accepts($expected, $actual)
         );
     }
 

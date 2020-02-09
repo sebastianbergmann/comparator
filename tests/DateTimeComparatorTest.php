@@ -40,7 +40,7 @@ final class DateTimeComparatorTest extends TestCase
         return [
             [$datetime, null],
             [null, $datetime],
-            [null, null]
+            [null, null],
         ];
     }
 
@@ -50,52 +50,52 @@ final class DateTimeComparatorTest extends TestCase
             [
                 new DateTime('2013-03-29 04:13:35', new DateTimeZone('America/New_York')),
                 new DateTime('2013-03-29 04:13:25', new DateTimeZone('America/New_York')),
-                10
+                10,
             ],
             [
                 new DateTime('2013-03-29 04:13:35', new DateTimeZone('America/New_York')),
                 new DateTime('2013-03-29 04:14:40', new DateTimeZone('America/New_York')),
-                65
+                65,
             ],
             [
                 new DateTime('2013-03-29', new DateTimeZone('America/New_York')),
-                new DateTime('2013-03-29', new DateTimeZone('America/New_York'))
+                new DateTime('2013-03-29', new DateTimeZone('America/New_York')),
             ],
             [
                 new DateTime('2013-03-29 04:13:35', new DateTimeZone('America/New_York')),
-                new DateTime('2013-03-29 03:13:35', new DateTimeZone('America/Chicago'))
+                new DateTime('2013-03-29 03:13:35', new DateTimeZone('America/Chicago')),
             ],
             [
                 new DateTime('2013-03-29 04:13:35', new DateTimeZone('America/New_York')),
                 new DateTime('2013-03-29 03:13:49', new DateTimeZone('America/Chicago')),
-                15
+                15,
             ],
             [
                 new DateTime('2013-03-30', new DateTimeZone('America/New_York')),
-                new DateTime('2013-03-29 23:00:00', new DateTimeZone('America/Chicago'))
+                new DateTime('2013-03-29 23:00:00', new DateTimeZone('America/Chicago')),
             ],
             [
                 new DateTime('2013-03-30', new DateTimeZone('America/New_York')),
                 new DateTime('2013-03-29 23:01:30', new DateTimeZone('America/Chicago')),
-                100
+                100,
             ],
             [
                 new DateTime('@1364616000'),
-                new DateTime('2013-03-29 23:00:00', new DateTimeZone('America/Chicago'))
+                new DateTime('2013-03-29 23:00:00', new DateTimeZone('America/Chicago')),
             ],
             [
                 new DateTime('2013-03-29T05:13:35-0500'),
-                new DateTime('2013-03-29T04:13:35-0600')
+                new DateTime('2013-03-29T04:13:35-0600'),
             ],
             [
                 new DateTimeImmutable('2013-03-30', new DateTimeZone('America/New_York')),
                 new DateTimeImmutable('2013-03-29 23:01:30', new DateTimeZone('America/Chicago')),
-                100
+                100,
             ],
             [
                 new DateTimeImmutable('2013-03-30 12:00:00', new DateTimeZone('UTC')),
                 new DateTimeImmutable('2013-03-30 12:00:00.5', new DateTimeZone('UTC')),
-                0.5
+                0.5,
             ],
         ];
     }
@@ -105,26 +105,26 @@ final class DateTimeComparatorTest extends TestCase
         return [
             [
                 new DateTime('2013-03-29 04:13:35', new DateTimeZone('America/New_York')),
-                new DateTime('2013-03-29 03:13:35', new DateTimeZone('America/New_York'))
+                new DateTime('2013-03-29 03:13:35', new DateTimeZone('America/New_York')),
             ],
             [
                 new DateTime('2013-03-29 04:13:35', new DateTimeZone('America/New_York')),
                 new DateTime('2013-03-29 03:13:35', new DateTimeZone('America/New_York')),
-                3500
+                3500,
             ],
             [
                 new DateTime('2013-03-29 04:13:35', new DateTimeZone('America/New_York')),
                 new DateTime('2013-03-29 05:13:35', new DateTimeZone('America/New_York')),
-                3500
-            ],
-            [
-                new DateTime('2013-03-29', new DateTimeZone('America/New_York')),
-                new DateTime('2013-03-30', new DateTimeZone('America/New_York'))
+                3500,
             ],
             [
                 new DateTime('2013-03-29', new DateTimeZone('America/New_York')),
                 new DateTime('2013-03-30', new DateTimeZone('America/New_York')),
-                43200
+            ],
+            [
+                new DateTime('2013-03-29', new DateTimeZone('America/New_York')),
+                new DateTime('2013-03-30', new DateTimeZone('America/New_York')),
+                43200,
             ],
             [
                 new DateTime('2013-03-29 04:13:35', new DateTimeZone('America/New_York')),
@@ -133,19 +133,19 @@ final class DateTimeComparatorTest extends TestCase
             [
                 new DateTime('2013-03-29 04:13:35', new DateTimeZone('America/New_York')),
                 new DateTime('2013-03-29 04:13:35', new DateTimeZone('America/Chicago')),
-                3500
+                3500,
             ],
             [
                 new DateTime('2013-03-30', new DateTimeZone('America/New_York')),
-                new DateTime('2013-03-30', new DateTimeZone('America/Chicago'))
+                new DateTime('2013-03-30', new DateTimeZone('America/Chicago')),
             ],
             [
                 new DateTime('2013-03-29T05:13:35-0600'),
-                new DateTime('2013-03-29T04:13:35-0600')
+                new DateTime('2013-03-29T04:13:35-0600'),
             ],
             [
                 new DateTime('2013-03-29T05:13:35-0600'),
-                new DateTime('2013-03-29T05:13:35-0500')
+                new DateTime('2013-03-29T05:13:35-0500'),
             ],
         ];
     }

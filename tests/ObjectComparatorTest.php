@@ -37,7 +37,7 @@ final class ObjectComparatorTest extends TestCase
         return [
             [new TestClass, new TestClass],
             [new stdClass, new stdClass],
-            [new stdClass, new TestClass]
+            [new stdClass, new TestClass],
         ];
     }
 
@@ -46,7 +46,7 @@ final class ObjectComparatorTest extends TestCase
         return [
             [new stdClass, null],
             [null, new stdClass],
-            [null, null]
+            [null, null],
         ];
     }
 
@@ -68,7 +68,7 @@ final class ObjectComparatorTest extends TestCase
             [$object1, $object2],
             [$book1, $book1],
             [$book1, $book2],
-            [new Struct(2.3), new Struct(2.5), 0.5]
+            [new Struct(2.3), new Struct(2.5), 0.5],
         ];
     }
 
@@ -98,7 +98,7 @@ final class ObjectComparatorTest extends TestCase
             [$object1, $object2, $equalMessage],
             [$book1, $book2, $equalMessage],
             [$book3, $book4, $typeMessage],
-            [new Struct(2.3), new Struct(4.2), $equalMessage, 0.5]
+            [new Struct(2.3), new Struct(4.2), $equalMessage, 0.5],
         ];
     }
 
@@ -108,7 +108,7 @@ final class ObjectComparatorTest extends TestCase
     public function testAcceptsSucceeds($expected, $actual): void
     {
         $this->assertTrue(
-          $this->comparator->accepts($expected, $actual)
+            $this->comparator->accepts($expected, $actual)
         );
     }
 
@@ -118,7 +118,7 @@ final class ObjectComparatorTest extends TestCase
     public function testAcceptsFails($expected, $actual): void
     {
         $this->assertFalse(
-          $this->comparator->accepts($expected, $actual)
+            $this->comparator->accepts($expected, $actual)
         );
     }
 

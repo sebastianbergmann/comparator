@@ -19,7 +19,7 @@ class DoubleComparator extends NumericComparator
      *
      * @var float
      */
-    const EPSILON = 0.0000000001;
+    public const EPSILON = 0.0000000001;
 
     /**
      * Returns whether the comparator can compare two values.
@@ -45,7 +45,7 @@ class DoubleComparator extends NumericComparator
      *
      * @throws ComparisonFailure
      */
-    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false)
+    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false): void
     {
         if ($delta == 0) {
             $delta = self::EPSILON;
