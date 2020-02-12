@@ -9,8 +9,10 @@
  */
 namespace SebastianBergmann\Comparator;
 
+use PHPUnit\Framework\MockObject\MockObject;
+
 /**
- * Compares PHPUnit_Framework_MockObject_MockObject instances for equality.
+ * Compares PHPUnit\Framework\MockObject\MockObject instances for equality.
  */
 class MockObjectComparator extends ObjectComparator
 {
@@ -24,8 +26,7 @@ class MockObjectComparator extends ObjectComparator
      */
     public function accepts($expected, $actual)
     {
-        return ($expected instanceof \PHPUnit_Framework_MockObject_MockObject || $expected instanceof \PHPUnit\Framework\MockObject\MockObject) &&
-               ($actual instanceof \PHPUnit_Framework_MockObject_MockObject || $actual instanceof \PHPUnit\Framework\MockObject\MockObject);
+        return ($expected instanceof MockObject && $actual instanceof MockObject);
     }
 
     /**

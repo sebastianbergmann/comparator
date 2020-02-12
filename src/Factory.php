@@ -70,6 +70,8 @@ class Factory
                 return $comparator;
             }
         }
+
+        throw new RuntimeException('No suitable Comparator implementation found');
     }
 
     /**
