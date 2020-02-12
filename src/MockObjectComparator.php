@@ -26,7 +26,7 @@ class MockObjectComparator extends ObjectComparator
      */
     public function accepts($expected, $actual)
     {
-        return ($expected instanceof MockObject && $actual instanceof MockObject);
+        return $expected instanceof MockObject && $actual instanceof MockObject;
     }
 
     /**
