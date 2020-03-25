@@ -137,7 +137,7 @@ final class MockObjectComparatorTest extends TestCase
         $book1->author          = $this->getMockBuilder(Author::class)->setMethods(null)->setConstructorArgs(['Terry Pratchett'])->getMock();
         $book1->author->books[] = $book1;
         $book2                  = $this->getMockBuilder(Book::class)->setMethods(null)->getMock();
-        $book1->author          = $this->getMockBuilder(Author::class)->setMethods(null)->setConstructorArgs(['Terry Pratch'])->getMock();
+        $book2->author          = $this->getMockBuilder(Author::class)->setMethods(null)->setConstructorArgs(['Terry Pratch'])->getMock();
         $book2->author->books[] = $book2;
 
         $book3         = $this->getMockBuilder(Book::class)->setMethods(null)->getMock();
