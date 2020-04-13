@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="3.8.3@389af1bfc739bfdff3f9e3dc7bd6499aee51a831">
+<files psalm-version="3.11.1@8533b866ab1a46e5a69a4692ff57f10529dbfbeb">
   <file src="src/ArrayComparator.php">
     <TooManyArguments occurrences="1">
       <code>assertEquals</code>
     </TooManyArguments>
+  </file>
+  <file src="src/DOMNodeComparator.php">
+    <PossiblyNullPropertyAssignment occurrences="1">
+      <code>$document</code>
+    </PossiblyNullPropertyAssignment>
+    <PossiblyNullReference occurrences="1">
+      <code>normalizeDocument</code>
+    </PossiblyNullReference>
   </file>
   <file src="src/DateTimeComparator.php">
     <UndefinedInterfaceMethod occurrences="1">
