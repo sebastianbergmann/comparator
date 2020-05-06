@@ -93,9 +93,13 @@ final class ObjectComparatorTest extends TestCase
         $object1 = new SampleClass(4, 8, 15);
         $object2 = new SampleClass(16, 23, 42);
 
+        $derivedObject1 = new SampleDerivedClass(4, 8, 15);
+        $derivedObject2 = new SampleDerivedClass(4, 8, 42);
+
         return [
             [new SampleClass(4, 8, 15), new SampleClass(16, 23, 42), $equalMessage],
             [$object1, $object2, $equalMessage],
+            [$derivedObject1, $derivedObject2, $equalMessage],
             [$book1, $book2, $equalMessage],
             [$book3, $book4, $typeMessage],
             [new Struct(2.3), new Struct(4.2), $equalMessage, 0.5],
