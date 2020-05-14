@@ -128,6 +128,7 @@ class Factory
         $this->registerDefaultComparator(new DoubleComparator);
         $this->registerDefaultComparator(new NumericComparator);
         $this->registerDefaultComparator(new ScalarComparator);
+        $this->registerDefaultComparator(new StringComparator);
         $this->registerDefaultComparator(new TypeComparator);
     }
 

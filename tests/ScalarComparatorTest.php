@@ -33,7 +33,6 @@ final class ScalarComparatorTest extends TestCase
     public function acceptsSucceedsProvider()
     {
         return [
-            ['string', 'string'],
             [new ClassWithToString, 'string'],
             ['string', new ClassWithToString],
             ['string', null],
@@ -53,6 +52,7 @@ final class ScalarComparatorTest extends TestCase
     public function acceptsFailsProvider()
     {
         return [
+            ['string', 'string'],
             [[], []],
             ['string', []],
             [new ClassWithToString, new ClassWithToString],
@@ -64,12 +64,9 @@ final class ScalarComparatorTest extends TestCase
     public function assertEqualsSucceedsProvider()
     {
         return [
-            ['string', 'string'],
             [new ClassWithToString, new ClassWithToString],
             ['string representation', new ClassWithToString],
             [new ClassWithToString, 'string representation'],
-            ['string', 'STRING', true],
-            ['STRING', 'string', true],
             ['String Representation', new ClassWithToString, true],
             [new ClassWithToString, 'String Representation', true],
             ['10', 10],
@@ -87,16 +84,9 @@ final class ScalarComparatorTest extends TestCase
 
     public function assertEqualsFailsProvider()
     {
-        $stringException = 'Failed asserting that two strings are equal.';
         $otherException  = 'matches expected';
 
         return [
-            ['string', 'other string', $stringException],
-            ['string', 'STRING', $stringException],
-            ['STRING', 'string', $stringException],
-            ['string', 'other string', $stringException],
-            // https://github.com/sebastianbergmann/phpunit/issues/1023
-            ['9E6666666', '9E7777777', $stringException],
             [new ClassWithToString, 'does not match', $otherException],
             ['does not match', new ClassWithToString, $otherException],
             [0, 'Foobar', $otherException],
@@ -108,11 +98,6 @@ final class ScalarComparatorTest extends TestCase
             [true, false, $otherException],
             [null, true, $otherException],
             [0, true, $otherException],
-            ['0', '0.0', $stringException],
-            ['0.', '0.0', $stringException],
-            ['0e1', '0e2', $stringException],
-            ["\n\n\n0.0", '                   0.', $stringException],
-            ['0.0', '25e-10000', $stringException],
         ];
     }
 

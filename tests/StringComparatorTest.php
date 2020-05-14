@@ -61,13 +61,14 @@ final class StringComparatorTest extends TestCase
     public function assertEqualsFailsProvider()
     {
         $stringException = 'Failed asserting that two strings are equal.';
-        $otherException  = 'matches expected';
 
         return [
             ['string', 'other string', $stringException],
             ['string', 'STRING', $stringException],
             ['STRING', 'string', $stringException],
             ['string', 'other string', $stringException],
+            // https://github.com/sebastianbergmann/phpunit/issues/1023
+            ['9E6666666', '9E7777777', $stringException],
             ['0', '0.0', $stringException],
             ['0.', '0.0', $stringException],
             ['0e1', '0e2', $stringException],
