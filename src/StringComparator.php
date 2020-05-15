@@ -45,6 +45,11 @@ class StringComparator extends Comparator
         $expectedToCompare = $expected;
         $actualToCompare   = $actual;
 
+        if ($canonicalize) {
+            $expectedToCompare = $this->canonicalizeString($expectedToCompare);
+            $actualToCompare   = $this->canonicalizeString($actualToCompare);
+        }
+
         if ($ignoreCase) {
             $expectedToCompare = \strtolower($expectedToCompare);
             $actualToCompare   = \strtolower($actualToCompare);
@@ -60,5 +65,10 @@ class StringComparator extends Comparator
                 'Failed asserting that two strings are equal.'
             );
         }
+    }
+
+    private function canonicalizeString($string)
+    {
+        return \normalizer_normalize($string);
     }
 }

@@ -55,6 +55,8 @@ final class StringComparatorTest extends TestCase
             ['string', 'string'],
             ['string', 'STRING', true],
             ['STRING', 'string', true],
+            ['Camión', 'camión', true],
+            ["\xC3\x85", "\xCC\x8A", false, true],
         ];
     }
 
@@ -98,12 +100,12 @@ final class StringComparatorTest extends TestCase
     /**
      * @dataProvider assertEqualsSucceedsProvider
      */
-    public function testAssertEqualsSucceeds($expected, $actual, $ignoreCase = false): void
+    public function testAssertEqualsSucceeds($expected, $actual, $ignoreCase = false, $canonicalize = false): void
     {
         $exception = null;
 
         try {
-            $this->comparator->assertEquals($expected, $actual, 0.0, false, $ignoreCase);
+            $this->comparator->assertEquals($expected, $actual, 0.0, $canonicalize, $ignoreCase);
         } catch (ComparisonFailure $exception) {
         }
 
