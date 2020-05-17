@@ -69,6 +69,6 @@ class StringComparator extends Comparator
 
     private function canonicalizeString($string)
     {
-        return \normalizer_normalize($string);
+        return \urlencode(\normalizer_normalize($string));
     }
 }
