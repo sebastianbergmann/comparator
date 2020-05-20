@@ -125,4 +125,9 @@ final class StringComparatorTest extends TestCase
 
         $this->comparator->assertEquals($expected, $actual);
     }
+
+    public function testCanonicalizeString(): void
+    {
+        $this->markTestSkipped('Canonicalize not implemented yet');
+    }
 }

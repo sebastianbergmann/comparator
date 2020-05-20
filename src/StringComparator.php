@@ -68,11 +68,13 @@ class StringComparator extends Comparator
     }
 
     /**
+     * Canonicalize string for compare
+     *
      * @param $string
      *
      * @return string
      */
-    private function canonicalizeString($string)
+    public function canonicalizeString($string)
     {
         return $string;
     }
