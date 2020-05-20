@@ -128,6 +128,6 @@ final class StringComparatorTest extends TestCase
 
     public function testCanonicalizeString(): void
     {
-        $this->markTestSkipped('Canonicalize not implemented yet');
+        $this->assertEquals('skip', $this->comparator->canonicalizeString('skip'));
     }
 }
