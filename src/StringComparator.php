@@ -69,6 +69,7 @@ class StringComparator extends Comparator
 
     /**
      * @param $string
+     *
      * @return string
      */
     private function canonicalizeString($string)
