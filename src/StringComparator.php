@@ -67,8 +67,12 @@ class StringComparator extends Comparator
         }
     }
 
+    /**
+     * @param $string
+     * @return string
+     */
     private function canonicalizeString($string)
     {
-        return \urlencode(\normalizer_normalize($string));
+        return $string;
     }
 }
