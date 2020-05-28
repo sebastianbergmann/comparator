@@ -56,7 +56,6 @@ class NumericComparator extends ScalarComparator
                 $actual,
                 '',
                 '',
-                false,
                 \sprintf(
                     'Failed asserting that %s matches expected %s.',
                     $this->exporter->export($actual),

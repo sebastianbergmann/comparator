@@ -47,7 +47,6 @@ class SplObjectStorageComparator extends Comparator
                     $actual,
                     $this->exporter->export($expected),
                     $this->exporter->export($actual),
-                    false,
                     'Failed asserting that two objects are equal.'
                 );
             }
@@ -60,7 +59,6 @@ class SplObjectStorageComparator extends Comparator
                     $actual,
                     $this->exporter->export($expected),
                     $this->exporter->export($actual),
-                    false,
                     'Failed asserting that two objects are equal.'
                 );
             }

@@ -47,7 +47,6 @@ class ObjectComparator extends ArrayComparator
                 $actual,
                 $this->exporter->export($expected),
                 $this->exporter->export($actual),
-                false,
                 \sprintf(
                     '%s is not instance of expected class "%s".',
                     $this->exporter->export($actual),
@@ -84,7 +83,6 @@ class ObjectComparator extends ArrayComparator
                     // replace "Array" with "MyClass object"
                     \substr_replace($e->getExpectedAsString(), \get_class($expected) . ' Object', 0, 5),
                     \substr_replace($e->getActualAsString(), \get_class($actual) . ' Object', 0, 5),
-                    false,
                     'Failed asserting that two objects are equal.'
                 );
             }
