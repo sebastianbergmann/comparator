@@ -6,7 +6,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 ### Fixed
 
-* [#53](https://github.com/sebastianbergmann/comparator/issues/85): Version 4.0.1 breaks backward compatibility
+* [#85](https://github.com/sebastianbergmann/comparator/issues/85): Version 4.0.1 breaks backward compatibility
 
 ## [4.0.1] - 2020-06-15
 
