@@ -2,6 +2,12 @@
 
 All notable changes are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [4.0.2] - 2020-06-15
+
+### Fixed
+
+* [#53](https://github.com/sebastianbergmann/comparator/issues/85): Version 4.0.1 breaks backward compatibility
+
 ## [4.0.1] - 2020-06-15
 
 ### Changed
@@ -62,6 +68,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 * Added `SebastianBergmann\Comparator\Factory::reset()` to unregister all non-default comparators
 * Added support for `phpunit/phpunit-mock-objects` version `^5.0`
 
+[4.0.2]: https://github.com/sebastianbergmann/comparator/compare/4.0.1...4.0.2
 [4.0.1]: https://github.com/sebastianbergmann/comparator/compare/4.0.0...4.0.1
 [4.0.0]: https://github.com/sebastianbergmann/comparator/compare/3.0.2...4.0.0
 [3.0.2]: https://github.com/sebastianbergmann/comparator/compare/3.0.1...3.0.2

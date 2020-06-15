@@ -42,7 +42,7 @@ class NumericComparator extends ScalarComparator
      *
      * @throws ComparisonFailure
      */
-    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false): void
+    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false)/*: void*/
     {
         if ($this->isInfinite($actual) && $this->isInfinite($expected)) {
             return;

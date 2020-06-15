@@ -41,7 +41,7 @@ class DateTimeComparator extends ObjectComparator
      * @throws \Exception
      * @throws ComparisonFailure
      */
-    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = []): void
+    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = [])/*: void*/
     {
         /** @var \DateTimeInterface $expected */
         /** @var \DateTimeInterface $actual */
