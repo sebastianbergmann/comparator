@@ -26,6 +26,11 @@ class ScalarComparator extends Comparator
      */
     public function accepts($expected, $actual)
     {
+        //If both is String then should use StringComparator
+        if (\is_string($expected) && \is_string($actual)) {
+            return false;
+        }
+
         return ((\is_scalar($expected) xor null === $expected) &&
                (\is_scalar($actual) xor null === $actual))
                // allow comparison between strings and objects featuring __toString()
@@ -59,17 +64,6 @@ class ScalarComparator extends Comparator
                 $expectedToCompare = \strtolower($expectedToCompare);
                 $actualToCompare   = \strtolower($actualToCompare);
             }
-        }
-
-        if ($expectedToCompare !== $actualToCompare && \is_string($expected) && \is_string($actual)) {
-            throw new ComparisonFailure(
-                $expected,
-                $actual,
-                $this->exporter->export($expected),
-                $this->exporter->export($actual),
-                false,
-                'Failed asserting that two strings are equal.'
-            );
         }
 
         if ($expectedToCompare != $actualToCompare) {
