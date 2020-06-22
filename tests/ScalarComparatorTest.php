@@ -9,6 +9,7 @@
  */
 namespace SebastianBergmann\Comparator;
 
+use function tmpfile;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -57,7 +58,7 @@ final class ScalarComparatorTest extends TestCase
             ['string', []],
             [new ClassWithToString, new ClassWithToString],
             [false, new ClassWithToString],
-            [\tmpfile(), \tmpfile()],
+            [tmpfile(), tmpfile()],
         ];
     }
 

@@ -9,6 +9,7 @@
  */
 namespace SebastianBergmann\Comparator;
 
+use function acos;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -37,9 +38,9 @@ final class DoubleComparatorTest extends TestCase
             [5.0, 0],
             ['5', 4.5],
             [1.2e3, 7E-10],
-            [3, \acos(8)],
-            [\acos(8), 3],
-            [\acos(8), \acos(8)],
+            [3, acos(8)],
+            [acos(8), 3],
+            [acos(8), acos(8)],
         ];
     }
 
@@ -81,9 +82,9 @@ final class DoubleComparatorTest extends TestCase
             [1.2e3, 1201],
             [2.3, 2.5, 0.2],
             [3, 3.05, 0.04],
-            [3, \acos(8)],
-            [\acos(8), 3],
-            [\acos(8), \acos(8)],
+            [3, acos(8)],
+            [acos(8), 3],
+            [acos(8), acos(8)],
         ];
     }
 

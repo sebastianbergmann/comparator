@@ -9,6 +9,15 @@
  */
 namespace SebastianBergmann\Comparator;
 
+use function abs;
+use function floor;
+use function sprintf;
+use DateInterval;
+use DateTime;
+use DateTimeInterface;
+use DateTimeZone;
+use Exception;
+
 /**
  * Compares DateTimeInterface instances for equality.
  */
@@ -24,8 +33,8 @@ class DateTimeComparator extends ObjectComparator
      */
     public function accepts($expected, $actual)
     {
-        return ($expected instanceof \DateTime || $expected instanceof \DateTimeInterface) &&
-               ($actual instanceof \DateTime || $actual instanceof \DateTimeInterface);
+        return ($expected instanceof DateTime || $expected instanceof DateTimeInterface) &&
+               ($actual instanceof DateTime || $actual instanceof DateTimeInterface);
     }
 
     /**
@@ -38,26 +47,26 @@ class DateTimeComparator extends ObjectComparator
      * @param bool  $ignoreCase   Case is ignored when set to true
      * @param array $processed    List of already processed elements (used to prevent infinite recursion)
      *
-     * @throws \Exception
+     * @throws Exception
      * @throws ComparisonFailure
      */
     public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = [])/*: void*/
     {
-        /** @var \DateTimeInterface $expected */
-        /** @var \DateTimeInterface $actual */
-        $absDelta = \abs($delta);
-        $delta    = new \DateInterval(\sprintf('PT%dS', $absDelta));
-        $delta->f = $absDelta - \floor($absDelta);
+        /** @var DateTimeInterface $expected */
+        /** @var DateTimeInterface $actual */
+        $absDelta = abs($delta);
+        $delta    = new DateInterval(sprintf('PT%dS', $absDelta));
+        $delta->f = $absDelta - floor($absDelta);
 
         $actualClone = (clone $actual)
-            ->setTimezone(new \DateTimeZone('UTC'));
+            ->setTimezone(new DateTimeZone('UTC'));
 
         $expectedLower = (clone $expected)
-            ->setTimezone(new \DateTimeZone('UTC'))
+            ->setTimezone(new DateTimeZone('UTC'))
             ->sub($delta);
 
         $expectedUpper = (clone $expected)
-            ->setTimezone(new \DateTimeZone('UTC'))
+            ->setTimezone(new DateTimeZone('UTC'))
             ->add($delta);
 
         if ($actualClone < $expectedLower || $actualClone > $expectedUpper) {
@@ -77,7 +86,7 @@ class DateTimeComparator extends ObjectComparator
      * 'Invalid DateTimeInterface object' if the provided DateTimeInterface was not properly
      * initialized.
      */
-    private function dateTimeToString(\DateTimeInterface $datetime): string
+    private function dateTimeToString(DateTimeInterface $datetime): string
     {
         $string = $datetime->format('Y-m-d\TH:i:s.uO');
 

@@ -9,7 +9,13 @@
  */
 namespace SebastianBergmann\Comparator;
 
+use function tmpfile;
+use DateTime;
+use DOMDocument;
+use Exception;
 use PHPUnit\Framework\TestCase;
+use SplObjectStorage;
+use stdClass;
 
 /**
  * @covers \SebastianBergmann\Comparator\Factory
@@ -22,7 +28,7 @@ final class FactoryTest extends TestCase
 {
     public function instanceProvider()
     {
-        $tmpfile = \tmpfile();
+        $tmpfile = tmpfile();
 
         return [
             [null, null, ScalarComparator::class],
@@ -42,26 +48,26 @@ final class FactoryTest extends TestCase
             [1.0, 1.0, DoubleComparator::class],
             [[1], [1], ArrayComparator::class],
             [$tmpfile, $tmpfile, ResourceComparator::class],
-            [new \stdClass, new \stdClass, ObjectComparator::class],
-            [new \DateTime, new \DateTime, DateTimeComparator::class],
-            [new \SplObjectStorage, new \SplObjectStorage, SplObjectStorageComparator::class],
-            [new \Exception, new \Exception, ExceptionComparator::class],
-            [new \DOMDocument, new \DOMDocument, DOMNodeComparator::class],
+            [new stdClass, new stdClass, ObjectComparator::class],
+            [new DateTime, new DateTime, DateTimeComparator::class],
+            [new SplObjectStorage, new SplObjectStorage, SplObjectStorageComparator::class],
+            [new Exception, new Exception, ExceptionComparator::class],
+            [new DOMDocument, new DOMDocument, DOMNodeComparator::class],
             // mixed types
             [$tmpfile, [1], TypeComparator::class],
             [[1], $tmpfile, TypeComparator::class],
             [$tmpfile, '1', TypeComparator::class],
             ['1', $tmpfile, TypeComparator::class],
-            [$tmpfile, new \stdClass, TypeComparator::class],
-            [new \stdClass, $tmpfile, TypeComparator::class],
-            [new \stdClass, [1], TypeComparator::class],
-            [[1], new \stdClass, TypeComparator::class],
-            [new \stdClass, '1', TypeComparator::class],
-            ['1', new \stdClass, TypeComparator::class],
+            [$tmpfile, new stdClass, TypeComparator::class],
+            [new stdClass, $tmpfile, TypeComparator::class],
+            [new stdClass, [1], TypeComparator::class],
+            [[1], new stdClass, TypeComparator::class],
+            [new stdClass, '1', TypeComparator::class],
+            ['1', new stdClass, TypeComparator::class],
             [new ClassWithToString, '1', ScalarComparator::class],
             ['1', new ClassWithToString, ScalarComparator::class],
-            [1.0, new \stdClass, TypeComparator::class],
-            [new \stdClass, 1.0, TypeComparator::class],
+            [1.0, new stdClass, TypeComparator::class],
+            [new stdClass, 1.0, TypeComparator::class],
             [1.0, [1], TypeComparator::class],
             [[1], 1.0, TypeComparator::class],
         ];

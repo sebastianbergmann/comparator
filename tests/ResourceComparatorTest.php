@@ -9,6 +9,7 @@
  */
 namespace SebastianBergmann\Comparator;
 
+use function tmpfile;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -32,8 +33,8 @@ final class ResourceComparatorTest extends TestCase
 
     public function acceptsSucceedsProvider()
     {
-        $tmpfile1 = \tmpfile();
-        $tmpfile2 = \tmpfile();
+        $tmpfile1 = tmpfile();
+        $tmpfile2 = tmpfile();
 
         return [
             [$tmpfile1, $tmpfile1],
@@ -44,7 +45,7 @@ final class ResourceComparatorTest extends TestCase
 
     public function acceptsFailsProvider()
     {
-        $tmpfile1 = \tmpfile();
+        $tmpfile1 = tmpfile();
 
         return [
             [$tmpfile1, null],
@@ -55,8 +56,8 @@ final class ResourceComparatorTest extends TestCase
 
     public function assertEqualsSucceedsProvider()
     {
-        $tmpfile1 = \tmpfile();
-        $tmpfile2 = \tmpfile();
+        $tmpfile1 = tmpfile();
+        $tmpfile2 = tmpfile();
 
         return [
             [$tmpfile1, $tmpfile1],
@@ -66,8 +67,8 @@ final class ResourceComparatorTest extends TestCase
 
     public function assertEqualsFailsProvider()
     {
-        $tmpfile1 = \tmpfile();
-        $tmpfile2 = \tmpfile();
+        $tmpfile1 = tmpfile();
+        $tmpfile2 = tmpfile();
 
         return [
             [$tmpfile1, $tmpfile2],

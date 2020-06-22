@@ -9,6 +9,8 @@
  */
 namespace SebastianBergmann\Comparator;
 
+use Exception;
+
 /**
  * Compares Exception instances for equality.
  */
@@ -24,7 +26,7 @@ class ExceptionComparator extends ObjectComparator
      */
     public function accepts($expected, $actual)
     {
-        return $expected instanceof \Exception && $actual instanceof \Exception;
+        return $expected instanceof Exception && $actual instanceof Exception;
     }
 
     /**

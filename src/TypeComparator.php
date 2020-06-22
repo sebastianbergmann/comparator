@@ -9,6 +9,9 @@
  */
 namespace SebastianBergmann\Comparator;
 
+use function gettype;
+use function sprintf;
+
 /**
  * Compares values for type equality.
  */
@@ -40,7 +43,7 @@ class TypeComparator extends Comparator
      */
     public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false)/*: void*/
     {
-        if (\gettype($expected) != \gettype($actual)) {
+        if (gettype($expected) != gettype($actual)) {
             throw new ComparisonFailure(
                 $expected,
                 $actual,
@@ -48,10 +51,10 @@ class TypeComparator extends Comparator
                 '',
                 '',
                 false,
-                \sprintf(
+                sprintf(
                     '%s does not match expected type "%s".',
                     $this->exporter->shortenedExport($actual),
-                    \gettype($expected)
+                    gettype($expected)
                 )
             );
         }

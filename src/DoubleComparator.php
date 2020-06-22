@@ -9,6 +9,9 @@
  */
 namespace SebastianBergmann\Comparator;
 
+use function is_float;
+use function is_numeric;
+
 /**
  * Compares doubles for equality.
  */
@@ -31,7 +34,7 @@ class DoubleComparator extends NumericComparator
      */
     public function accepts($expected, $actual)
     {
-        return (\is_float($expected) || \is_float($actual)) && \is_numeric($expected) && \is_numeric($actual);
+        return (is_float($expected) || is_float($actual)) && is_numeric($expected) && is_numeric($actual);
     }
 
     /**

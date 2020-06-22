@@ -9,6 +9,8 @@
  */
 namespace SebastianBergmann\Comparator;
 
+use SplObjectStorage;
+
 /**
  * Compares \SplObjectStorage instances for equality.
  */
@@ -24,7 +26,7 @@ class SplObjectStorageComparator extends Comparator
      */
     public function accepts($expected, $actual)
     {
-        return $expected instanceof \SplObjectStorage && $actual instanceof \SplObjectStorage;
+        return $expected instanceof SplObjectStorage && $actual instanceof SplObjectStorage;
     }
 
     /**

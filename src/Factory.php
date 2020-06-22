@@ -9,6 +9,8 @@
  */
 namespace SebastianBergmann\Comparator;
 
+use function array_unshift;
+
 /**
  * Factory for comparators which compare values for equality.
  */
@@ -86,7 +88,7 @@ class Factory
      */
     public function register(Comparator $comparator)/*: void*/
     {
-        \array_unshift($this->customComparators, $comparator);
+        array_unshift($this->customComparators, $comparator);
 
         $comparator->setFactory($this);
     }
