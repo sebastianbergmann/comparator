@@ -84,6 +84,14 @@ final class DOMNodeComparatorTest extends TestCase
                 $this->createDOMDocument("<a x='' a=''/>"),
                 $this->createDOMDocument("<a a='' x=''/>"),
             ],
+            [
+                $this->createDOMDocument(
+                    '<!DOCTYPE foo SYSTEM "foo.dtd" [<!ENTITY ns_foo "http://uri.tld/foo">]><i:foo xmlns:i="&ns_foo;"/>'
+                ),
+                $this->createDOMDocument(
+                    '<!DOCTYPE foo SYSTEM "foo.dtd" [<!ENTITY ns_foo "http://uri.tld/foo">]><i:foo xmlns:i="&ns_foo;"/>'
+                ),
+            ],
         ];
     }
 
@@ -117,6 +125,15 @@ final class DOMNodeComparatorTest extends TestCase
             [
                 $this->createDOMDocument('<root> bar </root>'),
                 $this->createDOMDocument('<root> BAR </root>'),
+            ],
+            [
+                $this->createDOMDocument(
+                    '<!DOCTYPE foo SYSTEM "foo.dtd" [<!ENTITY ns_foo "http://uri.tld/foo">]><i:foo xmlns:i="&ns_foo;"/>'
+                ),
+                $this->createDOMDocument(
+                    '<!DOCTYPE foo SYSTEM "foo.dtd" [<!ENTITY ns_foo "http://uri.tld/foo">]>' .
+                    '<i:foo xmlns:i="&ns_foo;" bar="I am different"/>'
+                ),
             ],
         ];
     }
