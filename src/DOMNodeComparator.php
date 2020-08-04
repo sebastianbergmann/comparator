@@ -78,7 +78,7 @@ class DOMNodeComparator extends ObjectComparator
             }
 
             $document = new DOMDocument;
-            @$document->loadXML($c14n);
+            $document->loadXML($c14n);
 
             $node = $document;
         }
