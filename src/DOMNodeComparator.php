@@ -73,8 +73,8 @@ class DOMNodeComparator extends ObjectComparator
             /** @psalm-var string|false $c14n */
             $c14n = @$node->C14N();
 
-            if ($c14n === false) { // try node-to-text without canonicalize
-                return $this->nodeToText($node, !$canonicalize, $ignoreCase);
+            if ($c14n === false || $c14n === '') { // try node-to-text without canonicalize
+                return $this->nodeToText($node, false, $ignoreCase);
             }
 
             $document = new DOMDocument;
