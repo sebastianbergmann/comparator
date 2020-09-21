@@ -12,6 +12,7 @@ namespace SebastianBergmann\Comparator;
 use function sprintf;
 use function strtolower;
 use DOMDocument;
+use DOMEntity;
 use DOMNode;
 
 /**
@@ -71,7 +72,11 @@ class DOMNodeComparator extends ObjectComparator
     {
         if ($canonicalize) {
             $document = new DOMDocument;
-            @$document->loadXML($node->C14N());
+            @$document->loadXML(
+                ''
+                . '<?xml version="1.0" encoding="' . $this->getNodeEncoding($node) . '"?>' . PHP_EOL
+                . $node->C14N()
+            );
 
             $node = $document;
         }
@@ -84,5 +89,21 @@ class DOMNodeComparator extends ObjectComparator
         $text = $node instanceof DOMDocument ? $node->saveXML() : $document->saveXML($node);
 
         return $ignoreCase ? strtolower($text) : $text;
+    }
+
+    /**
+     * Tries to get the encoding from DOMNode or falls back to UTF-8.
+     */
+    private function getNodeEncoding(DOMNode $node): string
+    {
+        $encoding = '';
+
+        if ($node->ownerDocument) {
+            $encoding = $node->ownerDocument->xmlEncoding ?: $node->ownerDocument->encoding;
+        } elseif ($node instanceof DOMEntity) {
+            $encoding = $node->encoding;
+        }
+
+        return $encoding ?: 'UTF-8';
     }
 }
