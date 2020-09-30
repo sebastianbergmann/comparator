@@ -13,6 +13,7 @@ use function sprintf;
 use function strtolower;
 use DOMDocument;
 use DOMNode;
+use ValueError;
 
 /**
  * Compares DOMNode instances for equality.
@@ -71,7 +72,11 @@ class DOMNodeComparator extends ObjectComparator
     {
         if ($canonicalize) {
             $document = new DOMDocument;
-            @$document->loadXML($node->C14N());
+
+            try {
+                @$document->loadXML($node->C14N());
+            } catch (ValueError $e) {
+            }
 
             $node = $document;
         }
