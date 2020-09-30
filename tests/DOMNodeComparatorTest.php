@@ -121,6 +121,50 @@ final class DOMNodeComparatorTest extends TestCase
         ];
     }
 
+    public function assertEqualsSucceedsWithNonCanonicalizableNodesProvider()
+    {
+        $document = new DOMDocument;
+
+        return [
+            [$document, new DOMDocument],
+            [$document->createElement('foo'), $document->createElement('foo')],
+            [
+                $this->createDOMDocument(
+                    '<!DOCTYPE foo SYSTEM "foo.dtd" [<!ENTITY ns_foo "http://uri.tld/foo">]><i:foo xmlns:i="&ns_foo;"/>'
+                ),
+                $this->createDOMDocument(
+                    '<!DOCTYPE foo SYSTEM "foo.dtd" [<!ENTITY ns_foo "http://uri.tld/foo">]><i:foo xmlns:i="&ns_foo;"/>'
+                ),
+            ],
+        ];
+    }
+
+    public function assertEqualsFailsWithNonCanonicalizableNodesProvider()
+    {
+        // empty document makes C14N return empty string
+        $document = new DOMDocument;
+
+        // nodes created but not appended to the document makes C14N return empty string
+        $nodeFoo = $document->createElement('foo');
+        $nodeBar = $document->createElement('bar');
+
+        // documents with xmlns definitions to xml entities makes C14N return false
+        $documentNsUriIsEntityFoo = $this->createDOMDocument( // root element is i:foo
+            '<!DOCTYPE foo SYSTEM "foo.dtd" [<!ENTITY ns_foo "http://uri.tld/foo">]><i:foo xmlns:i="&ns_foo;"/>'
+        );
+        $documentNsUriIsEntityBar = $this->createDOMDocument( // root element is i:bar
+            '<!DOCTYPE foo SYSTEM "foo.dtd" [<!ENTITY ns_foo "http://uri.tld/foo">]><i:bar xmlns:i="&ns_foo;"/>'
+        );
+
+        return [
+            [$document, $nodeFoo],
+            [$document, $documentNsUriIsEntityFoo],
+            [$nodeFoo, $nodeBar],
+            [$nodeFoo, $documentNsUriIsEntityFoo],
+            [$documentNsUriIsEntityFoo, $documentNsUriIsEntityBar],
+        ];
+    }
+
     /**
      * @dataProvider acceptsSucceedsProvider
      */
@@ -167,6 +211,22 @@ final class DOMNodeComparatorTest extends TestCase
         $this->expectExceptionMessage('Failed asserting that two DOM');
 
         $this->comparator->assertEquals($expected, $actual);
+    }
+
+    /**
+     * @dataProvider assertEqualsSucceedsWithNonCanonicalizableNodesProvider
+     */
+    public function testAssertEqualsSucceedsWithNonCanonicalizableNodes($expected, $actual): void
+    {
+        $this->testAssertEqualsSucceeds($expected, $actual);
+    }
+
+    /**
+     * @dataProvider assertEqualsFailsWithNonCanonicalizableNodesProvider
+     */
+    public function testAssertEqualsFailsWithNonCanonicalizableNodes($expected, $actual): void
+    {
+        $this->testAssertEqualsFails($expected, $actual);
     }
 
     private function createDOMDocument($content)
