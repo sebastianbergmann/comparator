@@ -2,6 +2,12 @@
 
 All notable changes are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [4.0.5] - 2020-09-30
+
+### Fixed
+
+* [#89](https://github.com/sebastianbergmann/comparator/pull/89): Handle PHP 8 `ValueError`
+
 ## [4.0.4] - 2020-09-28
 
 ### Changed
@@ -80,6 +86,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 * Added `SebastianBergmann\Comparator\Factory::reset()` to unregister all non-default comparators
 * Added support for `phpunit/phpunit-mock-objects` version `^5.0`
 
+[4.0.5]: https://github.com/sebastianbergmann/comparator/compare/4.0.4...4.0.5
 [4.0.4]: https://github.com/sebastianbergmann/comparator/compare/4.0.3...4.0.4
 [4.0.3]: https://github.com/sebastianbergmann/comparator/compare/4.0.2...4.0.3
 [4.0.2]: https://github.com/sebastianbergmann/comparator/compare/4.0.1...4.0.2
