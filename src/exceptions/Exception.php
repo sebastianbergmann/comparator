@@ -9,6 +9,8 @@
  */
 namespace SebastianBergmann\Comparator;
 
-interface Exception
+use Throwable;
+
+interface Exception extends Throwable
 {
 }
