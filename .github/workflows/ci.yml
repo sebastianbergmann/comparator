@@ -18,6 +18,8 @@ jobs:
 
       - name: "Run friendsofphp/php-cs-fixer"
         run: "./tools/php-cs-fixer fix --diff-format=udiff --dry-run --show-progress=dots --using-cache=no --verbose"
+        env:
+            PHP_CS_FIXER_IGNORE_ENV: 1
 
   type-checker:
     name: "Type Checker"
