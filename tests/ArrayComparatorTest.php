@@ -158,4 +158,25 @@ final class ArrayComparatorTest extends TestCase
 
         $this->comparator->assertEquals($expected, $actual, $delta, $canonicalize);
     }
+
+    public function testCanonicalizingAssociativeArrays(): void
+    {
+        $expected = [
+            'a' => 1,
+            'b' => 2,
+        ];
+        $actual = [
+            'b' => 2,
+            'a' => 1,
+        ];
+
+        $exception = null;
+
+        try {
+            $this->comparator->assertEquals($expected, $actual, $delta = 0.0, $canonicalize = true);
+        } catch (ComparisonFailure $exception) {
+        }
+
+        $this->assertNull($exception, 'Unexpected ComparisonFailure');
+    }
 }
