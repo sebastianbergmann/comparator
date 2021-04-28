@@ -53,7 +53,7 @@ class ArrayComparator extends Comparator
     public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = [])/*: void*/
     {
         if ($canonicalize) {
-            // If the expected array has non-integer keys, treat arrays as being associative.
+            // If the expected array has non-integer keys, treat arrays as being associative
             $nonIntegerKeysCount = count(array_filter(array_keys($expected), 'is_string'));
 
             if ($nonIntegerKeysCount > 0) {
