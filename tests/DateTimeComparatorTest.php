@@ -18,8 +18,8 @@ use PHPUnit\Framework\TestCase;
  * @covers \SebastianBergmann\Comparator\DateTimeComparator<extended>
  *
  * @uses \SebastianBergmann\Comparator\Comparator
- * @uses \SebastianBergmann\Comparator\Factory
  * @uses \SebastianBergmann\Comparator\ComparisonFailure
+ * @uses \SebastianBergmann\Comparator\Factory
  */
 final class DateTimeComparatorTest extends TestCase
 {

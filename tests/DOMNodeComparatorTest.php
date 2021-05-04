@@ -17,8 +17,8 @@ use PHPUnit\Framework\TestCase;
  * @covers \SebastianBergmann\Comparator\DOMNodeComparator<extended>
  *
  * @uses \SebastianBergmann\Comparator\Comparator
- * @uses \SebastianBergmann\Comparator\Factory
  * @uses \SebastianBergmann\Comparator\ComparisonFailure
+ * @uses \SebastianBergmann\Comparator\Factory
  */
 final class DOMNodeComparatorTest extends TestCase
 {

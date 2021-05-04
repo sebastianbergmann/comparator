@@ -16,8 +16,8 @@ use stdClass;
  * @covers \SebastianBergmann\Comparator\TypeComparator<extended>
  *
  * @uses \SebastianBergmann\Comparator\Comparator
- * @uses \SebastianBergmann\Comparator\Factory
  * @uses \SebastianBergmann\Comparator\ComparisonFailure
+ * @uses \SebastianBergmann\Comparator\Factory
  */
 final class TypeComparatorTest extends TestCase
 {

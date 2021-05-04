@@ -21,8 +21,8 @@ use stdClass;
  * @covers \SebastianBergmann\Comparator\Factory
  *
  * @uses \SebastianBergmann\Comparator\Comparator
- * @uses \SebastianBergmann\Comparator\Factory
  * @uses \SebastianBergmann\Comparator\ComparisonFailure
+ * @uses \SebastianBergmann\Comparator\Factory
  */
 final class FactoryTest extends TestCase
 {

@@ -34,10 +34,10 @@ class ScalarComparator extends Comparator
     public function accepts($expected, $actual)
     {
         return ((is_scalar($expected) xor null === $expected) &&
-               (is_scalar($actual) xor null === $actual))
+               (is_scalar($actual) xor null === $actual)) ||
                // allow comparison between strings and objects featuring __toString()
-               || (is_string($expected) && is_object($actual) && method_exists($actual, '__toString'))
-               || (is_object($expected) && method_exists($expected, '__toString') && is_string($actual));
+               (is_string($expected) && is_object($actual) && method_exists($actual, '__toString')) ||
+               (is_object($expected) && method_exists($expected, '__toString') && is_string($actual));
     }
 
     /**

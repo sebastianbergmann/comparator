@@ -16,8 +16,8 @@ use PHPUnit\Framework\TestCase;
  * @covers \SebastianBergmann\Comparator\ScalarComparator<extended>
  *
  * @uses \SebastianBergmann\Comparator\Comparator
- * @uses \SebastianBergmann\Comparator\Factory
  * @uses \SebastianBergmann\Comparator\ComparisonFailure
+ * @uses \SebastianBergmann\Comparator\Factory
  */
 final class ScalarComparatorTest extends TestCase
 {

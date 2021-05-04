@@ -15,8 +15,8 @@ use PHPUnit\Framework\TestCase;
  * @covers \SebastianBergmann\Comparator\ArrayComparator<extended>
  *
  * @uses \SebastianBergmann\Comparator\Comparator
- * @uses \SebastianBergmann\Comparator\Factory
  * @uses \SebastianBergmann\Comparator\ComparisonFailure
+ * @uses \SebastianBergmann\Comparator\Factory
  */
 final class ArrayComparatorTest extends TestCase
 {
