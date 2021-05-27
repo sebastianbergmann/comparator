@@ -12,11 +12,6 @@ jobs:
 
     runs-on: "ubuntu-latest"
 
-    strategy:
-      matrix:
-        php-version:
-          - "7.3"
-
     steps:
       - name: "Checkout"
         uses: "actions/checkout@v2"
@@ -53,8 +48,6 @@ jobs:
       fail-fast: false
       matrix:
         php-version:
-          - "7.3"
-          - "7.4"
           - "8.0"
           - "8.1"
 
