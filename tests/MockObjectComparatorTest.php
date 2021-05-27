@@ -104,15 +104,15 @@ final class MockObjectComparatorTest extends TestCase
     public function assertEqualsSucceedsProvider(): array
     {
         // cyclic dependencies
-        $book1                  = $this->getMockBuilder(Book::class)->setMethods(null)->getMock();
-        $book1->author          = $this->getMockBuilder(Author::class)->setMethods(null)->setConstructorArgs(['Terry Pratchett'])->getMock();
+        $book1                  = $this->getMockBuilder(Book::class)->getMock();
+        $book1->author          = $this->getMockBuilder(Author::class)->setConstructorArgs(['Terry Pratchett'])->getMock();
         $book1->author->books[] = $book1;
-        $book2                  = $this->getMockBuilder(Book::class)->setMethods(null)->getMock();
-        $book2->author          = $this->getMockBuilder(Author::class)->setMethods(null)->setConstructorArgs(['Terry Pratchett'])->getMock();
+        $book2                  = $this->getMockBuilder(Book::class)->getMock();
+        $book2->author          = $this->getMockBuilder(Author::class)->setConstructorArgs(['Terry Pratchett'])->getMock();
         $book2->author->books[] = $book2;
 
-        $object1 = $this->getMockBuilder(SampleClass::class)->setMethods(null)->setConstructorArgs([4, 8, 15])->getMock();
-        $object2 = $this->getMockBuilder(SampleClass::class)->setMethods(null)->setConstructorArgs([4, 8, 15])->getMock();
+        $object1 = $this->getMockBuilder(SampleClass::class)->setConstructorArgs([4, 8, 15])->getMock();
+        $object2 = $this->getMockBuilder(SampleClass::class)->setConstructorArgs([4, 8, 15])->getMock();
 
         return [
             [$object1, $object1],
@@ -120,8 +120,8 @@ final class MockObjectComparatorTest extends TestCase
             [$book1, $book1],
             [$book1, $book2],
             [
-                $this->getMockBuilder(Struct::class)->setMethods(null)->setConstructorArgs([2.3])->getMock(),
-                $this->getMockBuilder(Struct::class)->setMethods(null)->setConstructorArgs([2.5])->getMock(),
+                $this->getMockBuilder(Struct::class)->setConstructorArgs([2.3])->getMock(),
+                $this->getMockBuilder(Struct::class)->setConstructorArgs([2.5])->getMock(),
                 0.5,
             ],
         ];
@@ -133,33 +133,33 @@ final class MockObjectComparatorTest extends TestCase
         $equalMessage = 'Failed asserting that two objects are equal.';
 
         // cyclic dependencies
-        $book1                  = $this->getMockBuilder(Book::class)->setMethods(null)->getMock();
-        $book1->author          = $this->getMockBuilder(Author::class)->setMethods(null)->setConstructorArgs(['Terry Pratchett'])->getMock();
+        $book1                  = $this->getMockBuilder(Book::class)->getMock();
+        $book1->author          = $this->getMockBuilder(Author::class)->setConstructorArgs(['Terry Pratchett'])->getMock();
         $book1->author->books[] = $book1;
-        $book2                  = $this->getMockBuilder(Book::class)->setMethods(null)->getMock();
-        $book2->author          = $this->getMockBuilder(Author::class)->setMethods(null)->setConstructorArgs(['Terry Pratch'])->getMock();
+        $book2                  = $this->getMockBuilder(Book::class)->getMock();
+        $book2->author          = $this->getMockBuilder(Author::class)->setConstructorArgs(['Terry Pratch'])->getMock();
         $book2->author->books[] = $book2;
 
-        $book3         = $this->getMockBuilder(Book::class)->setMethods(null)->getMock();
+        $book3         = $this->getMockBuilder(Book::class)->getMock();
         $book3->author = 'Terry Pratchett';
         $book4         = $this->createMock(stdClass::class);
         $book4->author = 'Terry Pratchett';
 
-        $object1 = $this->getMockBuilder(SampleClass::class)->setMethods(null)->setConstructorArgs([4, 8, 15])->getMock();
-        $object2 = $this->getMockBuilder(SampleClass::class)->setMethods(null)->setConstructorArgs([16, 23, 42])->getMock();
+        $object1 = $this->getMockBuilder(SampleClass::class)->setConstructorArgs([4, 8, 15])->getMock();
+        $object2 = $this->getMockBuilder(SampleClass::class)->setConstructorArgs([16, 23, 42])->getMock();
 
         return [
             [
-                $this->getMockBuilder(SampleClass::class)->setMethods(null)->setConstructorArgs([4, 8, 15])->getMock(),
-                $this->getMockBuilder(SampleClass::class)->setMethods(null)->setConstructorArgs([16, 23, 42])->getMock(),
+                $this->getMockBuilder(SampleClass::class)->setConstructorArgs([4, 8, 15])->getMock(),
+                $this->getMockBuilder(SampleClass::class)->setConstructorArgs([16, 23, 42])->getMock(),
                 $equalMessage,
             ],
             [$object1, $object2, $equalMessage],
             [$book1, $book2, $equalMessage],
             [$book3, $book4, $typeMessage],
             [
-                $this->getMockBuilder(Struct::class)->setMethods(null)->setConstructorArgs([2.3])->getMock(),
-                $this->getMockBuilder(Struct::class)->setMethods(null)->setConstructorArgs([4.2])->getMock(),
+                $this->getMockBuilder(Struct::class)->setConstructorArgs([2.3])->getMock(),
+                $this->getMockBuilder(Struct::class)->setConstructorArgs([4.2])->getMock(),
                 $equalMessage,
                 0.5,
             ],
