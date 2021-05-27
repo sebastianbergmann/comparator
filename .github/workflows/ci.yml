@@ -8,21 +8,22 @@ name: "CI"
 
 jobs:
   coding-guidelines:
-    name: "Coding Guidelines"
+    name: Coding Guidelines
 
-    runs-on: "ubuntu-latest"
+    runs-on: ubuntu-latest
 
     steps:
-      - name: "Checkout"
-        uses: "actions/checkout@v2"
+      - name: Checkout
+        uses: actions/checkout@v2
 
-      - name: "Set up PHP"
-        uses: "shivammathur/setup-php@v2"
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
         with:
-          php-version: "${{ matrix.php-version }}"
+          php-version: 8.0
+          coverage: none
 
-      - name: "Run friendsofphp/php-cs-fixer"
-        run: "./tools/php-cs-fixer fix --dry-run --show-progress=dots --using-cache=no --verbose"
+      - name: Run friendsofphp/php-cs-fixer
+        run: ./tools/php-cs-fixer fix --dry-run --show-progress=dots --using-cache=no --verbose
 
   type-checker:
     name: "Type Checker"
