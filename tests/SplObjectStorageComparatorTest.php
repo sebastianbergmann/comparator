@@ -14,7 +14,7 @@ use SplObjectStorage;
 use stdClass;
 
 /**
- * @covers \SebastianBergmann\Comparator\SplObjectStorageComparator<extended>
+ * @covers \SebastianBergmann\Comparator\SplObjectStorageComparator
  *
  * @uses \SebastianBergmann\Comparator\Comparator
  * @uses \SebastianBergmann\Comparator\ComparisonFailure

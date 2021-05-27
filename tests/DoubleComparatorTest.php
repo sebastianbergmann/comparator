@@ -13,7 +13,7 @@ use function acos;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \SebastianBergmann\Comparator\DoubleComparator<extended>
+ * @covers \SebastianBergmann\Comparator\DoubleComparator
  *
  * @uses \SebastianBergmann\Comparator\Comparator
  * @uses \SebastianBergmann\Comparator\ComparisonFailure

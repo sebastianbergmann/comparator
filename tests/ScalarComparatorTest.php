@@ -13,7 +13,7 @@ use function tmpfile;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \SebastianBergmann\Comparator\ScalarComparator<extended>
+ * @covers \SebastianBergmann\Comparator\ScalarComparator
  *
  * @uses \SebastianBergmann\Comparator\Comparator
  * @uses \SebastianBergmann\Comparator\ComparisonFailure
