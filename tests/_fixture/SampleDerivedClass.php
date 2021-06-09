@@ -10,9 +10,9 @@
 namespace SebastianBergmann\Comparator;
 
 /**
- * A sample class.
+ * A sample derived class with a private member redeclared.
  */
-class SampleClass
+class SampleDerivedClass extends SampleClass
 {
     public $a;
 
