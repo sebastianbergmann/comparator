@@ -12,9 +12,9 @@ namespace SebastianBergmann\Comparator;
 use function is_object;
 use function is_scalar;
 use function is_string;
+use function mb_strtolower;
 use function method_exists;
 use function sprintf;
-use function strtolower;
 
 /**
  * Compares scalar or NULL values for equality.
@@ -63,8 +63,8 @@ class ScalarComparator extends Comparator
             $actualToCompare   = (string) $actualToCompare;
 
             if ($ignoreCase) {
-                $expectedToCompare = strtolower($expectedToCompare);
-                $actualToCompare   = strtolower($actualToCompare);
+                $expectedToCompare = mb_strtolower($expectedToCompare, 'UTF-8');
+                $actualToCompare   = mb_strtolower($actualToCompare, 'UTF-8');
             }
         }
 

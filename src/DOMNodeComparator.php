@@ -9,8 +9,8 @@
  */
 namespace SebastianBergmann\Comparator;
 
+use function mb_strtolower;
 use function sprintf;
-use function strtolower;
 use DOMDocument;
 use DOMNode;
 use ValueError;
@@ -88,6 +88,6 @@ class DOMNodeComparator extends ObjectComparator
 
         $text = $node instanceof DOMDocument ? $node->saveXML() : $document->saveXML($node);
 
-        return $ignoreCase ? strtolower($text) : $text;
+        return $ignoreCase ? mb_strtolower($text, 'UTF-8') : $text;
     }
 }

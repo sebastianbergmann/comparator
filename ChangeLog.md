@@ -4,6 +4,10 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 ## [5.0.0] - 2021-MM-DD
 
+### Changed
+
+* `ScalarComparator` and `DOMNodeComparator` now use `mb_strtolower($string, 'UTF-8')` instead of `strtolower($string)`
+
 ### Removed
 
 * Removed support for PHP 7.3 and PHP 7.4
