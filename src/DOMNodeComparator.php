@@ -9,6 +9,7 @@
  */
 namespace SebastianBergmann\Comparator;
 
+use function assert;
 use function mb_strtolower;
 use function sprintf;
 use DOMDocument;
@@ -74,7 +75,11 @@ class DOMNodeComparator extends ObjectComparator
             $document = new DOMDocument;
 
             try {
-                @$document->loadXML($node->C14N());
+                $c14n = $node->C14N();
+
+                assert(!empty($c14n));
+
+                @$document->loadXML($c14n);
             } catch (ValueError $e) {
             }
 
