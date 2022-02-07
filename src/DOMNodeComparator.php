@@ -80,7 +80,7 @@ class DOMNodeComparator extends ObjectComparator
                 assert(!empty($c14n));
 
                 @$document->loadXML($c14n);
-            } catch (ValueError $e) {
+            } catch (ValueError) {
             }
 
             $node = $document;
