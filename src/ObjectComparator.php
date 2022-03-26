@@ -9,14 +9,13 @@
  */
 namespace SebastianBergmann\Comparator;
 
-use ReflectionFunction;
-use Closure;
-
 use function get_class;
 use function in_array;
 use function is_object;
 use function sprintf;
 use function substr_replace;
+use Closure;
+use ReflectionFunction;
 
 /**
  * Compares objects for equality.
