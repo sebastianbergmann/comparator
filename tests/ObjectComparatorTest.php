@@ -62,6 +62,12 @@ final class ObjectComparatorTest extends TestCase
 
         $object1 = new SampleClass(4, 8, 15);
         $object2 = new SampleClass(4, 8, 15);
+ 
+        $createClosure = function () {
+            return function () {
+                return rand(0, 1);  
+            };
+        }
 
         return [
             [$object1, $object1],
@@ -69,6 +75,7 @@ final class ObjectComparatorTest extends TestCase
             [$book1, $book1],
             [$book1, $book2],
             [new Struct(2.3), new Struct(2.5), 0.5],
+            [$createClosure(), $createClosure()]
         ];
     }
 
