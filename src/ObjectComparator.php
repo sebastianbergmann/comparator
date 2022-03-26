@@ -79,11 +79,11 @@ class ObjectComparator extends ArrayComparator
         if ($actual !== $expected) {
             try {
                 if ($actual instanceof Closure && $expected instanceof Closure) {
-                    $reflectionActual = new ReflectionFunction($actual);
+                    $reflectionActual   = new ReflectionFunction($actual);
                     $reflectionExpected = new ReflectionFunction($expected);
                     parent::assertEquals(
-                        [(string)$reflectionExpected, $reflectionExpected->getClosureThis()],
-                        [(string)$reflectionActual, $reflectionActual->getClosureThis()],
+                        [(string) $reflectionExpected, $reflectionExpected->getClosureThis()],
+                        [(string) $reflectionActual, $reflectionActual->getClosureThis()],
                         $delta,
                         $canonicalize,
                         $ignoreCase,

@@ -62,12 +62,12 @@ final class ObjectComparatorTest extends TestCase
 
         $object1 = new SampleClass(4, 8, 15);
         $object2 = new SampleClass(4, 8, 15);
- 
+
         $createClosure = function () {
             return function () {
-                return rand(0, 1);  
+                return true;
             };
-        }
+        };
 
         return [
             [$object1, $object1],
