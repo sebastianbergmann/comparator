@@ -9,8 +9,8 @@
  */
 namespace SebastianBergmann\Comparator;
 
-use Closure;
 use ReflectionFunction;
+use Closure;
 
 use function get_class;
 use function in_array;
@@ -82,8 +82,8 @@ class ObjectComparator extends ArrayComparator
                     $reflectionActual = new ReflectionFunction($actual);
                     $reflectionExpected = new ReflectionFunction($expected);
                     parent::assertEquals(
-                        [(string) $reflectionExpected, $reflectionExpected->getClosureThis()],
-                        [(string) $reflectionActual, $reflectionActual->getClosureThis()],
+                        [(string)$reflectionExpected, $reflectionExpected->getClosureThis()],
+                        [(string)$reflectionActual, $reflectionActual->getClosureThis()],
                         $delta,
                         $canonicalize,
                         $ignoreCase,
