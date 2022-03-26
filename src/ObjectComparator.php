@@ -9,6 +9,9 @@
  */
 namespace SebastianBergmann\Comparator;
 
+use Closure;
+use ReflectionFunction;
+
 use function get_class;
 use function in_array;
 use function is_object;
@@ -75,14 +78,27 @@ class ObjectComparator extends ArrayComparator
         // CAUTION: this conditional clause is not tested
         if ($actual !== $expected) {
             try {
-                parent::assertEquals(
-                    $this->toArray($expected),
-                    $this->toArray($actual),
-                    $delta,
-                    $canonicalize,
-                    $ignoreCase,
-                    $processed
-                );
+                if ($actual instanceof Closure && $expected instanceof Closure) {
+                    $reflectionActual = new ReflectionFunction($actual);
+                    $reflectionExpected = new ReflectionFunction($expected);
+                    parent::assertEquals(
+                        [(string) $reflectionExpected, $reflectionExpected->getClosureThis()],
+                        [(string) $reflectionActual, $reflectionActual->getClosureThis()],
+                        $delta,
+                        $canonicalize,
+                        $ignoreCase,
+                        $processed
+                    );
+                } else {
+                    parent::assertEquals(
+                        $this->toArray($expected),
+                        $this->toArray($actual),
+                        $delta,
+                        $canonicalize,
+                        $ignoreCase,
+                        $processed
+                    );
+                }
             } catch (ComparisonFailure $e) {
                 throw new ComparisonFailure(
                     $expected,
