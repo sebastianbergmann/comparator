@@ -10,7 +10,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 ### Removed
 
-* Removed support for PHP 7.3 and PHP 7.4
+* Removed support for PHP 7.3, PHP 7.4, and PHP 8.0
 
 ## [4.0.6] - 2020-10-26
 
