@@ -12,7 +12,7 @@ namespace SebastianBergmann\Comparator;
 use SplObjectStorage;
 
 /**
- * Compares `SplObjectStorage` instances for equality.
+ * Compares \SplObjectStorage instances for equality.
  */
 class SplObjectStorageComparator extends Comparator
 {
