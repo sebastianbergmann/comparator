@@ -75,7 +75,7 @@ class DOMNodeComparator extends ObjectComparator
             $document = new DOMDocument;
 
             try {
-                $c14n = $node->C14N();
+                $c14n = $node->C14N(false, true);
 
                 assert(!empty($c14n));
 
