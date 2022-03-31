@@ -13,10 +13,8 @@ use function abs;
 use function floor;
 use function sprintf;
 use DateInterval;
-use DateTime;
 use DateTimeInterface;
 use DateTimeZone;
-use Exception;
 
 /**
  * Compares DateTimeInterface instances for equality.
@@ -33,8 +31,7 @@ class DateTimeComparator extends ObjectComparator
      */
     public function accepts($expected, $actual)
     {
-        return ($expected instanceof DateTime || $expected instanceof DateTimeInterface) &&
-               ($actual instanceof DateTime || $actual instanceof DateTimeInterface);
+        return $expected instanceof DateTimeInterface && $actual instanceof DateTimeInterface;
     }
 
     /**
@@ -48,7 +45,9 @@ class DateTimeComparator extends ObjectComparator
      * @param array $processed    List of already processed elements (used to prevent infinite recursion)
      *
      * @throws ComparisonFailure
-     * @throws Exception
+     * @throws \Exception
+     *
+     * @todo DateTimeInterface::setTimezone() not exist!
      */
     public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = [])/*: void*/
     {
@@ -83,12 +82,12 @@ class DateTimeComparator extends ObjectComparator
 
     /**
      * Returns an ISO 8601 formatted string representation of a datetime or
-     * 'Invalid DateTimeInterface object' if the provided DateTimeInterface was not properly
+     * 'Invalid DateTimeInterface object' if the provided `DateTimeInterface` was not properly
      * initialized.
      */
     private function dateTimeToString(DateTimeInterface $datetime): string
     {
-        $string = $datetime->format('Y-m-d\TH:i:s.uO');
+        $string = $datetime->format(DateTimeInterface::ISO8601);
 
         return $string ?: 'Invalid DateTimeInterface object';
     }
