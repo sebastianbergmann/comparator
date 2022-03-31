@@ -12,7 +12,7 @@ namespace SebastianBergmann\Comparator;
 use SplObjectStorage;
 
 /**
- * Compares \SplObjectStorage instances for equality.
+ * Compares `SplObjectStorage` instances for equality.
  */
 class SplObjectStorageComparator extends Comparator
 {
@@ -42,6 +42,19 @@ class SplObjectStorageComparator extends Comparator
      */
     public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false)/*: void*/
     {
+        /** @var SplObjectStorage $expected */
+        /** @var SplObjectStorage $actual */
+        if ($expected->count() !== $actual->count()) {
+            throw new ComparisonFailure(
+                $expected,
+                $actual,
+                $this->exporter->export($expected),
+                $this->exporter->export($actual),
+                false,
+                'Failed asserting that two objects are equal.'
+            );
+        }
+
         foreach ($actual as $object) {
             if (!$expected->contains($object)) {
                 throw new ComparisonFailure(
