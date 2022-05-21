@@ -51,7 +51,7 @@ class ScalarComparator extends Comparator
 
         // always compare as strings to avoid strange behaviour
         // otherwise 0 == 'Foobar'
-        if (\is_string($expected) || \is_string($actual)) {
+        if ((\is_string($expected) && !\is_bool($actual)) || (\is_string($actual) && !\is_bool($expected))) {
             $expectedToCompare = (string) $expectedToCompare;
             $actualToCompare   = (string) $actualToCompare;
 

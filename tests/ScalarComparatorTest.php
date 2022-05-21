@@ -46,6 +46,7 @@ final class ScalarComparatorTest extends TestCase
             ['1', true],
             [1, true],
             [0, false],
+            ['0', false],
             [0.1, '0.1']
         ];
     }
@@ -77,6 +78,7 @@ final class ScalarComparatorTest extends TestCase
             ['1', true],
             [1, true],
             [0, false],
+            ['0', false],
             [0.1, '0.1'],
             [false, null],
             [false, false],
