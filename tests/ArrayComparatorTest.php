@@ -72,6 +72,10 @@ final class ArrayComparatorTest extends TestCase
                 [new Struct(2.5)],
                 0.5,
             ],
+            [
+                ['true'],
+                [true],
+            ],
         ];
     }
 
@@ -112,6 +116,10 @@ final class ArrayComparatorTest extends TestCase
                 [new Struct(2.3)],
                 [new Struct(4.2)],
                 0.5,
+            ],
+            [
+                ['false'],
+                [false],
             ],
         ];
     }
