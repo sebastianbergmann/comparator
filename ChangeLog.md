@@ -2,6 +2,12 @@
 
 All notable changes are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [3.0.4] - 2022-09-14
+
+### Fixed
+
+* [#99](https://github.com/sebastianbergmann/comparator/pull/99): Fix weak comparison between `'0'` and `false`
+
 ## [3.0.3] - 2020-11-30
 
 ### Changed
@@ -18,14 +24,14 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 ### Fixed
 
-* Fixed [#53](https://github.com/sebastianbergmann/comparator/pull/53): `DOMNodeComparator` ignores `$ignoreCase` parameter
-* Fixed [#58](https://github.com/sebastianbergmann/comparator/pull/58): `ScalarComparator` does not handle extremely ugly string comparison edge cases
+* [#53](https://github.com/sebastianbergmann/comparator/pull/53): `DOMNodeComparator` ignores `$ignoreCase` parameter
+* [#58](https://github.com/sebastianbergmann/comparator/pull/58): `ScalarComparator` does not handle extremely ugly string comparison edge cases
 
 ## [3.0.0] - 2018-04-18
 
 ### Fixed
 
-* Fixed [#48](https://github.com/sebastianbergmann/comparator/issues/48): `DateTimeComparator` does not support fractional second deltas
+* [#48](https://github.com/sebastianbergmann/comparator/issues/48): `DateTimeComparator` does not support fractional second deltas
 
 ### Removed
 
@@ -47,7 +53,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 ### Fixed
 
-* Fixed [phpunit/#2923](https://github.com/sebastianbergmann/phpunit/issues/2923): Unexpected failed date matching
+* [phpunit/#2923](https://github.com/sebastianbergmann/phpunit/issues/2923): Unexpected failed date matching
 
 ## [2.1.0] - 2017-11-03
 
@@ -56,6 +62,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 * Added `SebastianBergmann\Comparator\Factory::reset()` to unregister all non-default comparators
 * Added support for `phpunit/phpunit-mock-objects` version `^5.0`
 
+[3.0.4]: https://github.com/sebastianbergmann/comparator/compare/3.0.3...3.0.4
 [3.0.3]: https://github.com/sebastianbergmann/comparator/compare/3.0.2...3.0.3
 [3.0.2]: https://github.com/sebastianbergmann/comparator/compare/3.0.1...3.0.2
 [3.0.1]: https://github.com/sebastianbergmann/comparator/compare/3.0.0...3.0.1
