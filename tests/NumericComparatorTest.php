@@ -10,6 +10,7 @@
 namespace SebastianBergmann\Comparator;
 
 use const INF;
+use function acos;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -48,9 +49,9 @@ final class NumericComparatorTest extends TestCase
             [5.0, 0],
             ['5', 4.5],
             [1.2e3, 7E-10],
-            [3, \acos(8)],
-            [\acos(8), 3],
-            [\acos(8), \acos(8)],
+            [3, acos(8)],
+            [acos(8), 3],
+            [acos(8), acos(8)],
         ];
     }
 
@@ -109,9 +110,9 @@ final class NumericComparatorTest extends TestCase
             [1.2e3, 1201],
             [2.3, 2.5, 0.2],
             [3, 3.05, 0.04],
-            [3, \acos(8)],
-            [\acos(8), 3],
-            [\acos(8), \acos(8)],
+            [3, acos(8)],
+            [acos(8), 3],
+            [acos(8), acos(8)],
             [1 / 3, 1 - 2 / 3],
             [5.5E+123, '5.7E+123'],
             [5.5E-123, '5.7E-123'],
