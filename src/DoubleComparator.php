@@ -14,6 +14,8 @@ use function is_numeric;
 
 /**
  * Compares doubles for equality.
+ *
+ * @deprecated since v3.0.5 and v4.0.8
  */
 class DoubleComparator extends NumericComparator
 {
