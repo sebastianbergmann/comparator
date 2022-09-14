@@ -24,10 +24,8 @@ class NumericComparator extends ScalarComparator
      */
     public function accepts($expected, $actual)
     {
-        // all numerical values, but not if one of them is a double
-        // or both of them are strings
+        // all numerical values, but not if both of them are strings
         return \is_numeric($expected) && \is_numeric($actual) &&
-               !(\is_float($expected) || \is_float($actual)) &&
                !(\is_string($expected) && \is_string($actual));
     }
 
