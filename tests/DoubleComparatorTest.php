@@ -12,6 +12,8 @@ namespace SebastianBergmann\Comparator;
 use PHPUnit\Framework\TestCase;
 
 /**
+ * @deprecated since v3.0.5 and v4.0.8
+ *
  * @covers \SebastianBergmann\Comparator\DoubleComparator<extended>
  *
  * @uses \SebastianBergmann\Comparator\Comparator
