@@ -12,6 +12,12 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 * Removed support for PHP 7.3, PHP 7.4, and PHP 8.0
 
+## [4.0.8] - 2022-09-14
+
+### Fixed
+
+* [#102](https://github.com/sebastianbergmann/comparator/pull/102): Fix `float` comparison precision
+
 ## [4.0.7] - 2022-09-14
 
 ### Fixed
@@ -59,6 +65,12 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 ### Removed
 
 * Removed support for PHP 7.1 and PHP 7.2
+
+## [3.0.5] - 2022-09-14
+
+### Fixed
+
+* [#102](https://github.com/sebastianbergmann/comparator/pull/102): Fix `float` comparison precision
 
 ## [3.0.4] - 2022-09-14
 
@@ -120,7 +132,8 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 * Added `SebastianBergmann\Comparator\Factory::reset()` to unregister all non-default comparators
 * Added support for `phpunit/phpunit-mock-objects` version `^5.0`
 
-[5.0.0]: https://github.com/sebastianbergmann/comparator/compare/4.0.7...main
+[5.0.0]: https://github.com/sebastianbergmann/comparator/compare/4.0.8...main
+[4.0.8]: https://github.com/sebastianbergmann/comparator/compare/4.0.7...4.0.8
 [4.0.7]: https://github.com/sebastianbergmann/comparator/compare/4.0.6...4.0.7
 [4.0.6]: https://github.com/sebastianbergmann/comparator/compare/4.0.5...4.0.6
 [4.0.5]: https://github.com/sebastianbergmann/comparator/compare/4.0.4...4.0.5
@@ -128,7 +141,8 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 [4.0.3]: https://github.com/sebastianbergmann/comparator/compare/4.0.2...4.0.3
 [4.0.2]: https://github.com/sebastianbergmann/comparator/compare/4.0.1...4.0.2
 [4.0.1]: https://github.com/sebastianbergmann/comparator/compare/4.0.0...4.0.1
-[4.0.0]: https://github.com/sebastianbergmann/comparator/compare/3.0.4...4.0.0
+[4.0.0]: https://github.com/sebastianbergmann/comparator/compare/3.0.5...4.0.0
+[3.0.5]: https://github.com/sebastianbergmann/comparator/compare/3.0.4...3.0.5
 [3.0.4]: https://github.com/sebastianbergmann/comparator/compare/3.0.3...3.0.4
 [3.0.3]: https://github.com/sebastianbergmann/comparator/compare/3.0.2...3.0.3
 [3.0.2]: https://github.com/sebastianbergmann/comparator/compare/3.0.1...3.0.2

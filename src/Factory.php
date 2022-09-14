@@ -127,7 +127,6 @@ class Factory
         $this->registerDefaultComparator(new ObjectComparator);
         $this->registerDefaultComparator(new ResourceComparator);
         $this->registerDefaultComparator(new ArrayComparator);
-        $this->registerDefaultComparator(new DoubleComparator);
         $this->registerDefaultComparator(new NumericComparator);
         $this->registerDefaultComparator(new ScalarComparator);
         $this->registerDefaultComparator(new TypeComparator);
