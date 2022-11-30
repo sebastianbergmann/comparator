@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.0.1@b1e2e30026936ef8d5bf6a354d1c3959b6231f44">
+<files psalm-version="dev-master@">
   <file src="src/ArrayComparator.php">
     <MissingParamType occurrences="1">
       <code>$lines</code>
@@ -58,14 +58,6 @@
       <code>setTimezone</code>
     </UndefinedInterfaceMethod>
   </file>
-  <file src="src/DoubleComparator.php">
-    <MissingReturnType occurrences="1">
-      <code>assertEquals</code>
-    </MissingReturnType>
-    <PropertyNotSetInConstructor occurrences="1">
-      <code>DoubleComparator</code>
-    </PropertyNotSetInConstructor>
-  </file>
   <file src="src/ExceptionComparator.php">
     <PropertyNotSetInConstructor occurrences="1">
       <code>ExceptionComparator</code>
@@ -97,10 +89,6 @@
     <PropertyNotSetInConstructor occurrences="1">
       <code>NumericComparator</code>
     </PropertyNotSetInConstructor>
-    <RedundantCondition occurrences="3">
-      <code>is_float($actual)</code>
-      <code>is_float($expected)</code>
-    </RedundantCondition>
   </file>
   <file src="src/ObjectComparator.php">
     <MissingReturnType occurrences="1">
