@@ -10,16 +10,16 @@
 namespace SebastianBergmann\Comparator;
 
 use Exception;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
-/**
- * @covers \SebastianBergmann\Comparator\ExceptionComparator
- *
- * @uses \SebastianBergmann\Comparator\Comparator
- * @uses \SebastianBergmann\Comparator\ComparisonFailure
- * @uses \SebastianBergmann\Comparator\Factory
- */
+#[CoversClass(ExceptionComparator::class)]
+#[UsesClass(Comparator::class)]
+#[UsesClass(ComparisonFailure::class)]
+#[UsesClass(Factory::class)]
 final class ExceptionComparatorTest extends TestCase
 {
     /**
@@ -88,9 +88,7 @@ final class ExceptionComparatorTest extends TestCase
         $this->comparator->setFactory(new Factory);
     }
 
-    /**
-     * @dataProvider acceptsSucceedsProvider
-     */
+    #[DataProvider('acceptsSucceedsProvider')]
     public function testAcceptsSucceeds($expected, $actual): void
     {
         $this->assertTrue(
@@ -98,9 +96,7 @@ final class ExceptionComparatorTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider acceptsFailsProvider
-     */
+    #[DataProvider('acceptsFailsProvider')]
     public function testAcceptsFails($expected, $actual): void
     {
         $this->assertFalse(
@@ -108,9 +104,7 @@ final class ExceptionComparatorTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider assertEqualsSucceedsProvider
-     */
+    #[DataProvider('assertEqualsSucceedsProvider')]
     public function testAssertEqualsSucceeds($expected, $actual): void
     {
         $exception = null;
@@ -123,9 +117,7 @@ final class ExceptionComparatorTest extends TestCase
         $this->assertNull($exception, 'Unexpected ComparisonFailure');
     }
 
-    /**
-     * @dataProvider assertEqualsFailsProvider
-     */
+    #[DataProvider('assertEqualsFailsProvider')]
     public function testAssertEqualsFails($expected, $actual, $message): void
     {
         $this->expectException(ComparisonFailure::class);

@@ -10,15 +10,15 @@
 namespace SebastianBergmann\Comparator;
 
 use function tmpfile;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \SebastianBergmann\Comparator\ScalarComparator
- *
- * @uses \SebastianBergmann\Comparator\Comparator
- * @uses \SebastianBergmann\Comparator\ComparisonFailure
- * @uses \SebastianBergmann\Comparator\Factory
- */
+#[CoversClass(ScalarComparator::class)]
+#[UsesClass(Comparator::class)]
+#[UsesClass(ComparisonFailure::class)]
+#[UsesClass(Factory::class)]
 final class ScalarComparatorTest extends TestCase
 {
     /**
@@ -121,9 +121,7 @@ final class ScalarComparatorTest extends TestCase
         $this->comparator = new ScalarComparator;
     }
 
-    /**
-     * @dataProvider acceptsSucceedsProvider
-     */
+    #[DataProvider('acceptsSucceedsProvider')]
     public function testAcceptsSucceeds($expected, $actual): void
     {
         $this->assertTrue(
@@ -131,9 +129,7 @@ final class ScalarComparatorTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider acceptsFailsProvider
-     */
+    #[DataProvider('acceptsFailsProvider')]
     public function testAcceptsFails($expected, $actual): void
     {
         $this->assertFalse(
@@ -141,9 +137,7 @@ final class ScalarComparatorTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider assertEqualsSucceedsProvider
-     */
+    #[DataProvider('assertEqualsSucceedsProvider')]
     public function testAssertEqualsSucceeds($expected, $actual, $ignoreCase = false): void
     {
         $exception = null;
@@ -156,9 +150,7 @@ final class ScalarComparatorTest extends TestCase
         $this->assertNull($exception, 'Unexpected ComparisonFailure');
     }
 
-    /**
-     * @dataProvider assertEqualsFailsProvider
-     */
+    #[DataProvider('assertEqualsFailsProvider')]
     public function testAssertEqualsFails($expected, $actual, $message): void
     {
         $this->expectException(ComparisonFailure::class);

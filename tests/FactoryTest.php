@@ -13,17 +13,16 @@ use function tmpfile;
 use DateTime;
 use DOMDocument;
 use Exception;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SplObjectStorage;
 use stdClass;
 
-/**
- * @covers \SebastianBergmann\Comparator\Factory
- *
- * @uses \SebastianBergmann\Comparator\Comparator
- * @uses \SebastianBergmann\Comparator\ComparisonFailure
- * @uses \SebastianBergmann\Comparator\Factory
- */
+#[CoversClass(Factory::class)]
+#[UsesClass(Comparator::class)]
+#[UsesClass(ComparisonFailure::class)]
 final class FactoryTest extends TestCase
 {
     public static function instanceProvider()
@@ -73,9 +72,7 @@ final class FactoryTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider instanceProvider
-     */
+    #[DataProvider('instanceProvider')]
     public function testGetComparatorFor($a, $b, $expected): void
     {
         $factory = new Factory;

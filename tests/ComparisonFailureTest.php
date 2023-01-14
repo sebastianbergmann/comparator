@@ -9,14 +9,13 @@
  */
 namespace SebastianBergmann\Comparator;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \SebastianBergmann\Comparator\ComparisonFailure
- *
- * @uses \SebastianBergmann\Comparator\Comparator
- * @uses \SebastianBergmann\Comparator\Factory
- */
+#[CoversClass(ComparisonFailure::class)]
+#[UsesClass(Comparator::class)]
+#[UsesClass(Factory::class)]
 final class ComparisonFailureTest extends TestCase
 {
     public function testComparisonFailure(): void
