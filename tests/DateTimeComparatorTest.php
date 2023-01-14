@@ -28,12 +28,7 @@ final class DateTimeComparatorTest extends TestCase
      */
     private $comparator;
 
-    protected function setUp(): void
-    {
-        $this->comparator = new DateTimeComparator;
-    }
-
-    public function acceptsFailsProvider()
+    public static function acceptsFailsProvider()
     {
         $datetime = new DateTime;
 
@@ -44,7 +39,7 @@ final class DateTimeComparatorTest extends TestCase
         ];
     }
 
-    public function assertEqualsSucceedsProvider()
+    public static function assertEqualsSucceedsProvider()
     {
         return [
             [
@@ -100,7 +95,7 @@ final class DateTimeComparatorTest extends TestCase
         ];
     }
 
-    public function assertEqualsFailsProvider()
+    public static function assertEqualsFailsProvider()
     {
         return [
             [
@@ -148,6 +143,11 @@ final class DateTimeComparatorTest extends TestCase
                 new DateTime('2013-03-29T05:13:35-0500'),
             ],
         ];
+    }
+
+    protected function setUp(): void
+    {
+        $this->comparator = new DateTimeComparator;
     }
 
     public function testAcceptsSucceeds(): void

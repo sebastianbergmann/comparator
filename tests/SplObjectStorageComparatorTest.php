@@ -27,12 +27,7 @@ final class SplObjectStorageComparatorTest extends TestCase
      */
     private $comparator;
 
-    protected function setUp(): void
-    {
-        $this->comparator = new SplObjectStorageComparator;
-    }
-
-    public function acceptsFailsProvider()
+    public static function acceptsFailsProvider()
     {
         return [
             [new SplObjectStorage, new stdClass],
@@ -41,7 +36,7 @@ final class SplObjectStorageComparatorTest extends TestCase
         ];
     }
 
-    public function assertEqualsSucceedsProvider()
+    public static function assertEqualsSucceedsProvider()
     {
         $object1 = new stdClass();
         $object2 = new stdClass();
@@ -65,7 +60,7 @@ final class SplObjectStorageComparatorTest extends TestCase
         ];
     }
 
-    public function assertEqualsFailsProvider()
+    public static function assertEqualsFailsProvider()
     {
         $object1 = new stdClass;
         $object2 = new stdClass;
@@ -84,6 +79,11 @@ final class SplObjectStorageComparatorTest extends TestCase
             [$storage1, $storage3],
             [$storage2, $storage3],
         ];
+    }
+
+    protected function setUp(): void
+    {
+        $this->comparator = new SplObjectStorageComparator;
     }
 
     public function testAcceptsSucceeds(): void

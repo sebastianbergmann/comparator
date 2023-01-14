@@ -25,13 +25,7 @@ final class ArrayComparatorTest extends TestCase
      */
     private $comparator;
 
-    protected function setUp(): void
-    {
-        $this->comparator = new ArrayComparator;
-        $this->comparator->setFactory(new Factory);
-    }
-
-    public function acceptsFailsProvider()
+    public static function acceptsFailsProvider()
     {
         return [
             [[], null],
@@ -40,7 +34,7 @@ final class ArrayComparatorTest extends TestCase
         ];
     }
 
-    public function assertEqualsSucceedsProvider()
+    public static function assertEqualsSucceedsProvider()
     {
         return [
             [
@@ -79,7 +73,7 @@ final class ArrayComparatorTest extends TestCase
         ];
     }
 
-    public function assertEqualsFailsProvider()
+    public static function assertEqualsFailsProvider()
     {
         return [
             [
@@ -122,6 +116,12 @@ final class ArrayComparatorTest extends TestCase
                 [false],
             ],
         ];
+    }
+
+    protected function setUp(): void
+    {
+        $this->comparator = new ArrayComparator;
+        $this->comparator->setFactory(new Factory);
     }
 
     public function testAcceptsSucceeds(): void

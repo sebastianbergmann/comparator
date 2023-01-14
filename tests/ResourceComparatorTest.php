@@ -26,12 +26,7 @@ final class ResourceComparatorTest extends TestCase
      */
     private $comparator;
 
-    protected function setUp(): void
-    {
-        $this->comparator = new ResourceComparator;
-    }
-
-    public function acceptsSucceedsProvider()
+    public static function acceptsSucceedsProvider()
     {
         $tmpfile1 = tmpfile();
         $tmpfile2 = tmpfile();
@@ -43,7 +38,7 @@ final class ResourceComparatorTest extends TestCase
         ];
     }
 
-    public function acceptsFailsProvider()
+    public static function acceptsFailsProvider()
     {
         $tmpfile1 = tmpfile();
 
@@ -54,7 +49,7 @@ final class ResourceComparatorTest extends TestCase
         ];
     }
 
-    public function assertEqualsSucceedsProvider()
+    public static function assertEqualsSucceedsProvider()
     {
         $tmpfile1 = tmpfile();
         $tmpfile2 = tmpfile();
@@ -65,7 +60,7 @@ final class ResourceComparatorTest extends TestCase
         ];
     }
 
-    public function assertEqualsFailsProvider()
+    public static function assertEqualsFailsProvider()
     {
         $tmpfile1 = tmpfile();
         $tmpfile2 = tmpfile();
@@ -74,6 +69,11 @@ final class ResourceComparatorTest extends TestCase
             [$tmpfile1, $tmpfile2],
             [$tmpfile2, $tmpfile1],
         ];
+    }
+
+    protected function setUp(): void
+    {
+        $this->comparator = new ResourceComparator;
     }
 
     /**

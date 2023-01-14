@@ -26,12 +26,7 @@ final class ScalarComparatorTest extends TestCase
      */
     private $comparator;
 
-    protected function setUp(): void
-    {
-        $this->comparator = new ScalarComparator;
-    }
-
-    public function acceptsSucceedsProvider()
+    public static function acceptsSucceedsProvider()
     {
         return [
             ['string', 'string'],
@@ -52,7 +47,7 @@ final class ScalarComparatorTest extends TestCase
         ];
     }
 
-    public function acceptsFailsProvider()
+    public static function acceptsFailsProvider()
     {
         return [
             [[], []],
@@ -63,7 +58,7 @@ final class ScalarComparatorTest extends TestCase
         ];
     }
 
-    public function assertEqualsSucceedsProvider()
+    public static function assertEqualsSucceedsProvider()
     {
         return [
             ['string', 'string'],
@@ -89,7 +84,7 @@ final class ScalarComparatorTest extends TestCase
         ];
     }
 
-    public function assertEqualsFailsProvider()
+    public static function assertEqualsFailsProvider()
     {
         $stringException = 'Failed asserting that two strings are equal.';
         $otherException  = 'matches expected';
@@ -119,6 +114,11 @@ final class ScalarComparatorTest extends TestCase
             ["\n\n\n0.0", '                   0.', $stringException],
             ['0.0', '25e-10000', $stringException],
         ];
+    }
+
+    protected function setUp(): void
+    {
+        $this->comparator = new ScalarComparator;
     }
 
     /**

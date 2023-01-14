@@ -26,12 +26,7 @@ final class TypeComparatorTest extends TestCase
      */
     private $comparator;
 
-    protected function setUp(): void
-    {
-        $this->comparator = new TypeComparator;
-    }
-
-    public function acceptsSucceedsProvider()
+    public static function acceptsSucceedsProvider()
     {
         return [
             [true, 1],
@@ -42,7 +37,7 @@ final class TypeComparatorTest extends TestCase
         ];
     }
 
-    public function assertEqualsSucceedsProvider()
+    public static function assertEqualsSucceedsProvider()
     {
         return [
             [true, true],
@@ -58,7 +53,7 @@ final class TypeComparatorTest extends TestCase
         ];
     }
 
-    public function assertEqualsFailsProvider()
+    public static function assertEqualsFailsProvider()
     {
         return [
             [true, null],
@@ -67,6 +62,11 @@ final class TypeComparatorTest extends TestCase
             [new stdClass, []],
             ['1', 1],
         ];
+    }
+
+    protected function setUp(): void
+    {
+        $this->comparator = new TypeComparator;
     }
 
     /**

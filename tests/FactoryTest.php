@@ -26,7 +26,7 @@ use stdClass;
  */
 final class FactoryTest extends TestCase
 {
-    public function instanceProvider()
+    public static function instanceProvider()
     {
         $tmpfile = tmpfile();
 

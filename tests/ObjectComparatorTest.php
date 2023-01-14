@@ -26,13 +26,7 @@ final class ObjectComparatorTest extends TestCase
      */
     private $comparator;
 
-    protected function setUp(): void
-    {
-        $this->comparator = new ObjectComparator;
-        $this->comparator->setFactory(new Factory);
-    }
-
-    public function acceptsSucceedsProvider()
+    public static function acceptsSucceedsProvider()
     {
         return [
             [new TestClass, new TestClass],
@@ -41,7 +35,7 @@ final class ObjectComparatorTest extends TestCase
         ];
     }
 
-    public function acceptsFailsProvider()
+    public static function acceptsFailsProvider()
     {
         return [
             [new stdClass, null],
@@ -50,7 +44,7 @@ final class ObjectComparatorTest extends TestCase
         ];
     }
 
-    public function assertEqualsSucceedsProvider()
+    public static function assertEqualsSucceedsProvider()
     {
         // cyclic dependencies
         $book1                  = new Book;
@@ -72,7 +66,7 @@ final class ObjectComparatorTest extends TestCase
         ];
     }
 
-    public function assertEqualsFailsProvider()
+    public static function assertEqualsFailsProvider()
     {
         $typeMessage  = 'is not instance of expected class';
         $equalMessage = 'Failed asserting that two objects are equal.';
@@ -100,6 +94,12 @@ final class ObjectComparatorTest extends TestCase
             [$book3, $book4, $typeMessage],
             [new Struct(2.3), new Struct(4.2), $equalMessage, 0.5],
         ];
+    }
+
+    protected function setUp(): void
+    {
+        $this->comparator = new ObjectComparator;
+        $this->comparator->setFactory(new Factory);
     }
 
     /**

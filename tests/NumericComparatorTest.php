@@ -27,12 +27,7 @@ final class NumericComparatorTest extends TestCase
      */
     private $comparator;
 
-    protected function setUp(): void
-    {
-        $this->comparator = new NumericComparator;
-    }
-
-    public function acceptsSucceedsProvider()
+    public static function acceptsSucceedsProvider()
     {
         return [
             [5, 10],
@@ -55,7 +50,7 @@ final class NumericComparatorTest extends TestCase
         ];
     }
 
-    public function acceptsFailsProvider()
+    public static function acceptsFailsProvider()
     {
         return [
             ['5', '10'],
@@ -66,7 +61,7 @@ final class NumericComparatorTest extends TestCase
         ];
     }
 
-    public function assertEqualsSucceedsProvider()
+    public static function assertEqualsSucceedsProvider()
     {
         return [
             [1337, 1337],
@@ -95,7 +90,7 @@ final class NumericComparatorTest extends TestCase
         ];
     }
 
-    public function assertEqualsFailsProvider()
+    public static function assertEqualsFailsProvider()
     {
         return [
             [1337, 1338],
@@ -119,6 +114,11 @@ final class NumericComparatorTest extends TestCase
             [5.5E+123, '5.7E+123', 0.1E+123],
             [5.5E-123, '5.7E-123', 0.1E-123],
         ];
+    }
+
+    protected function setUp(): void
+    {
+        $this->comparator = new NumericComparator;
     }
 
     /**

@@ -27,13 +27,7 @@ final class ExceptionComparatorTest extends TestCase
      */
     private $comparator;
 
-    protected function setUp(): void
-    {
-        $this->comparator = new ExceptionComparator;
-        $this->comparator->setFactory(new Factory);
-    }
-
-    public function acceptsSucceedsProvider()
+    public static function acceptsSucceedsProvider()
     {
         return [
             [new Exception, new Exception],
@@ -42,7 +36,7 @@ final class ExceptionComparatorTest extends TestCase
         ];
     }
 
-    public function acceptsFailsProvider()
+    public static function acceptsFailsProvider()
     {
         return [
             [new Exception, null],
@@ -51,7 +45,7 @@ final class ExceptionComparatorTest extends TestCase
         ];
     }
 
-    public function assertEqualsSucceedsProvider()
+    public static function assertEqualsSucceedsProvider()
     {
         $exception1 = new Exception;
         $exception2 = new Exception;
@@ -67,7 +61,7 @@ final class ExceptionComparatorTest extends TestCase
         ];
     }
 
-    public function assertEqualsFailsProvider()
+    public static function assertEqualsFailsProvider()
     {
         $typeMessage  = 'not instance of expected class';
         $equalMessage = 'Failed asserting that two objects are equal.';
@@ -86,6 +80,12 @@ final class ExceptionComparatorTest extends TestCase
             [$exception2, $exception3, $equalMessage],
             [$exception4, $exception5, $equalMessage],
         ];
+    }
+
+    protected function setUp(): void
+    {
+        $this->comparator = new ExceptionComparator;
+        $this->comparator->setFactory(new Factory);
     }
 
     /**
