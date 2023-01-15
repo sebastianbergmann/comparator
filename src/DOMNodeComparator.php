@@ -57,7 +57,6 @@ final class DOMNodeComparator extends ObjectComparator
                 $actual,
                 $expectedAsString,
                 $actualAsString,
-                false,
                 sprintf("Failed asserting that two DOM %s are equal.\n", $type)
             );
         }

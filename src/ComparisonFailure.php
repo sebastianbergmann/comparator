@@ -13,56 +13,14 @@ use RuntimeException;
 use SebastianBergmann\Diff\Differ;
 use SebastianBergmann\Diff\Output\UnifiedDiffOutputBuilder;
 
-/**
- * Thrown when an assertion for string equality failed.
- */
 final class ComparisonFailure extends RuntimeException
 {
-    /**
-     * Expected value of the retrieval which does not match $actual.
-     *
-     * @var mixed
-     */
-    protected $expected;
+    private mixed $expected;
+    private mixed $actual;
+    private string $expectedAsString;
+    private string $actualAsString;
 
-    /**
-     * Actually retrieved value which does not match $expected.
-     *
-     * @var mixed
-     */
-    protected $actual;
-
-    /**
-     * The string representation of the expected value.
-     *
-     * @var string
-     */
-    protected $expectedAsString;
-
-    /**
-     * The string representation of the actual value.
-     *
-     * @var string
-     */
-    protected $actualAsString;
-
-    /**
-     * @var bool
-     */
-    protected $identical;
-
-    /**
-     * Initialises with the expected value and the actual value.
-     *
-     * @param mixed  $expected         expected value retrieved
-     * @param mixed  $actual           actual value retrieved
-     * @param string $expectedAsString
-     * @param string $actualAsString
-     * @param bool   $identical
-     * @param string $message          a string which is prefixed on all returned lines
-     *                                 in the difference output
-     */
-    public function __construct($expected, $actual, $expectedAsString, $actualAsString, $identical = false, $message = '')
+    public function __construct(mixed $expected, mixed $actual, string $expectedAsString, string $actualAsString, string $message = '')
     {
         parent::__construct($message);
 

@@ -49,7 +49,6 @@ final class TypeComparator extends Comparator
                 // we don't need a diff
                 '',
                 '',
-                false,
                 sprintf(
                     '%s does not match expected type "%s".',
                     (new Exporter)->shortenedExport($actual),

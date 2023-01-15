@@ -53,7 +53,6 @@ class ObjectComparator extends ArrayComparator
                 $actual,
                 $exporter->export($expected),
                 $exporter->export($actual),
-                false,
                 sprintf(
                     '%s is not instance of expected class "%s".',
                     $exporter->export($actual),
@@ -90,7 +89,6 @@ class ObjectComparator extends ArrayComparator
                     // replace "Array" with "MyClass object"
                     substr_replace($e->getExpectedAsString(), $expected::class . ' Object', 0, 5),
                     substr_replace($e->getActualAsString(), $actual::class . ' Object', 0, 5),
-                    false,
                     'Failed asserting that two objects are equal.'
                 );
             }

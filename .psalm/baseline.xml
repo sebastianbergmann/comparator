@@ -18,9 +18,6 @@
       <code>getActual</code>
       <code>getExpected</code>
     </MissingReturnType>
-    <PropertyNotSetInConstructor occurrences="1">
-      <code>$identical</code>
-    </PropertyNotSetInConstructor>
   </file>
   <file src="src/DOMNodeComparator.php">
     <PossiblyNullPropertyAssignment occurrences="1">

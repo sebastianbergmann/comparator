@@ -128,7 +128,6 @@ class ArrayComparator extends Comparator
                 $actual,
                 $expectedAsString,
                 $actualAsString,
-                false,
                 'Failed asserting that two arrays are equal.'
             );
         }
