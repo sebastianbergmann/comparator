@@ -24,7 +24,7 @@ class TypeComparator extends Comparator
      * @param mixed $expected The first value to compare
      * @param mixed $actual   The second value to compare
      */
-    public function accepts($expected, $actual): bool
+    public function accepts(mixed $expected, mixed $actual): bool
     {
         return true;
     }

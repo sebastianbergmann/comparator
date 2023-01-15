@@ -23,11 +23,8 @@ abstract class Comparator
 
     /**
      * Returns whether the comparator can compare two values.
-     *
-     * @param mixed $expected The first value to compare
-     * @param mixed $actual   The second value to compare
      */
-    abstract public function accepts($expected, $actual): bool;
+    abstract public function accepts(mixed $expected, mixed $actual): bool;
 
     /**
      * Asserts that two values are equal.

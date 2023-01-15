@@ -29,7 +29,7 @@ class NumericComparator extends ScalarComparator
      * @param mixed $expected The first value to compare
      * @param mixed $actual   The second value to compare
      */
-    public function accepts($expected, $actual): bool
+    public function accepts(mixed $expected, mixed $actual): bool
     {
         // all numerical values, but not if both of them are strings
         return is_numeric($expected) && is_numeric($actual) &&

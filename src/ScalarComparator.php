@@ -31,7 +31,7 @@ class ScalarComparator extends Comparator
      *
      * @since  Method available since Release 3.6.0
      */
-    public function accepts($expected, $actual): bool
+    public function accepts(mixed $expected, mixed $actual): bool
     {
         return ((is_scalar($expected) xor null === $expected) &&
                (is_scalar($actual) xor null === $actual)) ||
