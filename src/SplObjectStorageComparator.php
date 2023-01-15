@@ -15,7 +15,7 @@ use SplObjectStorage;
 /**
  * Compares \SplObjectStorage instances for equality.
  */
-class SplObjectStorageComparator extends Comparator
+final class SplObjectStorageComparator extends Comparator
 {
     /**
      * Returns whether the comparator can compare two values.

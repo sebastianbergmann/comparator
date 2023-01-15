@@ -21,7 +21,7 @@ use Exception;
 /**
  * Compares DateTimeInterface instances for equality.
  */
-class DateTimeComparator extends ObjectComparator
+final class DateTimeComparator extends ObjectComparator
 {
     /**
      * Returns whether the comparator can compare two values.

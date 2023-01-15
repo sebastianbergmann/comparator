@@ -16,7 +16,7 @@ use SebastianBergmann\Diff\Output\UnifiedDiffOutputBuilder;
 /**
  * Thrown when an assertion for string equality failed.
  */
-class ComparisonFailure extends RuntimeException
+final class ComparisonFailure extends RuntimeException
 {
     /**
      * Expected value of the retrieval which does not match $actual.

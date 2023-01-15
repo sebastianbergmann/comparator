@@ -16,7 +16,7 @@ use SebastianBergmann\Exporter\Exporter;
 /**
  * Compares values for type equality.
  */
-class TypeComparator extends Comparator
+final class TypeComparator extends Comparator
 {
     /**
      * Returns whether the comparator can compare two values.

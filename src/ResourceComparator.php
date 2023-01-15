@@ -15,7 +15,7 @@ use SebastianBergmann\Exporter\Exporter;
 /**
  * Compares resources for equality.
  */
-class ResourceComparator extends Comparator
+final class ResourceComparator extends Comparator
 {
     /**
      * Returns whether the comparator can compare two values.

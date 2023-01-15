@@ -21,7 +21,7 @@ use SebastianBergmann\Exporter\Exporter;
 /**
  * Compares numerical values for equality.
  */
-class NumericComparator extends ScalarComparator
+final class NumericComparator extends ScalarComparator
 {
     /**
      * Returns whether the comparator can compare two values.

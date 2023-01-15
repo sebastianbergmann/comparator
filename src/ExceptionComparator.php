@@ -14,7 +14,7 @@ use Exception;
 /**
  * Compares Exception instances for equality.
  */
-class ExceptionComparator extends ObjectComparator
+final class ExceptionComparator extends ObjectComparator
 {
     /**
      * Returns whether the comparator can compare two values.

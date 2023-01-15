@@ -14,7 +14,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 /**
  * Compares PHPUnit\Framework\MockObject\MockObject instances for equality.
  */
-class MockObjectComparator extends ObjectComparator
+final class MockObjectComparator extends ObjectComparator
 {
     /**
      * Returns whether the comparator can compare two values.

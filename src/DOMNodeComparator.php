@@ -19,7 +19,7 @@ use ValueError;
 /**
  * Compares DOMNode instances for equality.
  */
-class DOMNodeComparator extends ObjectComparator
+final class DOMNodeComparator extends ObjectComparator
 {
     /**
      * Returns whether the comparator can compare two values.
