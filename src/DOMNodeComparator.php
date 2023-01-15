@@ -28,6 +28,9 @@ final class DOMNodeComparator extends ObjectComparator
      */
     public function assertEquals(mixed $expected, mixed $actual, float $delta = 0.0, bool $canonicalize = false, bool $ignoreCase = false, array &$processed = []): void
     {
+        assert($expected instanceof DOMNode);
+        assert($actual instanceof DOMNode);
+
         $expectedAsString = $this->nodeToText($expected, true, $ignoreCase);
         $actualAsString   = $this->nodeToText($actual, true, $ignoreCase);
 

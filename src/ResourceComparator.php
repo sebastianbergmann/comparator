@@ -9,6 +9,7 @@
  */
 namespace SebastianBergmann\Comparator;
 
+use function assert;
 use function is_resource;
 use SebastianBergmann\Exporter\Exporter;
 
@@ -24,6 +25,9 @@ final class ResourceComparator extends Comparator
      */
     public function assertEquals(mixed $expected, mixed $actual, float $delta = 0.0, bool $canonicalize = false, bool $ignoreCase = false): void
     {
+        assert(is_resource($expected));
+        assert(is_resource($actual));
+
         $exporter = new Exporter;
 
         if ($actual != $expected) {

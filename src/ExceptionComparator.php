@@ -9,6 +9,7 @@
  */
 namespace SebastianBergmann\Comparator;
 
+use function assert;
 use Exception;
 
 /**
@@ -29,6 +30,8 @@ final class ExceptionComparator extends ObjectComparator
 
     protected function toArray(object $object): array
     {
+        assert($object instanceof Exception);
+
         $array = parent::toArray($object);
 
         unset(

@@ -9,6 +9,7 @@
  */
 namespace SebastianBergmann\Comparator;
 
+use function assert;
 use function in_array;
 use function is_object;
 use function sprintf;
@@ -27,6 +28,9 @@ class ObjectComparator extends ArrayComparator
      */
     public function assertEquals(mixed $expected, mixed $actual, float $delta = 0.0, bool $canonicalize = false, bool $ignoreCase = false, array &$processed = []): void
     {
+        assert(is_object($expected));
+        assert(is_object($actual));
+
         if ($actual::class !== $expected::class) {
             $exporter = new Exporter;
 

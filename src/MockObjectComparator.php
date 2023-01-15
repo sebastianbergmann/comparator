@@ -9,6 +9,7 @@
  */
 namespace SebastianBergmann\Comparator;
 
+use function assert;
 use PHPUnit\Framework\MockObject\MockObject;
 
 /**
@@ -29,6 +30,8 @@ final class MockObjectComparator extends ObjectComparator
 
     protected function toArray(object $object): array
     {
+        assert($object instanceof MockObject);
+
         $array = parent::toArray($object);
 
         unset($array['__phpunit_invocationMocker']);

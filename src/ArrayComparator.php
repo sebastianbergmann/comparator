@@ -10,6 +10,7 @@
 namespace SebastianBergmann\Comparator;
 
 use function array_key_exists;
+use function assert;
 use function is_array;
 use function sort;
 use function sprintf;
@@ -34,6 +35,9 @@ class ArrayComparator extends Comparator
      */
     public function assertEquals(mixed $expected, mixed $actual, float $delta = 0.0, bool $canonicalize = false, bool $ignoreCase = false, array &$processed = []): void
     {
+        assert(is_array($expected));
+        assert(is_array($actual));
+
         if ($canonicalize) {
             sort($expected);
             sort($actual);

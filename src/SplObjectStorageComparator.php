@@ -9,6 +9,7 @@
  */
 namespace SebastianBergmann\Comparator;
 
+use function assert;
 use SebastianBergmann\Exporter\Exporter;
 use SplObjectStorage;
 
@@ -24,6 +25,9 @@ final class SplObjectStorageComparator extends Comparator
      */
     public function assertEquals(mixed $expected, mixed $actual, float $delta = 0.0, bool $canonicalize = false, bool $ignoreCase = false): void
     {
+        assert($expected instanceof SplObjectStorage);
+        assert($actual instanceof SplObjectStorage);
+
         $exporter = new Exporter;
 
         foreach ($actual as $object) {
