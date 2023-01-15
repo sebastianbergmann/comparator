@@ -27,10 +27,8 @@ class NumericComparator extends ScalarComparator
      *
      * @param mixed $expected The first value to compare
      * @param mixed $actual   The second value to compare
-     *
-     * @return bool
      */
-    public function accepts($expected, $actual)
+    public function accepts($expected, $actual): bool
     {
         // all numerical values, but not if both of them are strings
         return is_numeric($expected) && is_numeric($actual) &&
@@ -48,7 +46,7 @@ class NumericComparator extends ScalarComparator
      *
      * @throws ComparisonFailure
      */
-    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false)/*: void*/
+    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false): void
     {
         if ($this->isInfinite($actual) && $this->isInfinite($expected)) {
             return;

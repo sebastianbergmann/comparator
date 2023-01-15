@@ -22,10 +22,8 @@ class TypeComparator extends Comparator
      *
      * @param mixed $expected The first value to compare
      * @param mixed $actual   The second value to compare
-     *
-     * @return bool
      */
-    public function accepts($expected, $actual)
+    public function accepts($expected, $actual): bool
     {
         return true;
     }
@@ -41,7 +39,7 @@ class TypeComparator extends Comparator
      *
      * @throws ComparisonFailure
      */
-    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false)/*: void*/
+    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false): void
     {
         if (gettype($expected) != gettype($actual)) {
             throw new ComparisonFailure(

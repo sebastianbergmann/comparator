@@ -26,10 +26,8 @@ class DOMNodeComparator extends ObjectComparator
      *
      * @param mixed $expected The first value to compare
      * @param mixed $actual   The second value to compare
-     *
-     * @return bool
      */
-    public function accepts($expected, $actual)
+    public function accepts($expected, $actual): bool
     {
         return $expected instanceof DOMNode && $actual instanceof DOMNode;
     }
@@ -46,7 +44,7 @@ class DOMNodeComparator extends ObjectComparator
      *
      * @throws ComparisonFailure
      */
-    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = [])/*: void*/
+    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = []): void
     {
         $expectedAsString = $this->nodeToText($expected, true, $ignoreCase);
         $actualAsString   = $this->nodeToText($actual, true, $ignoreCase);

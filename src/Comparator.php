@@ -31,7 +31,7 @@ abstract class Comparator
         $this->exporter = new Exporter;
     }
 
-    public function setFactory(Factory $factory)/*: void*/
+    public function setFactory(Factory $factory): void
     {
         $this->factory = $factory;
     }
@@ -41,10 +41,8 @@ abstract class Comparator
      *
      * @param mixed $expected The first value to compare
      * @param mixed $actual   The second value to compare
-     *
-     * @return bool
      */
-    abstract public function accepts($expected, $actual);
+    abstract public function accepts($expected, $actual): bool;
 
     /**
      * Asserts that two values are equal.

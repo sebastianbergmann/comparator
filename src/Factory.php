@@ -31,10 +31,7 @@ class Factory
      */
     private $defaultComparators = [];
 
-    /**
-     * @return Factory
-     */
-    public static function getInstance()
+    public static function getInstance(): self
     {
         if (self::$instance === null) {
             self::$instance = new self; // @codeCoverageIgnore
@@ -56,10 +53,8 @@ class Factory
      *
      * @param mixed $expected The first value to compare
      * @param mixed $actual   The second value to compare
-     *
-     * @return Comparator
      */
-    public function getComparatorFor($expected, $actual)
+    public function getComparatorFor($expected, $actual): Comparator
     {
         foreach ($this->customComparators as $comparator) {
             if ($comparator->accepts($expected, $actual)) {
@@ -86,7 +81,7 @@ class Factory
      *
      * @param Comparator $comparator The comparator to be registered
      */
-    public function register(Comparator $comparator)/*: void*/
+    public function register(Comparator $comparator): void
     {
         array_unshift($this->customComparators, $comparator);
 
@@ -100,7 +95,7 @@ class Factory
      *
      * @param Comparator $comparator The comparator to be unregistered
      */
-    public function unregister(Comparator $comparator)/*: void*/
+    public function unregister(Comparator $comparator): void
     {
         foreach ($this->customComparators as $key => $_comparator) {
             if ($comparator === $_comparator) {
@@ -112,7 +107,7 @@ class Factory
     /**
      * Unregisters all non-default comparators.
      */
-    public function reset()/*: void*/
+    public function reset(): void
     {
         $this->customComparators = [];
     }

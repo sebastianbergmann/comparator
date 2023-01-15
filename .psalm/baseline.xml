@@ -4,10 +4,6 @@
     <MissingParamType occurrences="1">
       <code>$lines</code>
     </MissingParamType>
-    <MissingReturnType occurrences="2">
-      <code>assertEquals</code>
-      <code>indent</code>
-    </MissingReturnType>
     <PropertyNotSetInConstructor occurrences="1">
       <code>ArrayComparator</code>
     </PropertyNotSetInConstructor>
@@ -16,9 +12,8 @@
     </TooManyArguments>
   </file>
   <file src="src/Comparator.php">
-    <MissingReturnType occurrences="2">
+    <MissingReturnType occurrences="1">
       <code>assertEquals</code>
-      <code>setFactory</code>
     </MissingReturnType>
     <PropertyNotSetInConstructor occurrences="1">
       <code>$factory</code>
@@ -34,9 +29,6 @@
     </PropertyNotSetInConstructor>
   </file>
   <file src="src/DOMNodeComparator.php">
-    <MissingReturnType occurrences="1">
-      <code>assertEquals</code>
-    </MissingReturnType>
     <PossiblyNullPropertyAssignment occurrences="1">
       <code>$document</code>
     </PossiblyNullPropertyAssignment>
@@ -48,9 +40,6 @@
     </PropertyNotSetInConstructor>
   </file>
   <file src="src/DateTimeComparator.php">
-    <MissingReturnType occurrences="1">
-      <code>assertEquals</code>
-    </MissingReturnType>
     <PropertyNotSetInConstructor occurrences="1">
       <code>DateTimeComparator</code>
     </PropertyNotSetInConstructor>
@@ -67,11 +56,6 @@
     <DocblockTypeContradiction occurrences="1">
       <code>self::$instance === null</code>
     </DocblockTypeContradiction>
-    <MissingReturnType occurrences="3">
-      <code>register</code>
-      <code>reset</code>
-      <code>unregister</code>
-    </MissingReturnType>
   </file>
   <file src="src/MockObjectComparator.php">
     <PropertyNotSetInConstructor occurrences="1">
@@ -83,49 +67,31 @@
       <code>$value</code>
       <code>$value</code>
     </MissingParamType>
-    <MissingReturnType occurrences="1">
-      <code>assertEquals</code>
-    </MissingReturnType>
     <PropertyNotSetInConstructor occurrences="1">
       <code>NumericComparator</code>
     </PropertyNotSetInConstructor>
   </file>
   <file src="src/ObjectComparator.php">
-    <MissingReturnType occurrences="1">
-      <code>assertEquals</code>
-    </MissingReturnType>
     <PropertyNotSetInConstructor occurrences="1">
       <code>ObjectComparator</code>
     </PropertyNotSetInConstructor>
   </file>
   <file src="src/ResourceComparator.php">
-    <MissingReturnType occurrences="1">
-      <code>assertEquals</code>
-    </MissingReturnType>
     <PropertyNotSetInConstructor occurrences="1">
       <code>ResourceComparator</code>
     </PropertyNotSetInConstructor>
   </file>
   <file src="src/ScalarComparator.php">
-    <MissingReturnType occurrences="1">
-      <code>assertEquals</code>
-    </MissingReturnType>
     <PropertyNotSetInConstructor occurrences="1">
       <code>ScalarComparator</code>
     </PropertyNotSetInConstructor>
   </file>
   <file src="src/SplObjectStorageComparator.php">
-    <MissingReturnType occurrences="1">
-      <code>assertEquals</code>
-    </MissingReturnType>
     <PropertyNotSetInConstructor occurrences="1">
       <code>SplObjectStorageComparator</code>
     </PropertyNotSetInConstructor>
   </file>
   <file src="src/TypeComparator.php">
-    <MissingReturnType occurrences="1">
-      <code>assertEquals</code>
-    </MissingReturnType>
     <PropertyNotSetInConstructor occurrences="1">
       <code>TypeComparator</code>
     </PropertyNotSetInConstructor>

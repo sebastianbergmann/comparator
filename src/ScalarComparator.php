@@ -28,11 +28,9 @@ class ScalarComparator extends Comparator
      * @param mixed $expected The first value to compare
      * @param mixed $actual   The second value to compare
      *
-     * @return bool
-     *
      * @since  Method available since Release 3.6.0
      */
-    public function accepts($expected, $actual)
+    public function accepts($expected, $actual): bool
     {
         return ((is_scalar($expected) xor null === $expected) &&
                (is_scalar($actual) xor null === $actual)) ||
@@ -52,7 +50,7 @@ class ScalarComparator extends Comparator
      *
      * @throws ComparisonFailure
      */
-    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false)/*: void*/
+    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false): void
     {
         $expectedToCompare = $expected;
         $actualToCompare   = $actual;

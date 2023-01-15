@@ -21,10 +21,8 @@ class MockObjectComparator extends ObjectComparator
      *
      * @param mixed $expected The first value to compare
      * @param mixed $actual   The second value to compare
-     *
-     * @return bool
      */
-    public function accepts($expected, $actual)
+    public function accepts($expected, $actual): bool
     {
         return $expected instanceof MockObject && $actual instanceof MockObject;
     }
@@ -34,10 +32,8 @@ class MockObjectComparator extends ObjectComparator
      * and public properties.
      *
      * @param object $object
-     *
-     * @return array
      */
-    protected function toArray($object)
+    protected function toArray($object): array
     {
         $array = parent::toArray($object);
 

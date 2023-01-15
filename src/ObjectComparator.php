@@ -25,10 +25,8 @@ class ObjectComparator extends ArrayComparator
      *
      * @param mixed $expected The first value to compare
      * @param mixed $actual   The second value to compare
-     *
-     * @return bool
      */
-    public function accepts($expected, $actual)
+    public function accepts($expected, $actual): bool
     {
         return is_object($expected) && is_object($actual);
     }
@@ -45,7 +43,7 @@ class ObjectComparator extends ArrayComparator
      *
      * @throws ComparisonFailure
      */
-    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = [])/*: void*/
+    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = []): void
     {
         if (get_class($actual) !== get_class($expected)) {
             throw new ComparisonFailure(
@@ -102,10 +100,8 @@ class ObjectComparator extends ArrayComparator
      * and public properties.
      *
      * @param object $object
-     *
-     * @return array
      */
-    protected function toArray($object)
+    protected function toArray($object): array
     {
         return $this->exporter->toArray($object);
     }

@@ -30,10 +30,8 @@ class ArrayComparator extends Comparator
      *
      * @param mixed $expected The first value to compare
      * @param mixed $actual   The second value to compare
-     *
-     * @return bool
      */
-    public function accepts($expected, $actual)
+    public function accepts($expected, $actual): bool
     {
         return is_array($expected) && is_array($actual);
     }
@@ -50,7 +48,7 @@ class ArrayComparator extends Comparator
      *
      * @throws ComparisonFailure
      */
-    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = [])/*: void*/
+    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = []): void
     {
         if ($canonicalize) {
             sort($expected);
@@ -134,7 +132,7 @@ class ArrayComparator extends Comparator
         }
     }
 
-    protected function indent($lines)
+    protected function indent($lines): string
     {
         return trim(str_replace("\n", "\n    ", $lines));
     }

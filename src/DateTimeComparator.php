@@ -28,10 +28,8 @@ class DateTimeComparator extends ObjectComparator
      *
      * @param mixed $expected The first value to compare
      * @param mixed $actual   The second value to compare
-     *
-     * @return bool
      */
-    public function accepts($expected, $actual)
+    public function accepts($expected, $actual): bool
     {
         return ($expected instanceof DateTime || $expected instanceof DateTimeInterface) &&
                ($actual instanceof DateTime || $actual instanceof DateTimeInterface);
@@ -50,7 +48,7 @@ class DateTimeComparator extends ObjectComparator
      * @throws ComparisonFailure
      * @throws Exception
      */
-    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = [])/*: void*/
+    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = []): void
     {
         /** @var DateTimeInterface $expected */
         /** @var DateTimeInterface $actual */
