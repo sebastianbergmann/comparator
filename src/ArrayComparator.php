@@ -15,6 +15,7 @@ use function sort;
 use function sprintf;
 use function str_replace;
 use function trim;
+use SebastianBergmann\Exporter\Exporter;
 
 /**
  * Compares arrays for equality.
@@ -59,6 +60,7 @@ class ArrayComparator extends Comparator
         $actualAsString   = "Array (\n";
         $expectedAsString = "Array (\n";
         $equal            = true;
+        $exporter         = new Exporter;
 
         foreach ($expected as $key => $value) {
             unset($remaining[$key]);
@@ -66,8 +68,8 @@ class ArrayComparator extends Comparator
             if (!array_key_exists($key, $actual)) {
                 $expectedAsString .= sprintf(
                     "    %s => %s\n",
-                    $this->exporter->export($key),
-                    $this->exporter->shortenedExport($value)
+                    $exporter->export($key),
+                    $exporter->shortenedExport($value)
                 );
 
                 $equal = false;
@@ -76,31 +78,31 @@ class ArrayComparator extends Comparator
             }
 
             try {
-                $comparator = $this->factory->getComparatorFor($value, $actual[$key]);
+                $comparator = $this->factory()->getComparatorFor($value, $actual[$key]);
                 $comparator->assertEquals($value, $actual[$key], $delta, $canonicalize, $ignoreCase, $processed);
 
                 $expectedAsString .= sprintf(
                     "    %s => %s\n",
-                    $this->exporter->export($key),
-                    $this->exporter->shortenedExport($value)
+                    $exporter->export($key),
+                    $exporter->shortenedExport($value)
                 );
 
                 $actualAsString .= sprintf(
                     "    %s => %s\n",
-                    $this->exporter->export($key),
-                    $this->exporter->shortenedExport($actual[$key])
+                    $exporter->export($key),
+                    $exporter->shortenedExport($actual[$key])
                 );
             } catch (ComparisonFailure $e) {
                 $expectedAsString .= sprintf(
                     "    %s => %s\n",
-                    $this->exporter->export($key),
-                    $e->getExpectedAsString() ? $this->indent($e->getExpectedAsString()) : $this->exporter->shortenedExport($e->getExpected())
+                    $exporter->export($key),
+                    $e->getExpectedAsString() ? $this->indent($e->getExpectedAsString()) : $exporter->shortenedExport($e->getExpected())
                 );
 
                 $actualAsString .= sprintf(
                     "    %s => %s\n",
-                    $this->exporter->export($key),
-                    $e->getActualAsString() ? $this->indent($e->getActualAsString()) : $this->exporter->shortenedExport($e->getActual())
+                    $exporter->export($key),
+                    $e->getActualAsString() ? $this->indent($e->getActualAsString()) : $exporter->shortenedExport($e->getActual())
                 );
 
                 $equal = false;
@@ -110,8 +112,8 @@ class ArrayComparator extends Comparator
         foreach ($remaining as $key => $value) {
             $actualAsString .= sprintf(
                 "    %s => %s\n",
-                $this->exporter->export($key),
-                $this->exporter->shortenedExport($value)
+                $exporter->export($key),
+                $exporter->shortenedExport($value)
             );
 
             $equal = false;

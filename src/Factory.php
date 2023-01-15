@@ -11,25 +11,19 @@ namespace SebastianBergmann\Comparator;
 
 use function array_unshift;
 
-/**
- * Factory for comparators which compare values for equality.
- */
-class Factory
+final class Factory
 {
-    /**
-     * @var Factory
-     */
-    private static $instance;
+    private static ?Factory $instance = null;
 
     /**
-     * @var Comparator[]
+     * @psalm-var list<Comparator>
      */
-    private $customComparators = [];
+    private array $customComparators = [];
 
     /**
-     * @var Comparator[]
+     * @psalm-var list<Comparator>
      */
-    private $defaultComparators = [];
+    private array $defaultComparators = [];
 
     public static function getInstance(): self
     {
@@ -40,21 +34,12 @@ class Factory
         return self::$instance;
     }
 
-    /**
-     * Constructs a new factory.
-     */
     public function __construct()
     {
         $this->registerDefaultComparators();
     }
 
-    /**
-     * Returns the correct comparator for comparing two values.
-     *
-     * @param mixed $expected The first value to compare
-     * @param mixed $actual   The second value to compare
-     */
-    public function getComparatorFor($expected, $actual): Comparator
+    public function getComparatorFor(mixed $expected, mixed $actual): Comparator
     {
         foreach ($this->customComparators as $comparator) {
             if ($comparator->accepts($expected, $actual)) {
@@ -78,8 +63,6 @@ class Factory
      * returns TRUE for the compared values. It has higher priority than the
      * existing comparators, meaning that its accept() method will be invoked
      * before those of the other comparators.
-     *
-     * @param Comparator $comparator The comparator to be registered
      */
     public function register(Comparator $comparator): void
     {
@@ -92,8 +75,6 @@ class Factory
      * Unregisters a comparator.
      *
      * This comparator will no longer be considered by getComparatorFor().
-     *
-     * @param Comparator $comparator The comparator to be unregistered
      */
     public function unregister(Comparator $comparator): void
     {
@@ -104,9 +85,6 @@ class Factory
         }
     }
 
-    /**
-     * Unregisters all non-default comparators.
-     */
     public function reset(): void
     {
         $this->customComparators = [];

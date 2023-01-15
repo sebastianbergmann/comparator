@@ -10,6 +10,7 @@
 namespace SebastianBergmann\Comparator;
 
 use function is_resource;
+use SebastianBergmann\Exporter\Exporter;
 
 /**
  * Compares resources for equality.
@@ -40,12 +41,14 @@ class ResourceComparator extends Comparator
      */
     public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false): void
     {
+        $exporter = new Exporter;
+
         if ($actual != $expected) {
             throw new ComparisonFailure(
                 $expected,
                 $actual,
-                $this->exporter->export($expected),
-                $this->exporter->export($actual)
+                $exporter->export($expected),
+                $exporter->export($actual)
             );
         }
     }

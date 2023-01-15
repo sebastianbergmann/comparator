@@ -16,6 +16,7 @@ use function is_nan;
 use function is_numeric;
 use function is_string;
 use function sprintf;
+use SebastianBergmann\Exporter\Exporter;
 
 /**
  * Compares numerical values for equality.
@@ -55,6 +56,8 @@ class NumericComparator extends ScalarComparator
         if (($this->isInfinite($actual) xor $this->isInfinite($expected)) ||
             ($this->isNan($actual) || $this->isNan($expected)) ||
             abs($actual - $expected) > $delta) {
+            $exporter = new Exporter;
+
             throw new ComparisonFailure(
                 $expected,
                 $actual,
@@ -63,8 +66,8 @@ class NumericComparator extends ScalarComparator
                 false,
                 sprintf(
                     'Failed asserting that %s matches expected %s.',
-                    $this->exporter->export($actual),
-                    $this->exporter->export($expected)
+                    $exporter->export($actual),
+                    $exporter->export($expected)
                 )
             );
         }

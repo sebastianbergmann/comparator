@@ -16,6 +16,7 @@ use function is_string;
 use function mb_strtolower;
 use function method_exists;
 use function sprintf;
+use SebastianBergmann\Exporter\Exporter;
 
 /**
  * Compares scalar or NULL values for equality.
@@ -54,6 +55,7 @@ class ScalarComparator extends Comparator
     {
         $expectedToCompare = $expected;
         $actualToCompare   = $actual;
+        $exporter          = new Exporter;
 
         // always compare as strings to avoid strange behaviour
         // otherwise 0 == 'Foobar'
@@ -71,8 +73,8 @@ class ScalarComparator extends Comparator
             throw new ComparisonFailure(
                 $expected,
                 $actual,
-                $this->exporter->export($expected),
-                $this->exporter->export($actual),
+                $exporter->export($expected),
+                $exporter->export($actual),
                 false,
                 'Failed asserting that two strings are equal.'
             );
@@ -88,8 +90,8 @@ class ScalarComparator extends Comparator
                 false,
                 sprintf(
                     'Failed asserting that %s matches expected %s.',
-                    $this->exporter->export($actual),
-                    $this->exporter->export($expected)
+                    $exporter->export($actual),
+                    $exporter->export($expected)
                 )
             );
         }

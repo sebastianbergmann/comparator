@@ -14,6 +14,7 @@ use function in_array;
 use function is_object;
 use function sprintf;
 use function substr_replace;
+use SebastianBergmann\Exporter\Exporter;
 
 /**
  * Compares objects for equality.
@@ -46,15 +47,17 @@ class ObjectComparator extends ArrayComparator
     public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = []): void
     {
         if (get_class($actual) !== get_class($expected)) {
+            $exporter = new Exporter;
+
             throw new ComparisonFailure(
                 $expected,
                 $actual,
-                $this->exporter->export($expected),
-                $this->exporter->export($actual),
+                $exporter->export($expected),
+                $exporter->export($actual),
                 false,
                 sprintf(
                     '%s is not instance of expected class "%s".',
-                    $this->exporter->export($actual),
+                    $exporter->export($actual),
                     get_class($expected)
                 )
             );
@@ -103,6 +106,6 @@ class ObjectComparator extends ArrayComparator
      */
     protected function toArray($object): array
     {
-        return $this->exporter->toArray($object);
+        return (new Exporter)->toArray($object);
     }
 }

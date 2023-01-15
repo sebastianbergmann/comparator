@@ -9,27 +9,12 @@
  */
 namespace SebastianBergmann\Comparator;
 
-use SebastianBergmann\Exporter\Exporter;
-
 /**
  * Abstract base class for comparators which compare values for equality.
  */
 abstract class Comparator
 {
-    /**
-     * @var Factory
-     */
-    protected $factory;
-
-    /**
-     * @var Exporter
-     */
-    protected $exporter;
-
-    public function __construct()
-    {
-        $this->exporter = new Exporter;
-    }
+    private Factory $factory;
 
     public function setFactory(Factory $factory): void
     {
@@ -56,4 +41,9 @@ abstract class Comparator
      * @throws ComparisonFailure
      */
     abstract public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false);
+
+    protected function factory(): Factory
+    {
+        return $this->factory;
+    }
 }

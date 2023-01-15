@@ -9,6 +9,7 @@
  */
 namespace SebastianBergmann\Comparator;
 
+use SebastianBergmann\Exporter\Exporter;
 use SplObjectStorage;
 
 /**
@@ -40,13 +41,15 @@ class SplObjectStorageComparator extends Comparator
      */
     public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false): void
     {
+        $exporter = new Exporter;
+
         foreach ($actual as $object) {
             if (!$expected->contains($object)) {
                 throw new ComparisonFailure(
                     $expected,
                     $actual,
-                    $this->exporter->export($expected),
-                    $this->exporter->export($actual),
+                    $exporter->export($expected),
+                    $exporter->export($actual),
                     false,
                     'Failed asserting that two objects are equal.'
                 );
@@ -58,8 +61,8 @@ class SplObjectStorageComparator extends Comparator
                 throw new ComparisonFailure(
                     $expected,
                     $actual,
-                    $this->exporter->export($expected),
-                    $this->exporter->export($actual),
+                    $exporter->export($expected),
+                    $exporter->export($actual),
                     false,
                     'Failed asserting that two objects are equal.'
                 );

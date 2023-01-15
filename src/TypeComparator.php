@@ -11,6 +11,7 @@ namespace SebastianBergmann\Comparator;
 
 use function gettype;
 use function sprintf;
+use SebastianBergmann\Exporter\Exporter;
 
 /**
  * Compares values for type equality.
@@ -51,7 +52,7 @@ class TypeComparator extends Comparator
                 false,
                 sprintf(
                     '%s does not match expected type "%s".',
-                    $this->exporter->shortenedExport($actual),
+                    (new Exporter)->shortenedExport($actual),
                     gettype($expected)
                 )
             );
