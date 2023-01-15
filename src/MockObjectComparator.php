@@ -27,13 +27,7 @@ final class MockObjectComparator extends ObjectComparator
         return $expected instanceof MockObject && $actual instanceof MockObject;
     }
 
-    /**
-     * Converts an object to an array containing all of its private, protected
-     * and public properties.
-     *
-     * @param object $object
-     */
-    protected function toArray($object): array
+    protected function toArray(object $object): array
     {
         $array = parent::toArray($object);
 

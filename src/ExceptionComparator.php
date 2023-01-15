@@ -27,13 +27,7 @@ final class ExceptionComparator extends ObjectComparator
         return $expected instanceof Exception && $actual instanceof Exception;
     }
 
-    /**
-     * Converts an object to an array containing all of its private, protected
-     * and public properties.
-     *
-     * @param object $object
-     */
-    protected function toArray($object): array
+    protected function toArray(object $object): array
     {
         $array = parent::toArray($object);
 

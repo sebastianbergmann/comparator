@@ -15,35 +15,17 @@ use function sprintf;
 use function substr_replace;
 use SebastianBergmann\Exporter\Exporter;
 
-/**
- * Compares objects for equality.
- */
 class ObjectComparator extends ArrayComparator
 {
-    /**
-     * Returns whether the comparator can compare two values.
-     *
-     * @param mixed $expected The first value to compare
-     * @param mixed $actual   The second value to compare
-     */
     public function accepts(mixed $expected, mixed $actual): bool
     {
         return is_object($expected) && is_object($actual);
     }
 
     /**
-     * Asserts that two values are equal.
-     *
-     * @param mixed $expected     First value to compare
-     * @param mixed $actual       Second value to compare
-     * @param float $delta        Allowed numerical distance between two values to consider them equal
-     * @param bool  $canonicalize Arrays are sorted before comparison when set to true
-     * @param bool  $ignoreCase   Case is ignored when set to true
-     * @param array $processed    List of already processed elements (used to prevent infinite recursion)
-     *
      * @throws ComparisonFailure
      */
-    public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = []): void
+    public function assertEquals(mixed $expected, mixed $actual, float $delta = 0.0, bool $canonicalize = false, bool $ignoreCase = false, array &$processed = []): void
     {
         if ($actual::class !== $expected::class) {
             $exporter = new Exporter;
@@ -95,13 +77,7 @@ class ObjectComparator extends ArrayComparator
         }
     }
 
-    /**
-     * Converts an object to an array containing all of its private, protected
-     * and public properties.
-     *
-     * @param object $object
-     */
-    protected function toArray($object): array
+    protected function toArray(object $object): array
     {
         return (new Exporter)->toArray($object);
     }

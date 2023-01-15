@@ -28,7 +28,9 @@
     </PossiblyNullReference>
   </file>
   <file src="src/DateTimeComparator.php">
-    <UndefinedInterfaceMethod occurrences="1">
+    <UndefinedInterfaceMethod occurrences="3">
+      <code>setTimezone</code>
+      <code>setTimezone</code>
       <code>setTimezone</code>
     </UndefinedInterfaceMethod>
   </file>
