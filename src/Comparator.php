@@ -23,7 +23,7 @@ abstract class Comparator
     /**
      * @throws ComparisonFailure
      */
-    abstract public function assertEquals(mixed $expected, mixed $actual, float $delta = 0.0, bool $canonicalize = false, bool $ignoreCase = false);
+    abstract public function assertEquals(mixed $expected, mixed $actual, float $delta = 0.0, bool $canonicalize = false, bool $ignoreCase = false): void;
 
     protected function factory(): Factory
     {

@@ -1,23 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="dev-master@">
   <file src="src/ArrayComparator.php">
-    <MissingParamType occurrences="1">
-      <code>$lines</code>
-    </MissingParamType>
     <TooManyArguments occurrences="1">
       <code>assertEquals</code>
     </TooManyArguments>
-  </file>
-  <file src="src/Comparator.php">
-    <MissingReturnType occurrences="1">
-      <code>assertEquals</code>
-    </MissingReturnType>
-  </file>
-  <file src="src/ComparisonFailure.php">
-    <MissingReturnType occurrences="2">
-      <code>getActual</code>
-      <code>getExpected</code>
-    </MissingReturnType>
   </file>
   <file src="src/DOMNodeComparator.php">
     <PossiblyNullPropertyAssignment occurrences="1">
@@ -33,11 +19,5 @@
       <code>setTimezone</code>
       <code>setTimezone</code>
     </UndefinedInterfaceMethod>
-  </file>
-  <file src="src/NumericComparator.php">
-    <MissingParamType occurrences="2">
-      <code>$value</code>
-      <code>$value</code>
-    </MissingParamType>
   </file>
 </files>

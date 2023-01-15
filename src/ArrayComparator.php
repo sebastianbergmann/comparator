@@ -116,7 +116,7 @@ class ArrayComparator extends Comparator
         }
     }
 
-    private function indent($lines): string
+    private function indent(string $lines): string
     {
         return trim(str_replace("\n", "\n    ", $lines));
     }

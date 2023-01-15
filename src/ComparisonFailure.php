@@ -30,12 +30,12 @@ final class ComparisonFailure extends RuntimeException
         $this->actualAsString   = $actualAsString;
     }
 
-    public function getActual()
+    public function getActual(): mixed
     {
         return $this->actual;
     }
 
-    public function getExpected()
+    public function getExpected(): mixed
     {
         return $this->expected;
     }

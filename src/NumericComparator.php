@@ -55,12 +55,12 @@ final class NumericComparator extends ScalarComparator
         }
     }
 
-    private function isInfinite($value): bool
+    private function isInfinite(mixed $value): bool
     {
         return is_float($value) && is_infinite($value);
     }
 
-    private function isNan($value): bool
+    private function isNan(mixed $value): bool
     {
         return is_float($value) && is_nan($value);
     }
