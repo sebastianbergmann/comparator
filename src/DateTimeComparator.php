@@ -31,8 +31,8 @@ final class DateTimeComparator extends ObjectComparator
      */
     public function accepts(mixed $expected, mixed $actual): bool
     {
-        return ($expected instanceof DateTime || $expected instanceof DateTimeInterface) &&
-               ($actual instanceof DateTime || $actual instanceof DateTimeInterface);
+        return ($expected instanceof DateTimeInterface) &&
+               ($actual instanceof DateTimeInterface);
     }
 
     /**
