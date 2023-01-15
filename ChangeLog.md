@@ -2,14 +2,19 @@
 
 All notable changes are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
-## [5.0.0] - 2021-MM-DD
+## [5.0.0] - 2023-02-03
 
 ### Changed
 
+* Methods now have parameter and return type declarations
+* `Comparator::$factory` is now private, use `Comparator::factory()` instead
+* `ComparisonFailure`, `DOMNodeComparator`, `DateTimeComparator`, `ExceptionComparator`, `MockObjectComparator`, `NumericComparator`, `ResourceComparator`, `SplObjectStorageComparator`, and `TypeComparator` are now `final`
 * `ScalarComparator` and `DOMNodeComparator` now use `mb_strtolower($string, 'UTF-8')` instead of `strtolower($string)`
 
 ### Removed
 
+* Removed `$identical` parameter from `ComparisonFailure::__construct()`
+* Removed `Comparator::$exporter`
 * Removed support for PHP 7.3, PHP 7.4, and PHP 8.0
 
 ## [4.0.8] - 2022-09-14
