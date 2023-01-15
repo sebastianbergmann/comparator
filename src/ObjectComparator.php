@@ -9,7 +9,6 @@
  */
 namespace SebastianBergmann\Comparator;
 
-use function get_class;
 use function in_array;
 use function is_object;
 use function sprintf;
@@ -46,7 +45,7 @@ class ObjectComparator extends ArrayComparator
      */
     public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false, array &$processed = []): void
     {
-        if (get_class($actual) !== get_class($expected)) {
+        if ($actual::class !== $expected::class) {
             $exporter = new Exporter;
 
             throw new ComparisonFailure(
@@ -58,7 +57,7 @@ class ObjectComparator extends ArrayComparator
                 sprintf(
                     '%s is not instance of expected class "%s".',
                     $exporter->export($actual),
-                    get_class($expected)
+                    $expected::class
                 )
             );
         }
@@ -89,8 +88,8 @@ class ObjectComparator extends ArrayComparator
                     $expected,
                     $actual,
                     // replace "Array" with "MyClass object"
-                    substr_replace($e->getExpectedAsString(), get_class($expected) . ' Object', 0, 5),
-                    substr_replace($e->getActualAsString(), get_class($actual) . ' Object', 0, 5),
+                    substr_replace($e->getExpectedAsString(), $expected::class . ' Object', 0, 5),
+                    substr_replace($e->getActualAsString(), $actual::class . ' Object', 0, 5),
                     false,
                     'Failed asserting that two objects are equal.'
                 );

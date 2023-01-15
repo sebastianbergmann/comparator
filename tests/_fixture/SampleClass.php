@@ -15,9 +15,7 @@ namespace SebastianBergmann\Comparator;
 class SampleClass
 {
     public $a;
-
     protected $b;
-
     protected $c;
 
     public function __construct($a, $b, $c)

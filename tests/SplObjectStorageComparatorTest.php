@@ -38,17 +38,17 @@ final class SplObjectStorageComparatorTest extends TestCase
 
     public static function assertEqualsSucceedsProvider()
     {
-        $object1 = new stdClass();
-        $object2 = new stdClass();
+        $object1 = new stdClass;
+        $object2 = new stdClass;
 
-        $storage1 = new SplObjectStorage();
-        $storage2 = new SplObjectStorage();
+        $storage1 = new SplObjectStorage;
+        $storage2 = new SplObjectStorage;
 
-        $storage3 = new SplObjectStorage();
+        $storage3 = new SplObjectStorage;
         $storage3->attach($object1);
         $storage3->attach($object2);
 
-        $storage4 = new SplObjectStorage();
+        $storage4 = new SplObjectStorage;
         $storage4->attach($object2);
         $storage4->attach($object1);
 
@@ -131,9 +131,9 @@ final class SplObjectStorageComparatorTest extends TestCase
         $this->expectException(ComparisonFailure::class);
         $this->expectExceptionMessage('Failed asserting that two objects are equal.');
 
-        $t = new SplObjectStorage();
-        $t->attach(new stdClass());
+        $t = new SplObjectStorage;
+        $t->attach(new stdClass);
 
-        $this->comparator->assertEquals($t, new SplObjectStorage());
+        $this->comparator->assertEquals($t, new SplObjectStorage);
     }
 }
