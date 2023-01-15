@@ -52,14 +52,6 @@ class ComparisonFailure extends RuntimeException
     protected $identical;
 
     /**
-     * Optional message which is placed in front of the first line
-     * returned by toString().
-     *
-     * @var string
-     */
-    protected $message;
-
-    /**
      * Initialises with the expected value and the actual value.
      *
      * @param mixed  $expected         expected value retrieved
@@ -72,11 +64,12 @@ class ComparisonFailure extends RuntimeException
      */
     public function __construct($expected, $actual, $expectedAsString, $actualAsString, $identical = false, $message = '')
     {
+        parent::__construct($message);
+
         $this->expected         = $expected;
         $this->actual           = $actual;
         $this->expectedAsString = $expectedAsString;
         $this->actualAsString   = $actualAsString;
-        $this->message          = $message;
     }
 
     public function getActual()
@@ -112,6 +105,6 @@ class ComparisonFailure extends RuntimeException
 
     public function toString(): string
     {
-        return $this->message . $this->getDiff();
+        return $this->getMessage() . $this->getDiff();
     }
 }
