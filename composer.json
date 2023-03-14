@@ -22,6 +22,10 @@
             "email": "bschussek@2bepublished.at"
         }
     ],
+    "support": {
+        "issues": "https://github.com/sebastianbergmann/comparator/issues",
+        "security": "https://github.com/sebastianbergmann/comparator/security/policy"
+    },
     "prefer-stable": true,
     "require": {
         "php": ">=8.1",
