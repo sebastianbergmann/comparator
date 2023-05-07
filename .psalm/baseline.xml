@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="dev-master@">
+<files psalm-version="5.11.0@c9b192ab8400fdaf04b2b13d110575adc879aa90">
   <file src="src/ArrayComparator.php">
-    <TooManyArguments occurrences="1">
+    <TooManyArguments>
       <code>assertEquals</code>
     </TooManyArguments>
   </file>
   <file src="src/DOMNodeComparator.php">
-    <PossiblyNullPropertyAssignment occurrences="1">
+    <PossiblyNullPropertyAssignment>
       <code>$document</code>
     </PossiblyNullPropertyAssignment>
-    <PossiblyNullReference occurrences="1">
+    <PossiblyNullReference>
       <code>normalizeDocument</code>
     </PossiblyNullReference>
   </file>
   <file src="src/DateTimeComparator.php">
-    <UndefinedInterfaceMethod occurrences="3">
+    <InaccessibleProperty>
+      <code><![CDATA[$delta->f]]></code>
+    </InaccessibleProperty>
+    <UndefinedInterfaceMethod>
       <code>setTimezone</code>
       <code>setTimezone</code>
       <code>setTimezone</code>
