@@ -9,6 +9,7 @@
  */
 namespace SebastianBergmann\Comparator;
 
+use function array_is_list;
 use function array_key_exists;
 use function assert;
 use function is_array;
@@ -128,7 +129,7 @@ class ArrayComparator extends Comparator
 
     private function canonicalize(array &$array): void
     {
-        if ($this->isIndexedArray($array)) {
+        if (array_is_list($array)) {
             sort($array);
         } else {
             ksort($array);
@@ -139,19 +140,5 @@ class ArrayComparator extends Comparator
                 $this->canonicalize($element);
             }
         }
-    }
-
-    private function isIndexedArray(array $array): bool
-    {
-        $expectedKey = 0;
-
-        foreach ($array as $key => $value) {
-            if ($key !== $expectedKey) {
-                return false;
-            }
-            $expectedKey++;
-        }
-
-        return true;
     }
 }
