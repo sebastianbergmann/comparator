@@ -12,7 +12,7 @@ namespace SebastianBergmann\Comparator;
 use function array_keys;
 use function assert;
 use function str_starts_with;
-use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 
 /**
  * Compares PHPUnit\Framework\MockObject\MockObject instances for equality.
@@ -21,12 +21,12 @@ final class MockObjectComparator extends ObjectComparator
 {
     public function accepts(mixed $expected, mixed $actual): bool
     {
-        return $expected instanceof MockObject && $actual instanceof MockObject;
+        return $expected instanceof Stub && $actual instanceof Stub;
     }
 
     protected function toArray(object $object): array
     {
-        assert($object instanceof MockObject);
+        assert($object instanceof Stub);
 
         $array = parent::toArray($object);
 
