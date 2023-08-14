@@ -12,6 +12,7 @@ namespace SebastianBergmann\Comparator;
 use function array_key_exists;
 use function assert;
 use function is_array;
+use function ksort;
 use function sort;
 use function sprintf;
 use function str_replace;
@@ -39,8 +40,8 @@ class ArrayComparator extends Comparator
         assert(is_array($actual));
 
         if ($canonicalize) {
-            sort($expected);
-            sort($actual);
+            $this->canonicalize($expected);
+            $this->canonicalize($actual);
         }
 
         $remaining        = $actual;
@@ -123,5 +124,34 @@ class ArrayComparator extends Comparator
     private function indent(string $lines): string
     {
         return trim(str_replace("\n", "\n    ", $lines));
+    }
+
+    private function canonicalize(array &$array): void
+    {
+        if ($this->isIndexedArray($array)) {
+            sort($array);
+        } else {
+            ksort($array);
+        }
+
+        foreach ($array as &$element) {
+            if (is_array($element)) {
+                $this->canonicalize($element);
+            }
+        }
+    }
+
+    private function isIndexedArray(array $array): bool
+    {
+        $expectedKey = 0;
+
+        foreach ($array as $key => $value) {
+            if ($key !== $expectedKey) {
+                return false;
+            }
+            $expectedKey++;
+        }
+
+        return true;
     }
 }
