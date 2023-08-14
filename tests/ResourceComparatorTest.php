@@ -21,10 +21,7 @@ use PHPUnit\Framework\TestCase;
 #[UsesClass(Factory::class)]
 final class ResourceComparatorTest extends TestCase
 {
-    /**
-     * @var ResourceComparator
-     */
-    private $comparator;
+    private ResourceComparator $comparator;
 
     public static function acceptsSucceedsProvider()
     {
@@ -38,7 +35,7 @@ final class ResourceComparatorTest extends TestCase
         ];
     }
 
-    public static function acceptsFailsProvider()
+    public static function acceptsFailsProvider(): array
     {
         $tmpfile1 = tmpfile();
 
@@ -49,7 +46,7 @@ final class ResourceComparatorTest extends TestCase
         ];
     }
 
-    public static function assertEqualsSucceedsProvider()
+    public static function assertEqualsSucceedsProvider(): array
     {
         $tmpfile1 = tmpfile();
         $tmpfile2 = tmpfile();
@@ -60,7 +57,7 @@ final class ResourceComparatorTest extends TestCase
         ];
     }
 
-    public static function assertEqualsFailsProvider()
+    public static function assertEqualsFailsProvider(): array
     {
         $tmpfile1 = tmpfile();
         $tmpfile2 = tmpfile();
@@ -71,16 +68,11 @@ final class ResourceComparatorTest extends TestCase
         ];
     }
 
-    protected function setUp(): void
-    {
-        $this->comparator = new ResourceComparator;
-    }
-
     #[DataProvider('acceptsSucceedsProvider')]
     public function testAcceptsSucceeds($expected, $actual): void
     {
         $this->assertTrue(
-            $this->comparator->accepts($expected, $actual)
+            (new ResourceComparator)->accepts($expected, $actual)
         );
     }
 
@@ -88,7 +80,7 @@ final class ResourceComparatorTest extends TestCase
     public function testAcceptsFails($expected, $actual): void
     {
         $this->assertFalse(
-            $this->comparator->accepts($expected, $actual)
+            (new ResourceComparator)->accepts($expected, $actual)
         );
     }
 
@@ -98,7 +90,7 @@ final class ResourceComparatorTest extends TestCase
         $exception = null;
 
         try {
-            $this->comparator->assertEquals($expected, $actual);
+            (new ResourceComparator)->assertEquals($expected, $actual);
         } catch (ComparisonFailure $exception) {
         }
 
@@ -110,6 +102,6 @@ final class ResourceComparatorTest extends TestCase
     {
         $this->expectException(ComparisonFailure::class);
 
-        $this->comparator->assertEquals($expected, $actual);
+        (new ResourceComparator)->assertEquals($expected, $actual);
     }
 }

@@ -21,12 +21,7 @@ use PHPUnit\Framework\TestCase;
 #[UsesClass(Factory::class)]
 final class ScalarComparatorTest extends TestCase
 {
-    /**
-     * @var ScalarComparator
-     */
-    private $comparator;
-
-    public static function acceptsSucceedsProvider()
+    public static function acceptsSucceedsProvider(): array
     {
         return [
             ['string', 'string'],
@@ -47,7 +42,7 @@ final class ScalarComparatorTest extends TestCase
         ];
     }
 
-    public static function acceptsFailsProvider()
+    public static function acceptsFailsProvider(): array
     {
         return [
             [[], []],
@@ -58,7 +53,7 @@ final class ScalarComparatorTest extends TestCase
         ];
     }
 
-    public static function assertEqualsSucceedsProvider()
+    public static function assertEqualsSucceedsProvider(): array
     {
         return [
             ['string', 'string'],
@@ -84,7 +79,7 @@ final class ScalarComparatorTest extends TestCase
         ];
     }
 
-    public static function assertEqualsFailsProvider()
+    public static function assertEqualsFailsProvider(): array
     {
         $stringException = 'Failed asserting that two strings are equal.';
         $otherException  = 'matches expected';
@@ -116,16 +111,11 @@ final class ScalarComparatorTest extends TestCase
         ];
     }
 
-    protected function setUp(): void
-    {
-        $this->comparator = new ScalarComparator;
-    }
-
     #[DataProvider('acceptsSucceedsProvider')]
     public function testAcceptsSucceeds($expected, $actual): void
     {
         $this->assertTrue(
-            $this->comparator->accepts($expected, $actual)
+            (new ScalarComparator)->accepts($expected, $actual)
         );
     }
 
@@ -133,7 +123,7 @@ final class ScalarComparatorTest extends TestCase
     public function testAcceptsFails($expected, $actual): void
     {
         $this->assertFalse(
-            $this->comparator->accepts($expected, $actual)
+            (new ScalarComparator)->accepts($expected, $actual)
         );
     }
 
@@ -143,7 +133,7 @@ final class ScalarComparatorTest extends TestCase
         $exception = null;
 
         try {
-            $this->comparator->assertEquals($expected, $actual, 0.0, false, $ignoreCase);
+            (new ScalarComparator)->assertEquals($expected, $actual, 0.0, false, $ignoreCase);
         } catch (ComparisonFailure $exception) {
         }
 
@@ -156,6 +146,6 @@ final class ScalarComparatorTest extends TestCase
         $this->expectException(ComparisonFailure::class);
         $this->expectExceptionMessage($message);
 
-        $this->comparator->assertEquals($expected, $actual);
+        (new ScalarComparator)->assertEquals($expected, $actual);
     }
 }

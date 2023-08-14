@@ -25,7 +25,7 @@ use stdClass;
 #[UsesClass(ComparisonFailure::class)]
 final class FactoryTest extends TestCase
 {
-    public static function instanceProvider()
+    public static function instanceProvider(): array
     {
         $tmpfile = tmpfile();
 

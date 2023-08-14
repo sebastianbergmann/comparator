@@ -23,10 +23,7 @@ use stdClass;
 #[UsesClass(Factory::class)]
 final class MockObjectComparatorTest extends TestCase
 {
-    /**
-     * @var MockObjectComparator
-     */
-    private $comparator;
+    private MockObjectComparator $comparator;
 
     public static function acceptsSucceedsProvider(): array
     {

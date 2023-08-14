@@ -22,12 +22,9 @@ use RuntimeException;
 #[UsesClass(Factory::class)]
 final class ExceptionComparatorTest extends TestCase
 {
-    /**
-     * @var ExceptionComparator
-     */
-    private $comparator;
+    private ExceptionComparator $comparator;
 
-    public static function acceptsSucceedsProvider()
+    public static function acceptsSucceedsProvider(): array
     {
         return [
             [new Exception, new Exception],
@@ -36,7 +33,7 @@ final class ExceptionComparatorTest extends TestCase
         ];
     }
 
-    public static function acceptsFailsProvider()
+    public static function acceptsFailsProvider(): array
     {
         return [
             [new Exception, null],
@@ -45,7 +42,7 @@ final class ExceptionComparatorTest extends TestCase
         ];
     }
 
-    public static function assertEqualsSucceedsProvider()
+    public static function assertEqualsSucceedsProvider(): array
     {
         $exception1 = new Exception;
         $exception2 = new Exception;
@@ -61,7 +58,7 @@ final class ExceptionComparatorTest extends TestCase
         ];
     }
 
-    public static function assertEqualsFailsProvider()
+    public static function assertEqualsFailsProvider(): array
     {
         $typeMessage  = 'not instance of expected class';
         $equalMessage = 'Failed asserting that two objects are equal.';

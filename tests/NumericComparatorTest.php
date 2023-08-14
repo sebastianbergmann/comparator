@@ -22,12 +22,9 @@ use PHPUnit\Framework\TestCase;
 #[UsesClass(Factory::class)]
 final class NumericComparatorTest extends TestCase
 {
-    /**
-     * @var NumericComparator
-     */
-    private $comparator;
+    private NumericComparator $comparator;
 
-    public static function acceptsSucceedsProvider()
+    public static function acceptsSucceedsProvider(): array
     {
         return [
             [5, 10],
@@ -50,7 +47,7 @@ final class NumericComparatorTest extends TestCase
         ];
     }
 
-    public static function acceptsFailsProvider()
+    public static function acceptsFailsProvider(): array
     {
         return [
             ['5', '10'],
@@ -61,7 +58,7 @@ final class NumericComparatorTest extends TestCase
         ];
     }
 
-    public static function assertEqualsSucceedsProvider()
+    public static function assertEqualsSucceedsProvider(): array
     {
         return [
             [1337, 1337],
@@ -90,7 +87,7 @@ final class NumericComparatorTest extends TestCase
         ];
     }
 
-    public static function assertEqualsFailsProvider()
+    public static function assertEqualsFailsProvider(): array
     {
         return [
             [1337, 1338],
@@ -116,16 +113,11 @@ final class NumericComparatorTest extends TestCase
         ];
     }
 
-    protected function setUp(): void
-    {
-        $this->comparator = new NumericComparator;
-    }
-
     #[DataProvider('acceptsSucceedsProvider')]
     public function testAcceptsSucceeds($expected, $actual): void
     {
         $this->assertTrue(
-            $this->comparator->accepts($expected, $actual)
+            (new NumericComparator)->accepts($expected, $actual)
         );
     }
 
@@ -133,7 +125,7 @@ final class NumericComparatorTest extends TestCase
     public function testAcceptsFails($expected, $actual): void
     {
         $this->assertFalse(
-            $this->comparator->accepts($expected, $actual)
+            (new NumericComparator)->accepts($expected, $actual)
         );
     }
 
@@ -143,7 +135,7 @@ final class NumericComparatorTest extends TestCase
         $exception = null;
 
         try {
-            $this->comparator->assertEquals($expected, $actual, $delta);
+            (new NumericComparator)->assertEquals($expected, $actual, $delta);
         } catch (ComparisonFailure $exception) {
         }
 
@@ -156,6 +148,6 @@ final class NumericComparatorTest extends TestCase
         $this->expectException(ComparisonFailure::class);
         $this->expectExceptionMessage('matches expected');
 
-        $this->comparator->assertEquals($expected, $actual, $delta);
+        (new NumericComparator)->assertEquals($expected, $actual, $delta);
     }
 }

@@ -21,12 +21,9 @@ use stdClass;
 #[UsesClass(Factory::class)]
 final class ObjectComparatorTest extends TestCase
 {
-    /**
-     * @var ObjectComparator
-     */
-    private $comparator;
+    private ObjectComparator $comparator;
 
-    public static function acceptsSucceedsProvider()
+    public static function acceptsSucceedsProvider(): array
     {
         return [
             [new TestClass, new TestClass],
@@ -35,7 +32,7 @@ final class ObjectComparatorTest extends TestCase
         ];
     }
 
-    public static function acceptsFailsProvider()
+    public static function acceptsFailsProvider(): array
     {
         return [
             [new stdClass, null],
@@ -44,7 +41,7 @@ final class ObjectComparatorTest extends TestCase
         ];
     }
 
-    public static function assertEqualsSucceedsProvider()
+    public static function assertEqualsSucceedsProvider(): array
     {
         // cyclic dependencies
         $book1                  = new Book;
@@ -66,7 +63,7 @@ final class ObjectComparatorTest extends TestCase
         ];
     }
 
-    public static function assertEqualsFailsProvider()
+    public static function assertEqualsFailsProvider(): array
     {
         $typeMessage  = 'is not instance of expected class';
         $equalMessage = 'Failed asserting that two objects are equal.';

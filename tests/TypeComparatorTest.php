@@ -21,12 +21,7 @@ use stdClass;
 #[UsesClass(Factory::class)]
 final class TypeComparatorTest extends TestCase
 {
-    /**
-     * @var TypeComparator
-     */
-    private $comparator;
-
-    public static function acceptsSucceedsProvider()
+    public static function acceptsSucceedsProvider(): array
     {
         return [
             [true, 1],
@@ -37,7 +32,7 @@ final class TypeComparatorTest extends TestCase
         ];
     }
 
-    public static function assertEqualsSucceedsProvider()
+    public static function assertEqualsSucceedsProvider(): array
     {
         return [
             [true, true],
@@ -53,7 +48,7 @@ final class TypeComparatorTest extends TestCase
         ];
     }
 
-    public static function assertEqualsFailsProvider()
+    public static function assertEqualsFailsProvider(): array
     {
         return [
             [true, null],
@@ -64,16 +59,11 @@ final class TypeComparatorTest extends TestCase
         ];
     }
 
-    protected function setUp(): void
-    {
-        $this->comparator = new TypeComparator;
-    }
-
     #[DataProvider('acceptsSucceedsProvider')]
     public function testAcceptsSucceeds($expected, $actual): void
     {
         $this->assertTrue(
-            $this->comparator->accepts($expected, $actual)
+            (new TypeComparator)->accepts($expected, $actual)
         );
     }
 
@@ -83,7 +73,7 @@ final class TypeComparatorTest extends TestCase
         $exception = null;
 
         try {
-            $this->comparator->assertEquals($expected, $actual);
+            (new TypeComparator)->assertEquals($expected, $actual);
         } catch (ComparisonFailure $exception) {
         }
 
@@ -96,6 +86,6 @@ final class TypeComparatorTest extends TestCase
         $this->expectException(ComparisonFailure::class);
         $this->expectExceptionMessage('does not match expected type');
 
-        $this->comparator->assertEquals($expected, $actual);
+        (new TypeComparator)->assertEquals($expected, $actual);
     }
 }

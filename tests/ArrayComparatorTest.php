@@ -20,12 +20,9 @@ use PHPUnit\Framework\TestCase;
 #[UsesClass(Factory::class)]
 final class ArrayComparatorTest extends TestCase
 {
-    /**
-     * @var ArrayComparator
-     */
-    private $comparator;
+    private ArrayComparator $comparator;
 
-    public static function acceptsFailsProvider()
+    public static function acceptsFailsProvider(): array
     {
         return [
             [[], null],
@@ -34,7 +31,7 @@ final class ArrayComparatorTest extends TestCase
         ];
     }
 
-    public static function assertEqualsSucceedsProvider()
+    public static function assertEqualsSucceedsProvider(): array
     {
         return [
             [
@@ -73,7 +70,7 @@ final class ArrayComparatorTest extends TestCase
         ];
     }
 
-    public static function assertEqualsFailsProvider()
+    public static function assertEqualsFailsProvider(): array
     {
         return [
             [
