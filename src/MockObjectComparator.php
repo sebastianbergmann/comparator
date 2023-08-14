@@ -9,7 +9,9 @@
  */
 namespace SebastianBergmann\Comparator;
 
+use function array_keys;
 use function assert;
+use function str_starts_with;
 use PHPUnit\Framework\MockObject\MockObject;
 
 /**
@@ -28,7 +30,13 @@ final class MockObjectComparator extends ObjectComparator
 
         $array = parent::toArray($object);
 
-        unset($array['__phpunit_invocationMocker']);
+        foreach (array_keys($array) as $key) {
+            if (!str_starts_with($key, '__phpunit_')) {
+                continue;
+            }
+
+            unset($array[$key]);
+        }
 
         return $array;
     }
