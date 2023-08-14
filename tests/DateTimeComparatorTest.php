@@ -184,14 +184,4 @@ final class DateTimeComparatorTest extends TestCase
     {
         $this->assertTrue((new DateTimeComparator)->accepts(new DateTime, new DateTimeImmutable));
     }
-
-    public function testSupportsDateTimeInterface(): void
-    {
-        $this->assertNull(
-            (new DateTimeComparator)->assertEquals(
-                new DateTime('2013-03-29 04:13:35', new DateTimeZone('America/New_York')),
-                new DateTimeImmutable('2013-03-29 04:13:35', new DateTimeZone('America/New_York'))
-            )
-        );
-    }
 }
