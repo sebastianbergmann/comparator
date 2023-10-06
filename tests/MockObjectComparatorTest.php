@@ -161,6 +161,6 @@ final class MockObjectComparatorTest extends TestCase
     {
         $generator = new Generator;
 
-        return $generator->getMock($type, null, $constructorArguments);
+        return $generator->testDouble($type, true, null, $constructorArguments);
     }
 }
