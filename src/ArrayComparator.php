@@ -134,11 +134,5 @@ class ArrayComparator extends Comparator
         } else {
             ksort($array);
         }
-
-        foreach ($array as &$element) {
-            if (is_array($element)) {
-                $this->canonicalize($element);
-            }
-        }
     }
 }
