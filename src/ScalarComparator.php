@@ -63,7 +63,9 @@ class ScalarComparator extends Comparator
             );
         }
 
-        if ($expectedToCompare != $actualToCompare) {
+        $hasInvalidBooleanComparison = fn(mixed $valueA, mixed $valueBToCompare): bool => is_bool($valueA) && !in_array($valueBToCompare,[true,false,'true', 'false', '',null, '1', '0', 1, 0],true);
+
+        if (($hasInvalidBooleanComparison($actual,$expectedToCompare) || $hasInvalidBooleanComparison($expected,$actualToCompare)) || $expectedToCompare != $actualToCompare) {
             throw new ComparisonFailure(
                 $expected,
                 $actual,
