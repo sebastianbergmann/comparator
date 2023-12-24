@@ -103,7 +103,7 @@ final class ObjectComparatorTest extends TestCase
     public function testAcceptsSucceeds($expected, $actual): void
     {
         $this->assertTrue(
-            $this->comparator->accepts($expected, $actual)
+            $this->comparator->accepts($expected, $actual),
         );
     }
 
@@ -111,7 +111,7 @@ final class ObjectComparatorTest extends TestCase
     public function testAcceptsFails($expected, $actual): void
     {
         $this->assertFalse(
-            $this->comparator->accepts($expected, $actual)
+            $this->comparator->accepts($expected, $actual),
         );
     }
 

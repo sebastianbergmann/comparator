@@ -115,7 +115,7 @@ final class ScalarComparatorTest extends TestCase
     public function testAcceptsSucceeds($expected, $actual): void
     {
         $this->assertTrue(
-            (new ScalarComparator)->accepts($expected, $actual)
+            (new ScalarComparator)->accepts($expected, $actual),
         );
     }
 
@@ -123,7 +123,7 @@ final class ScalarComparatorTest extends TestCase
     public function testAcceptsFails($expected, $actual): void
     {
         $this->assertFalse(
-            (new ScalarComparator)->accepts($expected, $actual)
+            (new ScalarComparator)->accepts($expected, $actual),
         );
     }
 

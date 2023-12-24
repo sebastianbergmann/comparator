@@ -72,7 +72,7 @@ final class ResourceComparatorTest extends TestCase
     public function testAcceptsSucceeds($expected, $actual): void
     {
         $this->assertTrue(
-            (new ResourceComparator)->accepts($expected, $actual)
+            (new ResourceComparator)->accepts($expected, $actual),
         );
     }
 
@@ -80,7 +80,7 @@ final class ResourceComparatorTest extends TestCase
     public function testAcceptsFails($expected, $actual): void
     {
         $this->assertFalse(
-            (new ResourceComparator)->accepts($expected, $actual)
+            (new ResourceComparator)->accepts($expected, $actual),
         );
     }
 

@@ -145,8 +145,8 @@ final class DateTimeComparatorTest extends TestCase
         $this->assertTrue(
             (new DateTimeComparator)->accepts(
                 new DateTime,
-                new DateTime
-            )
+                new DateTime,
+            ),
         );
     }
 
@@ -154,7 +154,7 @@ final class DateTimeComparatorTest extends TestCase
     public function testAcceptsFails($expected, $actual): void
     {
         $this->assertFalse(
-            (new DateTimeComparator)->accepts($expected, $actual)
+            (new DateTimeComparator)->accepts($expected, $actual),
         );
     }
 
