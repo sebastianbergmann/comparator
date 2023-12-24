@@ -63,7 +63,7 @@ final class TypeComparatorTest extends TestCase
     public function testAcceptsSucceeds($expected, $actual): void
     {
         $this->assertTrue(
-            (new TypeComparator)->accepts($expected, $actual)
+            (new TypeComparator)->accepts($expected, $actual),
         );
     }
 

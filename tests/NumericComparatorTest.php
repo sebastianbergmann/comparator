@@ -30,13 +30,13 @@ final class NumericComparatorTest extends TestCase
             [5, 10],
             [8, '0'],
             ['10', 0],
-            [0x74c3b00c, 42],
-            [0755, 0777],
+            [0x74C3B00C, 42],
+            [0o755, 0o777],
             [8, 5.0],
             [5.0, 8],
             [5, 5],
             ['4.5', 5],
-            [0x539, 02471],
+            [0x539, 0o2471],
             [0, 5.0],
             [5.0, 0],
             ['5', 4.5],
@@ -64,7 +64,7 @@ final class NumericComparatorTest extends TestCase
             [1337, 1337],
             ['1337', 1337],
             [0x539, 1337],
-            [02471, 1337],
+            [0o2471, 1337],
             [1337, 1338, 1],
             ['1337', 1340, 5],
             [INF, INF],
@@ -117,7 +117,7 @@ final class NumericComparatorTest extends TestCase
     public function testAcceptsSucceeds($expected, $actual): void
     {
         $this->assertTrue(
-            (new NumericComparator)->accepts($expected, $actual)
+            (new NumericComparator)->accepts($expected, $actual),
         );
     }
 
@@ -125,7 +125,7 @@ final class NumericComparatorTest extends TestCase
     public function testAcceptsFails($expected, $actual): void
     {
         $this->assertFalse(
-            (new NumericComparator)->accepts($expected, $actual)
+            (new NumericComparator)->accepts($expected, $actual),
         );
     }
 

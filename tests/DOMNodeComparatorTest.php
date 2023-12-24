@@ -117,7 +117,7 @@ final class DOMNodeComparatorTest extends TestCase
     public function testAcceptsSucceeds($expected, $actual): void
     {
         $this->assertTrue(
-            (new DOMNodeComparator)->accepts($expected, $actual)
+            (new DOMNodeComparator)->accepts($expected, $actual),
         );
     }
 
@@ -125,7 +125,7 @@ final class DOMNodeComparatorTest extends TestCase
     public function testAcceptsFails($expected, $actual): void
     {
         $this->assertFalse(
-            (new DOMNodeComparator)->accepts($expected, $actual)
+            (new DOMNodeComparator)->accepts($expected, $actual),
         );
     }
 

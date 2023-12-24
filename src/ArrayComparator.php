@@ -56,7 +56,7 @@ class ArrayComparator extends Comparator
                 $expectedAsString .= sprintf(
                     "    %s => %s\n",
                     $exporter->export($key),
-                    $exporter->shortenedExport($value)
+                    $exporter->shortenedExport($value),
                 );
 
                 $equal = false;
@@ -71,25 +71,25 @@ class ArrayComparator extends Comparator
                 $expectedAsString .= sprintf(
                     "    %s => %s\n",
                     $exporter->export($key),
-                    $exporter->shortenedExport($value)
+                    $exporter->shortenedExport($value),
                 );
 
                 $actualAsString .= sprintf(
                     "    %s => %s\n",
                     $exporter->export($key),
-                    $exporter->shortenedExport($actual[$key])
+                    $exporter->shortenedExport($actual[$key]),
                 );
             } catch (ComparisonFailure $e) {
                 $expectedAsString .= sprintf(
                     "    %s => %s\n",
                     $exporter->export($key),
-                    $e->getExpectedAsString() ? $this->indent($e->getExpectedAsString()) : $exporter->shortenedExport($e->getExpected())
+                    $e->getExpectedAsString() ? $this->indent($e->getExpectedAsString()) : $exporter->shortenedExport($e->getExpected()),
                 );
 
                 $actualAsString .= sprintf(
                     "    %s => %s\n",
                     $exporter->export($key),
-                    $e->getActualAsString() ? $this->indent($e->getActualAsString()) : $exporter->shortenedExport($e->getActual())
+                    $e->getActualAsString() ? $this->indent($e->getActualAsString()) : $exporter->shortenedExport($e->getActual()),
                 );
 
                 $equal = false;
@@ -100,7 +100,7 @@ class ArrayComparator extends Comparator
             $actualAsString .= sprintf(
                 "    %s => %s\n",
                 $exporter->export($key),
-                $exporter->shortenedExport($value)
+                $exporter->shortenedExport($value),
             );
 
             $equal = false;
@@ -115,7 +115,7 @@ class ArrayComparator extends Comparator
                 $actual,
                 $expectedAsString,
                 $actualAsString,
-                'Failed asserting that two arrays are equal.'
+                'Failed asserting that two arrays are equal.',
             );
         }
     }

@@ -29,7 +29,7 @@ final class ComparisonFailureTest extends TestCase
             $actual,
             '|' . $expected,
             '|' . $actual,
-            $message
+            $message,
         );
 
         $this->assertSame($actual, $failure->getActual());

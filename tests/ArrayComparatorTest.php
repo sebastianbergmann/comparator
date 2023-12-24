@@ -124,7 +124,7 @@ final class ArrayComparatorTest extends TestCase
     public function testAcceptsSucceeds(): void
     {
         $this->assertTrue(
-            $this->comparator->accepts([], [])
+            $this->comparator->accepts([], []),
         );
     }
 
@@ -132,7 +132,7 @@ final class ArrayComparatorTest extends TestCase
     public function testAcceptsFails($expected, $actual): void
     {
         $this->assertFalse(
-            $this->comparator->accepts($expected, $actual)
+            $this->comparator->accepts($expected, $actual),
         );
     }
 
