@@ -27,7 +27,6 @@
         "security": "https://github.com/sebastianbergmann/comparator/security/policy"
     },
     "prefer-stable": true,
-    "minimum-stability": "dev",
     "require": {
         "php": ">=8.2",
         "sebastian/diff": "^6.0",
