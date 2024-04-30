@@ -9,9 +9,11 @@
  */
 namespace SebastianBergmann\Comparator;
 
+use function array_is_list;
 use function array_key_exists;
 use function assert;
 use function is_array;
+use function ksort;
 use function sort;
 use function sprintf;
 use function str_replace;
@@ -39,8 +41,8 @@ class ArrayComparator extends Comparator
         assert(is_array($actual));
 
         if ($canonicalize) {
-            sort($expected);
-            sort($actual);
+            $this->canonicalize($expected);
+            $this->canonicalize($actual);
         }
 
         $remaining        = $actual;
@@ -123,5 +125,14 @@ class ArrayComparator extends Comparator
     private function indent(string $lines): string
     {
         return trim(str_replace("\n", "\n    ", $lines));
+    }
+
+    private function canonicalize(array &$array): void
+    {
+        if (array_is_list($array)) {
+            sort($array);
+        } else {
+            ksort($array);
+        }
     }
 }

@@ -67,6 +67,12 @@ final class ArrayComparatorTest extends TestCase
                 ['true'],
                 [true],
             ],
+            [
+                ['a', 'b' => [1, 2], 'c' => [1, 2, 'd' => [1, 2]]],
+                ['c' => [1, 'd' => [2, 1], 2], 'b' => [2, 1], 'a'],
+                0,
+                true,
+            ],
         ];
     }
 
@@ -111,6 +117,12 @@ final class ArrayComparatorTest extends TestCase
             [
                 ['false'],
                 [false],
+            ],
+            [
+                ['a', 'b' => [1, 2]],
+                ['b' => [2, 1], 'a', 'c' => 3],
+                0,
+                true,
             ],
         ];
     }
