@@ -65,4 +65,28 @@ final class ComparisonFailure extends RuntimeException
     {
         return $this->getMessage() . $this->getDiff();
     }
+
+    /**
+     * Serialises all parts of the comparison failure, apart from the stacktrace which might contain references to
+     * objects which cannot be serialised.
+     */
+    public function __serialize(): array
+    {
+        return [
+            $this->expected,
+            $this->actual,
+            $this->expectedAsString,
+            $this->actualAsString,
+        ];
+    }
+
+    public function __unserialize(array $data): void
+    {
+        [
+            $this->expected,
+            $this->actual,
+            $this->expectedAsString,
+            $this->actualAsString,
+        ] = $data;
+    }
 }

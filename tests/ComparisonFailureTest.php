@@ -55,4 +55,31 @@ final class ComparisonFailureTest extends TestCase
         $this->assertSame('', $failure->getDiff());
         $this->assertSame('test', $failure->toString());
     }
+
+    public function testSerialize(): void
+    {
+        $failure = new ComparisonFailure(true, false, 'true', 'false', 'test');
+        $serialised = $failure->__serialize();
+        $this->assertSame([true, false, 'true', 'false'], $serialised);
+    }
+
+    public function testUnserialize(): void
+    {
+        $failure = new ComparisonFailure(true, false, 'true', 'false', 'test');
+        $failure->__unserialize([true, false, 'true', 'false']);
+
+        $this->assertTrue($failure->getExpected());
+        $this->assertFalse($failure->getActual());
+        $this->assertSame('true', $failure->getExpectedAsString());
+        $this->assertSame('false', $failure->getActualAsString());
+        $diff = '
+--- Expected
++++ Actual
+@@ @@
+-true
++false
+';
+        $this->assertSame($diff, $failure->getDiff());
+        $this->assertSame('test' . $diff, $failure->toString());
+    }
 }
