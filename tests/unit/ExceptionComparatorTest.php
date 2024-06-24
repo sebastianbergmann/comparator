@@ -15,6 +15,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
+use Throwable;
 
 #[CoversClass(ExceptionComparator::class)]
 #[UsesClass(Comparator::class)]
@@ -24,6 +25,9 @@ final class ExceptionComparatorTest extends TestCase
 {
     private ExceptionComparator $comparator;
 
+    /**
+     * @return non-empty-list<array{0: Throwable, 1: Throwable}>
+     */
     public static function acceptsSucceedsProvider(): array
     {
         return [
@@ -33,6 +37,9 @@ final class ExceptionComparatorTest extends TestCase
         ];
     }
 
+    /**
+     * @return non-empty-list<array{0: ?Throwable, 1: ?Throwable}>
+     */
     public static function acceptsFailsProvider(): array
     {
         return [
@@ -42,6 +49,9 @@ final class ExceptionComparatorTest extends TestCase
         ];
     }
 
+    /**
+     * @return non-empty-list<array{0: Throwable, 1: Throwable}>
+     */
     public static function assertEqualsSucceedsProvider(): array
     {
         $exception1 = new Exception;
@@ -58,6 +68,9 @@ final class ExceptionComparatorTest extends TestCase
         ];
     }
 
+    /**
+     * @return non-empty-list<array{0: Throwable, 1: Throwable, 2: non-empty-string}>
+     */
     public static function assertEqualsFailsProvider(): array
     {
         $typeMessage  = 'not instance of expected class';
@@ -86,7 +99,7 @@ final class ExceptionComparatorTest extends TestCase
     }
 
     #[DataProvider('acceptsSucceedsProvider')]
-    public function testAcceptsSucceeds($expected, $actual): void
+    public function testAcceptsSucceeds(Throwable $expected, Throwable $actual): void
     {
         $this->assertTrue(
             $this->comparator->accepts($expected, $actual),
@@ -94,7 +107,7 @@ final class ExceptionComparatorTest extends TestCase
     }
 
     #[DataProvider('acceptsFailsProvider')]
-    public function testAcceptsFails($expected, $actual): void
+    public function testAcceptsFails(?Throwable $expected, ?Throwable $actual): void
     {
         $this->assertFalse(
             $this->comparator->accepts($expected, $actual),
@@ -102,7 +115,7 @@ final class ExceptionComparatorTest extends TestCase
     }
 
     #[DataProvider('assertEqualsSucceedsProvider')]
-    public function testAssertEqualsSucceeds($expected, $actual): void
+    public function testAssertEqualsSucceeds(Throwable $expected, Throwable $actual): void
     {
         $exception = null;
 
@@ -115,7 +128,7 @@ final class ExceptionComparatorTest extends TestCase
     }
 
     #[DataProvider('assertEqualsFailsProvider')]
-    public function testAssertEqualsFails($expected, $actual, $message): void
+    public function testAssertEqualsFails(Throwable $expected, Throwable $actual, string $message): void
     {
         $this->expectException(ComparisonFailure::class);
         $this->expectExceptionMessage($message);

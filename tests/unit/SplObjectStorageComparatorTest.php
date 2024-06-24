@@ -22,6 +22,9 @@ use stdClass;
 #[UsesClass(Factory::class)]
 final class SplObjectStorageComparatorTest extends TestCase
 {
+    /**
+     * @return non-empty-list<array{0: object, 1: object}>
+     */
     public static function acceptsFailsProvider(): array
     {
         return [
@@ -31,6 +34,9 @@ final class SplObjectStorageComparatorTest extends TestCase
         ];
     }
 
+    /**
+     * @return non-empty-list<array{0: object, 1: object}>
+     */
     public static function assertEqualsSucceedsProvider(): array
     {
         $object1 = new stdClass;
@@ -55,6 +61,9 @@ final class SplObjectStorageComparatorTest extends TestCase
         ];
     }
 
+    /**
+     * @return non-empty-list<array{0: object, 1: object}>
+     */
     public static function assertEqualsFailsProvider(): array
     {
         $object1 = new stdClass;
@@ -87,7 +96,7 @@ final class SplObjectStorageComparatorTest extends TestCase
     }
 
     #[DataProvider('acceptsFailsProvider')]
-    public function testAcceptsFails($expected, $actual): void
+    public function testAcceptsFails(object $expected, object $actual): void
     {
         $this->assertFalse(
             (new SplObjectStorageComparator)->accepts($expected, $actual),
@@ -95,7 +104,7 @@ final class SplObjectStorageComparatorTest extends TestCase
     }
 
     #[DataProvider('assertEqualsSucceedsProvider')]
-    public function testAssertEqualsSucceeds($expected, $actual): void
+    public function testAssertEqualsSucceeds(object $expected, object $actual): void
     {
         $exception = null;
 
@@ -108,7 +117,7 @@ final class SplObjectStorageComparatorTest extends TestCase
     }
 
     #[DataProvider('assertEqualsFailsProvider')]
-    public function testAssertEqualsFails($expected, $actual): void
+    public function testAssertEqualsFails(object $expected, object $actual): void
     {
         $this->expectException(ComparisonFailure::class);
         $this->expectExceptionMessage('Failed asserting that two objects are equal.');

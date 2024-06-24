@@ -22,6 +22,9 @@ final class ArrayComparatorTest extends TestCase
 {
     private ArrayComparator $comparator;
 
+    /**
+     * @return non-empty-list<array{0: ?array, 1: ?array}>
+     */
     public static function acceptsFailsProvider(): array
     {
         return [
@@ -31,6 +34,9 @@ final class ArrayComparatorTest extends TestCase
         ];
     }
 
+    /**
+     * @return non-empty-list<array{0: array, 1: array, 2?: float, 3?: bool}>
+     */
     public static function assertEqualsSucceedsProvider(): array
     {
         return [
@@ -70,6 +76,9 @@ final class ArrayComparatorTest extends TestCase
         ];
     }
 
+    /**
+     * @return non-empty-list<array{0: array, 1: array, 2?: float, 3?: bool}>
+     */
     public static function assertEqualsFailsProvider(): array
     {
         return [
@@ -128,16 +137,24 @@ final class ArrayComparatorTest extends TestCase
         );
     }
 
+    /**
+     * @param ?array<mixed> $expected
+     * @param ?array<mixed> $actual
+     */
     #[DataProvider('acceptsFailsProvider')]
-    public function testAcceptsFails($expected, $actual): void
+    public function testAcceptsFails(?array $expected, ?array $actual): void
     {
         $this->assertFalse(
             $this->comparator->accepts($expected, $actual),
         );
     }
 
+    /**
+     * @param array<mixed> $expected
+     * @param array<mixed> $actual
+     */
     #[DataProvider('assertEqualsSucceedsProvider')]
-    public function testAssertEqualsSucceeds($expected, $actual, $delta = 0.0, $canonicalize = false): void
+    public function testAssertEqualsSucceeds(array $expected, array $actual, float $delta = 0.0, bool $canonicalize = false): void
     {
         $exception = null;
 
@@ -149,8 +166,12 @@ final class ArrayComparatorTest extends TestCase
         $this->assertNull($exception, 'Unexpected ComparisonFailure');
     }
 
+    /**
+     * @param array<mixed> $expected
+     * @param array<mixed> $actual
+     */
     #[DataProvider('assertEqualsFailsProvider')]
-    public function testAssertEqualsFails($expected, $actual, $delta = 0.0, $canonicalize = false): void
+    public function testAssertEqualsFails(array $expected, array $actual, float $delta = 0.0, bool $canonicalize = false): void
     {
         $this->expectException(ComparisonFailure::class);
         $this->expectExceptionMessage('Failed asserting that two arrays are equal');

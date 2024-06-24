@@ -25,6 +25,9 @@ use stdClass;
 #[UsesClass(ComparisonFailure::class)]
 final class FactoryTest extends TestCase
 {
+    /**
+     * @return non-empty-list<array{0: mixed, 1: mixed, 2: class-string}>
+     */
     public static function instanceProvider(): array
     {
         $tmpfile = tmpfile();
@@ -72,11 +75,15 @@ final class FactoryTest extends TestCase
         ];
     }
 
+    /**
+     * @param class-string $expected
+     */
     #[DataProvider('instanceProvider')]
-    public function testGetComparatorFor($a, $b, $expected): void
+    public function testGetComparatorFor(mixed $a, mixed $b, string $expected): void
     {
         $factory = new Factory;
         $actual  = $factory->getComparatorFor($a, $b);
+
         $this->assertInstanceOf($expected, $actual);
     }
 

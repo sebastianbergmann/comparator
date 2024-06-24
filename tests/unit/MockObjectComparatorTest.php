@@ -9,6 +9,7 @@
  */
 namespace SebastianBergmann\Comparator;
 
+use function assert;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -25,6 +26,9 @@ final class MockObjectComparatorTest extends TestCase
 {
     private MockObjectComparator $comparator;
 
+    /**
+     * @return non-empty-list<array{0: MockObject, 1: MockObject}>
+     */
     public static function acceptsSucceedsProvider(): array
     {
         $testmock = self::createMockForComparatorTest(TestClass::class);
@@ -37,6 +41,9 @@ final class MockObjectComparatorTest extends TestCase
         ];
     }
 
+    /**
+     * @return non-empty-list<array{0: ?MockObject, 1: ?MockObject}>
+     */
     public static function acceptsFailsProvider(): array
     {
         $stdmock = self::createMockForComparatorTest(stdClass::class);
@@ -48,6 +55,9 @@ final class MockObjectComparatorTest extends TestCase
         ];
     }
 
+    /**
+     * @return non-empty-list<array{0: MockObject, 1: MockObject, 2?: float}>
+     */
     public static function assertEqualsSucceedsProvider(): array
     {
         // cyclic dependencies
@@ -74,6 +84,9 @@ final class MockObjectComparatorTest extends TestCase
         ];
     }
 
+    /**
+     * @return non-empty-list<array{0: MockObject, 1: MockObject, 2?: non-empty-string, 3?: float}>
+     */
     public static function assertEqualsFailsProvider(): array
     {
         $typeMessage  = 'is not instance of expected class';
@@ -120,7 +133,7 @@ final class MockObjectComparatorTest extends TestCase
     }
 
     #[DataProvider('acceptsSucceedsProvider')]
-    public function testAcceptsSucceeds($expected, $actual): void
+    public function testAcceptsSucceeds(MockObject $expected, MockObject $actual): void
     {
         $this->assertTrue(
             $this->comparator->accepts($expected, $actual),
@@ -128,7 +141,7 @@ final class MockObjectComparatorTest extends TestCase
     }
 
     #[DataProvider('acceptsFailsProvider')]
-    public function testAcceptsFails($expected, $actual): void
+    public function testAcceptsFails(?MockObject $expected, ?MockObject $actual): void
     {
         $this->assertFalse(
             $this->comparator->accepts($expected, $actual),
@@ -136,7 +149,7 @@ final class MockObjectComparatorTest extends TestCase
     }
 
     #[DataProvider('assertEqualsSucceedsProvider')]
-    public function testAssertEqualsSucceeds($expected, $actual, $delta = 0.0): void
+    public function testAssertEqualsSucceeds(MockObject $expected, MockObject $actual, float $delta = 0.0): void
     {
         $exception = null;
 
@@ -149,7 +162,7 @@ final class MockObjectComparatorTest extends TestCase
     }
 
     #[DataProvider('assertEqualsFailsProvider')]
-    public function testAssertEqualsFails($expected, $actual, $message, $delta = 0.0): void
+    public function testAssertEqualsFails(MockObject $expected, MockObject $actual, string $message, float $delta = 0.0): void
     {
         $this->expectException(ComparisonFailure::class);
         $this->expectExceptionMessage($message);
@@ -157,10 +170,23 @@ final class MockObjectComparatorTest extends TestCase
         $this->comparator->assertEquals($expected, $actual, $delta);
     }
 
+    /**
+     * @template RealInstanceType of object
+     *
+     * @param class-string<RealInstanceType> $type
+     * @param array<mixed>                   $constructorArguments
+     *
+     * @return MockObject&RealInstanceType
+     */
     private static function createMockForComparatorTest(string $type, array $constructorArguments = []): MockObject
     {
         $generator = new Generator;
 
-        return $generator->testDouble($type, true, true, null, $constructorArguments);
+        $mockObject = $generator->testDouble($type, true, true, null, $constructorArguments);
+
+        assert($mockObject instanceof MockObject);
+        assert($mockObject instanceof $type);
+
+        return $mockObject;
     }
 }

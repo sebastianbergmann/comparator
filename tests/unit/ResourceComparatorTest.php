@@ -21,8 +21,9 @@ use PHPUnit\Framework\TestCase;
 #[UsesClass(Factory::class)]
 final class ResourceComparatorTest extends TestCase
 {
-    private ResourceComparator $comparator;
-
+    /**
+     * @return non-empty-list<array{0: resource, 1: resource}>
+     */
     public static function acceptsSucceedsProvider()
     {
         $tmpfile1 = tmpfile();
@@ -35,6 +36,9 @@ final class ResourceComparatorTest extends TestCase
         ];
     }
 
+    /**
+     * @return non-empty-list<array{0: ?resource, 1: ?resource}>
+     */
     public static function acceptsFailsProvider(): array
     {
         $tmpfile1 = tmpfile();
@@ -46,6 +50,9 @@ final class ResourceComparatorTest extends TestCase
         ];
     }
 
+    /**
+     * @return non-empty-list<array{0: resource, 1: resource}>
+     */
     public static function assertEqualsSucceedsProvider(): array
     {
         $tmpfile1 = tmpfile();
@@ -57,6 +64,9 @@ final class ResourceComparatorTest extends TestCase
         ];
     }
 
+    /**
+     * @return non-empty-list<array{0: resource, 1: resource}>
+     */
     public static function assertEqualsFailsProvider(): array
     {
         $tmpfile1 = tmpfile();
@@ -68,6 +78,10 @@ final class ResourceComparatorTest extends TestCase
         ];
     }
 
+    /**
+     * @param resource $expected
+     * @param resource $actual
+     */
     #[DataProvider('acceptsSucceedsProvider')]
     public function testAcceptsSucceeds($expected, $actual): void
     {
@@ -76,6 +90,10 @@ final class ResourceComparatorTest extends TestCase
         );
     }
 
+    /**
+     * @param ?resource $expected
+     * @param ?resource $actual
+     */
     #[DataProvider('acceptsFailsProvider')]
     public function testAcceptsFails($expected, $actual): void
     {
@@ -84,6 +102,10 @@ final class ResourceComparatorTest extends TestCase
         );
     }
 
+    /**
+     * @param resource $expected
+     * @param resource $actual
+     */
     #[DataProvider('assertEqualsSucceedsProvider')]
     public function testAssertEqualsSucceeds($expected, $actual): void
     {
@@ -97,6 +119,10 @@ final class ResourceComparatorTest extends TestCase
         $this->assertNull($exception, 'Unexpected ComparisonFailure');
     }
 
+    /**
+     * @param resource $expected
+     * @param resource $actual
+     */
     #[DataProvider('assertEqualsFailsProvider')]
     public function testAssertEqualsFails($expected, $actual): void
     {

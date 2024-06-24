@@ -23,6 +23,9 @@ final class ObjectComparatorTest extends TestCase
 {
     private ObjectComparator $comparator;
 
+    /**
+     * @return non-empty-list<array{0: stdClass|TestClass, 1: stdClass|TestClass}>
+     */
     public static function acceptsSucceedsProvider(): array
     {
         return [
@@ -32,6 +35,9 @@ final class ObjectComparatorTest extends TestCase
         ];
     }
 
+    /**
+     * @return non-empty-list<array{0: ?stdClass, 1: ?stdClass}>
+     */
     public static function acceptsFailsProvider(): array
     {
         return [
@@ -41,6 +47,9 @@ final class ObjectComparatorTest extends TestCase
         ];
     }
 
+    /**
+     * @return non-empty-list<array{0: object, 1: object, 2?: float}>
+     */
     public static function assertEqualsSucceedsProvider(): array
     {
         // cyclic dependencies
@@ -63,6 +72,9 @@ final class ObjectComparatorTest extends TestCase
         ];
     }
 
+    /**
+     * @return non-empty-list<array{0: object, 1: object, 2?: string, 3?: float}>
+     */
     public static function assertEqualsFailsProvider(): array
     {
         $typeMessage  = 'is not instance of expected class';
@@ -100,7 +112,7 @@ final class ObjectComparatorTest extends TestCase
     }
 
     #[DataProvider('acceptsSucceedsProvider')]
-    public function testAcceptsSucceeds($expected, $actual): void
+    public function testAcceptsSucceeds(stdClass|TestClass $expected, stdClass|TestClass $actual): void
     {
         $this->assertTrue(
             $this->comparator->accepts($expected, $actual),
@@ -108,7 +120,7 @@ final class ObjectComparatorTest extends TestCase
     }
 
     #[DataProvider('acceptsFailsProvider')]
-    public function testAcceptsFails($expected, $actual): void
+    public function testAcceptsFails(?stdClass $expected, ?stdClass $actual): void
     {
         $this->assertFalse(
             $this->comparator->accepts($expected, $actual),
@@ -116,7 +128,7 @@ final class ObjectComparatorTest extends TestCase
     }
 
     #[DataProvider('assertEqualsSucceedsProvider')]
-    public function testAssertEqualsSucceeds($expected, $actual, $delta = 0.0): void
+    public function testAssertEqualsSucceeds(object $expected, object $actual, float $delta = 0.0): void
     {
         $exception = null;
 
@@ -129,7 +141,7 @@ final class ObjectComparatorTest extends TestCase
     }
 
     #[DataProvider('assertEqualsFailsProvider')]
-    public function testAssertEqualsFails($expected, $actual, $message, $delta = 0.0): void
+    public function testAssertEqualsFails(object $expected, object $actual, string $message, float $delta = 0.0): void
     {
         $this->expectException(ComparisonFailure::class);
         $this->expectExceptionMessage($message);

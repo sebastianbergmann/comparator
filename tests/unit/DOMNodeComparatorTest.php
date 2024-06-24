@@ -22,8 +22,9 @@ use PHPUnit\Framework\TestCase;
 #[UsesClass(Factory::class)]
 final class DOMNodeComparatorTest extends TestCase
 {
-    private DOMNodeComparator $comparator;
-
+    /**
+     * @return non-empty-list<array{0: DOMDocument|DOMNode, 1: DOMDocument|DOMNode}>
+     */
     public static function acceptsSucceedsProvider(): array
     {
         $document = new DOMDocument;
@@ -37,6 +38,9 @@ final class DOMNodeComparatorTest extends TestCase
         ];
     }
 
+    /**
+     * @return non-empty-list<array{0: ?DOMDocument, 1: ?DOMDocument}>
+     */
     public static function acceptsFailsProvider(): array
     {
         $document = new DOMDocument;
@@ -48,6 +52,9 @@ final class DOMNodeComparatorTest extends TestCase
         ];
     }
 
+    /**
+     * @return non-empty-list<array{0: DOMDocument, 1: DOMDocument}>
+     */
     public static function assertEqualsSucceedsProvider(): array
     {
         return [
@@ -70,7 +77,7 @@ final class DOMNodeComparatorTest extends TestCase
             [
                 self::createDOMDocument('<Root></Root>'),
                 self::createDOMDocument('<root></root>'),
-                $ignoreCase = true,
+                true,
             ],
             [
                 self::createDOMDocument("<a x='' a=''/>"),
@@ -79,6 +86,9 @@ final class DOMNodeComparatorTest extends TestCase
         ];
     }
 
+    /**
+     * @return non-empty-list<array{0: DOMDocument, 1: DOMDocument}>
+     */
     public static function assertEqualsFailsProvider(): array
     {
         return [
@@ -114,7 +124,7 @@ final class DOMNodeComparatorTest extends TestCase
     }
 
     #[DataProvider('acceptsSucceedsProvider')]
-    public function testAcceptsSucceeds($expected, $actual): void
+    public function testAcceptsSucceeds(DOMDocument|DOMNode $expected, DOMDocument|DOMNode $actual): void
     {
         $this->assertTrue(
             (new DOMNodeComparator)->accepts($expected, $actual),
@@ -122,7 +132,7 @@ final class DOMNodeComparatorTest extends TestCase
     }
 
     #[DataProvider('acceptsFailsProvider')]
-    public function testAcceptsFails($expected, $actual): void
+    public function testAcceptsFails(?DOMDocument $expected, ?DOMDocument $actual): void
     {
         $this->assertFalse(
             (new DOMNodeComparator)->accepts($expected, $actual),
@@ -130,7 +140,7 @@ final class DOMNodeComparatorTest extends TestCase
     }
 
     #[DataProvider('assertEqualsSucceedsProvider')]
-    public function testAssertEqualsSucceeds($expected, $actual, $ignoreCase = false): void
+    public function testAssertEqualsSucceeds(DOMDocument $expected, DOMDocument $actual, bool $ignoreCase = false): void
     {
         $exception = null;
 
@@ -145,7 +155,7 @@ final class DOMNodeComparatorTest extends TestCase
     }
 
     #[DataProvider('assertEqualsFailsProvider')]
-    public function testAssertEqualsFails($expected, $actual): void
+    public function testAssertEqualsFails(DOMDocument $expected, DOMDocument $actual): void
     {
         $this->expectException(ComparisonFailure::class);
         $this->expectExceptionMessage('Failed asserting that two DOM');
@@ -153,7 +163,10 @@ final class DOMNodeComparatorTest extends TestCase
         (new DOMNodeComparator)->assertEquals($expected, $actual);
     }
 
-    private static function createDOMDocument($content): DOMDocument
+    /**
+     * @param non-empty-string $content
+     */
+    private static function createDOMDocument(string $content): DOMDocument
     {
         $document                     = new DOMDocument;
         $document->preserveWhiteSpace = false;

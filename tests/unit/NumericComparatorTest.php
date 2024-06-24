@@ -22,8 +22,9 @@ use PHPUnit\Framework\TestCase;
 #[UsesClass(Factory::class)]
 final class NumericComparatorTest extends TestCase
 {
-    private NumericComparator $comparator;
-
+    /**
+     * @return non-empty-list<array{0: mixed, 1: mixed}>
+     */
     public static function acceptsSucceedsProvider(): array
     {
         return [
@@ -47,6 +48,9 @@ final class NumericComparatorTest extends TestCase
         ];
     }
 
+    /**
+     * @return non-empty-list<array{0: mixed, 1: mixed}>
+     */
     public static function acceptsFailsProvider(): array
     {
         return [
@@ -58,6 +62,9 @@ final class NumericComparatorTest extends TestCase
         ];
     }
 
+    /**
+     * @return non-empty-list<array{0: mixed, 1: mixed, 2?: float}>
+     */
     public static function assertEqualsSucceedsProvider(): array
     {
         return [
@@ -87,6 +94,9 @@ final class NumericComparatorTest extends TestCase
         ];
     }
 
+    /**
+     * @return non-empty-list<array{0: mixed, 1: mixed, 2?: float}>
+     */
     public static function assertEqualsFailsProvider(): array
     {
         return [
@@ -114,7 +124,7 @@ final class NumericComparatorTest extends TestCase
     }
 
     #[DataProvider('acceptsSucceedsProvider')]
-    public function testAcceptsSucceeds($expected, $actual): void
+    public function testAcceptsSucceeds(mixed $expected, mixed $actual): void
     {
         $this->assertTrue(
             (new NumericComparator)->accepts($expected, $actual),
@@ -122,7 +132,7 @@ final class NumericComparatorTest extends TestCase
     }
 
     #[DataProvider('acceptsFailsProvider')]
-    public function testAcceptsFails($expected, $actual): void
+    public function testAcceptsFails(mixed $expected, mixed $actual): void
     {
         $this->assertFalse(
             (new NumericComparator)->accepts($expected, $actual),
@@ -130,7 +140,7 @@ final class NumericComparatorTest extends TestCase
     }
 
     #[DataProvider('assertEqualsSucceedsProvider')]
-    public function testAssertEqualsSucceeds($expected, $actual, $delta = 0.0): void
+    public function testAssertEqualsSucceeds(mixed $expected, mixed $actual, float $delta = 0.0): void
     {
         $exception = null;
 
@@ -143,7 +153,7 @@ final class NumericComparatorTest extends TestCase
     }
 
     #[DataProvider('assertEqualsFailsProvider')]
-    public function testAssertEqualsFails($expected, $actual, $delta = 0.0): void
+    public function testAssertEqualsFails(mixed $expected, mixed $actual, float $delta = 0.0): void
     {
         $this->expectException(ComparisonFailure::class);
         $this->expectExceptionMessage('matches expected');

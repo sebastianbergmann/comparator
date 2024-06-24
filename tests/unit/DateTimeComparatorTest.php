@@ -23,9 +23,12 @@ use PHPUnit\Framework\TestCase;
 #[UsesClass(Factory::class)]
 final class DateTimeComparatorTest extends TestCase
 {
+    /**
+     * @return non-empty-list<array{0: ?DateTimeImmutable, 1: ?DateTimeImmutable}>
+     */
     public static function acceptsFailsProvider(): array
     {
-        $datetime = new DateTime;
+        $datetime = new DateTimeImmutable;
 
         return [
             [$datetime, null],
@@ -34,48 +37,51 @@ final class DateTimeComparatorTest extends TestCase
         ];
     }
 
+    /**
+     * @return non-empty-list<array{0: DateTimeImmutable, 1: DateTimeImmutable, 2?: float}>
+     */
     public static function assertEqualsSucceedsProvider(): array
     {
         return [
             [
-                new DateTime('2013-03-29 04:13:35', new DateTimeZone('America/New_York')),
-                new DateTime('2013-03-29 04:13:25', new DateTimeZone('America/New_York')),
+                new DateTimeImmutable('2013-03-29 04:13:35', new DateTimeZone('America/New_York')),
+                new DateTimeImmutable('2013-03-29 04:13:25', new DateTimeZone('America/New_York')),
                 10,
             ],
             [
-                new DateTime('2013-03-29 04:13:35', new DateTimeZone('America/New_York')),
-                new DateTime('2013-03-29 04:14:40', new DateTimeZone('America/New_York')),
+                new DateTimeImmutable('2013-03-29 04:13:35', new DateTimeZone('America/New_York')),
+                new DateTimeImmutable('2013-03-29 04:14:40', new DateTimeZone('America/New_York')),
                 65,
             ],
             [
-                new DateTime('2013-03-29', new DateTimeZone('America/New_York')),
-                new DateTime('2013-03-29', new DateTimeZone('America/New_York')),
+                new DateTimeImmutable('2013-03-29', new DateTimeZone('America/New_York')),
+                new DateTimeImmutable('2013-03-29', new DateTimeZone('America/New_York')),
             ],
             [
-                new DateTime('2013-03-29 04:13:35', new DateTimeZone('America/New_York')),
-                new DateTime('2013-03-29 03:13:35', new DateTimeZone('America/Chicago')),
+                new DateTimeImmutable('2013-03-29 04:13:35', new DateTimeZone('America/New_York')),
+                new DateTimeImmutable('2013-03-29 03:13:35', new DateTimeZone('America/Chicago')),
             ],
             [
-                new DateTime('2013-03-29 04:13:35', new DateTimeZone('America/New_York')),
-                new DateTime('2013-03-29 03:13:49', new DateTimeZone('America/Chicago')),
+                new DateTimeImmutable('2013-03-29 04:13:35', new DateTimeZone('America/New_York')),
+                new DateTimeImmutable('2013-03-29 03:13:49', new DateTimeZone('America/Chicago')),
                 15,
             ],
             [
-                new DateTime('2013-03-30', new DateTimeZone('America/New_York')),
-                new DateTime('2013-03-29 23:00:00', new DateTimeZone('America/Chicago')),
+                new DateTimeImmutable('2013-03-30', new DateTimeZone('America/New_York')),
+                new DateTimeImmutable('2013-03-29 23:00:00', new DateTimeZone('America/Chicago')),
             ],
             [
-                new DateTime('2013-03-30', new DateTimeZone('America/New_York')),
-                new DateTime('2013-03-29 23:01:30', new DateTimeZone('America/Chicago')),
+                new DateTimeImmutable('2013-03-30', new DateTimeZone('America/New_York')),
+                new DateTimeImmutable('2013-03-29 23:01:30', new DateTimeZone('America/Chicago')),
                 100,
             ],
             [
-                new DateTime('@1364616000'),
-                new DateTime('2013-03-29 23:00:00', new DateTimeZone('America/Chicago')),
+                new DateTimeImmutable('@1364616000'),
+                new DateTimeImmutable('2013-03-29 23:00:00', new DateTimeZone('America/Chicago')),
             ],
             [
-                new DateTime('2013-03-29T05:13:35-0500'),
-                new DateTime('2013-03-29T04:13:35-0600'),
+                new DateTimeImmutable('2013-03-29T05:13:35-0500'),
+                new DateTimeImmutable('2013-03-29T04:13:35-0600'),
             ],
             [
                 new DateTimeImmutable('2013-03-30', new DateTimeZone('America/New_York')),
@@ -90,52 +96,55 @@ final class DateTimeComparatorTest extends TestCase
         ];
     }
 
+    /**
+     * @return non-empty-list<array{0: DateTimeImmutable, 1: DateTimeImmutable, 2?: float}>
+     */
     public static function assertEqualsFailsProvider(): array
     {
         return [
             [
-                new DateTime('2013-03-29 04:13:35', new DateTimeZone('America/New_York')),
-                new DateTime('2013-03-29 03:13:35', new DateTimeZone('America/New_York')),
+                new DateTimeImmutable('2013-03-29 04:13:35', new DateTimeZone('America/New_York')),
+                new DateTimeImmutable('2013-03-29 03:13:35', new DateTimeZone('America/New_York')),
             ],
             [
-                new DateTime('2013-03-29 04:13:35', new DateTimeZone('America/New_York')),
-                new DateTime('2013-03-29 03:13:35', new DateTimeZone('America/New_York')),
+                new DateTimeImmutable('2013-03-29 04:13:35', new DateTimeZone('America/New_York')),
+                new DateTimeImmutable('2013-03-29 03:13:35', new DateTimeZone('America/New_York')),
                 3500,
             ],
             [
-                new DateTime('2013-03-29 04:13:35', new DateTimeZone('America/New_York')),
-                new DateTime('2013-03-29 05:13:35', new DateTimeZone('America/New_York')),
+                new DateTimeImmutable('2013-03-29 04:13:35', new DateTimeZone('America/New_York')),
+                new DateTimeImmutable('2013-03-29 05:13:35', new DateTimeZone('America/New_York')),
                 3500,
             ],
             [
-                new DateTime('2013-03-29', new DateTimeZone('America/New_York')),
-                new DateTime('2013-03-30', new DateTimeZone('America/New_York')),
+                new DateTimeImmutable('2013-03-29', new DateTimeZone('America/New_York')),
+                new DateTimeImmutable('2013-03-30', new DateTimeZone('America/New_York')),
             ],
             [
-                new DateTime('2013-03-29', new DateTimeZone('America/New_York')),
-                new DateTime('2013-03-30', new DateTimeZone('America/New_York')),
+                new DateTimeImmutable('2013-03-29', new DateTimeZone('America/New_York')),
+                new DateTimeImmutable('2013-03-30', new DateTimeZone('America/New_York')),
                 43200,
             ],
             [
-                new DateTime('2013-03-29 04:13:35', new DateTimeZone('America/New_York')),
-                new DateTime('2013-03-29 04:13:35', new DateTimeZone('America/Chicago')),
+                new DateTimeImmutable('2013-03-29 04:13:35', new DateTimeZone('America/New_York')),
+                new DateTimeImmutable('2013-03-29 04:13:35', new DateTimeZone('America/Chicago')),
             ],
             [
-                new DateTime('2013-03-29 04:13:35', new DateTimeZone('America/New_York')),
-                new DateTime('2013-03-29 04:13:35', new DateTimeZone('America/Chicago')),
+                new DateTimeImmutable('2013-03-29 04:13:35', new DateTimeZone('America/New_York')),
+                new DateTimeImmutable('2013-03-29 04:13:35', new DateTimeZone('America/Chicago')),
                 3500,
             ],
             [
-                new DateTime('2013-03-30', new DateTimeZone('America/New_York')),
-                new DateTime('2013-03-30', new DateTimeZone('America/Chicago')),
+                new DateTimeImmutable('2013-03-30', new DateTimeZone('America/New_York')),
+                new DateTimeImmutable('2013-03-30', new DateTimeZone('America/Chicago')),
             ],
             [
-                new DateTime('2013-03-29T05:13:35-0600'),
-                new DateTime('2013-03-29T04:13:35-0600'),
+                new DateTimeImmutable('2013-03-29T05:13:35-0600'),
+                new DateTimeImmutable('2013-03-29T04:13:35-0600'),
             ],
             [
-                new DateTime('2013-03-29T05:13:35-0600'),
-                new DateTime('2013-03-29T05:13:35-0500'),
+                new DateTimeImmutable('2013-03-29T05:13:35-0600'),
+                new DateTimeImmutable('2013-03-29T05:13:35-0500'),
             ],
         ];
     }
@@ -151,7 +160,7 @@ final class DateTimeComparatorTest extends TestCase
     }
 
     #[DataProvider('acceptsFailsProvider')]
-    public function testAcceptsFails($expected, $actual): void
+    public function testAcceptsFails(?DateTimeImmutable $expected, ?DateTimeImmutable $actual): void
     {
         $this->assertFalse(
             (new DateTimeComparator)->accepts($expected, $actual),
@@ -159,7 +168,7 @@ final class DateTimeComparatorTest extends TestCase
     }
 
     #[DataProvider('assertEqualsSucceedsProvider')]
-    public function testAssertEqualsSucceeds($expected, $actual, $delta = 0.0): void
+    public function testAssertEqualsSucceeds(DateTimeImmutable $expected, DateTimeImmutable $actual, float $delta = 0.0): void
     {
         $exception = null;
 
@@ -172,7 +181,7 @@ final class DateTimeComparatorTest extends TestCase
     }
 
     #[DataProvider('assertEqualsFailsProvider')]
-    public function testAssertEqualsFails($expected, $actual, $delta = 0.0): void
+    public function testAssertEqualsFails(DateTimeImmutable $expected, DateTimeImmutable $actual, float $delta = 0.0): void
     {
         $this->expectException(ComparisonFailure::class);
         $this->expectExceptionMessage('Failed asserting that two DateTime objects are equal.');

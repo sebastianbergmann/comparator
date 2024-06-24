@@ -21,6 +21,9 @@ use stdClass;
 #[UsesClass(Factory::class)]
 final class TypeComparatorTest extends TestCase
 {
+    /**
+     * @return non-empty-list<array{0: mixed, 1: mixed}>
+     */
     public static function acceptsSucceedsProvider(): array
     {
         return [
@@ -32,6 +35,9 @@ final class TypeComparatorTest extends TestCase
         ];
     }
 
+    /**
+     * @return non-empty-list<array{0: mixed, 1: mixed}>
+     */
     public static function assertEqualsSucceedsProvider(): array
     {
         return [
@@ -48,6 +54,9 @@ final class TypeComparatorTest extends TestCase
         ];
     }
 
+    /**
+     * @return non-empty-list<array{0: mixed, 1: mixed}>
+     */
     public static function assertEqualsFailsProvider(): array
     {
         return [
@@ -60,7 +69,7 @@ final class TypeComparatorTest extends TestCase
     }
 
     #[DataProvider('acceptsSucceedsProvider')]
-    public function testAcceptsSucceeds($expected, $actual): void
+    public function testAcceptsSucceeds(mixed $expected, mixed $actual): void
     {
         $this->assertTrue(
             (new TypeComparator)->accepts($expected, $actual),
@@ -68,7 +77,7 @@ final class TypeComparatorTest extends TestCase
     }
 
     #[DataProvider('assertEqualsSucceedsProvider')]
-    public function testAssertEqualsSucceeds($expected, $actual): void
+    public function testAssertEqualsSucceeds(mixed $expected, mixed $actual): void
     {
         $exception = null;
 
@@ -81,7 +90,7 @@ final class TypeComparatorTest extends TestCase
     }
 
     #[DataProvider('assertEqualsFailsProvider')]
-    public function testAssertEqualsFails($expected, $actual): void
+    public function testAssertEqualsFails(mixed $expected, mixed $actual): void
     {
         $this->expectException(ComparisonFailure::class);
         $this->expectExceptionMessage('does not match expected type');

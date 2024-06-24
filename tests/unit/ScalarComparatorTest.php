@@ -21,6 +21,9 @@ use PHPUnit\Framework\TestCase;
 #[UsesClass(Factory::class)]
 final class ScalarComparatorTest extends TestCase
 {
+    /**
+     * @return non-empty-list<array{0: mixed, 1: mixed}>
+     */
     public static function acceptsSucceedsProvider(): array
     {
         return [
@@ -42,6 +45,9 @@ final class ScalarComparatorTest extends TestCase
         ];
     }
 
+    /**
+     * @return non-empty-list<array{0: mixed, 1: mixed}>
+     */
     public static function acceptsFailsProvider(): array
     {
         return [
@@ -53,6 +59,9 @@ final class ScalarComparatorTest extends TestCase
         ];
     }
 
+    /**
+     * @return non-empty-list<array{0: mixed, 1: mixed, 2?: bool}>
+     */
     public static function assertEqualsSucceedsProvider(): array
     {
         return [
@@ -79,6 +88,9 @@ final class ScalarComparatorTest extends TestCase
         ];
     }
 
+    /**
+     * @return non-empty-list<array{0: mixed, 1: mixed, 2?: non-empty-string}>
+     */
     public static function assertEqualsFailsProvider(): array
     {
         $stringException = 'Failed asserting that two strings are equal.';
@@ -112,7 +124,7 @@ final class ScalarComparatorTest extends TestCase
     }
 
     #[DataProvider('acceptsSucceedsProvider')]
-    public function testAcceptsSucceeds($expected, $actual): void
+    public function testAcceptsSucceeds(mixed $expected, mixed $actual): void
     {
         $this->assertTrue(
             (new ScalarComparator)->accepts($expected, $actual),
@@ -120,7 +132,7 @@ final class ScalarComparatorTest extends TestCase
     }
 
     #[DataProvider('acceptsFailsProvider')]
-    public function testAcceptsFails($expected, $actual): void
+    public function testAcceptsFails(mixed $expected, mixed $actual): void
     {
         $this->assertFalse(
             (new ScalarComparator)->accepts($expected, $actual),
@@ -128,7 +140,7 @@ final class ScalarComparatorTest extends TestCase
     }
 
     #[DataProvider('assertEqualsSucceedsProvider')]
-    public function testAssertEqualsSucceeds($expected, $actual, $ignoreCase = false): void
+    public function testAssertEqualsSucceeds(mixed $expected, mixed $actual, bool $ignoreCase = false): void
     {
         $exception = null;
 
@@ -141,7 +153,7 @@ final class ScalarComparatorTest extends TestCase
     }
 
     #[DataProvider('assertEqualsFailsProvider')]
-    public function testAssertEqualsFails($expected, $actual, $message): void
+    public function testAssertEqualsFails(mixed $expected, mixed $actual, string $message): void
     {
         $this->expectException(ComparisonFailure::class);
         $this->expectExceptionMessage($message);
