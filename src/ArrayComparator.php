@@ -9,6 +9,7 @@
  */
 namespace SebastianBergmann\Comparator;
 
+use function array_is_list;
 use function array_key_exists;
 use function assert;
 use function is_array;
@@ -41,8 +42,13 @@ class ArrayComparator extends Comparator
         assert(is_array($actual));
 
         if ($canonicalize) {
-            sort($expected);
-            sort($actual);
+            if (array_is_list($expected)) {
+                sort($expected);
+            }
+
+            if (array_is_list($actual)) {
+                sort($actual);
+            }
         }
 
         $remaining        = $actual;
