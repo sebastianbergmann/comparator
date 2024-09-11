@@ -72,6 +72,9 @@ final class FactoryTest extends TestCase
             [new stdClass, 1.0, TypeComparator::class],
             [1.0, [1], TypeComparator::class],
             [[1], 1.0, TypeComparator::class],
+            [Example::Foo, Example::Bar, EnumerationComparator::class],
+            [ExampleString::Foo, ExampleString::Bar, EnumerationComparator::class],
+            [ExampleInt::Foo, ExampleInt::Bar, EnumerationComparator::class],
         ];
     }
 

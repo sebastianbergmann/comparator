@@ -4,6 +4,10 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 ## [6.1.0] - 2024-MM-DD
 
+### Added
+
+* Specialized comparator for enumerations
+
 ## [6.0.2] - 2024-08-12
 
 ### Fixed
