@@ -2,6 +2,12 @@
 
 All notable changes are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [6.1.1] - 2024-10-18
+
+### Fixed
+
+* Reverted [#113](https://github.com/sebastianbergmann/comparator/pull/113) as it broke backward compatibility
+
 ## [6.1.0] - 2024-09-11
 
 ### Added
@@ -180,6 +186,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 * Added `SebastianBergmann\Comparator\Factory::reset()` to unregister all non-default comparators
 * Added support for `phpunit/phpunit-mock-objects` version `^5.0`
 
+[6.1.1]: https://github.com/sebastianbergmann/comparator/compare/6.1.0...6.1.1
 [6.1.0]: https://github.com/sebastianbergmann/comparator/compare/6.0.2...6.1.0
 [6.0.2]: https://github.com/sebastianbergmann/comparator/compare/6.0.1...6.0.2
 [6.0.1]: https://github.com/sebastianbergmann/comparator/compare/6.0.0...6.0.1
