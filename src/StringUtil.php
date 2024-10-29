@@ -9,7 +9,6 @@
  */
 namespace SebastianBergmann\Comparator;
 
-use function str_replace;
 use function strlen;
 use function substr;
 
@@ -31,8 +30,8 @@ final class StringUtil
         $commonPrefix = self::findCommonPrefix($string1, $string2);
 
         if (strlen($commonPrefix) > self::OVERLONG_PREFIX_THRESHOLD) {
-            $string1 = str_replace(substr($commonPrefix, 0, -self::KEEP_PREFIX_CHARS), '...', $string1);
-            $string2 = str_replace(substr($commonPrefix, 0, -self::KEEP_PREFIX_CHARS), '...', $string2);
+            $string1 = '...' . substr($string1, strlen($commonPrefix) - self::KEEP_PREFIX_CHARS);
+            $string2 = '...' . substr($string2, strlen($commonPrefix) - self::KEEP_PREFIX_CHARS);
         }
 
         return [$string1, $string2];
