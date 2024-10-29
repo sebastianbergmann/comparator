@@ -123,6 +123,48 @@ final class ScalarComparatorTest extends TestCase
         ];
     }
 
+    /**
+     * @return non-empty-list<array{0: string, 1: string, 2: string}>
+     */
+    public static function assertEqualsFailsWithDiffProvider(): array
+    {
+        return [
+            [
+                "
+--- Expected
++++ Actual
+@@ @@
+-'string'
++'other string'
+",
+                'string',
+                'other string',
+            ],
+            [
+                "
+--- Expected
++++ Actual
+@@ @@
+-'...ch will be cut HERE some trailer'
++'...ch will be cut XYZ some trailer'
+",
+                'too too too long string which will be cut HERE some trailer',
+                'too too too long string which will be cut XYZ some trailer',
+            ],
+            [
+                "
+--- Expected
++++ Actual
+@@ @@
+-'...ch will be cut HERE some llooooooooonnng llooooooooonnng llooooooooonnng llooooooooonnng trailer'
++'...ch will be cut XYZ some llooooooooonnng llooooooooonnng llooooooooonnng llooooooooonnng trailer'
+",
+                'too too too long string which will be cut HERE some llooooooooonnng llooooooooonnng llooooooooonnng llooooooooonnng trailer',
+                'too too too long string which will be cut XYZ some llooooooooonnng llooooooooonnng llooooooooonnng llooooooooonnng trailer',
+            ],
+        ];
+    }
+
     #[DataProvider('acceptsSucceedsProvider')]
     public function testAcceptsSucceeds(mixed $expected, mixed $actual): void
     {
@@ -159,5 +201,17 @@ final class ScalarComparatorTest extends TestCase
         $this->expectExceptionMessage($message);
 
         (new ScalarComparator)->assertEquals($expected, $actual);
+    }
+
+    #[DataProvider('assertEqualsFailsWithDiffProvider')]
+    public function testAssertEqualsFailsWithDiff(string $expectedDiff, string $expected, string $actual): void
+    {
+        try {
+            (new ScalarComparator)->assertEquals($expected, $actual);
+            $this->fail('Expected ComparisonFailure not thrown');
+        } catch (ComparisonFailure $e) {
+            $this->assertEquals('Failed asserting that two strings are equal.', $e->getMessage());
+            $this->assertEquals($expectedDiff, $e->getDiff());
+        }
     }
 }
