@@ -57,6 +57,8 @@ class ScalarComparator extends Comparator
         }
 
         if ($expectedToCompare !== $actualToCompare && is_string($expected) && is_string($actual)) {
+            [$expected, $actual] = StringUtil::removeOverlongCommonPrefix($expected, $actual);
+
             throw new ComparisonFailure(
                 $expected,
                 $actual,

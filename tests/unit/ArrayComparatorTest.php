@@ -124,6 +124,41 @@ final class ArrayComparatorTest extends TestCase
         ];
     }
 
+    /**
+     * @return non-empty-list<array{0: string, 1: array, 2: array, 3?: float, 4?: bool}>
+     */
+    public static function assertEqualsFailsWithDiffProvider(): array
+    {
+        return [
+            [
+                "
+--- Expected
++++ Actual
+@@ @@
+ Array (
+-    0 => 'Too short to cut XYZ'
++    0 => 'Too short to cut HERE'
+ )
+",
+                ['Too short to cut XYZ'],
+                ['Too short to cut HERE'],
+            ],
+            [
+                "
+--- Expected
++++ Actual
+@@ @@
+ Array (
+-    0 => '...important clue XYZ and more behind'
++    0 => '...important clue HERE and more behind'
+ )
+",
+                ['Some really long string that just keeps going and going and going but contains important clue XYZ and more behind'],
+                ['Some really long string that just keeps going and going and going but contains important clue HERE and more behind'],
+            ],
+        ];
+    }
+
     protected function setUp(): void
     {
         $this->comparator = new ArrayComparator;
@@ -177,5 +212,26 @@ final class ArrayComparatorTest extends TestCase
         $this->expectExceptionMessage('Failed asserting that two arrays are equal');
 
         $this->comparator->assertEquals($expected, $actual, $delta, $canonicalize);
+    }
+
+    /**
+     * @param array<mixed> $expected
+     * @param array<mixed> $actual
+     */
+    #[DataProvider('assertEqualsFailsWithDiffProvider')]
+    public function testAssertEqualsFailsWithDiff(
+        string $expectedDiff,
+        array $expected,
+        array $actual,
+        float $delta = 0.0,
+        bool $canonicalize = false
+    ): void {
+        try {
+            $this->comparator->assertEquals($expected, $actual, $delta, $canonicalize);
+            $this->fail('Expected ComparisonFailure not thrown');
+        } catch (ComparisonFailure $e) {
+            $this->assertEquals('Failed asserting that two arrays are equal.', $e->getMessage());
+            $this->assertEquals($expectedDiff, $e->getDiff());
+        }
     }
 }
