@@ -40,16 +40,12 @@ final class StringUtil
 
     private static function findCommonPrefix(string $string1, string $string2): string
     {
-        $prefix = '';
-
         for ($i = 0; $i < strlen($string1); $i++) {
             if (!isset($string2[$i]) || $string1[$i] != $string2[$i]) {
                 break;
             }
-
-            $prefix .= $string1[$i];
         }
 
-        return $prefix;
+        return substr($string1, 0, $i);
     }
 }
