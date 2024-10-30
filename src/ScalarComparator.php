@@ -140,7 +140,11 @@ class ScalarComparator extends Comparator
             return '';
         }
 
-        while ($string1[$lastCharIndex1] == $string2[$lastCharIndex2]) {
+        while (
+            $lastCharIndex1 > 0 &&
+            $lastCharIndex2 > 0 &&
+            $string1[$lastCharIndex1] == $string2[$lastCharIndex2]
+        ) {
             $lastCharIndex1--;
             $lastCharIndex2--;
         }
