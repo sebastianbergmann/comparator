@@ -7,7 +7,7 @@ on:
 name: "CI"
 
 env:
-  COMPOSER_ROOT_VERSION: "6.1.x-dev"
+  COMPOSER_ROOT_VERSION: "6.2.x-dev"
 
 permissions:
   contents: read
