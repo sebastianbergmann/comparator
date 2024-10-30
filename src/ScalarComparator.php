@@ -16,6 +16,8 @@ use function is_string;
 use function mb_strtolower;
 use function method_exists;
 use function sprintf;
+use function strlen;
+use function substr;
 use SebastianBergmann\Exporter\Exporter;
 
 /**
@@ -23,6 +25,9 @@ use SebastianBergmann\Exporter\Exporter;
  */
 class ScalarComparator extends Comparator
 {
+    private const OVERLONG_PREFIX_THRESHOLD = 40;
+    private const KEEP_PREFIX_CHARS         = 15;
+
     public function accepts(mixed $expected, mixed $actual): bool
     {
         return ((is_scalar($expected) xor null === $expected) &&
@@ -57,7 +62,7 @@ class ScalarComparator extends Comparator
         }
 
         if ($expectedToCompare !== $actualToCompare && is_string($expected) && is_string($actual)) {
-            [$expected, $actual] = StringUtil::removeOverlongCommonPrefix($expected, $actual);
+            [$expected, $actual] = self::removeOverlongCommonPrefix($expected, $actual);
 
             throw new ComparisonFailure(
                 $expected,
@@ -82,5 +87,31 @@ class ScalarComparator extends Comparator
                 ),
             );
         }
+    }
+
+    /**
+     * @return array{string, string}
+     */
+    private static function removeOverlongCommonPrefix(string $string1, string $string2): array
+    {
+        $commonPrefix = self::findCommonPrefix($string1, $string2);
+
+        if (strlen($commonPrefix) > self::OVERLONG_PREFIX_THRESHOLD) {
+            $string1 = '...' . substr($string1, strlen($commonPrefix) - self::KEEP_PREFIX_CHARS);
+            $string2 = '...' . substr($string2, strlen($commonPrefix) - self::KEEP_PREFIX_CHARS);
+        }
+
+        return [$string1, $string2];
+    }
+
+    private static function findCommonPrefix(string $string1, string $string2): string
+    {
+        for ($i = 0; $i < strlen($string1); $i++) {
+            if (!isset($string2[$i]) || $string1[$i] != $string2[$i]) {
+                break;
+            }
+        }
+
+        return substr($string1, 0, $i);
     }
 }
