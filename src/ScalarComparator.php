@@ -25,8 +25,8 @@ use SebastianBergmann\Exporter\Exporter;
  */
 class ScalarComparator extends Comparator
 {
-    private const OVERLONG_PREFIX_THRESHOLD = 40;
-    private const KEEP_PREFIX_CHARS         = 15;
+    private const OVERLONG_THRESHOLD = 40;
+    private const KEEP_CONTEXT_CHARS = 15;
 
     public function accepts(mixed $expected, mixed $actual): bool
     {
@@ -62,13 +62,14 @@ class ScalarComparator extends Comparator
         }
 
         if ($expectedToCompare !== $actualToCompare && is_string($expected) && is_string($actual)) {
-            [$expected, $actual] = self::removeOverlongCommonPrefix($expected, $actual);
+            [$cutExpected, $cutActual] = self::removeOverlongCommonPrefix($expected, $actual);
+            [$cutExpected, $cutActual] = self::removeOverlongCommonSuffix($cutExpected, $cutActual);
 
             throw new ComparisonFailure(
                 $expected,
                 $actual,
-                $exporter->export($expected),
-                $exporter->export($actual),
+                $exporter->export($cutExpected),
+                $exporter->export($cutActual),
                 'Failed asserting that two strings are equal.',
             );
         }
@@ -96,9 +97,9 @@ class ScalarComparator extends Comparator
     {
         $commonPrefix = self::findCommonPrefix($string1, $string2);
 
-        if (strlen($commonPrefix) > self::OVERLONG_PREFIX_THRESHOLD) {
-            $string1 = '...' . substr($string1, strlen($commonPrefix) - self::KEEP_PREFIX_CHARS);
-            $string2 = '...' . substr($string2, strlen($commonPrefix) - self::KEEP_PREFIX_CHARS);
+        if (strlen($commonPrefix) > self::OVERLONG_THRESHOLD) {
+            $string1 = '...' . substr($string1, strlen($commonPrefix) - self::KEEP_CONTEXT_CHARS);
+            $string2 = '...' . substr($string2, strlen($commonPrefix) - self::KEEP_CONTEXT_CHARS);
         }
 
         return [$string1, $string2];
@@ -113,5 +114,37 @@ class ScalarComparator extends Comparator
         }
 
         return substr($string1, 0, $i);
+    }
+
+    /**
+     * @return array{string, string}
+     */
+    private static function removeOverlongCommonSuffix(string $string1, string $string2): array
+    {
+        $commonSuffix = self::findCommonSuffix($string1, $string2);
+
+        if (strlen($commonSuffix) > self::OVERLONG_THRESHOLD) {
+            $string1 = substr($string1, 0, -(strlen($commonSuffix) - self::KEEP_CONTEXT_CHARS)) . '...';
+            $string2 = substr($string2, 0, -(strlen($commonSuffix) - self::KEEP_CONTEXT_CHARS)) . '...';
+        }
+
+        return [$string1, $string2];
+    }
+
+    private static function findCommonSuffix(string $string1, string $string2): string
+    {
+        $lastCharIndex1 = strlen($string1) - 1;
+        $lastCharIndex2 = strlen($string2) - 1;
+
+        if ($string1[$lastCharIndex1] != $string2[$lastCharIndex2]) {
+            return '';
+        }
+
+        while ($string1[$lastCharIndex1] == $string2[$lastCharIndex2]) {
+            $lastCharIndex1--;
+            $lastCharIndex2--;
+        }
+
+        return substr($string1, $lastCharIndex1 - strlen($string1) + 1);
     }
 }
