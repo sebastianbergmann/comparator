@@ -145,8 +145,8 @@ final class ScalarComparatorTest extends TestCase
 --- Expected
 +++ Actual
 @@ @@
--'...ch will be cut HERE some trailer'
-+'...ch will be cut XYZ some trailer'
+-'...string which will be cut HERE some trailer'
++'...string which will be cut XYZ some trailer'
 ",
                 'too too too long string which will be cut HERE some trailer',
                 'too too too long string which will be cut XYZ some trailer',
@@ -156,8 +156,8 @@ final class ScalarComparatorTest extends TestCase
 --- Expected
 +++ Actual
 @@ @@
--'short start until HERE some llooooooo...'
-+'short start until XYZ some llooooooo...'
+-'short start until HERE some llooooooooonnng llo...'
++'short start until XYZ some llooooooooonnng llo...'
 ",
                 'short start until HERE some llooooooooonnng llooooooooonnng llooooooooonnng llooooooooonnng trailer',
                 'short start until XYZ some llooooooooonnng llooooooooonnng llooooooooonnng llooooooooonnng trailer',
@@ -167,8 +167,8 @@ final class ScalarComparatorTest extends TestCase
 --- Expected
 +++ Actual
 @@ @@
--'...ch will be cut HERE some llooooooo...'
-+'...ch will be cut XYZ some llooooooo...'
+-'...string which will be cut HERE some llooooooooonnng llo...'
++'...string which will be cut XYZ some llooooooooonnng llo...'
 ",
                 'too too too long string which will be cut HERE some llooooooooonnng llooooooooonnng llooooooooonnng llooooooooonnng trailer',
                 'too too too long string which will be cut XYZ some llooooooooonnng llooooooooonnng llooooooooonnng llooooooooonnng trailer',

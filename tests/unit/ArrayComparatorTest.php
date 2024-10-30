@@ -149,8 +149,8 @@ final class ArrayComparatorTest extends TestCase
 +++ Actual
 @@ @@
  Array (
--    0 => '...important clue XYZ and more behind'
-+    0 => '...important clue HERE and more behind'
+-    0 => '... contains important clue XYZ and more behind'
++    0 => '... contains important clue HERE and more behind'
  )
 ",
                 ['Some really long string that just keeps going and going and going but contains important clue XYZ and more behind'],
