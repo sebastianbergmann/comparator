@@ -133,6 +133,10 @@ class ScalarComparator extends Comparator
 
     private static function findCommonSuffix(string $string1, string $string2): string
     {
+        if ($string1 === '' || $string2 === '') {
+            return '';
+        }
+
         $lastCharIndex1 = strlen($string1) - 1;
         $lastCharIndex2 = strlen($string2) - 1;
 

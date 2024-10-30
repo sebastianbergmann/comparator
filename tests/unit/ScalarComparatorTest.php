@@ -145,6 +145,17 @@ final class ScalarComparatorTest extends TestCase
 --- Expected
 +++ Actual
 @@ @@
+-''
++'other string'
+",
+                '',
+                'other string',
+            ],
+            [
+                "
+--- Expected
++++ Actual
+@@ @@
 -'...string which will be cut HERE some trailer'
 +'...string which will be cut XYZ some trailer'
 ",
