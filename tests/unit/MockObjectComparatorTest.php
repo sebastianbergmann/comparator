@@ -101,9 +101,9 @@ final class MockObjectComparatorTest extends TestCase
         $book2->author->books[] = $book2;
 
         $book3         = self::createMockForComparatorTest(Book::class);
-        $book3->author = 'Terry Pratchett';
+        $book3->author = new Author('Terry Pratchett');
         $book4         = self::createMockForComparatorTest(stdClass::class);
-        $book4->author = 'Terry Pratchett';
+        $book4->author = new Author('Terry Pratchett');
 
         $object1 = self::createMockForComparatorTest(SampleClass::class, [4, 8, 15]);
         $object2 = self::createMockForComparatorTest(SampleClass::class, [16, 23, 42]);
@@ -174,7 +174,7 @@ final class MockObjectComparatorTest extends TestCase
      * @template RealInstanceType of object
      *
      * @param class-string<RealInstanceType> $type
-     * @param array<mixed>                   $constructorArguments
+     * @param list<mixed>                    $constructorArguments
      *
      * @return MockObject&RealInstanceType
      */

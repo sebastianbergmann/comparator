@@ -23,7 +23,7 @@ final class ArrayComparatorTest extends TestCase
     private ArrayComparator $comparator;
 
     /**
-     * @return non-empty-list<array{0: ?array, 1: ?array}>
+     * @return non-empty-list<array{0: ?array<null>, 1: ?array<null>}>
      */
     public static function acceptsFailsProvider(): array
     {
@@ -35,7 +35,7 @@ final class ArrayComparatorTest extends TestCase
     }
 
     /**
-     * @return non-empty-list<array{0: array, 1: array, 2?: float, 3?: bool}>
+     * @return non-empty-list<array{0: array<mixed>, 1: array<mixed>, 2?: float, 3?: bool}>
      */
     public static function assertEqualsSucceedsProvider(): array
     {
@@ -77,7 +77,7 @@ final class ArrayComparatorTest extends TestCase
     }
 
     /**
-     * @return non-empty-list<array{0: array, 1: array, 2?: float, 3?: bool}>
+     * @return non-empty-list<array{0: array<mixed>, 1: array<mixed>, 2?: float, 3?: bool}>
      */
     public static function assertEqualsFailsProvider(): array
     {
@@ -125,7 +125,7 @@ final class ArrayComparatorTest extends TestCase
     }
 
     /**
-     * @return non-empty-list<array{0: string, 1: array, 2: array, 3?: float, 4?: bool}>
+     * @return non-empty-list<array{0: string, 1: array<string>, 2: array<string>, 3?: float, 4?: bool}>
      */
     public static function assertEqualsFailsWithDiffProvider(): array
     {

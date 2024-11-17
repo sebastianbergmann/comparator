@@ -16,7 +16,7 @@ final class Factory
     private static ?Factory $instance = null;
 
     /**
-     * @var list<Comparator>
+     * @var array<non-negative-int, Comparator>
      */
     private array $customComparators = [];
 

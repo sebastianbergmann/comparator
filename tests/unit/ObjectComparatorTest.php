@@ -89,9 +89,9 @@ final class ObjectComparatorTest extends TestCase
         $book2->author->books[] = $book2;
 
         $book3         = new Book;
-        $book3->author = 'Terry Pratchett';
+        $book3->author = new Author('Terry Pratchett');
         $book4         = new stdClass;
-        $book4->author = 'Terry Pratchett';
+        $book4->author = new Author('Terry Pratchett');
 
         $object1 = new SampleClass(4, 8, 15);
         $object2 = new SampleClass(16, 23, 42);
