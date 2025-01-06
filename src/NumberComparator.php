@@ -35,11 +35,13 @@ final class NumberComparator extends ObjectComparator
     {
         if (!$expected instanceof Number) {
             assert(is_string($expected) || is_int($expected));
+
             $expected = new Number($expected);
         }
 
         if (!$actual instanceof Number) {
             assert(is_string($actual) || is_int($actual));
+
             $actual = new Number($actual);
         }
 
