@@ -2,6 +2,12 @@
 
 All notable changes are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [7.0.0] - 2025-02-07
+
+### Removed
+
+* Removed support for PHP 8.2
+
 ## [6.3.0] - 2025-01-06
 
 ### Added
@@ -204,6 +210,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 * Added `SebastianBergmann\Comparator\Factory::reset()` to unregister all non-default comparators
 * Added support for `phpunit/phpunit-mock-objects` version `^5.0`
 
+[7.0.0]: https://github.com/sebastianbergmann/comparator/compare/6.3...main
 [6.3.0]: https://github.com/sebastianbergmann/comparator/compare/6.2.1...6.3.0
 [6.2.1]: https://github.com/sebastianbergmann/comparator/compare/6.2.0...6.2.1
 [6.2.0]: https://github.com/sebastianbergmann/comparator/compare/6.1.1...6.2.0
