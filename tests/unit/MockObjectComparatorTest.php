@@ -182,7 +182,7 @@ final class MockObjectComparatorTest extends TestCase
     {
         $generator = new Generator;
 
-        $mockObject = $generator->testDouble($type, true, true, null, $constructorArguments);
+        $mockObject = $generator->testDouble($type, true, [], $constructorArguments);
 
         assert($mockObject instanceof MockObject);
         assert($mockObject instanceof $type);
