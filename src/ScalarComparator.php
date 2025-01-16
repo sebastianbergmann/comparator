@@ -25,8 +25,8 @@ use SebastianBergmann\Exporter\Exporter;
  */
 class ScalarComparator extends Comparator
 {
-    private const OVERLONG_THRESHOLD = 40;
-    private const KEEP_CONTEXT_CHARS = 25;
+    private const int OVERLONG_THRESHOLD = 40;
+    private const int KEEP_CONTEXT_CHARS = 25;
 
     public function accepts(mixed $expected, mixed $actual): bool
     {
