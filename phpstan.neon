@@ -4,7 +4,3 @@ parameters:
     paths:
         - src
         - tests/unit
-
-    ignoreErrors:
-        # see https://github.com/phpstan/phpstan/issues/12099
-        - '~^Binary operation "[\+\-]" between BcMath\\Number and BcMath\\Number results in an error\.$~'
