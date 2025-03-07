@@ -75,6 +75,7 @@ final class NumericComparatorTest extends TestCase
             [1337, 1338, 1],
             ['1337', 1340, 5],
             [INF, INF],
+            [-INF, -INF],
             [2.3, 2.3],
             ['2.3', 2.3],
             [5.0, 5],
@@ -120,6 +121,8 @@ final class NumericComparatorTest extends TestCase
             [5.5E-123, '5.7E-123'],
             [5.5E+123, '5.7E+123', 0.1E+123],
             [5.5E-123, '5.7E-123', 0.1E-123],
+            [INF, -INF],
+            [-INF, INF],
         ];
     }
 
