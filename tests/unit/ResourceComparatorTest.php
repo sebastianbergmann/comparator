@@ -24,7 +24,7 @@ final class ResourceComparatorTest extends TestCase
     /**
      * @return non-empty-list<array{0: resource, 1: resource}>
      */
-    public static function acceptsSucceedsProvider()
+    public static function acceptsSucceedsProvider(): array
     {
         $tmpfile1 = tmpfile();
         $tmpfile2 = tmpfile();
@@ -83,7 +83,7 @@ final class ResourceComparatorTest extends TestCase
      * @param resource $actual
      */
     #[DataProvider('acceptsSucceedsProvider')]
-    public function testAcceptsSucceeds($expected, $actual): void
+    public function testAcceptsSucceeds(mixed $expected, mixed $actual): void
     {
         $this->assertTrue(
             (new ResourceComparator)->accepts($expected, $actual),
@@ -95,7 +95,7 @@ final class ResourceComparatorTest extends TestCase
      * @param ?resource $actual
      */
     #[DataProvider('acceptsFailsProvider')]
-    public function testAcceptsFails($expected, $actual): void
+    public function testAcceptsFails(mixed $expected, mixed $actual): void
     {
         $this->assertFalse(
             (new ResourceComparator)->accepts($expected, $actual),
@@ -107,7 +107,7 @@ final class ResourceComparatorTest extends TestCase
      * @param resource $actual
      */
     #[DataProvider('assertEqualsSucceedsProvider')]
-    public function testAssertEqualsSucceeds($expected, $actual): void
+    public function testAssertEqualsSucceeds(mixed $expected, mixed $actual): void
     {
         $exception = null;
 
@@ -124,7 +124,7 @@ final class ResourceComparatorTest extends TestCase
      * @param resource $actual
      */
     #[DataProvider('assertEqualsFailsProvider')]
-    public function testAssertEqualsFails($expected, $actual): void
+    public function testAssertEqualsFails(mixed $expected, mixed $actual): void
     {
         $this->expectException(ComparisonFailure::class);
 
