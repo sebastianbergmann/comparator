@@ -75,6 +75,7 @@ class ScalarComparator extends Comparator
             );
         }
 
+        /** @phpstan-ignore notEqual.notAllowed */
         if ($expectedToCompare != $actualToCompare) {
             throw new ComparisonFailure(
                 $expected,

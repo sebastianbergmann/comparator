@@ -30,6 +30,7 @@ final class ResourceComparator extends Comparator
 
         $exporter = new Exporter;
 
+        /** @phpstan-ignore notEqual.notAllowed */
         if ($actual != $expected) {
             throw new ComparisonFailure(
                 $expected,
