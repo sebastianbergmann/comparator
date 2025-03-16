@@ -9,6 +9,7 @@
  */
 namespace SebastianBergmann\Comparator;
 
+use function assert;
 use function is_bool;
 use function is_object;
 use function is_scalar;
@@ -112,6 +113,8 @@ class ScalarComparator extends Comparator
                 break;
             }
         }
+
+        assert(isset($i));
 
         return substr($string1, 0, $i);
     }
