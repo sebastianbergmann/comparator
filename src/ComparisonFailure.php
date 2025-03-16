@@ -52,7 +52,7 @@ final class ComparisonFailure extends RuntimeException
 
     public function getDiff(): string
     {
-        if (!$this->actualAsString && !$this->expectedAsString) {
+        if ($this->actualAsString === '' && $this->expectedAsString === '') {
             return '';
         }
 

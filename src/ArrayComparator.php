@@ -87,13 +87,13 @@ class ArrayComparator extends Comparator
                 $expectedAsString .= sprintf(
                     "    %s => %s\n",
                     $exporter->export($key),
-                    $e->getExpectedAsString() ? $this->indent($e->getExpectedAsString()) : $exporter->shortenedExport($e->getExpected()),
+                    $e->getExpectedAsString() !== '' ? $this->indent($e->getExpectedAsString()) : $exporter->shortenedExport($e->getExpected()),
                 );
 
                 $actualAsString .= sprintf(
                     "    %s => %s\n",
                     $exporter->export($key),
-                    $e->getActualAsString() ? $this->indent($e->getActualAsString()) : $exporter->shortenedExport($e->getActual()),
+                    $e->getActualAsString() !== '' ? $this->indent($e->getActualAsString()) : $exporter->shortenedExport($e->getActual()),
                 );
 
                 $equal = false;

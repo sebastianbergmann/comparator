@@ -25,7 +25,7 @@ final class TypeComparator extends Comparator
      */
     public function assertEquals(mixed $expected, mixed $actual, float $delta = 0.0, bool $canonicalize = false, bool $ignoreCase = false): void
     {
-        if (gettype($expected) != gettype($actual)) {
+        if (gettype($expected) !== gettype($actual)) {
             throw new ComparisonFailure(
                 $expected,
                 $actual,

@@ -108,7 +108,7 @@ class ScalarComparator extends Comparator
     private static function findCommonPrefix(string $string1, string $string2): string
     {
         for ($i = 0; $i < strlen($string1); $i++) {
-            if (!isset($string2[$i]) || $string1[$i] != $string2[$i]) {
+            if (!isset($string2[$i]) || $string1[$i] !== $string2[$i]) {
                 break;
             }
         }
@@ -140,14 +140,14 @@ class ScalarComparator extends Comparator
         $lastCharIndex1 = strlen($string1) - 1;
         $lastCharIndex2 = strlen($string2) - 1;
 
-        if ($string1[$lastCharIndex1] != $string2[$lastCharIndex2]) {
+        if ($string1[$lastCharIndex1] !== $string2[$lastCharIndex2]) {
             return '';
         }
 
         while (
             $lastCharIndex1 > 0 &&
             $lastCharIndex2 > 0 &&
-            $string1[$lastCharIndex1] == $string2[$lastCharIndex2]
+            $string1[$lastCharIndex1] === $string2[$lastCharIndex2]
         ) {
             $lastCharIndex1--;
             $lastCharIndex2--;
