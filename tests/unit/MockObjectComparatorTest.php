@@ -180,8 +180,10 @@ final class MockObjectComparatorTest extends TestCase
      */
     private static function createMockForComparatorTest(string $type, array $constructorArguments = []): MockObject
     {
+        /** @phpstan-ignore new.internalClass */
         $generator = new Generator;
 
+        /** @phpstan-ignore method.internalClass */
         $mockObject = $generator->testDouble($type, true, [], $constructorArguments);
 
         assert($mockObject instanceof MockObject);
