@@ -77,6 +77,9 @@ final class FactoryTest extends TestCase
             [Example::Foo, Example::Bar, EnumerationComparator::class],
             [ExampleString::Foo, ExampleString::Bar, EnumerationComparator::class],
             [ExampleInt::Foo, ExampleInt::Bar, EnumerationComparator::class],
+            [static function (): void
+            {}, static function (): void
+            {}, ClosureComparator::class],
         ];
 
         if (class_exists(Number::class)) {

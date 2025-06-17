@@ -95,6 +95,7 @@ final class Factory
 
     private function registerDefaultComparators(): void
     {
+        $this->registerDefaultComparator(new ClosureComparator);
         $this->registerDefaultComparator(new MockObjectComparator);
         $this->registerDefaultComparator(new DateTimeComparator);
         $this->registerDefaultComparator(new DOMNodeComparator);
