@@ -265,7 +265,7 @@ class Arrays
 		$res = [];
 		$cb = $preserveKeys
 			? function ($v, $k) use (&$res): void { $res[$k] = $v; }
-			: function ($v) use (&$res): void { $res[] = $v; };
+		: function ($v) use (&$res): void { $res[] = $v; };
 		array_walk_recursive($array, $cb);
 		return $res;
 	}
@@ -277,7 +277,8 @@ class Arrays
 	 */
 	public static function isList(mixed $value): bool
 	{
-		return is_array($value) && (PHP_VERSION_ID < 80100
+		return is_array($value) && (
+			PHP_VERSION_ID < 80100
 			? !$value || array_keys($value) === range(0, count($value) - 1)
 			: array_is_list($value)
 		);
