@@ -56,7 +56,9 @@ final class Factory
             }
         }
 
+        // @codeCoverageIgnoreStart
         throw new RuntimeException('No suitable Comparator implementation found');
+        // @codeCoverageIgnoreEnd
     }
 
     /**
