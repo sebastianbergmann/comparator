@@ -33,8 +33,8 @@ final class DOMNodeComparator extends ObjectComparator
         assert($expected instanceof DOMNode);
         assert($actual instanceof DOMNode);
 
-        $expectedAsString = $this->nodeToText($expected, true, $ignoreCase);
-        $actualAsString   = $this->nodeToText($actual, true, $ignoreCase);
+        $expectedAsString = $this->nodeToText($expected, $ignoreCase);
+        $actualAsString   = $this->nodeToText($actual, $ignoreCase);
 
         if ($expectedAsString !== $actualAsString) {
             $type = $expected instanceof DOMDocument ? 'documents' : 'nodes';
@@ -50,42 +50,28 @@ final class DOMNodeComparator extends ObjectComparator
     }
 
     /**
-     * Returns the normalized, whitespace-cleaned, and indented textual
-     * representation of a DOMNode.
+     * Canonicalizes nodes, removes empty text nodes and merges adjacent text nodes,
+     * and optionally ignores case.
+     *
+     * @see https://github.com/sebastianbergmann/phpunit/pull/1236#issuecomment-41765023
      */
-    private function nodeToText(DOMNode $node, bool $canonicalize, bool $ignoreCase): string
+    private function nodeToText(DOMNode $node, bool $ignoreCase): string
     {
-        if ($canonicalize) {
-            $document = new DOMDocument;
+        $document = new DOMDocument;
 
-            try {
-                $c14n = $node->C14N();
+        try {
+            $c14n = $node->C14N();
 
-                assert($c14n !== false && $c14n !== '');
+            assert($c14n !== false && $c14n !== '');
 
-                @$document->loadXML($c14n);
-            } catch (ValueError) {
-            }
-
-            $node = $document;
+            @$document->loadXML($c14n);
+        } catch (ValueError) {
         }
-
-        if ($node instanceof DOMDocument) {
-            $document = $node;
-        } else {
-            $document = $node->ownerDocument;
-        }
-
-        assert($document instanceof DOMDocument);
 
         $document->formatOutput = true;
         $document->normalizeDocument();
 
-        if ($node instanceof DOMDocument) {
-            $text = $node->saveXML();
-        } else {
-            $text = $document->saveXML($node);
-        }
+        $text = $document->saveXML();
 
         assert($text !== false);
 
