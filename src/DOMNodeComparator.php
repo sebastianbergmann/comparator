@@ -65,7 +65,9 @@ final class DOMNodeComparator extends ObjectComparator
             assert($c14n !== false && $c14n !== '');
 
             @$document->loadXML($c14n);
+            // @codeCoverageIgnoreStart
         } catch (ValueError) {
+            // @codeCoverageIgnoreEnd
         }
 
         $document->formatOutput = true;
