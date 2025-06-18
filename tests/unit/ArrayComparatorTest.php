@@ -11,6 +11,7 @@ namespace SebastianBergmann\Comparator;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 
@@ -18,6 +19,7 @@ use PHPUnit\Framework\TestCase;
 #[UsesClass(Comparator::class)]
 #[UsesClass(ComparisonFailure::class)]
 #[UsesClass(Factory::class)]
+#[Small]
 final class ArrayComparatorTest extends TestCase
 {
     private ArrayComparator $comparator;

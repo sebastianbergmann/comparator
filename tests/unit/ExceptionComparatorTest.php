@@ -12,6 +12,7 @@ namespace SebastianBergmann\Comparator;
 use Exception;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
@@ -21,6 +22,7 @@ use Throwable;
 #[UsesClass(Comparator::class)]
 #[UsesClass(ComparisonFailure::class)]
 #[UsesClass(Factory::class)]
+#[Small]
 final class ExceptionComparatorTest extends TestCase
 {
     private ExceptionComparator $comparator;

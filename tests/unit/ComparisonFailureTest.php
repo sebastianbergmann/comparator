@@ -10,12 +10,14 @@
 namespace SebastianBergmann\Comparator;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 
 #[CoversClass(ComparisonFailure::class)]
 #[UsesClass(Comparator::class)]
 #[UsesClass(Factory::class)]
+#[Small]
 final class ComparisonFailureTest extends TestCase
 {
     public function testComparisonFailure(): void
