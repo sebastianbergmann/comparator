@@ -19,9 +19,9 @@ use function trim;
 use SebastianBergmann\Exporter\Exporter;
 
 /**
- * Arrays are equal if they contain the same key-value pairs.
- * The order of the keys does not matter.
- * The types of key-value pairs do not matter.
+ * @no-named-arguments Parameter names are not covered by the backward compatibility promise for sebastian/comparator
+ *
+ * @internal This class is not covered by the backward compatibility promise for sebastian/comparator
  */
 class ArrayComparator extends Comparator
 {
@@ -31,6 +31,10 @@ class ArrayComparator extends Comparator
     }
 
     /**
+     * Arrays are equal if they contain the same key-value pairs.
+     * The order of the keys does not matter.
+     * The types of key-value pairs do not matter.
+     *
      * @param array<mixed> $processed
      *
      * @throws ComparisonFailure

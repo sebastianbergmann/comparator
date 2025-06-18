@@ -17,6 +17,11 @@ use function max;
 use function number_format;
 use BcMath\Number;
 
+/**
+ * @no-named-arguments Parameter names are not covered by the backward compatibility promise for sebastian/comparator
+ *
+ * @internal This class is not covered by the backward compatibility promise for sebastian/comparator
+ */
 final class NumberComparator extends ObjectComparator
 {
     public function accepts(mixed $expected, mixed $actual): bool
