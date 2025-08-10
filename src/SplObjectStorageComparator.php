@@ -43,7 +43,7 @@ class SplObjectStorageComparator extends Comparator
     public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false)/*: void*/
     {
         foreach ($actual as $object) {
-            if (!$expected->contains($object)) {
+            if (!$expected->offsetExists($object)) {
                 throw new ComparisonFailure(
                     $expected,
                     $actual,
@@ -56,7 +56,7 @@ class SplObjectStorageComparator extends Comparator
         }
 
         foreach ($expected as $object) {
-            if (!$actual->contains($object)) {
+            if (!$actual->offsetExists($object)) {
                 throw new ComparisonFailure(
                     $expected,
                     $actual,
