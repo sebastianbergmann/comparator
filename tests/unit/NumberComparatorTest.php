@@ -17,7 +17,7 @@ use PHPUnit\Framework\Attributes\RequiresPhpExtension;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 
-#[RequiresPhp('8.4')]
+#[RequiresPhp('^8.4')]
 #[RequiresPhpExtension('bcmath')]
 #[CoversClass(NumberComparator::class)]
 #[UsesClass(Comparator::class)]
