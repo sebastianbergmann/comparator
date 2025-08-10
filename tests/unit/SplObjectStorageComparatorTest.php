@@ -46,12 +46,12 @@ final class SplObjectStorageComparatorTest extends TestCase
         $storage2 = new SplObjectStorage;
 
         $storage3 = new SplObjectStorage;
-        $storage3->attach($object1);
-        $storage3->attach($object2);
+        $storage3->offsetSet($object1);
+        $storage3->offsetSet($object2);
 
         $storage4 = new SplObjectStorage;
-        $storage4->attach($object2);
-        $storage4->attach($object1);
+        $storage4->offsetSet($object2);
+        $storage4->offsetSet($object1);
 
         return [
             [$storage1, $storage1],
@@ -72,11 +72,11 @@ final class SplObjectStorageComparatorTest extends TestCase
         $storage1 = new SplObjectStorage;
 
         $storage2 = new SplObjectStorage;
-        $storage2->attach($object1);
+        $storage2->offsetSet($object1);
 
         $storage3 = new SplObjectStorage;
-        $storage3->attach($object2);
-        $storage3->attach($object1);
+        $storage3->offsetSet($object2);
+        $storage3->offsetSet($object1);
 
         return [
             [$storage1, $storage2],
@@ -131,7 +131,7 @@ final class SplObjectStorageComparatorTest extends TestCase
         $this->expectExceptionMessage('Failed asserting that two objects are equal.');
 
         $t = new SplObjectStorage;
-        $t->attach(new stdClass);
+        $t->offsetSet(new stdClass);
 
         (new SplObjectStorageComparator)->assertEquals($t, new SplObjectStorage);
     }
