@@ -6,7 +6,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
-For a full diff see [`2.10.4...main`][2.10.4...main].
+For a full diff see [`2.11.0...main`][2.11.0...main].
+
+## [`2.11.0`][2.11.0]
+
+For a full diff see [`2.10.5...2.11.0`][2.10.5...2.11.0].
+
+### Changed
+
+- Allowed installation on PHP 8.5 ([#972]), by [@localheinz]
+
+## [`2.10.5`][2.10.5]
+
+For a full diff see [`2.10.4...2.10.5`][2.10.4...2.10.5].
+
+### Fixed
+
+- Adjusted `Methods\NoNamedArgumentRule` to handle calls to constructors of variable class names ([#957]), by [@localheinz]
+- Adjusted `Methods\NoNamedArgumentRule` to describe known calls only ([#958]), by [@localheinz]
 
 ## [`2.10.4`][2.10.4]
 
@@ -560,6 +577,8 @@ For a full diff see [`362c7ea...0.1.0`][362c7ea...0.1.0].
 [2.10.2]: https://github.com/ergebnis/phpstan-rules/releases/tag/2.10.2
 [2.10.3]: https://github.com/ergebnis/phpstan-rules/releases/tag/2.10.3
 [2.10.4]: https://github.com/ergebnis/phpstan-rules/releases/tag/2.10.4
+[2.10.5]: https://github.com/ergebnis/phpstan-rules/releases/tag/2.10.5
+[2.11.0]: https://github.com/ergebnis/phpstan-rules/releases/tag/2.11.0
 
 [362c7ea...0.1.0]: https://github.com/ergebnis/phpstan-rules/compare/362c7ea...0.1.0
 [0.1.0...0.2.0]: https://github.com/ergebnis/phpstan-rules/compare/0.1.0...0.2.0
@@ -607,7 +626,9 @@ For a full diff see [`362c7ea...0.1.0`][362c7ea...0.1.0].
 [2.10.1...2.10.2]: https://github.com/ergebnis/phpstan-rules/compare/2.10.1...2.10.2
 [2.10.2...2.10.3]: https://github.com/ergebnis/phpstan-rules/compare/2.10.2...2.10.3
 [2.10.3...2.10.4]: https://github.com/ergebnis/phpstan-rules/compare/2.10.3...2.10.4
-[2.10.4...main]: https://github.com/ergebnis/phpstan-rules/compare/2.10.4...main
+[2.10.4...2.10.5]: https://github.com/ergebnis/phpstan-rules/compare/2.10.4...2.10.5
+[2.10.5...2.11.0]: https://github.com/ergebnis/phpstan-rules/compare/2.10.5...2.11.0
+[2.11.0...main]: https://github.com/ergebnis/phpstan-rules/compare/2.11.0...main
 
 [#1]: https://github.com/ergebnis/phpstan-rules/pull/1
 [#4]: https://github.com/ergebnis/phpstan-rules/pull/4
@@ -701,6 +722,9 @@ For a full diff see [`362c7ea...0.1.0`][362c7ea...0.1.0].
 [#948]: https://github.com/ergebnis/phpstan-rules/pull/948
 [#949]: https://github.com/ergebnis/phpstan-rules/pull/949
 [#951]: https://github.com/ergebnis/phpstan-rules/pull/951
+[#957]: https://github.com/ergebnis/phpstan-rules/pull/957
+[#958]: https://github.com/ergebnis/phpstan-rules/pull/958
+[#972]: https://github.com/ergebnis/phpstan-rules/pull/972
 
 [@cosmastech]: https://github.com/cosmastech
 [@enumag]: https://github.com/enumag
