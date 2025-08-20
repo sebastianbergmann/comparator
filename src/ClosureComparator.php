@@ -42,9 +42,8 @@ final class ClosureComparator extends Comparator
         throw new ComparisonFailure(
             $expected,
             $actual,
-            // no diff is required
-            '',
-            '',
+            'Closure Object #' . spl_object_id( $expected ) . ' ()',
+            'Closure Object #' . spl_object_id( $actual ) . ' ()',
             sprintf(
                 'Failed asserting that closure declared at %s:%d is equal to closure declared at %s:%d.',
                 $expectedReflector->getFileName(),
