@@ -2,6 +2,12 @@
 
 All notable changes are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [7.1.3] - 2025-08-20
+
+### Changed
+
+* [#130](https://github.com/sebastianbergmann/comparator/pull/130): Provide a diff when `ClosureComparator` fails
+
 ## [7.1.2] - 2025-08-10
 
 ### Fixed
@@ -246,6 +252,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 * Added `SebastianBergmann\Comparator\Factory::reset()` to unregister all non-default comparators
 * Added support for `phpunit/phpunit-mock-objects` version `^5.0`
 
+[7.1.3]: https://github.com/sebastianbergmann/comparator/compare/7.1.2...7.1.3
 [7.1.2]: https://github.com/sebastianbergmann/comparator/compare/7.1.1...7.1.2
 [7.1.1]: https://github.com/sebastianbergmann/comparator/compare/7.1.0...7.1.1
 [7.1.0]: https://github.com/sebastianbergmann/comparator/compare/7.0.1...7.1.0
