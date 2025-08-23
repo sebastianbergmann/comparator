@@ -133,4 +133,32 @@ final class ClosureComparatorTest extends TestCase
 
         $this->fail('Expected ComparisonFailure to be thrown');
     }
+
+    public function testAsStringComparisonFormat(): void
+    {
+        $f = static function (): void
+        {
+        };
+
+        $g = static function (): void
+        {
+        };
+
+        try {
+            (new ClosureComparator)->assertEquals($f, $g);
+        } catch (ComparisonFailure $e) {
+            $this->assertStringMatchesFormat(
+                'Closure Object #%d ()',
+                $e->getActualAsString(),
+            );
+            $this->assertStringMatchesFormat(
+                'Closure Object #%d ()',
+                $e->getExpectedAsString(),
+            );
+
+            return;
+        }
+
+        $this->fail('Expected ComparisonFailure to be thrown');
+    }
 }
