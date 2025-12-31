@@ -42,6 +42,8 @@ final class DateTimeComparator extends ObjectComparator
         assert($actual instanceof DateTime || $actual instanceof DateTimeImmutable);
 
         $absDelta = abs($delta);
+
+        /** @phpstan-ignore argument.type */
         $delta    = new DateInterval(sprintf('PT%dS', $absDelta));
         $delta->f = $absDelta - floor($absDelta);
 
