@@ -44,6 +44,12 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 * Removed support for PHP 8.2
 
+## [6.3.3] - 2026-01-24
+
+### Changed
+
+* [#134](https://github.com/sebastianbergmann/comparator/issues/134): Suppress warning introduced in PHP 8.5
+
 ## [6.3.2] - 2025-08-10
 
 ### Changed
@@ -271,6 +277,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 [7.1.0]: https://github.com/sebastianbergmann/comparator/compare/7.0.1...7.1.0
 [7.0.1]: https://github.com/sebastianbergmann/comparator/compare/7.0.0...7.0.1
 [7.0.0]: https://github.com/sebastianbergmann/comparator/compare/6.3...7.0.0
+[6.3.3]: https://github.com/sebastianbergmann/comparator/compare/6.3.2...6.3.3
 [6.3.2]: https://github.com/sebastianbergmann/comparator/compare/6.3.1...6.3.2
 [6.3.1]: https://github.com/sebastianbergmann/comparator/compare/6.3.0...6.3.1
 [6.3.0]: https://github.com/sebastianbergmann/comparator/compare/6.2.1...6.3.0
@@ -281,11 +288,14 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 [6.0.2]: https://github.com/sebastianbergmann/comparator/compare/6.0.1...6.0.2
 [6.0.1]: https://github.com/sebastianbergmann/comparator/compare/6.0.0...6.0.1
 [6.0.0]: https://github.com/sebastianbergmann/comparator/compare/5.0...6.0.0
+[5.0.5]: https://github.com/sebastianbergmann/comparator/compare/5.0.4...5.0.5
 [5.0.4]: https://github.com/sebastianbergmann/comparator/compare/5.0.3...5.0.4
 [5.0.3]: https://github.com/sebastianbergmann/comparator/compare/5.0.2...5.0.3
 [5.0.2]: https://github.com/sebastianbergmann/comparator/compare/5.0.1...5.0.2
 [5.0.1]: https://github.com/sebastianbergmann/comparator/compare/5.0.0...5.0.1
-[5.0.0]: https://github.com/sebastianbergmann/comparator/compare/4.0.8...5.0.0
+[5.0.0]: https://github.com/sebastianbergmann/comparator/compare/4.0...5.0.0
+[4.0.10]: https://github.com/sebastianbergmann/comparator/compare/4.0.9...4.0.10
+[4.0.9]: https://github.com/sebastianbergmann/comparator/compare/4.0.8...4.0.9
 [4.0.8]: https://github.com/sebastianbergmann/comparator/compare/4.0.7...4.0.8
 [4.0.7]: https://github.com/sebastianbergmann/comparator/compare/4.0.6...4.0.7
 [4.0.6]: https://github.com/sebastianbergmann/comparator/compare/4.0.5...4.0.6
@@ -294,7 +304,9 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 [4.0.3]: https://github.com/sebastianbergmann/comparator/compare/4.0.2...4.0.3
 [4.0.2]: https://github.com/sebastianbergmann/comparator/compare/4.0.1...4.0.2
 [4.0.1]: https://github.com/sebastianbergmann/comparator/compare/4.0.0...4.0.1
-[4.0.0]: https://github.com/sebastianbergmann/comparator/compare/3.0.5...4.0.0
+[4.0.0]: https://github.com/sebastianbergmann/comparator/compare/3.0...4.0.0
+[3.0.7]: https://github.com/sebastianbergmann/comparator/compare/3.0.6...3.0.7
+[3.0.6]: https://github.com/sebastianbergmann/comparator/compare/3.0.5...3.0.6
 [3.0.5]: https://github.com/sebastianbergmann/comparator/compare/3.0.4...3.0.5
 [3.0.4]: https://github.com/sebastianbergmann/comparator/compare/3.0.3...3.0.4
 [3.0.3]: https://github.com/sebastianbergmann/comparator/compare/3.0.2...3.0.3
