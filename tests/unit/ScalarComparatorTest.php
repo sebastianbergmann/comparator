@@ -9,6 +9,7 @@
  */
 namespace SebastianBergmann\Comparator;
 
+use const NAN;
 use function tmpfile;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
