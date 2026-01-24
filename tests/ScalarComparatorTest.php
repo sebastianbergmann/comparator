@@ -117,6 +117,8 @@ final class ScalarComparatorTest extends TestCase
             ['0e1', '0e2', $stringException],
             ["\n\n\n0.0", '                   0.', $stringException],
             ['0.0', '25e-10000', $stringException],
+            ['string', NAN, 'Failed asserting that NAN matches expected \'string\'.'],
+            [NAN, 'string', 'Failed asserting that \'string\' matches expected NAN.']
         ];
     }
 
