@@ -2,7 +2,7 @@
 
 All notable changes are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
-## [4.0.10] - 2026-MM-DD
+## [4.0.10] - 2026-01-24
 
 ### Changed
 
@@ -146,7 +146,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 * Added `SebastianBergmann\Comparator\Factory::reset()` to unregister all non-default comparators
 * Added support for `phpunit/phpunit-mock-objects` version `^5.0`
 
-[4.0.10]: https://github.com/sebastianbergmann/comparator/compare/4.0.9...4.0
+[4.0.10]: https://github.com/sebastianbergmann/comparator/compare/4.0.9...4.0.10
 [4.0.9]: https://github.com/sebastianbergmann/comparator/compare/4.0.8...4.0.9
 [4.0.8]: https://github.com/sebastianbergmann/comparator/compare/4.0.7...4.0.8
 [4.0.7]: https://github.com/sebastianbergmann/comparator/compare/4.0.6...4.0.7
