@@ -2,6 +2,12 @@
 
 All notable changes are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [5.0.5] - 2026-MM-DD
+
+### Changed
+
+* [#134](https://github.com/sebastianbergmann/comparator/issues/134): Suppress warning introduced in PHP 8.5
+
 ## [5.0.4] - 2025-09-07
 
 ### Changed
@@ -162,6 +168,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 * Added `SebastianBergmann\Comparator\Factory::reset()` to unregister all non-default comparators
 * Added support for `phpunit/phpunit-mock-objects` version `^5.0`
 
+[5.0.5]: https://github.com/sebastianbergmann/comparator/compare/5.0.4...5.0
 [5.0.4]: https://github.com/sebastianbergmann/comparator/compare/5.0.3...5.0.4
 [5.0.3]: https://github.com/sebastianbergmann/comparator/compare/5.0.2...5.0.3
 [5.0.2]: https://github.com/sebastianbergmann/comparator/compare/5.0.1...5.0.2
