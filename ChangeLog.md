@@ -48,6 +48,18 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 * Removed `Comparator::$exporter`
 * Removed support for PHP 7.3, PHP 7.4, and PHP 8.0
 
+## [4.0.10] - 2026-01-24
+
+### Changed
+
+* [#134](https://github.com/sebastianbergmann/comparator/issues/134): Suppress warning introduced in PHP 8.5
+
+## [4.0.9] - 2025-08-10
+
+### Changed
+
+* Do not use `SplObjectStorage` methods that will be deprecated in PHP 8.5
+
 ## [4.0.8] - 2022-09-14
 
 ### Fixed
@@ -101,6 +113,18 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 ### Removed
 
 * Removed support for PHP 7.1 and PHP 7.2
+
+## [3.0.7] - 2026-01-24
+
+### Changed
+
+* [#134](https://github.com/sebastianbergmann/comparator/issues/134): Suppress warning introduced in PHP 8.5
+
+## [3.0.6] - 2025-08-10
+
+### Changed
+
+* Do not use `SplObjectStorage` methods that will be deprecated in PHP 8.5
 
 ## [3.0.5] - 2022-09-14
 
