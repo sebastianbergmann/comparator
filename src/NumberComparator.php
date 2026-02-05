@@ -50,6 +50,7 @@ final class NumberComparator extends ObjectComparator
             $actual = new Number($actual);
         }
 
+        /** @phpstan-ignore argument.type */
         $deltaNumber = new Number(number_format($delta, max($expected->scale, $actual->scale)));
 
         if ($actual < $expected - $deltaNumber || $actual > $expected + $deltaNumber) {
