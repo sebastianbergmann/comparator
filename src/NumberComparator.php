@@ -39,13 +39,13 @@ final class NumberComparator extends ObjectComparator
     public function assertEquals(mixed $expected, mixed $actual, float $delta = 0.0, bool $canonicalize = false, bool $ignoreCase = false, array &$processed = []): void
     {
         if (!$expected instanceof Number) {
-            assert(is_string($expected) || is_int($expected));
+            assert(is_int($expected) || is_string($expected) && is_numeric($expected));
 
             $expected = new Number($expected);
         }
 
         if (!$actual instanceof Number) {
-            assert(is_string($actual) || is_int($actual));
+            assert(is_int($actual) || is_string($actual) && is_numeric($actual));
 
             $actual = new Number($actual);
         }
