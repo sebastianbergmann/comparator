@@ -5,9 +5,6 @@ parameters:
         - src
         - tests/unit
 
-    bootstrapFiles:
-        - tools/phpunit.phar
-
     checkTooWideReturnTypesInProtectedAndPublicMethods: true
     reportAlwaysTrueInLastCondition: true
     reportPossiblyNonexistentConstantArrayOffset: true

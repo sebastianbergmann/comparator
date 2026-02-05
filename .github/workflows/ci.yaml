@@ -132,7 +132,7 @@ jobs:
         run: ./tools/composer update --no-ansi --no-interaction --no-progress
 
       - name: Run tests with PHPUnit
-        run: ./tools/phpunit
+        run: vendor/bin/phpunit
 
   code-coverage:
     name: Code Coverage
@@ -182,7 +182,7 @@ jobs:
         run: ./tools/composer update --no-ansi --no-interaction --no-progress
 
       - name: Collect code coverage with PHPUnit
-        run: ./tools/phpunit --log-junit test-results.xml --coverage-openclover=code-coverage.xml
+        run: vendor/bin/phpunit --log-junit test-results.xml --coverage-openclover=code-coverage.xml
 
       - name: Upload test results to Codecov.io
         if: ${{ !cancelled() }}
