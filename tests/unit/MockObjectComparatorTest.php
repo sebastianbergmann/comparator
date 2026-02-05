@@ -14,13 +14,14 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Attributes\UsesClass;
+use PHPUnit\Framework\Attributes\UsesClassesThatExtendClass;
 use PHPUnit\Framework\MockObject\Generator\Generator;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
 #[CoversClass(MockObjectComparator::class)]
-#[UsesClass(Comparator::class)]
+#[UsesClassesThatExtendClass(Comparator::class)]
 #[UsesClass(ComparisonFailure::class)]
 #[UsesClass(Factory::class)]
 #[Small]

@@ -13,9 +13,11 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Attributes\UsesClass;
+use PHPUnit\Framework\Attributes\UsesClassesThatExtendClass;
 use PHPUnit\Framework\TestCase;
 
 #[CoversClass(EnumerationComparator::class)]
+#[UsesClassesThatExtendClass(Comparator::class)]
 #[UsesClass(ComparisonFailure::class)]
 #[UsesClass(Factory::class)]
 #[Small]
