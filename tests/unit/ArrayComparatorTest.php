@@ -127,7 +127,7 @@ final class ArrayComparatorTest extends TestCase
     }
 
     /**
-     * @return non-empty-list<array{0: string, 1: array<string>, 2: array<string>, 3?: float, 4?: bool}>
+     * @return non-empty-array<array{0: string, 1: array<string>, 2: array<string>, 3?: float, 4?: bool}>
      */
     public static function assertEqualsFailsWithDiffProvider(): array
     {
@@ -157,6 +157,54 @@ final class ArrayComparatorTest extends TestCase
 ",
                 ['Some really long string that just keeps going and going and going but contains important clue XYZ and more behind'],
                 ['Some really long string that just keeps going and going and going but contains important clue HERE and more behind'],
+            ],
+            'canonicalized diff omits indices and shows only surplus element' => [
+                "
+--- Expected
++++ Actual
+@@ @@
+ Array (
+     'alpha'
++    'beta'
+     'gamma'
+ )
+",
+                ['alpha', 'gamma'],
+                ['alpha', 'beta', 'gamma'],
+                0.0,
+                true,
+            ],
+            'canonicalized diff omits indices and shows only missing element' => [
+                "
+--- Expected
++++ Actual
+@@ @@
+ Array (
+     'alpha'
+-    'beta'
+     'gamma'
+ )
+",
+                ['alpha', 'beta', 'gamma'],
+                ['alpha', 'gamma'],
+                0.0,
+                true,
+            ],
+            'canonicalized diff omits indices regardless of input order' => [
+                "
+--- Expected
++++ Actual
+@@ @@
+ Array (
+     'alpha'
++    'beta'
+     'gamma'
+ )
+",
+                ['gamma', 'alpha'],
+                ['gamma', 'alpha', 'beta'],
+                0.0,
+                true,
             ],
         ];
     }
