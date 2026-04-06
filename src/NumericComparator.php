@@ -66,6 +66,7 @@ final class NumericComparator extends ScalarComparator
                     $exporter->export($actual),
                     $exporter->export($expected),
                 ),
+                $this->contextLines(),
             );
         }
     }

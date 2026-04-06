@@ -51,6 +51,7 @@ class ObjectComparator extends ArrayComparator
                     $exporter->export($actual),
                     $expected::class,
                 ),
+                $this->contextLines(),
             );
         }
 
@@ -83,6 +84,7 @@ class ObjectComparator extends ArrayComparator
                     substr_replace($e->getExpectedAsString(), $expected::class . ' Object', 0, 5),
                     substr_replace($e->getActualAsString(), $actual::class . ' Object', 0, 5),
                     'Failed asserting that two objects are equal.',
+                    $this->contextLines(),
                 );
             }
         }

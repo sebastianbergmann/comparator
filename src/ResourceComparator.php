@@ -42,6 +42,8 @@ final class ResourceComparator extends Comparator
                 $actual,
                 $exporter->export($expected),
                 $exporter->export($actual),
+                '',
+                $this->contextLines(),
             );
         }
     }

@@ -32,4 +32,16 @@ abstract class Comparator
     {
         return $this->factory;
     }
+
+    /**
+     * @return positive-int
+     */
+    final protected function contextLines(): int
+    {
+        if (!isset($this->factory)) {
+            return 3;
+        }
+
+        return $this->factory->contextLines();
+    }
 }

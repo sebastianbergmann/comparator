@@ -62,6 +62,7 @@ final class ClosureComparator extends Comparator
                 $actualFilename,
                 $actualStartLine,
             ),
+            $this->contextLines(),
         );
     }
 }

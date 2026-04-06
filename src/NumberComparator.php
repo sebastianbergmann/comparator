@@ -60,6 +60,7 @@ final class NumberComparator extends ObjectComparator
                 (string) $expected,
                 (string) $actual,
                 'Failed asserting that two Number objects are equal.',
+                $this->contextLines(),
             );
         }
     }

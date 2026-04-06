@@ -9,6 +9,7 @@
  */
 namespace SebastianBergmann\Comparator;
 
+use function substr_count;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -57,5 +58,28 @@ final class ComparisonFailureTest extends TestCase
         $failure = new ComparisonFailure('a', 'b', '', '', 'test');
         $this->assertSame('', $failure->getDiff());
         $this->assertSame('test', $failure->toString());
+    }
+
+    public function testCustomContextLines(): void
+    {
+        $expected = "line1\nline2\nline3\nline4\nline5\nline6\nline7\nline8\n";
+        $actual   = "line1\nline2\nline3\nline4\nLINE5\nline6\nline7\nline8\n";
+
+        $failureDefault = new ComparisonFailure($expected, $actual, $expected, $actual);
+        $failureOne     = new ComparisonFailure($expected, $actual, $expected, $actual, '', 1);
+
+        $diffDefault = $failureDefault->getDiff();
+        $diffOne     = $failureOne->getDiff();
+
+        $this->assertStringContainsString('-line5', $diffDefault);
+        $this->assertStringContainsString('+LINE5', $diffDefault);
+        $this->assertStringContainsString('-line5', $diffOne);
+        $this->assertStringContainsString('+LINE5', $diffOne);
+
+        // With 1 context line, fewer surrounding lines should appear than with the default of 3
+        $this->assertGreaterThan(
+            substr_count($diffOne, "\n"),
+            substr_count($diffDefault, "\n"),
+        );
     }
 }

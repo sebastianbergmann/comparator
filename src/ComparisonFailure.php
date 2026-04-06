@@ -23,7 +23,13 @@ final class ComparisonFailure extends RuntimeException
     private string $expectedAsString;
     private string $actualAsString;
 
-    public function __construct(mixed $expected, mixed $actual, string $expectedAsString, string $actualAsString, string $message = '')
+    /** @var positive-int */
+    private int $contextLines;
+
+    /**
+     * @param positive-int $contextLines
+     */
+    public function __construct(mixed $expected, mixed $actual, string $expectedAsString, string $actualAsString, string $message = '', int $contextLines = 3)
     {
         parent::__construct($message);
 
@@ -31,6 +37,7 @@ final class ComparisonFailure extends RuntimeException
         $this->actual           = $actual;
         $this->expectedAsString = $expectedAsString;
         $this->actualAsString   = $actualAsString;
+        $this->contextLines     = $contextLines;
     }
 
     public function getActual(): mixed
@@ -59,7 +66,13 @@ final class ComparisonFailure extends RuntimeException
             return '';
         }
 
-        $differ = new Differ(new UnifiedDiffOutputBuilder("\n--- Expected\n+++ Actual\n"));
+        $differ = new Differ(
+            new UnifiedDiffOutputBuilder(
+                "\n--- Expected\n+++ Actual\n",
+                false,
+                $this->contextLines,
+            ),
+        );
 
         return $differ->diff($this->expectedAsString, $this->actualAsString);
     }

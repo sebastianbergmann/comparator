@@ -65,6 +65,7 @@ final class DateTimeComparator extends ObjectComparator
                 $expected->format('Y-m-d\TH:i:s.uO'),
                 $actual->format('Y-m-d\TH:i:s.uO'),
                 'Failed asserting that two DateTime objects are equal.',
+                $this->contextLines(),
             );
         }
     }

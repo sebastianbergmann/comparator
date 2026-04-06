@@ -163,4 +163,19 @@ final class FactoryTest extends TestCase
         $f = Factory::getInstance();
         $this->assertSame($f, Factory::getInstance());
     }
+
+    public function testContextLinesDefaultsToThree(): void
+    {
+        $factory = new Factory;
+
+        $this->assertSame(3, $factory->contextLines());
+    }
+
+    public function testContextLinesCanBeConfigured(): void
+    {
+        $factory = new Factory;
+        $factory->setContextLines(5);
+
+        $this->assertSame(5, $factory->contextLines());
+    }
 }

@@ -74,6 +74,7 @@ class ScalarComparator extends Comparator
                 $exporter->export($cutExpected),
                 $exporter->export($cutActual),
                 'Failed asserting that two strings are equal.',
+                $this->contextLines(),
             );
         }
 
@@ -90,6 +91,7 @@ class ScalarComparator extends Comparator
                     $exporter->export($actual),
                     $exporter->export($expected),
                 ),
+                $this->contextLines(),
             );
         }
     }
