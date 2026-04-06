@@ -6,7 +6,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 ### Added
 
-* [#137(https://github.com/sebastianbergmann/comparator/issues/137): Make diff context lines configurable
+* [#137](https://github.com/sebastianbergmann/comparator/issues/137): Make diff context lines configurable
 
 ## [8.0.0] - 2026-02-06
 
