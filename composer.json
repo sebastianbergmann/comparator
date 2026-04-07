@@ -29,7 +29,7 @@
     "prefer-stable": true,
     "require": {
         "php": ">=8.4",
-        "sebastian/diff": "^8.0",
+        "sebastian/diff": "^8.1",
         "sebastian/exporter": "^8.0",
         "ext-dom": "*",
         "ext-mbstring": "*"
