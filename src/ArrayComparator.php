@@ -12,10 +12,17 @@ namespace SebastianBergmann\Comparator;
 use function array_key_exists;
 use function assert;
 use function is_array;
-use function sort;
+use function is_bool;
+use function is_float;
+use function is_int;
+use function is_object;
+use function is_string;
+use function serialize;
+use function spl_object_id;
 use function sprintf;
 use function str_replace;
 use function trim;
+use function usort;
 use SebastianBergmann\Exporter\Exporter;
 
 /**
@@ -45,8 +52,8 @@ class ArrayComparator extends Comparator
         assert(is_array($actual));
 
         if ($canonicalize) {
-            sort($expected);
-            sort($actual);
+            usort($expected, self::compare(...));
+            usort($actual, self::compare(...));
         }
 
         $remaining        = $actual;
@@ -132,5 +139,60 @@ class ArrayComparator extends Comparator
     private function indent(string $lines): string
     {
         return trim(str_replace("\n", "\n    ", $lines));
+    }
+
+    private static function compare(mixed $a, mixed $b): int
+    {
+        $typeOrderA = self::typeOrder($a);
+        $typeOrderB = self::typeOrder($b);
+
+        if ($typeOrderA !== $typeOrderB) {
+            return $typeOrderA <=> $typeOrderB;
+        }
+
+        if (is_object($a) && is_object($b)) {
+            $classComparison = $a::class <=> $b::class;
+
+            if ($classComparison !== 0) {
+                return $classComparison;
+            }
+
+            return spl_object_id($a) <=> spl_object_id($b);
+        }
+
+        if (is_array($a) && is_array($b)) {
+            return serialize($a) <=> serialize($b);
+        }
+
+        return $a <=> $b;
+    }
+
+    private static function typeOrder(mixed $value): int
+    {
+        if ($value === null) {
+            return 0;
+        }
+
+        if (is_bool($value)) {
+            return 1;
+        }
+
+        if (is_int($value) || is_float($value)) {
+            return 2;
+        }
+
+        if (is_string($value)) {
+            return 3;
+        }
+
+        if (is_array($value)) {
+            return 4;
+        }
+
+        if (is_object($value)) {
+            return 5;
+        }
+
+        return 6;
     }
 }

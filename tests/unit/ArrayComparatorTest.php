@@ -15,6 +15,7 @@ use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesClassesThatExtendClass;
 use PHPUnit\Framework\TestCase;
+use stdClass;
 
 #[CoversClass(ArrayComparator::class)]
 #[UsesClassesThatExtendClass(Comparator::class)]
@@ -54,6 +55,18 @@ final class ArrayComparatorTest extends TestCase
             [
                 [3, 2, 1],
                 [2, 3, 1],
+                0,
+                true,
+            ],
+            [
+                [123, new stdClass, 'hello'],
+                [new stdClass, 'hello', 123],
+                0,
+                true,
+            ],
+            [
+                [null, true, 42, 'foo', [1], new stdClass],
+                [new stdClass, [1], 'foo', 42, true, null],
                 0,
                 true,
             ],
