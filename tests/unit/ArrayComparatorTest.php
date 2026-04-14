@@ -9,6 +9,9 @@
  */
 namespace SebastianBergmann\Comparator;
 
+use const STDIN;
+use const STDOUT;
+use DateTimeImmutable;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Small;
@@ -87,6 +90,50 @@ final class ArrayComparatorTest extends TestCase
             [
                 ['true'],
                 [true],
+            ],
+            [
+                [
+                    new DateTimeImmutable('2026-04-14 08:59:00'),
+                    new DateTimeImmutable('2026-04-14 08:57:00'),
+                    new DateTimeImmutable('2026-04-14 08:58:00'),
+                ],
+                [
+                    new DateTimeImmutable('2026-04-14 08:58:00'),
+                    new DateTimeImmutable('2026-04-14 08:57:00'),
+                    new DateTimeImmutable('2026-04-14 08:59:00'),
+                ],
+                0.0,
+                true,
+            ],
+            [
+                [
+                    new DateTimeImmutable('2026-04-14 08:58:00'),
+                    new DateTimeImmutable('2026-04-14 08:58:00'),
+                ],
+                [
+                    new DateTimeImmutable('2026-04-14 08:58:00'),
+                    new DateTimeImmutable('2026-04-14 08:58:00'),
+                ],
+                0.0,
+                true,
+            ],
+            [
+                [new Struct(1.0), new stdClass],
+                [new stdClass, new Struct(1.0)],
+                0.0,
+                true,
+            ],
+            [
+                [[2], [1]],
+                [[1], [2]],
+                0.0,
+                true,
+            ],
+            [
+                [STDIN, STDOUT],
+                [STDOUT, STDIN],
+                0.0,
+                true,
             ],
         ];
     }

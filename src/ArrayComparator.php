@@ -18,7 +18,6 @@ use function is_int;
 use function is_object;
 use function is_string;
 use function serialize;
-use function spl_object_id;
 use function sprintf;
 use function str_replace;
 use function trim;
@@ -156,7 +155,13 @@ class ArrayComparator extends Comparator
                 return $classComparison;
             }
 
-            return spl_object_id($a) <=> spl_object_id($b);
+            try {
+                $this->factory()->getComparatorFor($a, $b)->assertEquals($a, $b);
+
+                return 0;
+            } catch (ComparisonFailure) {
+                return serialize($a) <=> serialize($b);
+            }
         }
 
         if (is_array($a) && is_array($b)) {
