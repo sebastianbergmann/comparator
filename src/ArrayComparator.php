@@ -18,7 +18,6 @@ use function is_int;
 use function is_object;
 use function is_string;
 use function serialize;
-use function spl_object_id;
 use function sprintf;
 use function str_replace;
 use function trim;
@@ -52,8 +51,8 @@ class ArrayComparator extends Comparator
         assert(is_array($actual));
 
         if ($canonicalize) {
-            usort($expected, self::compare(...));
-            usort($actual, self::compare(...));
+            usort($expected, $this->compare(...));
+            usort($actual, $this->compare(...));
         }
 
         $remaining        = $actual;
@@ -141,10 +140,10 @@ class ArrayComparator extends Comparator
         return trim(str_replace("\n", "\n    ", $lines));
     }
 
-    private static function compare(mixed $a, mixed $b): int
+    private function compare(mixed $a, mixed $b): int
     {
-        $typeOrderA = self::typeOrder($a);
-        $typeOrderB = self::typeOrder($b);
+        $typeOrderA = $this->typeOrder($a);
+        $typeOrderB = $this->typeOrder($b);
 
         if ($typeOrderA !== $typeOrderB) {
             return $typeOrderA <=> $typeOrderB;
@@ -157,7 +156,13 @@ class ArrayComparator extends Comparator
                 return $classComparison;
             }
 
-            return spl_object_id($a) <=> spl_object_id($b);
+            try {
+                $this->factory()->getComparatorFor($a, $b)->assertEquals($a, $b);
+
+                return 0;
+            } catch (ComparisonFailure) {
+                return serialize($a) <=> serialize($b);
+            }
         }
 
         if (is_array($a) && is_array($b)) {
@@ -167,7 +172,7 @@ class ArrayComparator extends Comparator
         return $a <=> $b;
     }
 
-    private static function typeOrder(mixed $value): int
+    private function typeOrder(mixed $value): int
     {
         if ($value === null) {
             return 0;
