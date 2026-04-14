@@ -26,7 +26,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 * Removed support for PHP 8.3
 
-## [7.1.6] - 2026-MM-DD
+## [7.1.6] - 2026-04-14
 
 ### Fixed
 
@@ -341,6 +341,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 [8.1.0]: https://github.com/sebastianbergmann/comparator/compare/8.0.0...8.1.0
 [8.0.0]: https://github.com/sebastianbergmann/comparator/compare/7.1...8.0.0
 [7.1.6]: https://github.com/sebastianbergmann/comparator/compare/7.1.4...7.1
+[7.1.6]: https://github.com/sebastianbergmann/comparator/compare/7.1.5...7.1.6
 [7.1.5]: https://github.com/sebastianbergmann/comparator/compare/7.1.4...7.1.5
 [7.1.4]: https://github.com/sebastianbergmann/comparator/compare/7.1.3...7.1.4
 [7.1.3]: https://github.com/sebastianbergmann/comparator/compare/7.1.2...7.1.3
