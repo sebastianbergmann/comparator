@@ -11,7 +11,7 @@ namespace SebastianBergmann\Comparator;
 
 use RuntimeException;
 use SebastianBergmann\Diff\Differ;
-use SebastianBergmann\Diff\Output\UnifiedDiffOutputBuilder;
+use SebastianBergmann\Diff\Output\StrictUnifiedDiffOutputBuilder;
 
 /**
  * @no-named-arguments Parameter names are not covered by the backward compatibility promise for sebastian/comparator
@@ -67,11 +67,14 @@ final class ComparisonFailure extends RuntimeException
         }
 
         $differ = new Differ(
-            new UnifiedDiffOutputBuilder(
-                "\n--- Expected\n+++ Actual\n",
-                false,
-                $this->contextLines,
-                false,
+            new StrictUnifiedDiffOutputBuilder(
+                [
+                    'header'                  => "\n--- Expected\n+++ Actual\n",
+                    'addLineNumbers'          => false,
+                    'contextLines'            => $this->contextLines,
+                    'emitDiffLineEndWarning'  => true,
+                    'emitNoLineEndEofWarning' => false,
+                ],
             ),
         );
 
