@@ -71,6 +71,7 @@ final class ComparisonFailure extends RuntimeException
                 "\n--- Expected\n+++ Actual\n",
                 false,
                 $this->contextLines,
+                false,
             ),
         );
 
