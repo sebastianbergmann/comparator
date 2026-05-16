@@ -6,6 +6,7 @@
 /build                  export-ignore
 /build.xml              export-ignore
 /phpstan.neon           export-ignore
+/renovate.json          export-ignore
 /phpunit.xml            export-ignore
 /tests                  export-ignore
 /tools                  export-ignore
