@@ -4,6 +4,10 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 ## [8.2.0] - 2026-MM-DD
 
+### Added
+
+* [#126](https://github.com/sebastianbergmann/comparator/issues/126): `DateIntervalComparator` for comparing `DateInterval` objects with a delta tolerance
+
 ### Fixed
 
 * [#70](https://github.com/sebastianbergmann/comparator/issues/70): Non-ASCII text in XML diffs is rendered as numeric character references, making diffs unreadable

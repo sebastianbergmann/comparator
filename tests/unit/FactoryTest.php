@@ -12,6 +12,7 @@ namespace SebastianBergmann\Comparator;
 use function class_exists;
 use function tmpfile;
 use BcMath\Number;
+use DateInterval;
 use DateTime;
 use DOMDocument;
 use Exception;
@@ -58,6 +59,7 @@ final class FactoryTest extends TestCase
             [$tmpfile, $tmpfile, ResourceComparator::class],
             [new stdClass, new stdClass, ObjectComparator::class],
             [new DateTime, new DateTime, DateTimeComparator::class],
+            [new DateInterval('PT1S'), new DateInterval('PT1S'), DateIntervalComparator::class],
             [new SplObjectStorage, new SplObjectStorage, SplObjectStorageComparator::class],
             [new Exception, new Exception, ExceptionComparator::class],
             [new DOMDocument, new DOMDocument, DOMNodeComparator::class],

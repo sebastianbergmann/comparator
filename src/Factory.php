@@ -122,6 +122,7 @@ final class Factory
         $this->registerDefaultComparator(new ClosureComparator);
         $this->registerDefaultComparator(new MockObjectComparator);
         $this->registerDefaultComparator(new DateTimeComparator);
+        $this->registerDefaultComparator(new DateIntervalComparator);
         $this->registerDefaultComparator(new DOMNodeComparator);
         $this->registerDefaultComparator(new SplObjectStorageComparator);
         $this->registerDefaultComparator(new ExceptionComparator);
