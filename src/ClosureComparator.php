@@ -39,9 +39,9 @@ final class ClosureComparator extends Comparator
         $expectedReflector = new ReflectionFunction($expected);
         $actualReflector   = new ReflectionFunction($actual);
 
-        if ($this->sameDeclaration($expectedReflector, $actualReflector) &&
-            $this->sameBinding($expectedReflector, $actualReflector) &&
-            $this->sameCapturedState($expectedReflector, $actualReflector)) {
+        if ($this->declarationIsEqual($expectedReflector, $actualReflector) &&
+            $this->bindingIsEqual($expectedReflector, $actualReflector) &&
+            $this->capturedStateIsEqual($expectedReflector, $actualReflector)) {
             return;
         }
 
@@ -70,7 +70,7 @@ final class ClosureComparator extends Comparator
         );
     }
 
-    private function sameDeclaration(ReflectionFunction $expected, ReflectionFunction $actual): bool
+    private function declarationIsEqual(ReflectionFunction $expected, ReflectionFunction $actual): bool
     {
         return $expected->getName() === $actual->getName() &&
             $expected->getFileName() === $actual->getFileName() &&
@@ -78,7 +78,7 @@ final class ClosureComparator extends Comparator
             $expected->getEndLine() === $actual->getEndLine();
     }
 
-    private function sameBinding(ReflectionFunction $expected, ReflectionFunction $actual): bool
+    private function bindingIsEqual(ReflectionFunction $expected, ReflectionFunction $actual): bool
     {
         if ($expected->getClosureScopeClass()?->getName() !== $actual->getClosureScopeClass()?->getName()) {
             return false;
@@ -90,7 +90,7 @@ final class ClosureComparator extends Comparator
         );
     }
 
-    private function sameCapturedState(ReflectionFunction $expected, ReflectionFunction $actual): bool
+    private function capturedStateIsEqual(ReflectionFunction $expected, ReflectionFunction $actual): bool
     {
         return $this->recursivelyEqual(
             $expected->getClosureUsedVariables(),
