@@ -126,6 +126,54 @@ final class DOMNodeComparatorTest extends TestCase
         ];
     }
 
+    /**
+     * @return non-empty-array<string, array{0: DOMDocument|DOMNode, 1: DOMDocument|DOMNode}>
+     */
+    public static function assertEqualsSucceedsWhenCanonicalizationFailsProvider(): array
+    {
+        $entityXml = '<!DOCTYPE foo SYSTEM "foo.dtd" [<!ENTITY ns_foo "http://uri.tld/foo">]><i:foo xmlns:i="&ns_foo;"/>';
+
+        $emptyDocumentA = new DOMDocument;
+        $emptyDocumentB = new DOMDocument;
+
+        $unattachedOwnerA = new DOMDocument;
+        $unattachedOwnerB = new DOMDocument;
+
+        return [
+            'two empty documents'             => [$emptyDocumentA, $emptyDocumentB],
+            'two equivalent unattached nodes' => [
+                $unattachedOwnerA->createElement('foo'),
+                $unattachedOwnerB->createElement('foo'),
+            ],
+            'two documents with entity namespace' => [
+                self::createDOMDocument($entityXml),
+                self::createDOMDocument($entityXml),
+            ],
+        ];
+    }
+
+    /**
+     * @return non-empty-array<string, array{0: DOMDocument|DOMNode, 1: DOMDocument|DOMNode}>
+     */
+    public static function assertEqualsFailsWhenCanonicalizationFailsProvider(): array
+    {
+        $entityXmlFoo = '<!DOCTYPE foo SYSTEM "foo.dtd" [<!ENTITY ns_foo "http://uri.tld/foo">]><i:foo xmlns:i="&ns_foo;"/>';
+        $entityXmlBar = '<!DOCTYPE foo SYSTEM "foo.dtd" [<!ENTITY ns_foo "http://uri.tld/foo">]><i:bar xmlns:i="&ns_foo;"/>';
+
+        $owner = new DOMDocument;
+
+        return [
+            'differing unattached nodes' => [
+                $owner->createElement('foo'),
+                $owner->createElement('bar'),
+            ],
+            'differing entity-namespace documents' => [
+                self::createDOMDocument($entityXmlFoo),
+                self::createDOMDocument($entityXmlBar),
+            ],
+        ];
+    }
+
     #[DataProvider('acceptsSucceedsProvider')]
     public function testAcceptsSucceeds(DOMDocument|DOMNode $expected, DOMDocument|DOMNode $actual): void
     {
@@ -159,6 +207,28 @@ final class DOMNodeComparatorTest extends TestCase
 
     #[DataProvider('assertEqualsFailsProvider')]
     public function testAssertEqualsFails(DOMDocument $expected, DOMDocument $actual): void
+    {
+        $this->expectException(ComparisonFailure::class);
+        $this->expectExceptionMessage('Failed asserting that two DOM');
+
+        (new DOMNodeComparator)->assertEquals($expected, $actual);
+    }
+
+    #[DataProvider('assertEqualsSucceedsWhenCanonicalizationFailsProvider')]
+    public function testAssertEqualsSucceedsWhenCanonicalizationFails(DOMDocument|DOMNode $expected, DOMDocument|DOMNode $actual): void
+    {
+        $exception = null;
+
+        try {
+            (new DOMNodeComparator)->assertEquals($expected, $actual);
+        } catch (ComparisonFailure $exception) {
+        }
+
+        $this->assertNull($exception, 'Unexpected ComparisonFailure');
+    }
+
+    #[DataProvider('assertEqualsFailsWhenCanonicalizationFailsProvider')]
+    public function testAssertEqualsFailsWhenCanonicalizationFails(DOMDocument|DOMNode $expected, DOMDocument|DOMNode $actual): void
     {
         $this->expectException(ComparisonFailure::class);
         $this->expectExceptionMessage('Failed asserting that two DOM');
