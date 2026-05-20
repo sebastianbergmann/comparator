@@ -9,6 +9,9 @@
  */
 namespace SebastianBergmann\Comparator;
 
+use function ini_set;
+use function serialize;
+use function unserialize;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -56,5 +59,54 @@ final class ComparisonFailureTest extends TestCase
         $failure = new ComparisonFailure('a', 'b', '', '', 'test');
         $this->assertSame('', $failure->getDiff());
         $this->assertSame('test', $failure->toString());
+    }
+
+    public function testCanBeSerializedAndUnserialized(): void
+    {
+        $failure = new ComparisonFailure(
+            "\nA\n",
+            "\nB\n",
+            "|\nA\n",
+            "|\nB\n",
+            'Test message',
+        );
+
+        /** @var ComparisonFailure $restored */
+        $restored = unserialize(serialize($failure));
+
+        $this->assertInstanceOf(ComparisonFailure::class, $restored);
+        $this->assertSame($failure->getExpected(), $restored->getExpected());
+        $this->assertSame($failure->getActual(), $restored->getActual());
+        $this->assertSame($failure->getExpectedAsString(), $restored->getExpectedAsString());
+        $this->assertSame($failure->getActualAsString(), $restored->getActualAsString());
+        $this->assertSame($failure->getMessage(), $restored->getMessage());
+        $this->assertSame($failure->getDiff(), $restored->getDiff());
+        $this->assertSame($failure->toString(), $restored->toString());
+    }
+
+    public function testCanBeSerializedWhenStackTraceContainsNonSerializableObject(): void
+    {
+        $previousIgnoreArgs = ini_set('zend.exception_ignore_args', '0');
+
+        try {
+            $failure = $this->createFailureWithNonSerializableTraceArgument(new NonSerializableClass);
+
+            /** @var ComparisonFailure $restored */
+            $restored = unserialize(serialize($failure));
+        } finally {
+            ini_set('zend.exception_ignore_args', $previousIgnoreArgs);
+        }
+
+        $this->assertInstanceOf(ComparisonFailure::class, $restored);
+        $this->assertSame('a', $restored->getExpected());
+        $this->assertSame('b', $restored->getActual());
+        $this->assertSame('a', $restored->getExpectedAsString());
+        $this->assertSame('b', $restored->getActualAsString());
+        $this->assertSame('test', $restored->getMessage());
+    }
+
+    private function createFailureWithNonSerializableTraceArgument(NonSerializableClass $instance): ComparisonFailure
+    {
+        return new ComparisonFailure('a', 'b', 'a', 'b', 'test');
     }
 }
