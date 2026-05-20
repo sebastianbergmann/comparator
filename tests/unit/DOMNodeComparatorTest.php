@@ -86,6 +86,14 @@ final class DOMNodeComparatorTest extends TestCase
                 self::createDOMDocument("<a x='' a=''/>"),
                 self::createDOMDocument("<a a='' x=''/>"),
             ],
+            [
+                self::createDOMDocument('<root>Тест кириллицы</root>'),
+                self::createDOMDocument('<root>Тест кириллицы</root>'),
+            ],
+            [
+                self::createDOMDocument('<root>Тест кириллицы</root>'),
+                self::createDOMDocument('<root>&#x422;&#x435;&#x441;&#x442; &#x43A;&#x438;&#x440;&#x438;&#x43B;&#x43B;&#x438;&#x446;&#x44B;</root>'),
+            ],
         ];
     }
 
@@ -234,6 +242,25 @@ final class DOMNodeComparatorTest extends TestCase
         $this->expectExceptionMessage('Failed asserting that two DOM');
 
         (new DOMNodeComparator)->assertEquals($expected, $actual);
+    }
+
+    public function testFailingComparisonOfNonAsciiContentProducesReadableDiff(): void
+    {
+        try {
+            (new DOMNodeComparator)->assertEquals(
+                self::createDOMDocument('<root>Привет</root>'),
+                self::createDOMDocument('<root>Прощай</root>'),
+            );
+        } catch (ComparisonFailure $failure) {
+            $this->assertStringContainsString('Привет', $failure->getExpectedAsString());
+            $this->assertStringContainsString('Прощай', $failure->getActualAsString());
+            $this->assertStringNotContainsString('&#x', $failure->getExpectedAsString());
+            $this->assertStringNotContainsString('&#x', $failure->getActualAsString());
+
+            return;
+        }
+
+        $this->fail('Expected ComparisonFailure was not thrown');
     }
 
     /**

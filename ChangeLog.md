@@ -6,6 +6,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 ### Fixed
 
+* [#70](https://github.com/sebastianbergmann/comparator/issues/70): Non-ASCII text in XML diffs is rendered as numeric character references, making diffs unreadable
 * [#87](https://github.com/sebastianbergmann/comparator/issues/87): `DOMNodeComparator` crashes or returns false positives when `DOMNode::C14N()` fails
 * [#158](https://github.com/sebastianbergmann/comparator/issues/158): `ComparisonFailure` cannot be serialized when stack trace contains non-serializable objects
 
@@ -49,6 +50,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 ### Fixed
 
+* [#70](https://github.com/sebastianbergmann/comparator/issues/70): Non-ASCII text in XML diffs is rendered as numeric character references, making diffs unreadable
 * [#87](https://github.com/sebastianbergmann/comparator/issues/87): `DOMNodeComparator` crashes or returns false positives when `DOMNode::C14N()` fails
 * [#158](https://github.com/sebastianbergmann/comparator/issues/158): `ComparisonFailure` cannot be serialized when stack trace contains non-serializable objects
 

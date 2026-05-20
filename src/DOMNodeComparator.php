@@ -77,6 +77,7 @@ final class DOMNodeComparator extends ObjectComparator
                 // @codeCoverageIgnoreEnd
             }
 
+            $document->encoding     = 'UTF-8';
             $document->formatOutput = true;
             $document->normalizeDocument();
 
