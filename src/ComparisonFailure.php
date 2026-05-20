@@ -33,6 +33,32 @@ final class ComparisonFailure extends RuntimeException
         $this->actualAsString   = $actualAsString;
     }
 
+    /**
+     * @return array{expected: mixed, actual: mixed, expectedAsString: string, actualAsString: string, message: string}
+     */
+    public function __serialize(): array
+    {
+        return [
+            'expected'         => $this->expected,
+            'actual'           => $this->actual,
+            'expectedAsString' => $this->expectedAsString,
+            'actualAsString'   => $this->actualAsString,
+            'message'          => $this->message,
+        ];
+    }
+
+    /**
+     * @param array{expected: mixed, actual: mixed, expectedAsString: string, actualAsString: string, message: string} $data
+     */
+    public function __unserialize(array $data): void
+    {
+        $this->expected         = $data['expected'];
+        $this->actual           = $data['actual'];
+        $this->expectedAsString = $data['expectedAsString'];
+        $this->actualAsString   = $data['actualAsString'];
+        $this->message          = $data['message'];
+    }
+
     public function getActual(): mixed
     {
         return $this->actual;
