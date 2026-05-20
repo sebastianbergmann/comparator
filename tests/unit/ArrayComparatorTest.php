@@ -142,6 +142,13 @@ final class ArrayComparatorTest extends TestCase
                 0.0,
                 true,
             ],
+            // https://github.com/sebastianbergmann/comparator/pull/108
+            [
+                ['a', 'b' => [1, 2], 'c' => [1, 2, 'd' => [1, 2]]],
+                ['c' => [1, 'd' => [2, 1], 2], 'b' => [2, 1], 'a'],
+                0.0,
+                true,
+            ],
         ];
     }
 
@@ -190,11 +197,18 @@ final class ArrayComparatorTest extends TestCase
                 ['false'],
                 [false],
             ],
+            // https://github.com/sebastianbergmann/comparator/pull/108
+            [
+                ['a', 'b' => [1, 2]],
+                ['b' => [2, 1], 'a', 'c' => 3],
+                0.0,
+                true,
+            ],
         ];
     }
 
     /**
-     * @return non-empty-array<array{0: string, 1: array<string>, 2: array<string>, 3?: float, 4?: bool}>
+     * @return non-empty-array<array{0: string, 1: array<mixed>, 2: array<mixed>, 3?: float, 4?: bool}>
      */
     public static function assertEqualsFailsWithDiffProvider(): array
     {
@@ -270,6 +284,53 @@ final class ArrayComparatorTest extends TestCase
 ",
                 ['gamma', 'alpha'],
                 ['gamma', 'alpha', 'beta'],
+                0.0,
+                true,
+            ],
+            'canonicalized associative diff keeps keys and shows surplus element' => [
+                "
+--- Expected
++++ Actual
+@@ @@
+ Array (
+     0 => 'a'
+     'b' => [...]
++    'c' => 3
+ )
+",
+                ['a', 'b' => [1, 2]],
+                ['b' => [2, 1], 'a', 'c' => 3],
+                0.0,
+                true,
+            ],
+            'canonicalized associative diff keeps keys when value differs' => [
+                "
+--- Expected
++++ Actual
+@@ @@
+ Array (
+     'a' => 1
+-    'b' => 2
++    'b' => 3
+ )
+",
+                ['b' => 2, 'a' => 1],
+                ['a' => 1, 'b' => 3],
+                0.0,
+                true,
+            ],
+            'canonicalized associative diff keeps keys and shows missing element' => [
+                "
+--- Expected
++++ Actual
+@@ @@
+ Array (
+     'a' => 1
+-    'b' => 2
+ )
+",
+                ['b' => 2, 'a' => 1],
+                ['a' => 1],
                 0.0,
                 true,
             ],
