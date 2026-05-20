@@ -94,6 +94,10 @@ final class DOMNodeComparatorTest extends TestCase
                 self::createDOMDocument('<root>Тест кириллицы</root>'),
                 self::createDOMDocument('<root>&#x422;&#x435;&#x441;&#x442; &#x43A;&#x438;&#x440;&#x438;&#x43B;&#x43B;&#x438;&#x446;&#x44B;</root>'),
             ],
+            [
+                self::createDOMDocument('<root><!-- same --><child/></root>'),
+                self::createDOMDocument('<root><!-- same --><child/></root>'),
+            ],
         ];
     }
 
@@ -130,6 +134,14 @@ final class DOMNodeComparatorTest extends TestCase
             [
                 self::createDOMDocument('<root> bar </root>'),
                 self::createDOMDocument('<root> BAR </root>'),
+            ],
+            [
+                self::createDOMDocument('<root><!-- hello --><child/></root>'),
+                self::createDOMDocument('<root><!-- world --><child/></root>'),
+            ],
+            [
+                self::createDOMDocument('<root><!-- present --><child/></root>'),
+                self::createDOMDocument('<root><child/></root>'),
             ],
         ];
     }

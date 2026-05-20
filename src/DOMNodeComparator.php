@@ -63,7 +63,7 @@ final class DOMNodeComparator extends ObjectComparator
      */
     private function nodeToText(DOMNode $node, bool $ignoreCase): string
     {
-        $c14n = @$node->C14N();
+        $c14n = @$node->C14N(false, true);
 
         if ($c14n === false || $c14n === '') {
             $text = $this->serialize($node);
