@@ -66,6 +66,13 @@ final class ArrayComparatorTest extends TestCase
                 0,
                 true,
             ],
+            // https://github.com/sebastianbergmann/comparator/issues/79
+            [
+                [1, new stdClass],
+                [1, new stdClass],
+                0,
+                true,
+            ],
             [
                 [null, true, 42, 'foo', [1], new stdClass],
                 [new stdClass, [1], 'foo', 42, true, null],
