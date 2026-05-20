@@ -71,6 +71,10 @@ final class ObjectComparatorTest extends TestCase
             [$book1, $book1],
             [$book1, $book2],
             [new Struct(2.3), new Struct(2.5), 0.5],
+            [
+                new ChildClassWithPrivateProperty('parent value', 'child value'),
+                new ChildClassWithPrivateProperty('parent value', 'child value'),
+            ],
         ];
     }
 
@@ -104,6 +108,15 @@ final class ObjectComparatorTest extends TestCase
             [$book1, $book2, $equalMessage],
             [$book3, $book4, $typeMessage],
             [new Struct(2.3), new Struct(4.2), $equalMessage, 0.5],
+            // Two objects that differ only in the value of a private property
+            // that the derived class inherits from its parent class. The
+            // exporter must surface both the shadowed and the shadowing
+            // private property so that this difference is not lost.
+            [
+                new ChildClassWithPrivateProperty('parent value', 'child value'),
+                new ChildClassWithPrivateProperty('different parent value', 'child value'),
+                $equalMessage,
+            ],
         ];
     }
 
