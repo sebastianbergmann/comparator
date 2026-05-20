@@ -32,13 +32,18 @@ final class ClosureComparator extends Comparator
         assert($expected instanceof Closure);
         assert($actual instanceof Closure);
 
-        /** @phpstan-ignore equal.notAllowed */
-        if ($expected == $actual) {
+        if ($expected === $actual) {
             return;
         }
 
         $expectedReflector = new ReflectionFunction($expected);
         $actualReflector   = new ReflectionFunction($actual);
+
+        if ($this->sameDeclaration($expectedReflector, $actualReflector) &&
+            $this->sameBinding($expectedReflector, $actualReflector) &&
+            $this->sameCapturedState($expectedReflector, $actualReflector)) {
+            return;
+        }
 
         $expectedFilename  = $expectedReflector->getFileName();
         $expectedStartLine = $expectedReflector->getStartLine();
@@ -63,5 +68,44 @@ final class ClosureComparator extends Comparator
                 $actualStartLine,
             ),
         );
+    }
+
+    private function sameDeclaration(ReflectionFunction $expected, ReflectionFunction $actual): bool
+    {
+        return $expected->getName() === $actual->getName() &&
+            $expected->getFileName() === $actual->getFileName() &&
+            $expected->getStartLine() === $actual->getStartLine() &&
+            $expected->getEndLine() === $actual->getEndLine();
+    }
+
+    private function sameBinding(ReflectionFunction $expected, ReflectionFunction $actual): bool
+    {
+        if ($expected->getClosureScopeClass()?->getName() !== $actual->getClosureScopeClass()?->getName()) {
+            return false;
+        }
+
+        return $this->recursivelyEqual(
+            $expected->getClosureThis(),
+            $actual->getClosureThis(),
+        );
+    }
+
+    private function sameCapturedState(ReflectionFunction $expected, ReflectionFunction $actual): bool
+    {
+        return $this->recursivelyEqual(
+            $expected->getClosureUsedVariables(),
+            $actual->getClosureUsedVariables(),
+        );
+    }
+
+    private function recursivelyEqual(mixed $expected, mixed $actual): bool
+    {
+        try {
+            $this->factory()->getComparatorFor($expected, $actual)->assertEquals($expected, $actual);
+        } catch (ComparisonFailure) {
+            return false;
+        }
+
+        return true;
     }
 }
