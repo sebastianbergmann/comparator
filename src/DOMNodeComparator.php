@@ -109,9 +109,7 @@ final class DOMNodeComparator extends ObjectComparator
             $target   = $node;
         }
 
-        if ($document === null) {
-            return '';
-        }
+        assert($document !== null);
 
         $text = $document->saveXML($target);
 
