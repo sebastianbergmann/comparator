@@ -195,4 +195,60 @@ final class DateTimeComparatorTest extends TestCase
     {
         $this->assertTrue((new DateTimeComparator)->accepts(new DateTime, new DateTimeImmutable));
     }
+
+    public function testAssertEqualsSkipsAlreadyProcessedPair(): void
+    {
+        $expected = new DateTimeImmutable('2026-05-20 00:00:00', new DateTimeZone('UTC'));
+        $actual   = new DateTimeImmutable('2026-05-19 00:00:00', new DateTimeZone('UTC'));
+
+        $processed = [[$actual, $expected]];
+
+        $exception = null;
+
+        try {
+            (new DateTimeComparator)->assertEquals($expected, $actual, 0.0, false, false, $processed);
+        } catch (ComparisonFailure $exception) {
+        }
+
+        $this->assertNull(
+            $exception,
+            'DateTimeComparator must not report a failure for a pair already present in $processed',
+        );
+    }
+
+    public function testAssertEqualsSkipsAlreadyProcessedPairInReverseOrder(): void
+    {
+        $expected = new DateTimeImmutable('2026-05-20 00:00:00', new DateTimeZone('UTC'));
+        $actual   = new DateTimeImmutable('2026-05-19 00:00:00', new DateTimeZone('UTC'));
+
+        $processed = [[$expected, $actual]];
+
+        $exception = null;
+
+        try {
+            (new DateTimeComparator)->assertEquals($expected, $actual, 0.0, false, false, $processed);
+        } catch (ComparisonFailure $exception) {
+        }
+
+        $this->assertNull(
+            $exception,
+            'DateTimeComparator must recognize a pair regardless of order in $processed',
+        );
+    }
+
+    public function testAssertEqualsRecordsProcessedPair(): void
+    {
+        $expected = new DateTimeImmutable('2026-05-20 00:00:00', new DateTimeZone('UTC'));
+        $actual   = new DateTimeImmutable('2026-05-19 00:00:00', new DateTimeZone('UTC'));
+
+        $processed = [];
+
+        try {
+            (new DateTimeComparator)->assertEquals($expected, $actual, 0.0, false, false, $processed);
+            $this->fail('Expected ComparisonFailure was not thrown');
+        } catch (ComparisonFailure) {
+        }
+
+        $this->assertSame([[$actual, $expected]], $processed);
+    }
 }
