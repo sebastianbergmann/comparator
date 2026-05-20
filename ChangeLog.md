@@ -9,6 +9,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 * [#70](https://github.com/sebastianbergmann/comparator/issues/70): Non-ASCII text in XML diffs is rendered as numeric character references, making diffs unreadable
 * [#87](https://github.com/sebastianbergmann/comparator/issues/87): `DOMNodeComparator` crashes or returns false positives when `DOMNode::C14N()` fails
 * [#107](https://github.com/sebastianbergmann/comparator/issues/107): `DOMNodeComparator` reports XML documents as equal when they differ only in comments
+* [#115](https://github.com/sebastianbergmann/comparator/issues/115): `DateTimeComparator` does not track processed pairs, producing misleading diffs in nested structures
 * [#158](https://github.com/sebastianbergmann/comparator/issues/158): `ComparisonFailure` cannot be serialized when stack trace contains non-serializable objects
 
 ## [8.1.4] - 2026-05-15
@@ -54,6 +55,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 * [#70](https://github.com/sebastianbergmann/comparator/issues/70): Non-ASCII text in XML diffs is rendered as numeric character references, making diffs unreadable
 * [#87](https://github.com/sebastianbergmann/comparator/issues/87): `DOMNodeComparator` crashes or returns false positives when `DOMNode::C14N()` fails
 * [#107](https://github.com/sebastianbergmann/comparator/issues/107): `DOMNodeComparator` reports XML documents as equal when they differ only in comments
+* [#115](https://github.com/sebastianbergmann/comparator/issues/115): `DateTimeComparator` does not track processed pairs, producing misleading diffs in nested structures
 * [#158](https://github.com/sebastianbergmann/comparator/issues/158): `ComparisonFailure` cannot be serialized when stack trace contains non-serializable objects
 
 ## [7.1.6] - 2026-04-14
