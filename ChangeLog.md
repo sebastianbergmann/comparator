@@ -2,6 +2,16 @@
 
 All notable changes are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [7.1.8] - 2026-MM-DD
+
+### Changed
+
+* [#136](https://github.com/sebastianbergmann/comparator/pull/136): Cleaner diff output for canonicalized list comparisons
+
+### Fixed
+
+* [#136](https://github.com/sebastianbergmann/comparator/pull/136): Canonicalized array comparison destroys string keys
+
 ## [7.1.7] - 2026-05-20
 
 ### Fixed
@@ -322,6 +332,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 * Added `SebastianBergmann\Comparator\Factory::reset()` to unregister all non-default comparators
 * Added support for `phpunit/phpunit-mock-objects` version `^5.0`
 
+[7.1.8]: https://github.com/sebastianbergmann/comparator/compare/7.1.7...7.1
 [7.1.7]: https://github.com/sebastianbergmann/comparator/compare/7.1.6...7.1.7
 [7.1.6]: https://github.com/sebastianbergmann/comparator/compare/7.1.5...7.1.6
 [7.1.5]: https://github.com/sebastianbergmann/comparator/compare/7.1.4...7.1.5

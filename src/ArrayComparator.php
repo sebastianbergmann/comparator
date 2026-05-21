@@ -9,6 +9,7 @@
  */
 namespace SebastianBergmann\Comparator;
 
+use function array_is_list;
 use function array_key_exists;
 use function assert;
 use function is_array;
@@ -17,6 +18,7 @@ use function is_float;
 use function is_int;
 use function is_object;
 use function is_string;
+use function ksort;
 use function serialize;
 use function sprintf;
 use function str_replace;
@@ -50,9 +52,18 @@ class ArrayComparator extends Comparator
         assert(is_array($expected));
         assert(is_array($actual));
 
+        $isList = false;
+
         if ($canonicalize) {
-            usort($expected, $this->compare(...));
-            usort($actual, $this->compare(...));
+            $isList = array_is_list($expected) && array_is_list($actual);
+
+            if ($isList) {
+                usort($expected, $this->compare(...));
+                usort($actual, $this->compare(...));
+            } else {
+                ksort($expected);
+                ksort($actual);
+            }
         }
 
         $remaining        = $actual;
@@ -65,11 +76,18 @@ class ArrayComparator extends Comparator
             unset($remaining[$key]);
 
             if (!array_key_exists($key, $actual)) {
-                $expectedAsString .= sprintf(
-                    "    %s => %s\n",
-                    $exporter->export($key),
-                    $exporter->shortenedExport($value),
-                );
+                if ($canonicalize && $isList) {
+                    $expectedAsString .= sprintf(
+                        "    %s\n",
+                        $exporter->shortenedExport($value),
+                    );
+                } else {
+                    $expectedAsString .= sprintf(
+                        "    %s => %s\n",
+                        $exporter->export($key),
+                        $exporter->shortenedExport($value),
+                    );
+                }
 
                 $equal = false;
 
@@ -82,40 +100,71 @@ class ArrayComparator extends Comparator
                 /** @phpstan-ignore arguments.count */
                 $comparator->assertEquals($value, $actual[$key], $delta, $canonicalize, $ignoreCase, $processed);
 
-                $expectedAsString .= sprintf(
-                    "    %s => %s\n",
-                    $exporter->export($key),
-                    $exporter->shortenedExport($value),
-                );
+                if ($canonicalize && $isList) {
+                    $expectedAsString .= sprintf(
+                        "    %s\n",
+                        $exporter->shortenedExport($value),
+                    );
 
-                $actualAsString .= sprintf(
-                    "    %s => %s\n",
-                    $exporter->export($key),
-                    $exporter->shortenedExport($actual[$key]),
-                );
+                    $actualAsString .= sprintf(
+                        "    %s\n",
+                        $exporter->shortenedExport($actual[$key]),
+                    );
+                } else {
+                    $expectedAsString .= sprintf(
+                        "    %s => %s\n",
+                        $exporter->export($key),
+                        $exporter->shortenedExport($value),
+                    );
+
+                    $actualAsString .= sprintf(
+                        "    %s => %s\n",
+                        $exporter->export($key),
+                        $exporter->shortenedExport($actual[$key]),
+                    );
+                }
             } catch (ComparisonFailure $e) {
-                $expectedAsString .= sprintf(
-                    "    %s => %s\n",
-                    $exporter->export($key),
-                    $e->getExpectedAsString() !== '' ? $this->indent($e->getExpectedAsString()) : $exporter->shortenedExport($e->getExpected()),
-                );
+                if ($canonicalize && $isList) {
+                    $expectedAsString .= sprintf(
+                        "    %s\n",
+                        $e->getExpectedAsString() !== '' ? $this->indent($e->getExpectedAsString()) : $exporter->shortenedExport($e->getExpected()),
+                    );
 
-                $actualAsString .= sprintf(
-                    "    %s => %s\n",
-                    $exporter->export($key),
-                    $e->getActualAsString() !== '' ? $this->indent($e->getActualAsString()) : $exporter->shortenedExport($e->getActual()),
-                );
+                    $actualAsString .= sprintf(
+                        "    %s\n",
+                        $e->getActualAsString() !== '' ? $this->indent($e->getActualAsString()) : $exporter->shortenedExport($e->getActual()),
+                    );
+                } else {
+                    $expectedAsString .= sprintf(
+                        "    %s => %s\n",
+                        $exporter->export($key),
+                        $e->getExpectedAsString() !== '' ? $this->indent($e->getExpectedAsString()) : $exporter->shortenedExport($e->getExpected()),
+                    );
+
+                    $actualAsString .= sprintf(
+                        "    %s => %s\n",
+                        $exporter->export($key),
+                        $e->getActualAsString() !== '' ? $this->indent($e->getActualAsString()) : $exporter->shortenedExport($e->getActual()),
+                    );
+                }
 
                 $equal = false;
             }
         }
 
         foreach ($remaining as $key => $value) {
-            $actualAsString .= sprintf(
-                "    %s => %s\n",
-                $exporter->export($key),
-                $exporter->shortenedExport($value),
-            );
+            if ($canonicalize && $isList) {
+                $actualAsString .= sprintf(
+                    "    %s\n",
+                    $exporter->shortenedExport($value),
+                );
+            } else {
+                $actualAsString .= sprintf(
+                    "    %s => %s\n",
+                    $exporter->export($key),
+                    $exporter->shortenedExport($value),
+                );
+            }
 
             $equal = false;
         }
