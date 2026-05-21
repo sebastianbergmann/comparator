@@ -30,7 +30,7 @@
     "require": {
         "php": ">=8.4",
         "sebastian/diff": "^8.3",
-        "sebastian/exporter": "^8.0.3",
+        "sebastian/exporter": "^8.1.0",
         "ext-dom": "*",
         "ext-mbstring": "*"
     },
