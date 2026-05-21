@@ -7,6 +7,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 ### Changed
 
 * [#136](https://github.com/sebastianbergmann/comparator/pull/136): Cleaner diff output for canonicalized list comparisons
+* [#160](https://github.com/sebastianbergmann/comparator/pull/160): Use by-value comparison for closures
 
 ### Fixed
 
