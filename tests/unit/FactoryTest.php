@@ -180,4 +180,80 @@ final class FactoryTest extends TestCase
 
         $this->assertSame(5, $factory->contextLines());
     }
+
+    public function testClosureComparisonTrackingIsDisabledByDefault(): void
+    {
+        $factory = new Factory;
+
+        $this->assertFalse($factory->closureComparisonOccurred());
+    }
+
+    public function testClosureComparisonIsRecordedWhenTwoClosuresAreCompared(): void
+    {
+        $closure = static function (): void
+        {
+        };
+
+        $factory = new Factory;
+        $factory->getComparatorFor($closure, $closure)->assertEquals($closure, $closure);
+
+        $this->assertTrue($factory->closureComparisonOccurred());
+    }
+
+    public function testClosureComparisonIsRecordedWhenClosuresAreNestedInArrays(): void
+    {
+        $closure = static function (): void
+        {
+        };
+
+        $expected = ['callback' => $closure];
+        $actual   = ['callback' => $closure];
+
+        $factory = new Factory;
+        $factory->getComparatorFor($expected, $actual)->assertEquals($expected, $actual);
+
+        $this->assertTrue($factory->closureComparisonOccurred());
+    }
+
+    public function testClosureComparisonIsRecordedWhenClosuresAreNestedInObjects(): void
+    {
+        $closure = static function (): void
+        {
+        };
+
+        $expected           = new stdClass;
+        $expected->callback = $closure;
+
+        $actual           = new stdClass;
+        $actual->callback = $closure;
+
+        $factory = new Factory;
+        $factory->getComparatorFor($expected, $actual)->assertEquals($expected, $actual);
+
+        $this->assertTrue($factory->closureComparisonOccurred());
+    }
+
+    public function testClosureComparisonIsNotRecordedWhenNoClosuresAreCompared(): void
+    {
+        $expected = [1];
+        $actual   = [1];
+
+        $factory = new Factory;
+        $factory->getComparatorFor($expected, $actual)->assertEquals($expected, $actual);
+
+        $this->assertFalse($factory->closureComparisonOccurred());
+    }
+
+    public function testClosureComparisonTrackingCanBeReset(): void
+    {
+        $closure = static function (): void
+        {
+        };
+
+        $factory = new Factory;
+        $factory->getComparatorFor($closure, $closure)->assertEquals($closure, $closure);
+        $factory->resetClosureComparisonTracking();
+
+        $this->assertFalse($factory->closureComparisonOccurred());
+    }
 }

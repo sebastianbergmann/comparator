@@ -29,6 +29,8 @@ final class ClosureComparator extends Comparator
 
     public function assertEquals(mixed $expected, mixed $actual, float $delta = 0.0, bool $canonicalize = false, bool $ignoreCase = false): void
     {
+        $this->factory()->recordClosureComparison();
+
         assert($expected instanceof Closure);
         assert($actual instanceof Closure);
 

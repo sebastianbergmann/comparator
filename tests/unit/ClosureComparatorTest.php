@@ -195,6 +195,21 @@ final class ClosureComparatorTest extends TestCase
         $this->fail('Expected ComparisonFailure to be thrown');
     }
 
+    public function testRecordsClosureComparisonInFactory(): void
+    {
+        $factory    = new Factory;
+        $comparator = new ClosureComparator;
+        $comparator->setFactory($factory);
+
+        $closure = static function (): void
+        {
+        };
+
+        $comparator->assertEquals($closure, $closure);
+
+        $this->assertTrue($factory->closureComparisonOccurred());
+    }
+
     public function testAsStringComparisonFormat(): void
     {
         $f = static function (): void
