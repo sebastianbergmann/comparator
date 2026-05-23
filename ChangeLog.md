@@ -4,9 +4,9 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 ## [8.3.0] - 2026-MM-DD
 
-### Changed
+### Added
 
-* Bumped version requirement for sebastian/diff component
+* [#163](https://github.com/sebastianbergmann/comparator/pull/163): Expose detection of closure comparisons
 
 ## [8.2.1] - 2026-05-21
 
