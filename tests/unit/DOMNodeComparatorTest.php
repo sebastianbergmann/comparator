@@ -56,7 +56,7 @@ final class DOMNodeComparatorTest extends TestCase
     }
 
     /**
-     * @return non-empty-list<array{0: DOMDocument, 1: DOMDocument}>
+     * @return non-empty-list<array{0: DOMDocument, 1: DOMDocument, 2?: bool}>
      */
     public static function assertEqualsSucceedsProvider(): array
     {
