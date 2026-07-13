@@ -22,6 +22,7 @@ use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesClassesThatExtendClass;
 use PHPUnit\Framework\TestCase;
+use SebastianBergmann\Exporter\Exporter;
 use SplObjectStorage;
 use stdClass;
 
@@ -179,6 +180,23 @@ final class FactoryTest extends TestCase
         $factory->setContextLines(5);
 
         $this->assertSame(5, $factory->contextLines());
+    }
+
+    public function testHasDefaultExporter(): void
+    {
+        $factory = new Factory;
+
+        $this->assertSame($factory->exporter(), $factory->exporter());
+    }
+
+    public function testExporterCanBeConfigured(): void
+    {
+        $factory  = new Factory;
+        $exporter = new Exporter;
+
+        $factory->setExporter($exporter);
+
+        $this->assertSame($exporter, $factory->exporter());
     }
 
     public function testClosureComparisonTrackingIsDisabledByDefault(): void

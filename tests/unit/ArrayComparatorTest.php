@@ -11,6 +11,7 @@ namespace SebastianBergmann\Comparator;
 
 use const STDIN;
 use const STDOUT;
+use function str_repeat;
 use DateTimeImmutable;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -18,6 +19,7 @@ use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesClassesThatExtendClass;
 use PHPUnit\Framework\TestCase;
+use SebastianBergmann\Exporter\Exporter;
 use stdClass;
 
 #[CoversClass(ArrayComparator::class)]
@@ -411,6 +413,25 @@ final class ArrayComparatorTest extends TestCase
         } catch (ComparisonFailure $e) {
             $this->assertEquals('Failed asserting that two arrays are equal.', $e->getMessage());
             $this->assertEquals($expectedDiff, $e->getDiff());
+        }
+    }
+
+    public function testExporterConfiguredForFactoryIsUsedWhenComparisonFails(): void
+    {
+        $factory = new Factory;
+        $factory->setExporter(new Exporter(0, 20));
+
+        $comparator = new ArrayComparator;
+        $comparator->setFactory($factory);
+
+        try {
+            $comparator->assertEquals(['key' => str_repeat('x', 60)], []);
+            $this->fail('Expected ComparisonFailure not thrown');
+        } catch (ComparisonFailure $e) {
+            $this->assertEquals(
+                "Array (\n    'key' => 'xxxxxxxxx...xxxxxx'\n)",
+                $e->getExpectedAsString(),
+            );
         }
     }
 }

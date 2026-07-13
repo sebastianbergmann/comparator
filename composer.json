@@ -26,11 +26,12 @@
         "issues": "https://github.com/sebastianbergmann/comparator/issues",
         "security": "https://github.com/sebastianbergmann/comparator/security/policy"
     },
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
         "php": ">=8.4",
         "sebastian/diff": "^9.0",
-        "sebastian/exporter": "^8.1.0",
+        "sebastian/exporter": "^8.2",
         "ext-dom": "*",
         "ext-mbstring": "*"
     },
@@ -38,7 +39,7 @@
         "ext-bcmath": "For comparing BcMath\\Number objects"
     },
     "require-dev": {
-        "phpunit/phpunit": "^13.2.4"
+        "phpunit/phpunit": "^13.3"
     },
     "config": {
         "platform": {
@@ -59,7 +60,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-main": "8.3-dev"
+            "dev-main": "8.4-dev"
         }
     }
 }

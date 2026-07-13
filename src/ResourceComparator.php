@@ -11,7 +11,6 @@ namespace SebastianBergmann\Comparator;
 
 use function assert;
 use function is_resource;
-use SebastianBergmann\Exporter\Exporter;
 
 /**
  * @no-named-arguments Parameter names are not covered by the backward compatibility promise for sebastian/comparator
@@ -33,7 +32,7 @@ final class ResourceComparator extends Comparator
         assert(is_resource($expected));
         assert(is_resource($actual));
 
-        $exporter = new Exporter;
+        $exporter = $this->exporter();
 
         /** @phpstan-ignore notEqual.notAllowed */
         if ($actual != $expected) {

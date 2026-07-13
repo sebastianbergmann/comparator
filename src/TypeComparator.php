@@ -11,7 +11,6 @@ namespace SebastianBergmann\Comparator;
 
 use function gettype;
 use function sprintf;
-use SebastianBergmann\Exporter\Exporter;
 
 /**
  * @no-named-arguments Parameter names are not covered by the backward compatibility promise for sebastian/comparator
@@ -39,7 +38,7 @@ final class TypeComparator extends Comparator
                 '',
                 sprintf(
                     '%s does not match expected type "%s".',
-                    (new Exporter)->shortenedExport($actual),
+                    $this->exporter()->shortenedExport($actual),
                     gettype($expected),
                 ),
                 $this->contextLines(),

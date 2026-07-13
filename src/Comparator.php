@@ -9,6 +9,8 @@
  */
 namespace SebastianBergmann\Comparator;
 
+use SebastianBergmann\Exporter\Exporter;
+
 /**
  * @no-named-arguments Parameter names are not covered by the backward compatibility promise for sebastian/comparator
  */
@@ -43,5 +45,14 @@ abstract class Comparator
         }
 
         return $this->factory->contextLines();
+    }
+
+    final protected function exporter(): Exporter
+    {
+        if (!isset($this->factory)) {
+            return new Exporter;
+        }
+
+        return $this->factory->exporter();
     }
 }

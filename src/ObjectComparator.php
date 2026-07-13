@@ -14,7 +14,6 @@ use function in_array;
 use function is_object;
 use function sprintf;
 use function substr_replace;
-use SebastianBergmann\Exporter\Exporter;
 
 /**
  * @no-named-arguments Parameter names are not covered by the backward compatibility promise for sebastian/comparator
@@ -39,7 +38,7 @@ class ObjectComparator extends ArrayComparator
         assert(is_object($actual));
 
         if ($actual::class !== $expected::class) {
-            $exporter = new Exporter;
+            $exporter = $this->exporter();
 
             throw new ComparisonFailure(
                 $expected,
@@ -95,6 +94,6 @@ class ObjectComparator extends ArrayComparator
      */
     protected function toArray(object $object): array
     {
-        return (new Exporter)->toArray($object);
+        return $this->exporter()->toArray($object);
     }
 }

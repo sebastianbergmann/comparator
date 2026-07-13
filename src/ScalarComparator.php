@@ -19,7 +19,6 @@ use function method_exists;
 use function sprintf;
 use function strlen;
 use function substr;
-use SebastianBergmann\Exporter\Exporter;
 
 /**
  * @no-named-arguments Parameter names are not covered by the backward compatibility promise for sebastian/comparator
@@ -47,7 +46,7 @@ class ScalarComparator extends Comparator
     {
         $expectedToCompare = $expected;
         $actualToCompare   = $actual;
-        $exporter          = new Exporter;
+        $exporter          = $this->exporter();
 
         // always compare as strings to avoid strange behaviour
         // otherwise 0 == 'Foobar'

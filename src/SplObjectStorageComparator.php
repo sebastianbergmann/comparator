@@ -10,7 +10,6 @@
 namespace SebastianBergmann\Comparator;
 
 use function assert;
-use SebastianBergmann\Exporter\Exporter;
 use SplObjectStorage;
 
 /**
@@ -33,7 +32,7 @@ final class SplObjectStorageComparator extends Comparator
         assert($expected instanceof SplObjectStorage);
         assert($actual instanceof SplObjectStorage);
 
-        $exporter = new Exporter;
+        $exporter = $this->exporter();
 
         foreach ($actual as $object) {
             if (!$expected->offsetExists($object)) {

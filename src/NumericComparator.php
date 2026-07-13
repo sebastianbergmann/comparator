@@ -17,7 +17,6 @@ use function is_nan;
 use function is_numeric;
 use function is_string;
 use function sprintf;
-use SebastianBergmann\Exporter\Exporter;
 
 /**
  * @no-named-arguments Parameter names are not covered by the backward compatibility promise for sebastian/comparator
@@ -54,7 +53,7 @@ final class NumericComparator extends ScalarComparator
         if (($this->isInfinite($actual) xor $this->isInfinite($expected)) ||
             ($this->isNan($actual) || $this->isNan($expected)) ||
             abs($actual - $expected) > $delta) {
-            $exporter = new Exporter;
+            $exporter = $this->exporter();
 
             throw new ComparisonFailure(
                 $expected,
