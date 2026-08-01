@@ -15,6 +15,7 @@ use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesClassesThatExtendClass;
 use PHPUnit\Framework\TestCase;
+use SebastianBergmann\Exporter\Exporter;
 use stdClass;
 
 #[CoversClass(ObjectComparator::class)]
@@ -163,5 +164,46 @@ final class ObjectComparatorTest extends TestCase
         $this->expectExceptionMessage($message);
 
         $this->comparator->assertEquals($expected, $actual, $delta);
+    }
+
+    public function testRepresentationProvidedByObjectExporterIsUsedWhenComparisonFails(): void
+    {
+        $comparator = $this->comparatorWithObjectExporter();
+
+        try {
+            $comparator->assertEquals(new SampleClass(4, 8, 15), new SampleClass(16, 23, 42));
+
+            $this->fail('Expected ComparisonFailure not thrown');
+        } catch (ComparisonFailure $e) {
+            $this->assertSame('SampleClass(4)', $e->getExpectedAsString());
+            $this->assertSame('SampleClass(16)', $e->getActualAsString());
+        }
+    }
+
+    public function testDefaultRepresentationIsUsedWhenObjectExporterDoesNotHandleObjects(): void
+    {
+        $comparator = $this->comparatorWithObjectExporter();
+
+        try {
+            $comparator->assertEquals(new Struct(1), new Struct(2));
+
+            $this->fail('Expected ComparisonFailure not thrown');
+        } catch (ComparisonFailure $e) {
+            $this->assertSame(Struct::class . " Object (\n    'var' => 1\n)", $e->getExpectedAsString());
+            $this->assertSame(Struct::class . " Object (\n    'var' => 2\n)", $e->getActualAsString());
+        }
+    }
+
+    private function comparatorWithObjectExporter(): ObjectComparator
+    {
+        $factory = new Factory;
+
+        $factory->setExporter(new Exporter(0, 40, new SampleClassExporter));
+
+        $comparator = new ObjectComparator;
+
+        $comparator->setFactory($factory);
+
+        return $comparator;
     }
 }

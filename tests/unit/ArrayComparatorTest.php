@@ -434,4 +434,31 @@ final class ArrayComparatorTest extends TestCase
             );
         }
     }
+
+    public function testRepresentationProvidedByObjectExporterIsUsedForEqualAsWellAsDifferingElements(): void
+    {
+        $factory = new Factory;
+        $factory->setExporter(new Exporter(0, 40, new SampleClassExporter));
+
+        $comparator = new ArrayComparator;
+        $comparator->setFactory($factory);
+
+        $expected = ['same' => new SampleClass(1, 2, 3), 'differing' => new SampleClass(4, 8, 15)];
+        $actual   = ['same' => new SampleClass(1, 2, 3), 'differing' => new SampleClass(16, 23, 42)];
+
+        try {
+            $comparator->assertEquals($expected, $actual);
+            $this->fail('Expected ComparisonFailure not thrown');
+        } catch (ComparisonFailure $e) {
+            $this->assertSame(
+                "Array (\n    'same' => SampleClass(1)\n    'differing' => SampleClass(4)\n)",
+                $e->getExpectedAsString(),
+            );
+
+            $this->assertSame(
+                "Array (\n    'same' => SampleClass(1)\n    'differing' => SampleClass(16)\n)",
+                $e->getActualAsString(),
+            );
+        }
+    }
 }

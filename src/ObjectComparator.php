@@ -76,6 +76,24 @@ class ObjectComparator extends ArrayComparator
                     $processed,
                 );
             } catch (ComparisonFailure $e) {
+                $exporter = $this->exporter();
+
+                // An object exporter is responsible for the entire
+                // representation of the object it handles. Its representation
+                // is therefore used instead of the property-by-property
+                // representation that is built above.
+                if ($exporter->hasCustomRepresentationFor($expected) ||
+                    $exporter->hasCustomRepresentationFor($actual)) {
+                    throw new ComparisonFailure(
+                        $expected,
+                        $actual,
+                        $exporter->export($expected),
+                        $exporter->export($actual),
+                        'Failed asserting that two objects are equal.',
+                        $this->contextLines(),
+                    );
+                }
+
                 throw new ComparisonFailure(
                     $expected,
                     $actual,
