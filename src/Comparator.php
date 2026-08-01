@@ -10,6 +10,7 @@
 namespace SebastianBergmann\Comparator;
 
 use SebastianBergmann\Exporter\Exporter;
+use SebastianBergmann\Exporter\ObjectNotSupportedException;
 
 /**
  * @no-named-arguments Parameter names are not covered by the backward compatibility promise for sebastian/comparator
@@ -26,7 +27,12 @@ abstract class Comparator
     abstract public function accepts(mixed $expected, mixed $actual): bool;
 
     /**
+     * ObjectNotSupportedException is thrown when an object exporter that is
+     * configured for the Exporter this comparator uses does not provide a
+     * representation for an object it is asked to export.
+     *
      * @throws ComparisonFailure
+     * @throws ObjectNotSupportedException
      */
     abstract public function assertEquals(mixed $expected, mixed $actual, float $delta = 0.0, bool $canonicalize = false, bool $ignoreCase = false): void;
 

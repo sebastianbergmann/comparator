@@ -10,6 +10,7 @@
 namespace SebastianBergmann\Comparator;
 
 use function assert;
+use SebastianBergmann\Exporter\ObjectNotSupportedException;
 use SplObjectStorage;
 
 /**
@@ -26,6 +27,7 @@ final class SplObjectStorageComparator extends Comparator
 
     /**
      * @throws ComparisonFailure
+     * @throws ObjectNotSupportedException
      */
     public function assertEquals(mixed $expected, mixed $actual, float $delta = 0.0, bool $canonicalize = false, bool $ignoreCase = false): void
     {

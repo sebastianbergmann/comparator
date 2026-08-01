@@ -19,6 +19,7 @@ use function method_exists;
 use function sprintf;
 use function strlen;
 use function substr;
+use SebastianBergmann\Exporter\ObjectNotSupportedException;
 
 /**
  * @no-named-arguments Parameter names are not covered by the backward compatibility promise for sebastian/comparator
@@ -41,6 +42,7 @@ class ScalarComparator extends Comparator
 
     /**
      * @throws ComparisonFailure
+     * @throws ObjectNotSupportedException
      */
     public function assertEquals(mixed $expected, mixed $actual, float $delta = 0.0, bool $canonicalize = false, bool $ignoreCase = false): void
     {

@@ -14,6 +14,7 @@ use function spl_object_id;
 use function sprintf;
 use Closure;
 use ReflectionFunction;
+use SebastianBergmann\Exporter\ObjectNotSupportedException;
 
 /**
  * @no-named-arguments Parameter names are not covered by the backward compatibility promise for sebastian/comparator
@@ -27,6 +28,10 @@ final class ClosureComparator extends Comparator
         return $expected instanceof Closure && $actual instanceof Closure;
     }
 
+    /**
+     * @throws ComparisonFailure
+     * @throws ObjectNotSupportedException
+     */
     public function assertEquals(mixed $expected, mixed $actual, float $delta = 0.0, bool $canonicalize = false, bool $ignoreCase = false): void
     {
         $this->factory()->recordClosureComparison();

@@ -14,6 +14,7 @@ use function in_array;
 use function is_object;
 use function sprintf;
 use function substr_replace;
+use SebastianBergmann\Exporter\ObjectNotSupportedException;
 
 /**
  * @no-named-arguments Parameter names are not covered by the backward compatibility promise for sebastian/comparator
@@ -31,6 +32,7 @@ class ObjectComparator extends ArrayComparator
      * @param array<mixed> $processed
      *
      * @throws ComparisonFailure
+     * @throws ObjectNotSupportedException
      */
     public function assertEquals(mixed $expected, mixed $actual, float $delta = 0.0, bool $canonicalize = false, bool $ignoreCase = false, array &$processed = []): void
     {
