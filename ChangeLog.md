@@ -11,7 +11,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 ### Changed
 
 * Comparators now use the `Exporter` instance configured for their `Factory` instead of creating their own instances (this allows customizing how values are represented in comparison failure messages)
-* When an object exporter provides the representation for the objects that are compared then that representation is used in the comparison failure message instead of the property-by-property representation
+* When an object exporter provides the representation for the objects that are compared then that representation is used in the comparison failure message instead of the property-by-property representation; this does not apply to objects for which a comparator of their own exists (`DateTimeComparator`, for instance), as the representation such a comparator provides always has precedence
 
 ## [8.3.0] - 2026-06-05
 

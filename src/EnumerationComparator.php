@@ -14,6 +14,10 @@ use function sprintf;
 use UnitEnum;
 
 /**
+ * An object exporter is not consulted for the representation of the
+ * enumeration values that are compared: the representation this comparator
+ * provides for them always has precedence.
+ *
  * @no-named-arguments Parameter names are not covered by the backward compatibility promise for sebastian/comparator
  *
  * @internal This class is not covered by the backward compatibility promise for sebastian/comparator

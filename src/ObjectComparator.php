@@ -17,6 +17,12 @@ use function substr_replace;
 use SebastianBergmann\Exporter\ObjectNotSupportedException;
 
 /**
+ * When an object exporter provides the representation for the objects that
+ * are compared then that representation is used for the comparison failure
+ * message. This does not apply to objects for which a comparator of their own
+ * exists: such a comparator is consulted before this one and the
+ * representation it provides always has precedence.
+ *
  * @no-named-arguments Parameter names are not covered by the backward compatibility promise for sebastian/comparator
  *
  * @internal This class is not covered by the backward compatibility promise for sebastian/comparator

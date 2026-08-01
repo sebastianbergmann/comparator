@@ -17,6 +17,10 @@ use ReflectionFunction;
 use SebastianBergmann\Exporter\ObjectNotSupportedException;
 
 /**
+ * An object exporter is not consulted for the representation of the closures
+ * that are compared: the representation this comparator provides for them
+ * always has precedence.
+ *
  * @no-named-arguments Parameter names are not covered by the backward compatibility promise for sebastian/comparator
  *
  * @internal This class is not covered by the backward compatibility promise for sebastian/comparator
