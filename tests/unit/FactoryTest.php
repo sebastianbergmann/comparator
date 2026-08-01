@@ -199,6 +199,49 @@ final class FactoryTest extends TestCase
         $this->assertSame($exporter, $factory->exporter());
     }
 
+    public function testDefaultComparatorUsesExporterConfiguredForFactory(): void
+    {
+        $factory = new Factory;
+        $factory->setExporter(new Exporter(0, 40, new SampleClassExporter));
+
+        $expected = new SampleClass(4, 8, 15);
+        $actual   = new SampleClass(16, 23, 42);
+
+        $comparator = $factory->getComparatorFor($expected, $actual);
+
+        $this->assertInstanceOf(ObjectComparator::class, $comparator);
+
+        try {
+            $comparator->assertEquals($expected, $actual);
+            $this->fail('Expected ComparisonFailure not thrown');
+        } catch (ComparisonFailure $e) {
+            $this->assertSame('SampleClass(4)', $e->getExpectedAsString());
+            $this->assertSame('SampleClass(16)', $e->getActualAsString());
+        }
+    }
+
+    public function testCustomComparatorUsesExporterConfiguredForFactory(): void
+    {
+        $factory = new Factory;
+        $factory->setExporter(new Exporter(0, 40, new SampleClassExporter));
+        $factory->register(new TestClassComparator);
+
+        $expected = new SampleClass(4, 8, 15);
+        $actual   = new SampleClass(16, 23, 42);
+
+        $comparator = $factory->getComparatorFor($expected, $actual);
+
+        $this->assertInstanceOf(TestClassComparator::class, $comparator);
+
+        try {
+            $comparator->assertEquals($expected, $actual);
+            $this->fail('Expected ComparisonFailure not thrown');
+        } catch (ComparisonFailure $e) {
+            $this->assertSame('SampleClass(4)', $e->getExpectedAsString());
+            $this->assertSame('SampleClass(16)', $e->getActualAsString());
+        }
+    }
+
     public function testClosureComparisonTrackingIsDisabledByDefault(): void
     {
         $factory = new Factory;
