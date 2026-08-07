@@ -411,7 +411,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 * Added `SebastianBergmann\Comparator\Factory::reset()` to unregister all non-default comparators
 * Added support for `phpunit/phpunit-mock-objects` version `^5.0`
 
-[8.4.0]: https://github.com/sebastianbergmann/comparator/compare/8.3.0...main
+[8.4.0]: https://github.com/sebastianbergmann/comparator/compare/8.3.0...8.4.0
 [8.3.0]: https://github.com/sebastianbergmann/comparator/compare/8.2.1...8.3.0
 [8.2.1]: https://github.com/sebastianbergmann/comparator/compare/8.2.0...8.2.1
 [8.2.0]: https://github.com/sebastianbergmann/comparator/compare/8.1.4...8.2.0
