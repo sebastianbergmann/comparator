@@ -107,6 +107,10 @@ final class ComparisonFailureTest extends TestCase
 
     private function createFailureWithNonSerializableTraceArgument(NonSerializableClass $instance): ComparisonFailure
     {
-        return new ComparisonFailure('a', 'b', 'a', 'b', 'test');
+        $failure = new ComparisonFailure('a', 'b', 'a', 'b', 'test');
+
+        $this->assertSame($instance, $failure->getTrace()[0]['args'][0] ?? null);
+
+        return $failure;
     }
 }
