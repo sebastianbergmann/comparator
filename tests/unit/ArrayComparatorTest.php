@@ -411,8 +411,8 @@ final class ArrayComparatorTest extends TestCase
             $this->comparator->assertEquals($expected, $actual, $delta, $canonicalize);
             $this->fail('Expected ComparisonFailure not thrown');
         } catch (ComparisonFailure $e) {
-            $this->assertEquals('Failed asserting that two arrays are equal.', $e->getMessage());
-            $this->assertEquals($expectedDiff, $e->getDiff());
+            $this->assertSame('Failed asserting that two arrays are equal.', $e->getMessage());
+            $this->assertSame($expectedDiff, $e->getDiff());
         }
     }
 
