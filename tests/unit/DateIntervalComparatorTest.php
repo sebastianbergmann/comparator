@@ -127,7 +127,7 @@ final class DateIntervalComparatorTest extends TestCase
     public function testAssertEqualsFails(DateInterval $expected, DateInterval $actual, float $delta = 0.0): void
     {
         $this->expectException(ComparisonFailure::class);
-        $this->expectExceptionMessage('Failed asserting that two DateInterval objects are equal.');
+        $this->expectExceptionMessageIs('Failed asserting that two DateInterval objects are equal.');
 
         (new DateIntervalComparator)->assertEquals($expected, $actual, $delta);
     }

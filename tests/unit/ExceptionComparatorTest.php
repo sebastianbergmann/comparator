@@ -134,7 +134,7 @@ final class ExceptionComparatorTest extends TestCase
     public function testAssertEqualsFails(Throwable $expected, Throwable $actual, string $message): void
     {
         $this->expectException(ComparisonFailure::class);
-        $this->expectExceptionMessage($message);
+        $this->expectExceptionMessageIsOrContains($message);
 
         $this->comparator->assertEquals($expected, $actual);
     }

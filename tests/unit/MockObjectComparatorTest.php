@@ -173,7 +173,7 @@ final class MockObjectComparatorTest extends TestCase
             ->getMock();
 
         $this->expectException(ComparisonFailure::class);
-        $this->expectExceptionMessage('Failed asserting that two objects are equal.');
+        $this->expectExceptionMessageIs('Failed asserting that two objects are equal.');
 
         $this->comparator->assertEquals($expected, $actual);
     }
@@ -199,7 +199,7 @@ final class MockObjectComparatorTest extends TestCase
         $actual->author->books[] = $actual;
 
         $this->expectException(ComparisonFailure::class);
-        $this->expectExceptionMessage('Failed asserting that two objects are equal.');
+        $this->expectExceptionMessageIs('Failed asserting that two objects are equal.');
 
         $this->comparator->assertEquals($expected, $actual);
     }
@@ -213,7 +213,7 @@ final class MockObjectComparatorTest extends TestCase
         $actual->author = new Author('Terry Pratchett');
 
         $this->expectException(ComparisonFailure::class);
-        $this->expectExceptionMessage('is not instance of expected class');
+        $this->expectExceptionMessageIsOrContains('is not instance of expected class');
 
         $this->comparator->assertEquals($expected, $actual);
     }
@@ -231,7 +231,7 @@ final class MockObjectComparatorTest extends TestCase
             ->getMock();
 
         $this->expectException(ComparisonFailure::class);
-        $this->expectExceptionMessage('Failed asserting that two objects are equal.');
+        $this->expectExceptionMessageIs('Failed asserting that two objects are equal.');
 
         $this->comparator->assertEquals($expected, $actual, 0.5);
     }

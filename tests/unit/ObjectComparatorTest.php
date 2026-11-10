@@ -161,7 +161,7 @@ final class ObjectComparatorTest extends TestCase
     public function testAssertEqualsFails(object $expected, object $actual, string $message, float $delta = 0.0): void
     {
         $this->expectException(ComparisonFailure::class);
-        $this->expectExceptionMessage($message);
+        $this->expectExceptionMessageIsOrContains($message);
 
         $this->comparator->assertEquals($expected, $actual, $delta);
     }

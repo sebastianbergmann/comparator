@@ -390,7 +390,7 @@ final class ArrayComparatorTest extends TestCase
     public function testAssertEqualsFails(array $expected, array $actual, float $delta = 0.0, bool $canonicalize = false): void
     {
         $this->expectException(ComparisonFailure::class);
-        $this->expectExceptionMessage('Failed asserting that two arrays are equal');
+        $this->expectExceptionMessageIsOrContains('Failed asserting that two arrays are equal');
 
         $this->comparator->assertEquals($expected, $actual, $delta, $canonicalize);
     }
@@ -428,7 +428,7 @@ final class ArrayComparatorTest extends TestCase
             $comparator->assertEquals(['key' => str_repeat('x', 60)], []);
             $this->fail('Expected ComparisonFailure not thrown');
         } catch (ComparisonFailure $e) {
-            $this->assertEquals(
+            $this->assertSame(
                 "Array (\n    'key' => 'xxxxxxxxx...xxxxxx'\n)",
                 $e->getExpectedAsString(),
             );

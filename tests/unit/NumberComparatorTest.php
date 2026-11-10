@@ -143,7 +143,7 @@ final class NumberComparatorTest extends TestCase
     public function testAssertEqualsFails(int|Number|string $expected, int|Number|string $actual, float $delta = 0.0): void
     {
         $this->expectException(ComparisonFailure::class);
-        $this->expectExceptionMessage('Failed asserting that two Number objects are equal.');
+        $this->expectExceptionMessageIs('Failed asserting that two Number objects are equal.');
 
         (new NumberComparator)->assertEquals($expected, $actual, $delta);
     }

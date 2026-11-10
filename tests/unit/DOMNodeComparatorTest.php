@@ -229,7 +229,7 @@ final class DOMNodeComparatorTest extends TestCase
     public function testAssertEqualsFails(DOMDocument $expected, DOMDocument $actual): void
     {
         $this->expectException(ComparisonFailure::class);
-        $this->expectExceptionMessage('Failed asserting that two DOM');
+        $this->expectExceptionMessageIsOrContains('Failed asserting that two DOM');
 
         (new DOMNodeComparator)->assertEquals($expected, $actual);
     }
@@ -251,7 +251,7 @@ final class DOMNodeComparatorTest extends TestCase
     public function testAssertEqualsFailsWhenCanonicalizationFails(DOMDocument|DOMNode $expected, DOMDocument|DOMNode $actual): void
     {
         $this->expectException(ComparisonFailure::class);
-        $this->expectExceptionMessage('Failed asserting that two DOM');
+        $this->expectExceptionMessageIsOrContains('Failed asserting that two DOM');
 
         (new DOMNodeComparator)->assertEquals($expected, $actual);
     }

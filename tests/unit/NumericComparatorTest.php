@@ -162,7 +162,7 @@ final class NumericComparatorTest extends TestCase
     public function testAssertEqualsFails(mixed $expected, mixed $actual, float $delta = 0.0): void
     {
         $this->expectException(ComparisonFailure::class);
-        $this->expectExceptionMessage('matches expected');
+        $this->expectExceptionMessageIsOrContains('matches expected');
 
         (new NumericComparator)->assertEquals($expected, $actual, $delta);
     }

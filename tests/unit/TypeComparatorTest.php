@@ -96,7 +96,7 @@ final class TypeComparatorTest extends TestCase
     public function testAssertEqualsFails(mixed $expected, mixed $actual): void
     {
         $this->expectException(ComparisonFailure::class);
-        $this->expectExceptionMessage('does not match expected type');
+        $this->expectExceptionMessageIsOrContains('does not match expected type');
 
         (new TypeComparator)->assertEquals($expected, $actual);
     }

@@ -226,7 +226,7 @@ final class ScalarComparatorTest extends TestCase
     public function testAssertEqualsFails(mixed $expected, mixed $actual, string $message): void
     {
         $this->expectException(ComparisonFailure::class);
-        $this->expectExceptionMessage($message);
+        $this->expectExceptionMessageIsOrContains($message);
 
         (new ScalarComparator)->assertEquals($expected, $actual);
     }

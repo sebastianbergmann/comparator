@@ -112,7 +112,7 @@ final class EnumerationComparatorTest extends TestCase
     public function testAssertEqualsFails(mixed $expected, mixed $actual, string $message): void
     {
         $this->expectException(ComparisonFailure::class);
-        $this->expectExceptionMessage($message);
+        $this->expectExceptionMessageIs($message);
 
         (new EnumerationComparator)->assertEquals($expected, $actual);
     }
