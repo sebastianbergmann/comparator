@@ -237,8 +237,8 @@ final class ScalarComparatorTest extends TestCase
             (new ScalarComparator)->assertEquals($expected, $actual);
             $this->fail('Expected ComparisonFailure not thrown');
         } catch (ComparisonFailure $e) {
-            $this->assertEquals('Failed asserting that two strings are equal.', $e->getMessage());
-            $this->assertEquals($expectedDiff, $e->getDiff());
+            $this->assertSame('Failed asserting that two strings are equal.', $e->getMessage());
+            $this->assertSame($expectedDiff, $e->getDiff());
         }
     }
 }
